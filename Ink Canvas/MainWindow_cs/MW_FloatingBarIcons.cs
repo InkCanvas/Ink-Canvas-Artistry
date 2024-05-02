@@ -359,7 +359,8 @@ namespace Ink_Canvas {
                 if (Settings.Gesture.AutoSwitchTwoFingerGesture) // 自动启用多指书写
                 {
                     ToggleSwitchEnableTwoFingerTranslate.IsOn = false;
-                    if (!isInMultiTouchMode) ToggleSwitchEnableMultiTouchMode.IsOn = true;
+                    // 2024.5.2 need to be tested
+                    //if (!isInMultiTouchMode) ToggleSwitchEnableMultiTouchMode.IsOn = true;
                 }
             }
 
