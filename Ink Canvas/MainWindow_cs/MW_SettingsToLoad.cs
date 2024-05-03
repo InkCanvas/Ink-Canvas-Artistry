@@ -74,6 +74,8 @@ namespace Ink_Canvas {
             }
             // Appearance
             if (Settings.Appearance != null) {
+                ComboBoxTheme.SelectedIndex = Settings.Appearance.Theme;
+
                 if (!Settings.Appearance.IsEnableDisPlayNibModeToggler) {
                     NibModeSimpleStackPanel.Visibility = Visibility.Collapsed;
                     BoardNibModeSimpleStackPanel.Visibility = Visibility.Collapsed;
@@ -96,11 +98,11 @@ namespace Ink_Canvas {
                     BorderFloatingBarExitPPTBtn.Background = gradientBrush;
 
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = true;
-                } else {
+                } else {/*
                     EnableTwoFingerGestureBorder.Background = (Brush)FindResource("FloatBarBackground");
                     BorderFloatingBarMainControls.Background = (Brush)FindResource("FloatBarBackground");
                     BorderFloatingBarMoveControls.Background = (Brush)FindResource("FloatBarBackground");
-                    BorderFloatingBarExitPPTBtn.Background = (Brush)FindResource("FloatBarBackground");
+                    BorderFloatingBarExitPPTBtn.Background = (Brush)FindResource("FloatBarBackground");*/
 
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = false;
                 }
