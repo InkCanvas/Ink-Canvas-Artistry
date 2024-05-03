@@ -33,16 +33,13 @@ namespace Ink_Canvas {
         private void CheckEnableTwoFingerGestureBtnColorPrompt() {
             if (ToggleSwitchEnableMultiTouchMode.IsOn) {
                 TwoFingerGestureSimpleStackPanel.Opacity = 0.5;
-                EnableTwoFingerGestureBtn.Source = new BitmapImage(new Uri("/Resources/Icons-png/twoFingelMove.png", UriKind.Relative));
-                BoardEnableTwoFingerGestureBtn.Source = new BitmapImage(new Uri("/Resources/Icons-png/twoFingelMove.png", UriKind.Relative));
+                EnableTwoFingerGestureBtn.Opacity = 0.5;
             } else {
                 TwoFingerGestureSimpleStackPanel.Opacity = 1;
                 if (Settings.Gesture.IsEnableTwoFingerGesture) {
-                    EnableTwoFingerGestureBtn.Source = new BitmapImage(new Uri("/Resources/Icons-png/twoFingelMove-Blue.png", UriKind.Relative));
-                    BoardEnableTwoFingerGestureBtn.Source = new BitmapImage(new Uri("/Resources/Icons-png/twoFingelMove-Blue.png", UriKind.Relative));
+                    EnableTwoFingerGestureBtn.Opacity = 1;
                 } else {
-                    EnableTwoFingerGestureBtn.Source = new BitmapImage(new Uri("/Resources/Icons-png/twoFingelMove.png", UriKind.Relative));
-                    BoardEnableTwoFingerGestureBtn.Source = new BitmapImage(new Uri("/Resources/Icons-png/twoFingelMove.png", UriKind.Relative));
+                    EnableTwoFingerGestureBtn.Opacity = 0.5;
                 }
             }
         }
@@ -91,8 +88,8 @@ namespace Ink_Canvas {
             pos = e.GetPosition(null);
             downPos = e.GetPosition(null);
             GridForFloatingBarDraging.Visibility = Visibility.Visible;
-
-            SymbolIconEmoji.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Emoji;
+            SymbolIconEmoji1.Width = 0;
+            SymbolIconEmoji2.Width = 28;
         }
 
         void SymbolIconEmoji_MouseUp(object sender, MouseButtonEventArgs e) {
@@ -109,7 +106,8 @@ namespace Ink_Canvas {
             }
 
             GridForFloatingBarDraging.Visibility = Visibility.Collapsed;
-            SymbolIconEmoji.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Emoji2;
+            SymbolIconEmoji1.Width = 28;
+            SymbolIconEmoji2.Width = 0;
         }
 
         #endregion
@@ -141,30 +139,37 @@ namespace Ink_Canvas {
             if (mode != null) {
                 if (mode != "clear") {
                     Pen_Icon.Background = null;
-                    BoardPen.Background = new SolidColorBrush(Colors.LightGray);
+                    BoardPen.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
+                    BoardPen.Opacity = 1;
                     Eraser_Icon.Background = null;
-                    BoardEraser.Background = new SolidColorBrush(Colors.LightGray);
+                    BoardEraser.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
+                    BoardEraser.Opacity = 1;
                     SymbolIconSelect.Background = null;
-                    BoardSelect.Background = new SolidColorBrush(Colors.LightGray);
+                    BoardSelect.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
+                    BoardSelect.Opacity = 1;
                     EraserByStrokes_Icon.Background = null;
-                    BoardEraserByStrokes.Background = new SolidColorBrush(Colors.LightGray);
+                    BoardEraserByStrokes.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
+                    BoardEraserByStrokes.Opacity = 1;
                 }
                 if (mode == "pen" || mode == "color") {
-                    BoardPen.Background = new SolidColorBrush(Color.FromRgb(103, 156, 244));
-                    Pen_Icon.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.75 };
+                    Pen_Icon.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                    BoardPen.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                    BoardPen.Opacity = 0.99;
                 } else {
                     if (mode == "eraser") {
-                        Eraser_Icon.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.75 };
-                        BoardEraser.Background = new SolidColorBrush(Color.FromRgb(103, 156, 244));
+                        Eraser_Icon.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                        BoardEraser.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                        BoardEraser.Opacity = 0.99;
                     } else if (mode == "eraserByStrokes") {
-                        EraserByStrokes_Icon.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.75 };
-                        BoardEraserByStrokes.Background = new SolidColorBrush(Color.FromRgb(103, 156, 244));
+                        EraserByStrokes_Icon.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                        BoardEraserByStrokes.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                        BoardEraserByStrokes.Opacity = 0.99;
                     } else if (mode == "select") {
-                        BoardSelect.Background = new SolidColorBrush(Color.FromRgb(103, 156, 244));
-                        SymbolIconSelect.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.75 };
+                        BoardSelect.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                        SymbolIconSelect.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Resources/Icons-png/check-box-background.png"))) { Opacity = 0.5 };
+                        SymbolIconSelect.Opacity = 0.99;
                     }
                 }
-
 
                 if (autoAlignCenter) // 控制居中
                 {
@@ -359,8 +364,7 @@ namespace Ink_Canvas {
                 if (Settings.Gesture.AutoSwitchTwoFingerGesture) // 自动启用多指书写
                 {
                     ToggleSwitchEnableTwoFingerTranslate.IsOn = false;
-                    // 2024.5.2 need to be tested
-                    //if (!isInMultiTouchMode) ToggleSwitchEnableMultiTouchMode.IsOn = true;
+                    if (!isInMultiTouchMode) ToggleSwitchEnableMultiTouchMode.IsOn = true;
                 }
             }
 
@@ -1362,14 +1366,10 @@ namespace Ink_Canvas {
                 BoardBorderPenColorBlue.Background = new SolidColorBrush(StringToColor("#FF23C0D6"));
                 BoardBorderPenColorYellow.Background = new SolidColorBrush(StringToColor("#FFFFC000"));
                 BoardBorderPenColorPink.Background = new SolidColorBrush(StringToColor("#FF#c72ec7"));
-
-                BitmapImage newImageSource = new BitmapImage();
-                newImageSource.BeginInit();
-                newImageSource.UriSource = new Uri("/Resources/Icons-Fluent/ic_fluent_weather_moon_24_regular.png", UriKind.RelativeOrAbsolute);
-                newImageSource.EndInit();
-                ColorThemeSwitchIcon.Source = newImageSource;
-                BoardColorThemeSwitchIcon.Source = newImageSource;
-
+                ColorThemeSwitchIcon1.Width = 0;
+                ColorThemeSwitchIcon1.Height = 0;
+                ColorThemeSwitchIcon2.Width = 26;
+                ColorThemeSwitchIcon2.Height = 26;
                 ColorThemeSwitchTextBlock.Text = "暗系";
                 BoardColorThemeSwitchTextBlock.Text = "暗系";
             } else { // 暗系
@@ -1383,14 +1383,10 @@ namespace Ink_Canvas {
                 BoardBorderPenColorBlue.Background = new SolidColorBrush(StringToColor("#FF239AD6"));
                 BoardBorderPenColorYellow.Background = new SolidColorBrush(StringToColor("#FFF38B00"));
                 BoardBorderPenColorPink.Background = new SolidColorBrush(StringToColor("#FF331EB5"));
-
-                BitmapImage newImageSource = new BitmapImage();
-                newImageSource.BeginInit();
-                newImageSource.UriSource = new Uri("/Resources/Icons-Fluent/ic_fluent_weather_sunny_24_regular.png", UriKind.RelativeOrAbsolute);
-                newImageSource.EndInit();
-                ColorThemeSwitchIcon.Source = newImageSource;
-                BoardColorThemeSwitchIcon.Source = newImageSource;
-
+                ColorThemeSwitchIcon1.Width = 26;
+                ColorThemeSwitchIcon1.Height = 26;
+                ColorThemeSwitchIcon2.Width = 0;
+                ColorThemeSwitchIcon2.Height = 0;
                 ColorThemeSwitchTextBlock.Text = "亮系";
                 BoardColorThemeSwitchTextBlock.Text = "亮系";
             }

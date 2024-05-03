@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="BoardBarBackground" Color="#121212" Opacity="0.75"/>
+    <SolidColorBrush x:Key="BoardBarTitleBackground" Color="#2156c9" Opacity="1"/>
+    <SolidColorBrush x:Key="BoardBarBorderBrush" Color="White" Opacity="0.6"/>
+    <SolidColorBrush x:Key="BoardBarForeground" Color="White"/>
+    <Color x:Key="BoardBarForegroundColor">#FFcccccc</Color>
+</ResourceDictionary>
