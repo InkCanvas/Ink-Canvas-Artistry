@@ -131,20 +131,20 @@
                         <Border Name="BorderStrokeSelectionClone" Margin="0,2,-9,2" Background="Transparent" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
                                 Width="40" MouseDown="Border_MouseDown" MouseUp="BorderStrokeSelectionClone_MouseUp">
                             <ui:SimpleStackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="25" Width="25" FontFamily="Segoe Fluent Icons" Glyph="&#xe8c8;" Foreground="{DynamicResource FloatBarForeground}"/>
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_copy_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
                                 <TextBlock Text="克隆" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Center"/>
                             </ui:SimpleStackPanel>
                         </Border>
                         <Border Name="BorderStrokeSelectionCloneToNewBoard" Margin="0,2,-9,2" Background="Transparent" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
                                 Width="40" MouseDown="Border_MouseDown" MouseUp="BorderStrokeSelectionCloneToNewBoard_MouseUp" Visibility="{Binding Visibility, ElementName=GridBackgroundCover}">
                             <ui:SimpleStackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <ui:FontIcon Margin="1,0,0,0" Height="25" Width="25" FontSize="18" FontFamily="Segoe Fluent Icons" Glyph="&#xf413;" Foreground="{DynamicResource FloatBarForeground}"/>
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_copy_add_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
                                 <TextBlock Text="克隆至新页" FontSize="8" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Center"/>
                             </ui:SimpleStackPanel>
                         </Border>
                         <Border Width="1" Height="45" BorderBrush="{DynamicResource FloatBarForeground}" Background="{DynamicResource FloatBarForeground}"/>
                         <Border CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}" Height="40">
-                            <ui:SimpleStackPanel VerticalAlignment="Center" Spacing="2" Margin="0,-10">
+                            <ui:SimpleStackPanel VerticalAlignment="Center" Spacing="5" Margin="0,-10">
                                 <ui:SimpleStackPanel Orientation="Horizontal" Spacing="10">
                                     <Image Source="{DynamicResource Rotate45DrawingImage}" Height="22" MouseDown="Border_MouseDown" MouseUp="ImageRotate45_MouseUp"/>
                                     <Image Source="{DynamicResource Rotate90DrawingImage}" Height="22" MouseDown="Border_MouseDown" MouseUp="ImageRotate90_MouseUp"/>
@@ -156,18 +156,8 @@
                         <Border CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}" Height="40">
                             <ui:SimpleStackPanel VerticalAlignment="Center" Margin="0,-10">
                                 <ui:SimpleStackPanel Orientation="Horizontal">
-                                    <Image Source="{DynamicResource FlipDrawingImage}" Width="25" Height="25" MouseDown="Border_MouseDown" MouseUp="ImageFlipHorizontal_MouseUp"/>
-                                    <Image Source="{DynamicResource FlipDrawingImage}" Width="25" Height="25" MouseDown="Border_MouseDown" MouseUp="ImageFlipVertical_MouseUp"
-                                           Margin="5,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        <Image.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="90"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </Image.RenderTransform>
-                                    </Image>
+                                    <Image MouseDown="Border_MouseDown" MouseUp="ImageFlipHorizontal_MouseUp" Source="/Resources/Icons-Fluent/ic_fluent_flip_horizontal_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30"/>
+                                    <Image MouseDown="Border_MouseDown" MouseUp="ImageFlipVertical_MouseUp" Source="/Resources/Icons-Fluent/ic_fluent_flip_vertical_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30"/>
                                 </ui:SimpleStackPanel>
                                 <TextBlock Text="翻转" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
                             </ui:SimpleStackPanel>
@@ -175,24 +165,18 @@
                         <Border Width="1" Height="45" BorderBrush="{DynamicResource FloatBarForeground}" Background="{DynamicResource FloatBarForeground}"/>
                         <Border CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}" Height="40">
                             <ui:SimpleStackPanel VerticalAlignment="Center" Spacing="5" Margin="0,-10">
-                                <ui:SimpleStackPanel Orientation="Horizontal" Spacing="13">
+                                <ui:SimpleStackPanel Orientation="Horizontal" Spacing="5">
                                     <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthDecrease_MouseUp">
-                                        <ui:SymbolIcon Symbol="Edit" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <TextBlock Text="-"  Foreground="{DynamicResource FloatBarForeground}"
-                                                   VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                                   Margin="0,0,-2,-7" FontSize="15"/>
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_edit_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
+                                        <TextBlock Text="-"  Foreground="{DynamicResource FloatBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-2,-7" FontSize="15"/>
                                     </Grid>
                                     <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthIncrease_MouseUp">
-                                        <ui:SymbolIcon Symbol="Edit" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <TextBlock Text="+"  Foreground="{DynamicResource FloatBarForeground}"
-                                                   VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                                   Margin="0,0,-3,-4" FontSize="11"/>
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_edit_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
+                                        <TextBlock Text="+"  Foreground="{DynamicResource FloatBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-3,-4" FontSize="11"/>
                                     </Grid>
                                     <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthRestore_MouseUp">
-                                        <ui:SymbolIcon Symbol="Edit" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Image Source="{DynamicResource AndroidRefreshDrawingImage}" VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                               Margin="0,0,-2,-2" Width="8">
-                                        </Image>
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_edit_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
+                                        <Image Source="{DynamicResource AndroidRefreshDrawingImage}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-2,-2" Width="8"/>
                                     </Grid>
                                 </ui:SimpleStackPanel>
                                 <TextBlock Text="画笔粗细" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
@@ -201,8 +185,8 @@
                         <Border Width="1" Height="45" BorderBrush="{DynamicResource FloatBarForeground}" Background="{DynamicResource FloatBarForeground}"/>
                         <Border Margin="-8,0,0,0" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}" Width="40" MouseDown="Border_MouseDown" MouseUp="BorderStrokeSelectionDelete_MouseUp">
                             <ui:SimpleStackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="25" Width="25" FontFamily="Segoe Fluent Icons" Glyph="&#xe74d;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="删除" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Center"/>
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_delete_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
+                                <TextBlock Margin="0,5,0,0" Text="删除" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Center"/>
                             </ui:SimpleStackPanel>
                         </Border>
                     </ui:SimpleStackPanel>
@@ -243,31 +227,31 @@
                 </Viewbox.LayoutTransform>
                 <Grid x:Name="BlackboardLeftSide" Visibility="Visible" Opacity="0.75" Margin="3,0,0,0" Height="55" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <ui:SimpleStackPanel Orientation="Horizontal">
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchPrevious_Click" CornerRadius="5,0,0,5" Background="{DynamicResource BoardBarBackground}" BorderThickness="1 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe760;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="上一页" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchPrevious_Click" CornerRadius="5,0,0,5" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_arrow_circle_left_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality"  VerticalAlignment="Top" Width="26" Height="26"/>
+
+                                <TextBlock Text="上一页" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border Width="58" Height="55" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="0,5">
+                        <Border Width="58" Height="55" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="0,6">
                                 <ui:SimpleStackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <TextBlock Margin="0,4,0,2" Text="{Binding ElementName=TextBlockWhiteBoardIndexInfo, Path=Text}" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-                                    <TextBlock Margin="0,3,0,0" Text="页码" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
+                                    <TextBlock Margin="0,4,0,2" Text="{Binding ElementName=TextBlockWhiteBoardIndexInfo, Path=Text}" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+                                    <TextBlock Margin="0,3,0,0" Text="页码" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
                                 </ui:SimpleStackPanel>
                             </Grid>
                         </Border>
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchNext_Click" CornerRadius="0,5,5,0" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 1 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:FontIcon x:Name="BoardLeftPannelNextPage1" Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xecc8;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <ui:FontIcon x:Name="BoardLeftPannelNextPage2" Height="26" Width="0" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe761;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock x:Name="BoardLeftPannelNextPageTextBlock" Text="加页" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchNext_Click" CornerRadius="0,5,5,0" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image x:Name="BoardLeftPannelNextPage" Source="/Resources/Icons-Fluent/ic_fluent_add_circle_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                <TextBlock x:Name="BoardLeftPannelNextPageTextBlock" Text="加页" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border Margin="5,0,0,0" Width="55" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp" CornerRadius="5" Background="{DynamicResource BoardBarBackground}" BorderThickness="1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe944;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="退出" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Margin="5,0,0,0" Width="55" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp" CornerRadius="5" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image Source="/Resources/Icons-png/minimize.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                <TextBlock Text="退出" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                     </ui:SimpleStackPanel>
@@ -280,164 +264,143 @@
                 </Viewbox.LayoutTransform>
                 <Grid x:Name="BlackboardCenterSide" Visibility="Visible" Opacity="0.8" Margin="0" Height="55" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <ui:SimpleStackPanel Orientation="Horizontal">
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="TwoFingerGestureBorder_MouseUp" CornerRadius="5,0,0,5" Background="{DynamicResource BoardBarBackground}" BorderThickness="1 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:FontIcon Opacity="{Binding ElementName=EnableTwoFingerGestureBtn, Path=Opacity}" Height="26" Width="26" VerticalAlignment="Top" FontSize="28" FontFamily="Segoe Fluent Icons" Glyph="&#xf271;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="手势" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="TwoFingerGestureBorder_MouseUp" CornerRadius="5,0,0,5" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image x:Name="BoardEnableTwoFingerGestureBtn" VerticalAlignment="Top" Source="/Resources/Icons-png/twoFingelMove.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
+                                <TextBlock Text="手势" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-
                         <Grid Margin="0,0,0,5" Width="0">
-                            <Border Name="BoardTwoFingerGestureBorder" VerticalAlignment="Top" Visibility="Visible" Margin="-105,-170,-67,44" CornerRadius="5" Background="{DynamicResource BoardBarBackground}" Opacity="0.9" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1">
-                                <Viewbox>
-                                    <ui:SimpleStackPanel>
-                                        <Border BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="6,6,0,0" Background="{DynamicResource BoardBarTitleBackground}" Margin="-1,-1,-1,5" Padding="1,1,1,0">
-                                            <TextBlock Text="手势功能" Foreground="{DynamicResource BoardBarForeground}" Padding="8,5,85,5" FontSize="11" FontWeight="Bold" TextAlignment="Center"/>
-                                        </Border>
-                                        <ui:SimpleStackPanel Margin="5,0,5,5" Spacing="-2.5">
-                                            <ui:SimpleStackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe716;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Label Content="多指书写" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Viewbox Width="36" Height="25">
-                                                    <ui:ToggleSwitch MinWidth="0" Width="42" Name="BoardToggleSwitchEnableMultiTouchMode" FontFamily="Microsoft YaHei UI" IsOn="False" OnContent="" OffContent="" Toggled="ToggleSwitchEnableMultiTouchMode_Toggled"/>
-                                                </Viewbox>
-                                            </ui:SimpleStackPanel>
-                                            <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" x:Name="BoardTwoFingerGestureSimpleStackPanel" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe7c2;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Label Content="双指移动" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Viewbox Width="36" Height="25">
-                                                    <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="BoardToggleSwitchEnableTwoFingerTranslate" FontFamily="Microsoft YaHei UI" IsOn="False" Toggled="ToggleSwitchEnableTwoFingerTranslate_Toggled"/>
-                                                </Viewbox>
-                                            </ui:SimpleStackPanel>
-                                            <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe740;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Label Content="双指缩放" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Viewbox Width="36" Height="25">
-                                                    <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="BoardToggleSwitchEnableTwoFingerZoom" FontFamily="Microsoft YaHei UI" IsOn="False" Toggled="ToggleSwitchEnableTwoFingerZoom_Toggled"/>
-                                                </Viewbox>
-                                            </ui:SimpleStackPanel>
-                                            <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe7ad;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Label Content="双指旋转" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                <Viewbox Width="36" Height="25">
-                                                    <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="BoardToggleSwitchEnableTwoFingerRotation" FontFamily="Microsoft YaHei UI" Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled"/>
-                                                </Viewbox>
-                                            </ui:SimpleStackPanel>
-                                        </ui:SimpleStackPanel>
+                            <Border Name="BoardTwoFingerGestureBorder" Margin="-115,-152,-55,54" CornerRadius="5" Background="LightGray" Opacity="0.85" BorderBrush="Black" BorderThickness="1">
+                                <ui:SimpleStackPanel Margin="10">
+                                    <ui:SimpleStackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_people_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                        <Label Content="多指书写" FontSize="15" VerticalAlignment="Center"/>
+                                        <ui:ToggleSwitch MinWidth="0" Width="42" Name="BoardToggleSwitchEnableMultiTouchMode" FontFamily="Microsoft YaHei UI" IsOn="False" OnContent="" OffContent="" Toggled="ToggleSwitchEnableMultiTouchMode_Toggled"/>
                                     </ui:SimpleStackPanel>
-                                </Viewbox>
+                                    <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_drag_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                        <Label Content="双指移动" FontSize="15" VerticalAlignment="Center"/>
+                                        <ui:ToggleSwitch MinWidth="0" Width="42" Name="BoardToggleSwitchEnableTwoFingerTranslate" FontFamily="Microsoft YaHei UI" IsOn="False" OnContent="" OffContent="" Toggled="ToggleSwitchEnableTwoFingerTranslate_Toggled"/>
+                                    </ui:SimpleStackPanel>
+                                    <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_scale_fit_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                        <Label Content="双指缩放" FontSize="15" VerticalAlignment="Center"/>
+                                        <ui:ToggleSwitch MinWidth="0" Width="42" Name="BoardToggleSwitchEnableTwoFingerZoom" FontFamily="Microsoft YaHei UI" IsOn="False" OnContent="" OffContent="" Toggled="ToggleSwitchEnableTwoFingerZoom_Toggled"/>
+                                    </ui:SimpleStackPanel>
+                                    <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_arrow_rotate_clockwise_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                        <Label Content="双指旋转" FontSize="15" VerticalAlignment="Center"/>
+                                        <ui:ToggleSwitch MinWidth="0" Width="42" Name="BoardToggleSwitchEnableTwoFingerRotation" FontFamily="Microsoft YaHei UI" OnContent="" OffContent="" Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled"/>
+                                    </ui:SimpleStackPanel>
+                                </ui:SimpleStackPanel>
                             </Border>
                         </Grid>
-                        <Border Margin="0,0,5,0" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BoardChangeBackgroundColorBtn_MouseUp" CornerRadius="0,5,5,0" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 1 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xef1f;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="画布" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Margin="0,0,5,0" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BoardChangeBackgroundColorBtn_MouseUp" CornerRadius="0,5,5,0" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_dark_theme_24_regular.png" VerticalAlignment="Top" RenderOptions.BitmapScalingMode="HighQuality" Height="26" Width="26"/>
+
+                                <TextBlock Text="画布" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border x:Name="BoardSelect" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="SymbolIconSelect_MouseUp" CornerRadius="5,0,0,5" Background="{DynamicResource BoardBarBackground}" BorderThickness="1 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe958;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                    <ui:FontIcon Margin="-24,0,0,-13" Height="22" Width="10" FontSize="14" FontFamily="Segoe Fluent Icons" Glyph="&#xf8af;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="选择" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border x:Name="BoardSelect" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="SymbolIconSelect_MouseUp" CornerRadius="5,0,0,5" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-Fluent/ic_fluent_lasso_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28"/>
+                                <TextBlock Text="选择" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border x:Name="BoardPen" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="PenIcon_Click" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel x:Name="BoardPenIcon" Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xee56;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="墨迹" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border x:Name="BoardPen" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="PenIcon_Click" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image x:Name="BoardPenIcon" VerticalAlignment="Top" Source="/Resources/Icons-Fluent/ic_fluent_signature_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28"/>
+                                <TextBlock Text="墨迹" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                         <Border>
                             <Grid Margin="0,5,0,5" Width="0" RenderTransformOrigin="0.5,0.5">
-                                <Border x:Name="BoardPenPalette" Visibility="Visible" Background="{DynamicResource BoardBarBackground}" CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource BoardBarBorderBrush}" Margin="-170,-220,-120,55">
-                                    <Viewbox Width="280">
+                                <Border x:Name="BoardPenPalette" Visibility="Visible" Background="LightGray" Opacity="0.85" CornerRadius="5" BorderBrush="Black" BorderThickness="1" Margin="-150,-195,-100,55">
+                                    <Viewbox>
                                         <StackPanel Margin="20 10">
                                             <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <ui:SimpleStackPanel>
                                                     <Controls:UniformGrid Columns="2" Width="300" Height="55">
                                                         <ui:SimpleStackPanel Orientation="Horizontal" Height="35">
-                                                            <Label Content="笔锋" Margin="0,0,12,0" Foreground="{DynamicResource BoardBarForeground}" FontSize="15" VerticalAlignment="Center"/>
-                                                            <ComboBox Height="30" Background="{DynamicResource BoardBarBackground}" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Center" Name="BoardComboBoxPenStyle" FontFamily="Microsoft YaHei UI" SelectedIndex="0" SelectionChanged="ComboBoxPenStyle_SelectionChanged">
-                                                                <ComboBoxItem Content="点集笔锋" FontFamily="Microsoft YaHei UI"/>
-                                                                <ComboBoxItem Content="速率笔锋" FontFamily="Microsoft YaHei UI"/>
+                                                            <Label Content="笔锋" Margin="0,0,12,0" Foreground="{DynamicResource FloatBarForeground}" FontSize="15" VerticalAlignment="Center"/>
+                                                            <ComboBox Height="30" VerticalAlignment="Center" Name="BoardComboBoxPenStyle" FontFamily="Microsoft YaHei UI" SelectedIndex="0" SelectionChanged="ComboBoxPenStyle_SelectionChanged">
+                                                                <ComboBoxItem Content="抬笔笔锋" FontFamily="Microsoft YaHei UI"/>
+                                                                <ComboBoxItem Content="速度笔锋" FontFamily="Microsoft YaHei UI"/>
                                                                 <ComboBoxItem Content="关闭笔锋" FontFamily="Microsoft YaHei UI"/>
                                                             </ComboBox>
                                                         </ui:SimpleStackPanel>
                                                         <ui:SimpleStackPanel Margin="0,-5,0,-5" VerticalAlignment="Center">
                                                             <ui:SimpleStackPanel x:Name="BoardNibModeSimpleStackPanel" Orientation="Horizontal" Width="140">
-                                                                <Label Content="笔尖模式" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
+                                                                <Label Content="笔尖模式" FontSize="15" VerticalAlignment="Center"/>
                                                                 <ui:ToggleSwitch x:Name="ToggleSwitchBoardEnableNibMode" FontFamily="Microsoft YaHei UI" Width="70" OnContent="开" OffContent="关" MinWidth="0" Margin="10,0,0,0" Toggled="ToggleSwitchEnableNibMode_Toggled" IsOn="True"/>
                                                             </ui:SimpleStackPanel>
                                                             <ui:SimpleStackPanel Orientation="Horizontal" Width="140">
-                                                                <Label Margin="0,0,10,0" Content="墨迹识别" Foreground="{DynamicResource BoardBarForeground}" FontSize="15" VerticalAlignment="Center"/>
-                                                                <ui:ToggleSwitch Foreground="{DynamicResource BoardBarForeground}" FontFamily="Microsoft YaHei UI" Width="70" OnContent="开" OffContent="关" MinWidth="0" Toggled="ToggleSwitchEnableInkToShape_Toggled" IsOn="{Binding ElementName=ToggleSwitchEnableInkToShape, Path=IsOn}"/>
+                                                                <Label Margin="0,0,10,0" Content="墨迹识别" Foreground="{DynamicResource FloatBarForeground}" FontSize="15" VerticalAlignment="Center"/>
+                                                                <ui:ToggleSwitch Foreground="{DynamicResource FloatBarForeground}" FontFamily="Microsoft YaHei UI" Width="70" OnContent="开" OffContent="关" MinWidth="0" Toggled="ToggleSwitchEnableInkToShape_Toggled" IsOn="{Binding ElementName=ToggleSwitchEnableInkToShape, Path=IsOn}"/>
                                                             </ui:SimpleStackPanel>
                                                         </ui:SimpleStackPanel>
                                                     </Controls:UniformGrid>
 
 
                                                     <StackPanel Orientation="Horizontal" Height="30">
-                                                        <Label Margin="0,0,10,0" Content="粗细" Foreground="{DynamicResource BoardBarForeground}" FontSize="15" VerticalAlignment="Center"/>
+                                                        <Label Margin="0,0,10,0" Content="粗细" Foreground="{DynamicResource FloatBarForeground}" FontSize="15" VerticalAlignment="Center"/>
                                                         <Slider x:Name="BoardInkWidthSlider" Minimum="1" Maximum="15" Width="230" FontFamily="Microsoft YaHei UI" 
                                                             FontSize="20" IsSnapToTickEnabled="True" Value="5" TickFrequency="1" TickPlacement="None" ValueChanged="InkWidthSlider_ValueChanged"/>
-                                                        <TextBlock Text="{Binding Value, ElementName=BoardInkWidthSlider, Mode=OneWay}" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" Margin="10,0,0,8" FontSize="14"/>
+                                                        <TextBlock Text="{Binding Value, ElementName=BoardInkWidthSlider, Mode=OneWay}" VerticalAlignment="Bottom" Margin="10,0,0,8" FontSize="14"/>
                                                     </StackPanel>
                                                 </ui:SimpleStackPanel>
                                             </Viewbox>
                                             <ui:SimpleStackPanel Width="300">
                                                 <!--<TextBlock FontSize="25">画笔颜色</TextBlock>-->
-                                                <Border Width="300" Height="130" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="0" CornerRadius="5">
+                                                <Border Width="300" Height="130" BorderBrush="Black" BorderThickness="0" CornerRadius="5">
                                                     <Controls:UniformGrid Rows="2" Height="130">
                                                         <ui:SimpleStackPanel Height="55" Orientation="Horizontal" Width="270">
                                                             <Controls:UniformGrid Columns="4" Width="270">
-                                                                <Border Background="Transparent" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseDown="Border_MouseDown" MouseUp="ColorThemeSwitch_MouseUp">
+                                                                <Border BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseDown="Border_MouseDown" MouseUp="ColorThemeSwitch_MouseUp">
                                                                     <Grid Margin="6">
-                                                                        <ui:FontIcon x:Name="BoardColorThemeSwitchIcon1" VerticalAlignment="Top" Height="26" Width="26" FontFamily="Segoe Fluent Icons" Glyph="&#xe706;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                                        <ui:FontIcon x:Name="BoardColorThemeSwitchIcon2" VerticalAlignment="Top" Height="0" Width="0" FontFamily="Segoe Fluent Icons" Glyph="&#xe708;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                                        <TextBlock x:Name="BoardColorThemeSwitchTextBlock" Text="亮系" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                                                                        <Image x:Name="BoardColorThemeSwitchIcon" Source="/Resources/Icons-Fluent/ic_fluent_weather_sunny_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                                                        <TextBlock x:Name="BoardColorThemeSwitchTextBlock" Text="亮系" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                                                                     </Grid>
                                                                 </Border>
-                                                                <Border x:Name="BoardBorderPenColorBlack" Background="Black" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorBlack_Click">
-                                                                    <Viewbox Name="BoardViewboxBtnColorBlackContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorBlack" Background="Black" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorBlack_Click">
+                                                                    <Viewbox Name="BoardViewboxBtnColorBlackContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                     </Viewbox>
                                                                 </Border>
-                                                                <Border x:Name="BoardBorderPenColorWhite" Background="White" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorWhite_Click">
-                                                                    <Viewbox x:Name="BoardViewboxBtnColorWhiteContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-black.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorWhite" Background="White" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorWhite_Click">
+                                                                    <Viewbox x:Name="BoardViewboxBtnColorWhiteContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="Black"/>
                                                                     </Viewbox>
                                                                 </Border>
-                                                                <Border x:Name="BoardBorderPenColorRed" Background="red" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorRed_Click">
-                                                                    <Viewbox Name="BoardViewboxBtnColorRedContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorRed" Background="red" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorRed_Click">
+                                                                    <Viewbox Name="BoardViewboxBtnColorRedContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                     </Viewbox>
                                                                 </Border>
                                                             </Controls:UniformGrid>
                                                         </ui:SimpleStackPanel>
                                                         <ui:SimpleStackPanel Height="55" Orientation="Horizontal" Width="270">
                                                             <Controls:UniformGrid Columns="4" Width="270">
-                                                                <Border x:Name="BoardBorderPenColorYellow" Background="#F38B00" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorYellow_Click">
-                                                                    <Viewbox x:Name="BoardViewboxBtnColorYellowContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorYellow" Background="#F38B00" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorYellow_Click">
+                                                                    <Viewbox x:Name="BoardViewboxBtnColorYellowContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                     </Viewbox>
                                                                 </Border>
-                                                                <Border x:Name="BoardBorderPenColorGreen" Background="#169141" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorGreen_Click">
-                                                                    <Viewbox x:Name="BoardViewboxBtnColorGreenContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorGreen" Background="#169141" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorGreen_Click">
+                                                                    <Viewbox Name="BoardViewboxBtnColorGreenContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                     </Viewbox>
                                                                 </Border>
-                                                                <Border x:Name="BoardBorderPenColorBlue" Background="#239AD6" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorBlue_Click">
-                                                                    <Viewbox x:Name="BoardViewboxBtnColorBlueContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorBlue" Background="#239AD6" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorBlue_Click">
+                                                                    <Viewbox x:Name="BoardViewboxBtnColorBlueContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                     </Viewbox>
                                                                 </Border>
-                                                                <Border x:Name="BoardBorderPenColorPink" Background="#c72ec7" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorPink_Click">
-                                                                    <Viewbox x:Name="BoardViewboxBtnColorPinkContent" Visibility="Collapsed" Margin="8">
-                                                                        <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                <Border x:Name="BoardBorderPenColorPink" Background="#c72ec7" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorPink_Click">
+                                                                    <Viewbox x:Name="BoardViewboxBtnColorPinkContent" Visibility="Collapsed" Margin="6">
+                                                                        <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                     </Viewbox>
                                                                 </Border>
                                                             </Controls:UniformGrid>
@@ -450,86 +413,78 @@
                                 </Border>
                             </Grid>
                         </Border>
-                        <Border x:Name="BoardEraser" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BoardEraserIcon_Click" Background="{DynamicResource BoardBarBackground}"  BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe75c;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                    <ui:FontIcon Margin="-23,0,0,-10" Height="22" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xf0b6;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="面积擦" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12" />
+                        <Border x:Name="BoardEraser" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BoardEraserIcon_Click" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-png/eraser-outline.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28"/>
+                                <TextBlock Text="面积擦" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                         <Border Width="0" MouseDown="Border_MouseDown" MouseUp="BoardSymbolIconDelete_MouseUp">
-                            <Border x:Name="BoardDeleteIcon" Margin="-61,-55,-61,55" Background="{DynamicResource BoardBarBackground}" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0">
+                            <Border x:Name="BoardDeleteIcon" Margin="-61,-55,-61,55" Background="LightGray" Opacity="0.85" BorderBrush="Black" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0">
                                 <Grid>
-                                    <ui:SimpleStackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe74d;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                        <TextBlock Margin="5,0,0,0" Text="点击清屏" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Center" FontSize="14"/>
+                                    <ui:SimpleStackPanel Margin="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_delete_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28"/>
+                                        <TextBlock Margin="5,0,0,0" Text="点击清屏" Foreground="Black" VerticalAlignment="Center" FontSize="14"/>
                                     </ui:SimpleStackPanel>
                                 </Grid>
                             </Border>
                         </Border>
-                        <Border x:Name="BoardEraserByStrokes" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BoardEraserIconByStrokes_Click" Background="{DynamicResource BoardBarBackground}"  BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe75c;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                    <ui:FontIcon Margin="-14,0,0,-10.5" Height="22" Width="10" FontSize="12" FontFamily="Segoe Fluent Icons" Glyph="&#xf128;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="墨迹擦" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border x:Name="BoardEraserByStrokes" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BoardEraserIconByStrokes_Click" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-png/eraser-line.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28"/>
+                                <TextBlock Text="墨迹擦" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border x:Name="BoardGeometry" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageDrawShape_MouseUp" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xf158;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="图形" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border x:Name="BoardGeometry" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageDrawShape_MouseUp" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-Fluent/ic_fluent_shapes_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28"/>
+                                <TextBlock Text="图形" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                         <Border Width="0">
-                            <Border x:Name="BoardBorderDrawShape" Visibility="Visible" Background="{DynamicResource BoardBarBackground}" BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1" CornerRadius="5" Margin="-147,-286,-89,59">
+                            <Border x:Name="BoardBorderDrawShape" Visibility="Visible" Background="LightGray" Opacity="0.85" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="-147,-286,-89,59">
                                 <Viewbox>
                                     <ui:SimpleStackPanel Spacing="-8" Orientation="Vertical">
-                                        <TextBlock FontSize="16" Foreground="{DynamicResource BoardBarForeground}" HorizontalAlignment="Left" Margin="10,8">
-                                        <Run Text="图形"/>
-                                        <Run Text="(第一行支持长按保持选中)" FontSize="10"/>
+                                        <TextBlock FontSize="16" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Left" Margin="10,8">
+                                            <Run Text="图形"/>
+                                            <Run Text="(第一行支持长按保持选中)" FontSize="10"/>
                                         </TextBlock>
-                                        <ui:SymbolIcon Margin="0,-20,8,15" Symbol="Pin" MouseDown="Border_MouseDown" MouseUp="SymbolIconPinBorderDrawShape_MouseUp" Foreground="{DynamicResource BoardBarForeground}" HorizontalAlignment="Right"/>
+                                        <ui:SymbolIcon Margin="0,-20,8,15" Symbol="Pin" MouseDown="Border_MouseDown" MouseUp="SymbolIconPinBorderDrawShape_MouseUp" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Right"/>
                                         <ui:SimpleStackPanel Margin="20,0,0,0" Orientation="Horizontal">
                                             <ui:SimpleStackPanel Visibility="Collapsed" Margin="58,6,5,6" Width="54">
-                                                <Label Margin="0,0,0,-2" Content="自动隐藏" Foreground="{DynamicResource BoardBarForeground}" FontSize="13" VerticalAlignment="Center"/>
+                                                <Label Margin="0,0,0,-2" Content="自动隐藏" Foreground="{DynamicResource FloatBarForeground}" FontSize="13" VerticalAlignment="Center"/>
                                                 <Viewbox Height="25">
-                                                    <ui:ToggleSwitch Name="ToggleSwitchDrawShapeBorderAutoHide" Foreground="{DynamicResource BoardBarForeground}" FontFamily="Microsoft YaHei UI" Width="70" OnContent="开" OffContent="关" IsOn="True"/>
+                                                    <ui:ToggleSwitch Name="ToggleSwitchDrawShapeBorderAutoHide" Foreground="{DynamicResource FloatBarForeground}" FontFamily="Microsoft YaHei UI" Width="70" OnContent="开" OffContent="关" IsOn="True"/>
                                                 </Viewbox>
                                             </ui:SimpleStackPanel>
                                         </ui:SimpleStackPanel>
                                         <ui:SimpleStackPanel Height="50" Spacing="14" Orientation="Horizontal">
-                                            <Image Name="BoardImageDrawLine" Margin="16,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawLine_Click" Source="{DynamicResource BoardDrawShapeImageSource.Line}"/>
-                                            <Image Name="BoardImageDrawDashedLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDashedLine_Click" Source="{DynamicResource BoardDrawShapeImageSource.DashedLine}"/>
-                                            <Image Name="BoardImageDrawDotLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDotLine_Click" Source="{DynamicResource BoardDrawShapeImageSource.DotLine}"/>
-                                            <Image Name="BoardImageDrawArrow" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawArrow_Click" Source="{DynamicResource BoardDrawShapeImageSource.ArrowLine}"/>
-                                            <Image Name="BoardImageDrawParallelLine" Margin="0,11.5,16,11.5" MouseDown="Image_MouseDown" MouseUp="BtnDrawParallelLine_Click" Source="{DynamicResource BoardDrawShapeImageSource.ParallelLine}"/>
+                                            <Image Name="ImageDrawLine" Margin="16,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawLine_Click" Source="{DynamicResource DrawShapeImageSource.Line}"/>
+                                            <Image Name="ImageDrawDashedLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDashedLine_Click" Source="{DynamicResource DrawShapeImageSource.DashedLine}"/>
+                                            <Image Name="ImageDrawDotLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDotLine_Click" Source="{DynamicResource DrawShapeImageSource.DotLine}"/>
+                                            <Image Name="ImageDrawArrow" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawArrow_Click" Source="{DynamicResource DrawShapeImageSource.ArrowLine}"/>
+                                            <Image Name="ImageDrawParallelLine" Margin="0,11.5,16,11.5" MouseDown="Image_MouseDown" MouseUp="BtnDrawParallelLine_Click" Source="{DynamicResource DrawShapeImageSource.ParallelLine}"/>
                                         </ui:SimpleStackPanel>
                                         <ui:SimpleStackPanel Height="50" Spacing="15" Orientation="Horizontal">
-                                            <Image Margin="16,12,0,12" MouseUp="BtnDrawCoordinate1_Click" Source="{DynamicResource BoardDrawShapeImageSource.Coordinate1}"/>
-                                            <Image Margin="0,12" MouseUp="BtnDrawCoordinate2_Click" Source="{DynamicResource BoardDrawShapeImageSource.Coordinate2}"/>
-                                            <Image Margin="0,12" MouseUp="BtnDrawCoordinate3_Click" Source="{DynamicResource BoardDrawShapeImageSource.Coordinate3}"/>
-                                            <Image Margin="0,12" MouseUp="BtnDrawCoordinate4_Click" Source="{DynamicResource BoardDrawShapeImageSource.Coordinate4}"/>
-                                            <Image Margin="-1,11.5" MouseUp="BtnDrawCoordinate5_Click" Source="{DynamicResource BoardDrawShapeImageSource.Coordinate5}"/>
+                                            <Image Margin="16,12,0,12" MouseUp="BtnDrawCoordinate1_Click" Source="{DynamicResource DrawShapeImageSource.Coordinate1}"/>
+                                            <Image Margin="0,12" MouseUp="BtnDrawCoordinate2_Click" Source="{DynamicResource DrawShapeImageSource.Coordinate2}"/>
+                                            <Image Margin="0,12" MouseUp="BtnDrawCoordinate3_Click" Source="{DynamicResource DrawShapeImageSource.Coordinate3}"/>
+                                            <Image Margin="0,12" MouseUp="BtnDrawCoordinate4_Click" Source="{DynamicResource DrawShapeImageSource.Coordinate4}"/>
+                                            <Image Margin="-1,11.5" MouseUp="BtnDrawCoordinate5_Click" Source="{DynamicResource DrawShapeImageSource.Coordinate5}"/>
                                         </ui:SimpleStackPanel>
                                         <ui:SimpleStackPanel Height="50" Spacing="10" Orientation="Horizontal">
-                                            <Image Margin="16,11,2,11" MouseUp="BtnDrawRectangleCenter_Click" Source="{DynamicResource BoardDrawShapeImageSource.RectangleCenter}"/>
-                                            <Image Visibility="Collapsed" Margin="0,10" MouseUp="BtnDrawEllipse_Click" Source="{DynamicResource BoardDrawShapeImageSource.Ellipse}"/>
-                                            <Image Margin="0,10" MouseUp="BtnDrawCircle_Click" Source="{DynamicResource BoardDrawShapeImageSource.Circle}"/>
-                                            <Image Margin="0,10" MouseUp="BtnDrawDashedCircle_Click" Source="{DynamicResource BoardDrawShapeImageSource.DashedCircle}"/>
-                                            <Image Margin="0,10" MouseUp="BtnDrawCenterEllipse_Click" Source="{DynamicResource BoardDrawShapeImageSource.EllipseCenter}" Width="30"/>
-                                            <Image Margin="0,10" MouseUp="BtnDrawCenterEllipseWithFocalPoint_Click" Source="{DynamicResource BoardDrawShapeImageSource.EllipseCenterWithFocalPoint}" Width="30"/>
+                                            <Image Margin="16,11,2,11" MouseUp="BtnDrawRectangleCenter_Click" Source="{DynamicResource DrawShapeImageSource.RectangleCenter}"/>
+                                            <Image Visibility="Collapsed" Margin="0,10" MouseUp="BtnDrawEllipse_Click" Source="{DynamicResource DrawShapeImageSource.Ellipse}"/>
+                                            <Image Margin="0,10" MouseUp="BtnDrawCircle_Click" Source="{DynamicResource DrawShapeImageSource.Circle}"/>
+                                            <Image Margin="0,10" MouseUp="BtnDrawDashedCircle_Click" Source="{DynamicResource DrawShapeImageSource.DashedCircle}"/>
+                                            <Image Margin="0,10" MouseUp="BtnDrawCenterEllipse_Click" Source="{DynamicResource DrawShapeImageSource.EllipseCenter}" Width="30"/>
+                                            <Image Margin="0,10" MouseUp="BtnDrawCenterEllipseWithFocalPoint_Click" Source="{DynamicResource DrawShapeImageSource.EllipseCenterWithFocalPoint}" Width="30"/>
                                         </ui:SimpleStackPanel>
                                         <ui:SimpleStackPanel Height="50" Spacing="10" Orientation="Horizontal">
-                                            <Image Margin="16,10,2,10" MouseUp="BtnDrawHyperbola_Click" Width="26" Source="{DynamicResource BoardDrawShapeImageSource.Hyperbola}"/>
-                                            <Image Margin="4,10,2,10" MouseUp="BtnDrawHyperbolaWithFocalPoint_Click" Width="26" Source="{DynamicResource BoardDrawShapeImageSource.HyperbolaWithFocalPoint}"/>
-                                            <Image Margin="2.5,10,2,10" MouseUp="BtnDrawParabola1_Click" Width="26" Source="{DynamicResource BoardDrawShapeImageSource.Parabola}"/>
-                                            <Image Margin="1,10,2,10" MouseUp="BtnDrawParabolaWithFocalPoint_Click" Width="26" Source="{DynamicResource BoardDrawShapeImageSource.ParabolaWithFocalPoint}" RenderTransformOrigin="0.5,0.5">
+                                            <Image Margin="16,10,2,10" MouseUp="BtnDrawHyperbola_Click" Width="26" Source="{DynamicResource DrawShapeImageSource.Hyperbola}"/>
+                                            <Image Margin="4,10,2,10" MouseUp="BtnDrawHyperbolaWithFocalPoint_Click" Width="26" Source="{DynamicResource DrawShapeImageSource.HyperbolaWithFocalPoint}"/>
+                                            <Image Margin="2.5,10,2,10" MouseUp="BtnDrawParabola1_Click" Width="26" Source="{DynamicResource DrawShapeImageSource.Parabola}"/>
+                                            <Image Margin="1,10,2,10" MouseUp="BtnDrawParabolaWithFocalPoint_Click" Width="26" Source="{DynamicResource DrawShapeImageSource.ParabolaWithFocalPoint}" RenderTransformOrigin="0.5,0.5">
                                                 <Image.RenderTransform>
                                                     <TransformGroup>
                                                         <ScaleTransform/>
@@ -539,7 +494,7 @@
                                                     </TransformGroup>
                                                 </Image.RenderTransform>
                                             </Image>
-                                            <Image Margin="2,10,2,10" MouseUp="BtnDrawParabola2_Click" Width="26" Source="{DynamicResource BoardDrawShapeImageSource.Parabola}" RenderTransformOrigin="0.5,0.5">
+                                            <Image Margin="2,10,2,10" MouseUp="BtnDrawParabola2_Click" Width="26" Source="{DynamicResource DrawShapeImageSource.Parabola}" RenderTransformOrigin="0.5,0.5">
                                                 <Image.RenderTransform>
                                                     <TransformGroup>
                                                         <ScaleTransform/>
@@ -551,125 +506,82 @@
                                             </Image>
                                         </ui:SimpleStackPanel>
                                         <ui:SimpleStackPanel Height="50" Spacing="10" Orientation="Horizontal">
-                                            <Image Margin="15,11,2,11" MouseUp="BtnDrawRectangle_Click" Source="{DynamicResource BoardDrawShapeImageSource.Rectangle}"/>
-                                            <Image Margin="6,10,2,10" MouseUp="BtnDrawCylinder_Click" Source="{DynamicResource BoardDrawShapeImageSource.Cylinder}"/>
-                                            <Image Margin="8,12.5,0,10" MouseUp="BtnDrawCone_Click" Source="{DynamicResource BoardDrawShapeImageSource.Cone}"/>
-                                            <Image Margin="5.5,12.5,2.5,10" MouseUp="BtnDrawCuboid_Click" Source="{DynamicResource BoardDrawShapeImageSource.Cuboid}"/>
-                                            <Image Visibility="Collapsed" Margin="0,11.5,2.5,9.5" MouseUp="BtnDrawCuboid_Click" Source="{DynamicResource BoardDrawShapeImageSource.Tetrahedron}"/>
+                                            <Image Margin="15,11,2,11" MouseUp="BtnDrawRectangle_Click" Source="{DynamicResource DrawShapeImageSource.Rectangle}"/>
+                                            <Image Margin="6,10,2,10" MouseUp="BtnDrawCylinder_Click" Source="{DynamicResource DrawShapeImageSource.Cylinder}"/>
+                                            <Image Margin="8,12.5,0,10" MouseUp="BtnDrawCone_Click" Source="{DynamicResource DrawShapeImageSource.Cone}"/>
+                                            <Image Margin="5.5,12.5,2.5,10" MouseUp="BtnDrawCuboid_Click" Source="{DynamicResource DrawShapeImageSource.Cuboid}"/>
+                                            <Image Visibility="Collapsed" Margin="0,11.5,2.5,9.5" MouseUp="BtnDrawCuboid_Click" Source="{DynamicResource DrawShapeImageSource.Tetrahedron}"/>
                                         </ui:SimpleStackPanel>
                                     </ui:SimpleStackPanel>
                                 </Viewbox>
                             </Border>
                         </Border>
-                        <Border x:Name="BoardUndo" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="SymbolIconUndo_MouseUp" IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe7a7;" Foreground="{DynamicResource BoardBarForeground}"
-                                           Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="撤销" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"
-                                           Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
+                        <Border x:Name="BoardUndo" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="SymbolIconUndo_MouseUp" IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-png/undo.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="28"
+                                       Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
+                                <TextBlock Text="撤销" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border x:Name="BoardRedo" Width="60" Height="55" CornerRadius="0,5,5,0" MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_MouseUp" IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ui:FontIcon Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe7a6;" Foreground="{DynamicResource BoardBarForeground}"
+                        <Border x:Name="BoardRedo" Width="60" Height="55" CornerRadius="0,5,5,0" MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_MouseUp" IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-png/redo.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="28"
                                        Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
-                                </ui:SimpleStackPanel>
-                                <TextBlock Text="重做" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"
-                                       Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
+                                <TextBlock Text="重做" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border Margin="5,0,0,0" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="SymbolIconTools_MouseUp" Background="{DynamicResource BoardBarBackground}" CornerRadius="5,0,0,5" BorderThickness="1 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe8a9;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="更多" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Margin="5,0,0,0" Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="SymbolIconTools_MouseUp" Background="LightGray" Opacity="0.85" CornerRadius="5,0,0,5">
+                            <Grid Margin="6">
+                                <Image VerticalAlignment="Top" Source="/Resources/Icons-png/setting.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="28"/>
+                                <TextBlock Text="更多" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                         <Border>
                             <Grid Margin="0,0,0,5" Width="0">
-                                <Border Name="BoardBorderTools" Margin="-160,-254,-80,60" CornerRadius="5" Background="{DynamicResource BoardBarBackground}" Opacity="0.9" BorderThickness="1" BorderBrush="{DynamicResource BoardBarBorderBrush}" >
-                                    <ui:SimpleStackPanel>
-                                        <Border BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="6,6,0,0" Background="{DynamicResource BoardBarTitleBackground}" Margin="-1,-1,-1,5" Padding="1,1,1,0">
-                                            <ui:SimpleStackPanel Orientation="Horizontal">
-                                                <TextBlock Text="更多功能" Foreground="{DynamicResource BoardBarForeground}" Padding="10,5,130,5" FontSize="16" FontWeight="Bold" TextAlignment="Center"/>
-                                            </ui:SimpleStackPanel>
-                                        </Border>
-                                        <Viewbox Width="180" Height="150">
-                                            <ui:SimpleStackPanel HorizontalAlignment="Center" Spacing="0">
-                                                <ui:SimpleStackPanel Height="40" Spacing="8" Orientation="Horizontal">
-                                                    <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="ImageCountdownTimer_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xea8f;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="倒计时" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                    <ui:SimpleStackPanel  MouseDown="Border_MouseDown" MouseUp="SymbolIconRand_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe8b1;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="随机抽选" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                    <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconRandOne_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe8b1;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Border CornerRadius="50" BorderBrush="{DynamicResource BoardBarForeground}" BorderThickness="1" HorizontalAlignment="Center" Margin="-2,-10,0,-2" VerticalAlignment="Bottom" Height="9" Width="9">
-                                                            <TextBlock Text="1" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-0.8,0,0" Foreground="{DynamicResource BoardBarForeground}" />
-                                                        </Border>
-                                                        <Label Content="单次抽选" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel Height="40" Spacing="8" Orientation="Horizontal">
-                                                    <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconSaveStrokes_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe74e;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="保存墨迹" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                    <ui:SimpleStackPanel  MouseDown="Border_MouseDown" MouseUp="SymbolIconOpenStrokes_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,-2,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xed25;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="打开墨迹" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                    <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="GridInkReplayButton_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xec57;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="播放墨迹" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel Height="40" Spacing="8" Orientation="Horizontal">
-                                                    <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconScreenshot_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe722;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="截屏" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                    <ui:SimpleStackPanel  MouseDown="Border_MouseDown" MouseUp="OperatingGuideWindowIcon_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe82d;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="指南" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                    <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconSettings_Click" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                        <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe713;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                        <Label Content="设置" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
-                                                    </ui:SimpleStackPanel>
-                                                </ui:SimpleStackPanel>
-                                            </ui:SimpleStackPanel>
-                                        </Viewbox>
-                                        <Border Margin="4,6,4,0" BorderBrush="{DynamicResource BoardBarForeground}" BorderThickness="1.5" Width="205" CornerRadius="5">
+                                <Border Name="BoardBorderTools" Margin="-162,-190,-102,54" CornerRadius="5" Background="LightGray" Opacity="0.85" BorderBrush="Black" BorderThickness="1">
+                                    <ui:SimpleStackPanel Margin="13">
+                                        <Border Margin="4,3" BorderBrush="Black" BorderThickness="1.5" Width="220" CornerRadius="10">
                                             <ui:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2.5,0,0,0" Height="35" Spacing="5" MouseDown="Border_MouseDown" MouseUp="BoardLaunchEasiCamera_MouseUp">
                                                     <Image Source="/Resources/Icons-png/EasiCamera.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25"/>
-                                                    <TextBlock Text="视频展台" FontSize="12.5" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
+                                                    <TextBlock Text="视频展台" FontSize="15" VerticalAlignment="Center"/>
                                                 </ui:SimpleStackPanel>
-                                                <Line Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" X1="0" Y1="0" X2="0" Y2="25" Stroke="{DynamicResource BoardBarForeground}" StrokeThickness="1"/>
+                                                <Line Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" X1="0" Y1="0" X2="0" Y2="25" Stroke="Black" StrokeThickness="1"/>
                                                 <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2.5,0,0,0" Height="35" Spacing="5" MouseDown="Border_MouseDown" MouseUp="BoardLaunchDesmos_MouseUp">
                                                     <Image Margin="-1,0,0,0" Source="/Resources/Icons-png/Desmos.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25">
                                                         <Image.Clip>
                                                             <EllipseGeometry Center="12.5,12.5" RadiusX="12.5" RadiusY="12.5" />
                                                         </Image.Clip>
                                                     </Image>
-                                                    <TextBlock Text="Desmos" FontSize="12.5" VerticalAlignment="Center" Foreground="{DynamicResource BoardBarForeground}"/>
+                                                    <TextBlock Text="Desmos" FontSize="15" VerticalAlignment="Center"/>
                                                 </ui:SimpleStackPanel>
                                             </ui:SimpleStackPanel>
                                         </Border>
+                                        <Label Content="保存 | 打开 | 播放 — 当前页墨迹" FontSize="16" HorizontalAlignment="Left"/>
+                                        <ui:SimpleStackPanel Orientation="Horizontal" Margin="2.5,0,0,0" Height="35" Spacing="15">
+                                            <Image Source="/Resources/Icons-Fluent/ic_fluent_save_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30" MouseDown="Border_MouseDown" MouseUp="SymbolIconSaveStrokes_MouseUp"/>
+                                            <Image Source="/Resources/Icons-Fluent/ic_fluent_folder_open_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30" MouseDown="Border_MouseDown" MouseUp="SymbolIconOpenStrokes_MouseUp"/>
+                                            <Image Source="/Resources/Icons-png/playCircle.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30" MouseDown="Border_MouseDown" MouseUp="GridInkReplayButton_MouseUp"/>
+                                        </ui:SimpleStackPanel>
+                                        <Label Content="截图  设置 | 倒计时  随机抽选" FontSize="17" HorizontalAlignment="Left"/>
+                                        <ui:SimpleStackPanel Orientation="Horizontal" Margin="2.5,0,0,0" Height="35" Spacing="14">
+                                            <Image Source="/Resources/Icons-Fluent/ic_fluent_camera_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30" MouseDown="Border_MouseDown" MouseUp="SymbolIconScreenshot_MouseUp"/>
+                                            <Image Source="/Resources/Icons-Fluent/ic_fluent_settings_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30" MouseDown="Border_MouseDown" MouseUp="SymbolIconSettings_Click"/>
+
+                                            <Border Margin="-10,0,0,0" Width="1" Height="30" BorderBrush="Black" Background="Black"/>
+
+                                            <Image Margin="-2,0,5,0" Source="/Resources/Icons-Fluent/ic_fluent_timer_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30" MouseDown="Border_MouseDown" MouseUp="ImageCountdownTimer_MouseUp"/>
+                                            <Image Source="/Resources/Icons-Fluent/ic_fluent_people_money_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28" MouseDown="Border_MouseDown" MouseUp="SymbolIconRand_MouseUp"/>
+                                            <Image Source="/Resources/Icons-Fluent/ic_fluent_person_money_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="28" Width="28" MouseDown="Border_MouseDown" MouseUp="SymbolIconRandOne_MouseUp"/>
+                                        </ui:SimpleStackPanel>
                                     </ui:SimpleStackPanel>
                                 </Border>
                             </Grid>
                         </Border>
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp" CornerRadius="0,5,5,0" Background="{DynamicResource BoardBarBackground}"  BorderThickness="0 1 1 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe944;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="退出" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp" CornerRadius="0,5,5,0" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image Source="/Resources/Icons-png/minimize.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                <TextBlock Text="退出" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                     </ui:SimpleStackPanel>
@@ -682,31 +594,30 @@
                 </Viewbox.LayoutTransform>
                 <Grid x:Name="BlackboardRightSide" Visibility="Visible" Opacity="0.75" Margin="0,0,3,0" Height="55" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <ui:SimpleStackPanel Orientation="Horizontal">
-                        <Border Margin="0,0,5,0" Width="55" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardAdd_Click" CornerRadius="3" Background="{DynamicResource BoardBarBackground}" BorderThickness="1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xecc8;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="加页" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Margin="0,0,5,0" Width="55" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardAdd_Click" CornerRadius="3" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_add_circle_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                <TextBlock Text="加页" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchPrevious_Click" CornerRadius="3,0,0,3" Background="{DynamicResource BoardBarBackground}"  BorderThickness="1 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="26" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe760;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="上一页" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchPrevious_Click" CornerRadius="3,0,0,3" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_arrow_circle_left_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                <TextBlock Text="上一页" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
-                        <Border Width="58" Height="55" Background="{DynamicResource BoardBarBackground}"  BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="0,5">
+                        <Border Width="58" Height="55" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="0,6">
                                 <ui:SimpleStackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <TextBlock Margin="0,4,0,2" Text="{Binding ElementName=TextBlockWhiteBoardIndexInfo, Path=Text}" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-                                    <TextBlock Margin="0,3,0,0" Text="页码" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
+                                    <TextBlock Margin="0,4,0,2" Text="{Binding ElementName=TextBlockWhiteBoardIndexInfo, Path=Text}" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+                                    <TextBlock Margin="0,3,0,0" Text="页码" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12"/>
                                 </ui:SimpleStackPanel>
                             </Grid>
                         </Border>
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchNext_Click" CornerRadius="0,5,5,0" Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 1 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
-                            <Grid Margin="5">
-                                <ui:FontIcon Height="26" Width="{Binding ElementName=BoardLeftPannelNextPage1,Path=Width}" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xecc8;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <ui:FontIcon Height="26" Width="{Binding ElementName=BoardLeftPannelNextPage2,Path=Width}" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe Fluent Icons" Glyph="&#xe761;" Foreground="{DynamicResource BoardBarForeground}"/>
-                                <TextBlock Text="{Binding ElementName=BoardLeftPannelNextPageTextBlock, Path=Text}" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="BtnWhiteBoardSwitchNext_Click" CornerRadius="0,5,5,0" Background="LightGray" Opacity="0.85">
+                            <Grid Margin="6">
+                                <Image x:Name="BoardRightPannelNextPage" Source="/Resources/Icons-Fluent/ic_fluent_add_circle_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                <TextBlock x:Name="BoardRightPannelNextPageTextBlock" Text="加页" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12"/>
                             </Grid>
                         </Border>
                     </ui:SimpleStackPanel>
@@ -812,19 +723,19 @@
                                     <ui:SimpleStackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Button Width="116" Height="45" FontFamily="Microsoft YaHei UI" Click="BtnRestart_Click">
                                             <ui:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
-                                                <Image Source="/Resources/Icons-png/ic_fluent_arrow_clockwise_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="26"/>
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_arrow_clockwise_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="26"/>
                                                 <Label FontSize="16" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI" FontWeight="Bold">重启软件</Label>
                                             </ui:SimpleStackPanel>
                                         </Button>
                                         <Button Width="116" Height="45" FontFamily="Microsoft YaHei UI" FontWeight="Bold" Click="BtnResetToSuggestion_Click" Margin="0,0,0,0">
                                             <ui:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
-                                                <Image Source="/Resources/Icons-png/ic_fluent_calendar_sync_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="26"/>
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_calendar_sync_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="26"/>
                                                 <Label Margin="2,0,0,0" FontSize="16" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI" FontWeight="Bold">重置设置</Label>
                                             </ui:SimpleStackPanel>
                                         </Button>
                                         <Button Width="116" Height="45" FontFamily="Microsoft YaHei UI" Click="BtnExit_Click">
                                             <ui:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
-                                                <Image Source="/Resources/Icons-png/ic_fluent_power_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="26"/>
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_power_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="26"/>
                                                 <Label FontSize="16" VerticalAlignment="Center" FontFamily="Microsoft YaHei UI" FontWeight="Bold">关闭软件</Label>
                                             </ui:SimpleStackPanel>
                                         </Button>
@@ -950,12 +861,6 @@
                         </GroupBox>
                         <GroupBox Name="GroupBoxAppearanceNewUI" Header="外观">
                             <ui:SimpleStackPanel Spacing="12">
-                                <TextBlock Text="颜色主题" FontFamily="Microsoft YaHei UI" FontSize="14"/>
-                                <ComboBox Name="ComboBoxTheme" FontFamily="Microsoft YaHei UI" SelectedIndex="0" SelectionChanged="ComboBoxTheme_SelectionChanged">
-                                    <ComboBoxItem Content="浅色（默认）" FontFamily="Microsoft YaHei UI"/>
-                                    <ComboBoxItem Content="深色" FontFamily="Microsoft YaHei UI"/>
-                                    <ComboBoxItem Content="跟随系统"  FontFamily="Microsoft YaHei UI"/>
-                                </ComboBox>
                                 <!--
                                 <ui:ToggleSwitch Header="显示“橡皮”按钮" IsOn="{Binding ElementName=ToggleSwitchShowButtonEraser, Path=IsOn}" FontFamily="Microsoft YaHei UI" OnContent="开" OffContent="关"/>
                                 -->
@@ -966,6 +871,14 @@
                                 <ui:ToggleSwitch Name="ToggleSwitchShowButtonPPTNavigation" Header="显示 PPT 浏览切页按钮（页码按钮）" IsOn="True" FontFamily="Microsoft YaHei UI" OnContent="开" OffContent="关" Toggled="ToggleSwitchShowButtonPPTNavigation_OnToggled"/>
                                 <ui:ToggleSwitch Name="ToggleSwitchShowBottomPPTNavigationPanel" Header="显示 PPT 下方翻页控制按钮" IsOn="False" FontFamily="Microsoft YaHei UI" OnContent="开" OffContent="关" Toggled="ToggleSwitchShowBottomPPTNavigationPanel_OnToggled"/>
                                 <ui:ToggleSwitch Name="ToggleSwitchShowSidePPTNavigationPanel" Header="显示 PPT 侧边翻页控制按钮" IsOn="True" FontFamily="Microsoft YaHei UI" OnContent="开" OffContent="关" Toggled="ToggleSwitchShowSidePPTNavigationPanel_OnToggled"/>
+                                <!--
+                                <TextBlock Text="颜色主题" FontFamily="Microsoft YaHei UI" FontSize="14"/>
+                                <ComboBox Name="ComboBoxTheme" FontFamily="Microsoft YaHei UI" SelectedIndex="0" SelectionChanged="ComboBoxTheme_SelectionChanged">
+                                    <ComboBoxItem Content="浅色（默认）" FontFamily="Microsoft YaHei UI"/>
+                                    <ComboBoxItem Content="深色" FontFamily="Microsoft YaHei UI"/>
+                                    <ComboBoxItem Content="跟随系统"  FontFamily="Microsoft YaHei UI"/>
+                                </ComboBox>
+                                -->
                             </ui:SimpleStackPanel>
                         </GroupBox>
                         <GroupBox Header="PowerPoint 相关">
@@ -1112,7 +1025,7 @@
                                 <Border BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="5" Padding="0,5">
                                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                                         <TextBlock Text="开源协议: " FontSize="15" FontWeight="Bold"/>
-                                        <Image Source="/Resources/Icons-png/ic_fluent_scales_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="3,0" Width="20" Height="20"/>
+                                        <Image Source="/Resources/Icons-Fluent/ic_fluent_scales_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="3,0" Width="20" Height="20"/>
                                         <TextBlock Text="GNU General Public License v3.0" FontSize="15"/>
                                     </WrapPanel>
                                 </Border>
@@ -1210,7 +1123,20 @@
                 </ui:ScrollViewerEx>
                 <Grid Background="White" Margin="20" Height="40" VerticalAlignment="Top">
                     <ui:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <ui:FontIcon Height="28" Width="28" FontSize="26" FontFamily="Segoe Fluent Icons" Glyph="&#xe713;" Foreground="Black"/>
+                        <Image Source="/Resources/Icons-Fluent/ic_fluent_settings_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="30" Width="30">
+                            <Image.RenderTransform>
+                                <RotateTransform Angle="0" CenterX="15" CenterY="15" />
+                            </Image.RenderTransform>
+                            <Image.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" From="0" To="360" Duration="0:0:2" RepeatBehavior="Forever" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Image.Triggers>
+                        </Image>
                         <TextBlock Margin="10,-2,0,0" Text="详细设置" FontSize="26"/>
                     </ui:SimpleStackPanel>
                 </Grid>
@@ -1427,32 +1353,32 @@
             <ui:SimpleStackPanel Orientation="Horizontal">
                 <Border x:Name="BorderFloatingBarMoveControls" Width="36" Height="36" CornerRadius="5" Background="{DynamicResource FloatBarBackground}" BorderThickness="1" BorderBrush="{DynamicResource FloatBarBorderBrush}"
                         MouseDown="SymbolIconEmoji_MouseDown" MouseUp="SymbolIconEmoji_MouseUp">
-                    <ui:SimpleStackPanel Margin="0,5,0,5" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <ui:FontIcon Name="SymbolIconEmoji1" Height="22" Width="28" FontFamily="Segoe Fluent Icons" Glyph="&#xe76e;" Foreground="{DynamicResource FloatBarForeground}"/>
-                        <ui:FontIcon Name="SymbolIconEmoji2" Height="22" Width="0" FontFamily="Segoe Fluent Icons" Glyph="&#xe899;" Foreground="{DynamicResource FloatBarForeground}"/>
+                    <ui:SimpleStackPanel Margin="0,5,0,5" Orientation="Horizontal"
+                                         HorizontalAlignment="Center">
+                        <ui:SymbolIcon Name="SymbolIconEmoji" Symbol="Emoji2" Foreground="{DynamicResource FloatBarForeground}"/>
                     </ui:SimpleStackPanel>
                 </Border>
-                <Border Padding="2 1" Margin="2,0,0,0" Visibility="Visible" Height="36" Name="BorderFloatingBarMainControls" Background="{DynamicResource FloatBarBackground}" CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource FloatBarBorderBrush}">
+                <Border Padding="2" Margin="2,0,0,0" Visibility="Visible" Height="36" Name="BorderFloatingBarMainControls" Background="{DynamicResource FloatBarBackground}" CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource FloatBarBorderBrush}">
                     <ui:SimpleStackPanel Margin="2,0" Name="StackPanelFloatingBar" Orientation="Horizontal">
                         <ui:SimpleStackPanel Name="Cursor_Icon" MouseDown="Border_MouseDown" MouseUp="CursorIcon_Click"
-                                             Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" Width="28">
-                            <ui:FontIcon Margin="1,0,0,0" Height="22" Width="30" FontSize="18" FontFamily="Segoe Fluent Icons" Glyph="&#xe8b0;" Foreground="{DynamicResource FloatBarForeground}"/>
-                            <TextBlock Text="鼠标" Margin="1,-1,0,0" x:Name="FloatBarSelectIconTextBlock" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                                             Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center" Width="28">
+                            <Image Source="/Resources/Icons-Fluent/ic_fluent_cursor_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
+
                         </ui:SimpleStackPanel>
                         <ui:SimpleStackPanel Name="Pen_Icon" MouseDown="Border_MouseDown" MouseUp="PenIcon_Click"
-                                             Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" Width="30">
-                            <ui:FontIcon x:Name="PenIcon" Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xee56;" Foreground="{DynamicResource FloatBarForeground}"/>
-                            <TextBlock Text="批注" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                                             Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center" Width="28">
+                            <Image x:Name="PenIcon" Source="/Resources/Icons-Fluent/ic_fluent_signature_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
+
                         </ui:SimpleStackPanel>
                         <ui:SimpleStackPanel Name="SymbolIconDelete" MouseDown="Border_MouseDown" MouseUp="SymbolIconDelete_MouseUp"
-                                             Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" Width="30">
-                            <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe74d;" Foreground="{DynamicResource FloatBarForeground}"/>
-                            <TextBlock Text="清空" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                                             Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center" Width="28">
+                            <Image Source="/Resources/Icons-Fluent/ic_fluent_delete_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
                         </ui:SimpleStackPanel>
                         <ui:SimpleStackPanel Name="StackPanelCanvasControls" Visibility="Visible" Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
                             <ui:SimpleStackPanel Width="0" Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
                                 <Grid Margin="0,5,0,5" Width="0" RenderTransformOrigin="0.5,0.5">
-                                    <Border x:Name="PenPalette" Visibility="Visible" Background="{DynamicResource FloatBarBackground}" Opacity="0.9" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1" CornerRadius="8" Margin="-160,-190,-70,35">
+                                    <Border x:Name="PenPalette" Visibility="Visible" Background="white" Opacity="0.9" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1" CornerRadius="8" Margin="-160,-190,-70,35">
+
                                         <Viewbox>
                                             <StackPanel Margin="20 10">
                                                 <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -1461,8 +1387,8 @@
                                                             <ui:SimpleStackPanel Orientation="Horizontal" Height="35">
                                                                 <Label Content="笔锋" Margin="0,0,12,0" Foreground="{DynamicResource FloatBarForeground}" FontSize="15" VerticalAlignment="Center"/>
                                                                 <ComboBox Height="30" VerticalAlignment="Center" Name="ComboBoxPenStyle" FontFamily="Microsoft YaHei UI" SelectedIndex="0" SelectionChanged="ComboBoxPenStyle_SelectionChanged">
-                                                                    <ComboBoxItem Content="点集笔锋" FontFamily="Microsoft YaHei UI"/>
-                                                                    <ComboBoxItem Content="速率笔锋" FontFamily="Microsoft YaHei UI"/>
+                                                                    <ComboBoxItem Content="抬笔笔锋" FontFamily="Microsoft YaHei UI"/>
+                                                                    <ComboBoxItem Content="速度笔锋" FontFamily="Microsoft YaHei UI"/>
                                                                     <ComboBoxItem Content="关闭笔锋" FontFamily="Microsoft YaHei UI"/>
                                                                 </ComboBox>
                                                             </ui:SimpleStackPanel>
@@ -1494,50 +1420,49 @@
                                                         <Controls:UniformGrid Rows="2" Height="130">
                                                             <ui:SimpleStackPanel Height="55" Orientation="Horizontal" Width="270">
                                                                 <Controls:UniformGrid Columns="4" Width="270">
-                                                                    <Border Background="Transparent" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseDown="Border_MouseDown" MouseUp="ColorThemeSwitch_MouseUp">
+                                                                    <Border BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseDown="Border_MouseDown" MouseUp="ColorThemeSwitch_MouseUp">
                                                                         <Grid Margin="5">
-                                                                            <ui:FontIcon x:Name="ColorThemeSwitchIcon1" VerticalAlignment="Top" Height="26" Width="26" FontFamily="Segoe Fluent Icons" Glyph="&#xe706;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                                            <ui:FontIcon x:Name="ColorThemeSwitchIcon2" VerticalAlignment="Top" Height="0" Width="0" FontFamily="Segoe Fluent Icons" Glyph="&#xe708;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                                            <TextBlock x:Name="ColorThemeSwitchTextBlock" Foreground="{DynamicResource FloatBarForeground}" Text="亮系" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="13"/>
+                                                                            <Image x:Name="ColorThemeSwitchIcon" Source="/Resources/Icons-Fluent/ic_fluent_weather_sunny_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="26" Height="26"/>
+                                                                            <TextBlock x:Name="ColorThemeSwitchTextBlock" Text="亮系" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="13"/>
                                                                         </Grid>
                                                                     </Border>
-                                                                    <Border x:Name="BorderPenColorBlack" Background="Black" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorBlack_Click">
-                                                                        <Viewbox Name="ViewboxBtnColorBlackContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorBlack" Background="Black" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorBlack_Click">
+                                                                        <Viewbox Name="ViewboxBtnColorBlackContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                         </Viewbox>
                                                                     </Border>
-                                                                    <Border x:Name="BorderPenColorWhite" Background="White" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorWhite_Click">
-                                                                        <Viewbox x:Name="ViewboxBtnColorWhiteContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-black.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorWhite" Background="White" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorWhite_Click">
+                                                                        <Viewbox x:Name="ViewboxBtnColorWhiteContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="Black"/>
                                                                         </Viewbox>
                                                                     </Border>
-                                                                    <Border x:Name="BorderPenColorRed" Background="red" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorRed_Click">
-                                                                        <Viewbox Name="ViewboxBtnColorRedContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorRed" Background="red" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorRed_Click">
+                                                                        <Viewbox Name="ViewboxBtnColorRedContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                         </Viewbox>
                                                                     </Border>
                                                                 </Controls:UniformGrid>
                                                             </ui:SimpleStackPanel>
                                                             <ui:SimpleStackPanel Height="55" Orientation="Horizontal" Width="270">
                                                                 <Controls:UniformGrid Columns="4" Width="270">
-                                                                    <Border x:Name="BorderPenColorYellow" Background="#F38B00" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorYellow_Click">
-                                                                        <Viewbox x:Name="ViewboxBtnColorYellowContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorYellow" Background="#F38B00" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorYellow_Click">
+                                                                        <Viewbox x:Name="ViewboxBtnColorYellowContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                         </Viewbox>
                                                                     </Border>
-                                                                    <Border x:Name="BorderPenColorGreen" Background="#169141" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorGreen_Click">
-                                                                        <Viewbox x:Name="ViewboxBtnColorGreenContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorGreen" Background="#169141" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorGreen_Click">
+                                                                        <Viewbox Name="ViewboxBtnColorGreenContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                         </Viewbox>
                                                                     </Border>
-                                                                    <Border x:Name="BorderPenColorBlue" Background="#239AD6" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorBlue_Click">
-                                                                        <Viewbox x:Name="ViewboxBtnColorBlueContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorBlue" Background="#239AD6" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorBlue_Click">
+                                                                        <Viewbox x:Name="ViewboxBtnColorBlueContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                         </Viewbox>
                                                                     </Border>
-                                                                    <Border x:Name="BorderPenColorPink" Background="#c72ec7" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1.5" CornerRadius="100" Width="55" MouseUp="BtnColorPink_Click">
-                                                                        <Viewbox x:Name="ViewboxBtnColorPinkContent" Visibility="Collapsed" Margin="8">
-                                                                            <Image Source="/Resources/Icons-png/checked-white.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Width="24" Height="24" Margin="0,0,0,0"/>
+                                                                    <Border x:Name="BorderPenColorPink" Background="#c72ec7" BorderBrush="Black" BorderThickness="1.5" CornerRadius="15" Width="55" MouseUp="BtnColorPink_Click">
+                                                                        <Viewbox x:Name="ViewboxBtnColorPinkContent" Visibility="Collapsed" Margin="6">
+                                                                            <ui:SymbolIcon Symbol="Accept" Foreground="White"/>
                                                                         </Viewbox>
                                                                     </Border>
                                                                 </Controls:UniformGrid>
@@ -1551,28 +1476,21 @@
                                 </Grid>
                             </ui:SimpleStackPanel>
 
-                            <ui:SimpleStackPanel Name="Eraser_Icon" MouseUp="EraserIcon_Click" MouseDown="Border_MouseDown" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe75c;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <ui:FontIcon Margin="5,-22,0,-8" Height="22" Width="20" FontSize="12" FontFamily="Segoe Fluent Icons" Glyph="&#xf0b6;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="圆形擦" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel Name="Eraser_Icon" MouseUp="EraserIcon_Click" MouseDown="Border_MouseDown" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-png/eraser-outline.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
                             </ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel Name="EraserByStrokes_Icon" MouseUp="EraserIconByStrokes_Click" MouseDown="Border_MouseDown" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe75c;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <ui:FontIcon Margin="12,-22,0,-8" Height="22" Width="10" FontSize="8" FontFamily="Segoe Fluent Icons" Glyph="&#xf128;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="墨迹擦" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel Name="EraserByStrokes_Icon" MouseUp="EraserIconByStrokes_Click" MouseDown="Border_MouseDown" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-png/eraser-line.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
                             </ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel Name="SymbolIconSelect" MouseDown="Border_MouseDown" MouseUp="SymbolIconSelect_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe958;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <ui:FontIcon Margin="6,-18,0,-8" Height="22" Width="10" FontSize="10" FontFamily="Segoe Fluent Icons" Glyph="&#xf8af;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="套索选" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel Name="SymbolIconSelect" MouseDown="Border_MouseDown" MouseUp="SymbolIconSelect_MouseUp" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_lasso_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
                             </ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="ImageDrawShape_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xf158;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="图形" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="ImageDrawShape_MouseUp" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_shapes_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="23" Width="28"/>
                             </ui:SimpleStackPanel>
 
                             <Grid Width="0">
-                                <Border x:Name="BorderDrawShape" Visibility="Visible" Background="{DynamicResource FloatBarBackground}" Opacity="0.9" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1"
+                                <Border x:Name="BorderDrawShape" Visibility="Visible" Background="White" Opacity="0.9" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1"
                                     CornerRadius="5" Margin="-112,-262,-88,27" Height="240">
                                     <Viewbox>
                                         <ui:SimpleStackPanel Spacing="-8" Orientation="Vertical">
@@ -1582,11 +1500,11 @@
                                             </TextBlock>
                                             <ui:SymbolIcon Margin="0,-20,8,15" Symbol="Pin" MouseDown="Border_MouseDown" MouseUp="SymbolIconPinBorderDrawShape_MouseUp" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Right"/>
                                             <ui:SimpleStackPanel Height="50" Spacing="14" Orientation="Horizontal">
-                                                <Image Name="ImageDrawLine" Margin="16,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawLine_Click" Source="{DynamicResource DrawShapeImageSource.Line}"/>
-                                                <Image Name="ImageDrawDashedLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDashedLine_Click" Source="{DynamicResource DrawShapeImageSource.DashedLine}"/>
-                                                <Image Name="ImageDrawDotLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDotLine_Click" Source="{DynamicResource DrawShapeImageSource.DotLine}"/>
-                                                <Image Name="ImageDrawArrow" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawArrow_Click" Source="{DynamicResource DrawShapeImageSource.ArrowLine}"/>
-                                                <Image Name="ImageDrawParallelLine" Margin="0,11.5,16,11.5" MouseDown="Image_MouseDown" MouseUp="BtnDrawParallelLine_Click" Source="{DynamicResource DrawShapeImageSource.ParallelLine}"/>
+                                                <Image Name="BoardImageDrawLine" Margin="16,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawLine_Click" Source="{DynamicResource DrawShapeImageSource.Line}"/>
+                                                <Image Name="BoardImageDrawDashedLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDashedLine_Click" Source="{DynamicResource DrawShapeImageSource.DashedLine}"/>
+                                                <Image Name="BoardImageDrawDotLine" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawDotLine_Click" Source="{DynamicResource DrawShapeImageSource.DotLine}"/>
+                                                <Image Name="BoardImageDrawArrow" Margin="0,12,0,12" MouseDown="Image_MouseDown" MouseUp="BtnDrawArrow_Click" Source="{DynamicResource DrawShapeImageSource.ArrowLine}"/>
+                                                <Image Name="BoardImageDrawParallelLine" Margin="0,11.5,16,11.5" MouseDown="Image_MouseDown" MouseUp="BtnDrawParallelLine_Click" Source="{DynamicResource DrawShapeImageSource.ParallelLine}"/>
                                             </ui:SimpleStackPanel>
                                             <ui:SimpleStackPanel Height="50" Spacing="15" Orientation="Horizontal">
                                                 <Image Margin="16,12,0,12" MouseUp="BtnDrawCoordinate1_Click" Source="{DynamicResource DrawShapeImageSource.Coordinate1}"/>
@@ -1639,89 +1557,50 @@
                                     </Viewbox>
                                 </Border>
                             </Grid>
-                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconUndo_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}">
-                                <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe7a7;" Foreground="{DynamicResource FloatBarForeground}" Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
-                                <TextBlock Text="撤销" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconUndo_MouseUp" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}">
+                                <Image Source="/Resources/Icons-png/undo.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="28" Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
                             </ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}">
-                                <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe7a6;" Foreground="{DynamicResource FloatBarForeground}" Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
-                                <TextBlock Text="重做" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_MouseUp" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}">
+                                <Image Source="/Resources/Icons-png/redo.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="28" Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"/>
                             </ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel Margin="1.5,0,2.5,0" MouseDown="Border_MouseDown" MouseUp="CursorWithDelIcon_Click" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Margin="-5,0,0,0" Height="22" Width="30" FontSize="14" FontFamily="Segoe Fluent Icons" Glyph="&#xe8b0;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <ui:FontIcon Margin="12,-22,0,-8" Height="22" Width="15" FontSize="10" FontFamily="Segoe Fluent Icons" Glyph="&#xe74d;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="清并鼠" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="CursorWithDelIcon_Click"
+                                                 Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Margin="-1,0,2,0" Source="/Resources/Icons-Fluent/ic_fluent_cursorWITHdelete_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="24" Width="26"/>
                             </ui:SimpleStackPanel>
                         </ui:SimpleStackPanel>
                         <ui:SimpleStackPanel Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
-                            <Border Margin="0,2" BorderBrush="{DynamicResource FloatBarForeground}" BorderThickness="1,0,0,0" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp">
-                                <ui:SimpleStackPanel Margin="2,-2,0,-2" Orientation="Vertical" HorizontalAlignment="Center" Background="Transparent">
-                                    <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="18" FontFamily="Segoe Fluent Icons" Glyph="&#xe929;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                    <TextBlock Margin="0,-1,0,0" Text="画板" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
-                                </ui:SimpleStackPanel>
+                            <Border Margin="0,2" BorderBrush="Black" BorderThickness="1,0,0,0" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp">
+                                <Image Margin="2,0,0,0" Source="/Resources/Icons-Fluent/ic_fluent_whiteboard_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
                             </Border>
-                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconTools_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe8a9;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Margin="0,-1,0,0" Text="工具" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconTools_MouseUp" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-png/setting.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="28"/>
                             </ui:SimpleStackPanel>
-                            <ui:SimpleStackPanel x:Name="Fold_Icon" MouseDown="Border_MouseDown" MouseUp="FoldFloatingBar_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xed1a;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Margin="0,-1,0,0" Text="隐藏" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                            <ui:SimpleStackPanel x:Name="Fold_Icon" MouseDown="Border_MouseDown" MouseUp="FoldFloatingBar_MouseUp" Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_dual_screen_span_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="28"/>
                             </ui:SimpleStackPanel>
                             <Grid Width="0">
-                                <Border Name="BorderTools" Margin="-125,-180,-45,40" CornerRadius="5" Background="{DynamicResource FloatBarBackground}" Opacity="0.9" BorderThickness="1" BorderBrush="{DynamicResource FloatBarBorderBrush}">
+                                <Border Name="BorderTools" Margin="-117,-148,-35,40" CornerRadius="5" Background="White" Opacity="0.9" BorderThickness="1" BorderBrush="{DynamicResource FloatBarBorderBrush}">
                                     <ui:SimpleStackPanel>
-                                        <Border BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="6,6,0,0" Background="{DynamicResource FloatBarTitleBackground}" Margin="-1,-1,-1,5" Padding="1,1,1,0">
-                                            <ui:SimpleStackPanel Orientation="Horizontal">
-                                                <TextBlock Text="更多功能" Foreground="{DynamicResource FloatBarForeground}" Padding="8,5,85,5" FontSize="11" FontWeight="Bold" TextAlignment="Center"/>
-                                                <ui:FontIcon Height="22" Width="28" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xf78a;" Foreground="{DynamicResource FloatBarForeground}" MouseDown="Border_MouseDown" MouseUp="CloseBordertools_MouseUp"/>
+                                        <Image HorizontalAlignment="Right" Margin="0,2,2,-27" Source="/Resources/Icons-png/close-circle.png" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25" MouseDown="Border_MouseDown" MouseUp="CloseBordertools_MouseUp"/>
+                                        <ui:SimpleStackPanel Margin="10">
+                                            <Label Content="倒计时   抽选   单次抽选" FontSize="9.5" Foreground="{DynamicResource FloatBarForeground}" HorizontalAlignment="Left"/>
+                                            <ui:SimpleStackPanel Margin="2.5,0,0,2" Height="25" Spacing="13" Orientation="Horizontal">
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_timer_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="22" MouseDown="Border_MouseDown" MouseUp="ImageCountdownTimer_MouseUp"/>
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_people_money_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20" MouseDown="Border_MouseDown" MouseUp="SymbolIconRand_MouseUp"/>
+                                                <Image Margin="1,0,0,0" Source="/Resources/Icons-Fluent/ic_fluent_person_money_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20" MouseDown="Border_MouseDown" MouseUp="SymbolIconRandOne_MouseUp"/>
                                             </ui:SimpleStackPanel>
-                                        </Border>
-                                        <ui:SimpleStackPanel HorizontalAlignment="Center" Spacing="4">
-                                            <ui:SimpleStackPanel Height="40" Spacing="8" Orientation="Horizontal">
-                                                <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="ImageCountdownTimer_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xea8f;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="倒计时" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel  MouseDown="Border_MouseDown" MouseUp="SymbolIconRand_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe8b1;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="随机抽选" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconRandOne_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe8b1;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Border CornerRadius="50" BorderBrush="{DynamicResource FloatBarForeground}" BorderThickness="1" HorizontalAlignment="Center" Margin="-2,-10,0,-2" VerticalAlignment="Bottom" Height="9" Width="9">
-                                                        <TextBlock Text="1" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-0.8,0,0" Foreground="{DynamicResource FloatBarForeground}" />
-                                                    </Border>
-                                                    <Label Content="单次抽选" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
+                                            <Label Content="保存 | 打开 | 播放 - 墨迹" FontSize="12" HorizontalAlignment="Left"/>
+                                            <ui:SimpleStackPanel Orientation="Horizontal" Margin="2.5,0,0,0" Height="25" Spacing="15">
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_save_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20" MouseDown="Border_MouseDown" MouseUp="SymbolIconSaveStrokes_MouseUp"/>
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_folder_open_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20" MouseDown="Border_MouseDown" MouseUp="SymbolIconOpenStrokes_MouseUp"/>
+                                                <Image Source="/Resources/Icons-png/playCircle.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20" MouseDown="Border_MouseDown" MouseUp="GridInkReplayButton_MouseUp"/>
                                             </ui:SimpleStackPanel>
-                                            <ui:SimpleStackPanel Height="40" Spacing="8" Orientation="Horizontal">
-                                                <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconSaveStrokes_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe74e;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="保存墨迹" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel  MouseDown="Border_MouseDown" MouseUp="SymbolIconOpenStrokes_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,-2,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xed25;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="打开墨迹" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="GridInkReplayButton_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xec57;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="播放墨迹" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                            </ui:SimpleStackPanel>
-                                            <ui:SimpleStackPanel Height="40" Spacing="8" Orientation="Horizontal">
-                                                <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconScreenshot_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe722;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="截屏" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel  MouseDown="Border_MouseDown" MouseUp="OperatingGuideWindowIcon_MouseUp" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe82d;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="指南" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
-                                                <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconSettings_Click" Margin="0,0,0,0" Height="40" Width="40" Orientation="Vertical">
-                                                    <ui:FontIcon Margin="0,4,0,2" Height="22" Width="22" FontFamily="Segoe Fluent Icons" Glyph="&#xe713;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                    <Label Content="设置" FontSize="10" HorizontalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                                </ui:SimpleStackPanel>
+                                            <Label Content="截图 | 设置 | 指南" FontSize="12.25" HorizontalAlignment="Left"/>
+                                            <ui:SimpleStackPanel Orientation="Horizontal" Margin="2.5,0,0,0" Height="25" Spacing="14.5">
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_camera_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20" MouseDown="Border_MouseDown" MouseUp="SymbolIconScreenshot_MouseUp" Margin="0,2,0,3"/>
+                                                <Image Source="/Resources/Icons-Fluent/ic_fluent_settings_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="22" MouseDown="Border_MouseDown" MouseUp="SymbolIconSettings_Click"/>
+                                                <!--<Image Margin="-1,0,0,0" x:Name="hiddenButtonInBorderTools" Source="/Resources/Icons-Fluent/ic_fluent_dual_screen_span_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="22" MouseDown="Border_MouseDown" MouseUp="FoldFloatingBar_MouseUp"/>-->
+                                                <Image Margin="-1.5,0,0,0" Source="/Resources/Icons-Fluent/ic_fluent_book_question_mark_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="22" Width="22" MouseDown="Border_MouseDown" MouseUp="OperatingGuideWindowIcon_MouseUp"/>
                                             </ui:SimpleStackPanel>
                                         </ui:SimpleStackPanel>
                                     </ui:SimpleStackPanel>
@@ -1731,51 +1610,34 @@
                     </ui:SimpleStackPanel>
                 </Border>
 
+
                 <Border Margin="2,0,0,0" x:Name="EnableTwoFingerGestureBorder" Visibility="Visible" Width="36" Height="36" MouseUp="TwoFingerGestureBorder_MouseUp" CornerRadius="5" Background="{DynamicResource FloatBarBackground}" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1" >
-                    <ui:SimpleStackPanel>
-                        <ui:FontIcon Margin="0,1.5,0,-1.5" x:Name="EnableTwoFingerGestureBtn" Opacity="0.5" Height="22" Width="28" FontSize="22" FontFamily="Segoe Fluent Icons" Glyph="&#xf271;" Foreground="{DynamicResource FloatBarForeground}"/>
-                        <TextBlock Text="手势" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
-                    </ui:SimpleStackPanel>
+                    <Image x:Name="EnableTwoFingerGestureBtn" Source="/Resources/Icons-png/twoFingelMove.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="30"/>
                 </Border>
                 <Grid Width="0">
-                    <Border Name="TwoFingerGestureBorder" VerticalAlignment="Top" Visibility="Visible" Margin="-105,-175,-67,44" CornerRadius="5" Background="{DynamicResource FloatBarBackground}" Opacity="0.9" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1">
-                        <Viewbox>
-                            <ui:SimpleStackPanel>
-                                <Border BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1,1,1,0" CornerRadius="6,6,0,0" Background="{DynamicResource FloatBarTitleBackground}" Margin="-1,-1,-1,5" Padding="1,1,1,0">
-                                    <TextBlock Text="手势功能" Foreground="{DynamicResource FloatBarForeground}" Padding="8,5,85,5" FontSize="11" FontWeight="Bold" TextAlignment="Center"/>
-                                </Border>
-                                <ui:SimpleStackPanel Margin="5,0,5,5" Spacing="-2.5">
-                                    <ui:SimpleStackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe716;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Label Content="多指书写" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Viewbox Width="36" Height="25">
-                                            <ui:ToggleSwitch MinWidth="0" Width="42" Name="ToggleSwitchEnableMultiTouchMode" FontFamily="Microsoft YaHei UI" IsOn="False" OnContent="" OffContent="" Toggled="ToggleSwitchEnableMultiTouchMode_Toggled"/>
-                                        </Viewbox>
-                                    </ui:SimpleStackPanel>
-                                    <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" x:Name="TwoFingerGestureSimpleStackPanel" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe7c2;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Label Content="双指移动" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Viewbox Width="36" Height="25">
-                                            <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="ToggleSwitchEnableTwoFingerTranslate" FontFamily="Microsoft YaHei UI" IsOn="False" Toggled="ToggleSwitchEnableTwoFingerTranslate_Toggled"/>
-                                        </Viewbox>
-                                    </ui:SimpleStackPanel>
-                                    <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe740;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Label Content="双指缩放" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Viewbox Width="36" Height="25">
-                                            <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="ToggleSwitchEnableTwoFingerZoom" FontFamily="Microsoft YaHei UI" IsOn="False" Toggled="ToggleSwitchEnableTwoFingerZoom_Toggled"/>
-                                        </Viewbox>
-                                    </ui:SimpleStackPanel>
-                                    <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <ui:FontIcon Margin="0,4,0,2" Height="20" Width="20" FontSize="16" FontFamily="Segoe Fluent Icons" Glyph="&#xe7ad;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Label Content="双指旋转" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
-                                        <Viewbox Width="36" Height="25">
-                                            <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="ToggleSwitchEnableTwoFingerRotation" FontFamily="Microsoft YaHei UI" Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled"/>
-                                        </Viewbox>
-                                    </ui:SimpleStackPanel>
-                                </ui:SimpleStackPanel>
+                    <Border Name="TwoFingerGestureBorder" Visibility="Visible" Margin="-105,-158,-67,44" CornerRadius="5" Background="white" Opacity="0.9" BorderBrush="Black" BorderThickness="1">
+                        <ui:SimpleStackPanel Margin="10">
+                            <ui:SimpleStackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_people_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                <Label Content="多指书写" FontSize="15" VerticalAlignment="Center"/>
+                                <ui:ToggleSwitch MinWidth="0" Width="42" Name="ToggleSwitchEnableMultiTouchMode" FontFamily="Microsoft YaHei UI" IsOn="False" OnContent="" OffContent="" Toggled="ToggleSwitchEnableMultiTouchMode_Toggled"/>
                             </ui:SimpleStackPanel>
-                        </Viewbox>
+                            <ui:SimpleStackPanel Opacity="1" x:Name="TwoFingerGestureSimpleStackPanel" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_drag_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                <Label Content="双指移动" FontSize="15" VerticalAlignment="Center"/>
+                                <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="ToggleSwitchEnableTwoFingerTranslate" FontFamily="Microsoft YaHei UI" IsOn="False" Toggled="ToggleSwitchEnableTwoFingerTranslate_Toggled"/>
+                            </ui:SimpleStackPanel>
+                            <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_scale_fit_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                <Label Content="双指缩放" FontSize="15" VerticalAlignment="Center"/>
+                                <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="ToggleSwitchEnableTwoFingerZoom" FontFamily="Microsoft YaHei UI" IsOn="False" Toggled="ToggleSwitchEnableTwoFingerZoom_Toggled"/>
+                            </ui:SimpleStackPanel>
+                            <ui:SimpleStackPanel Opacity="{Binding ElementName=TwoFingerGestureSimpleStackPanel, Path=Opacity}" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image Source="/Resources/Icons-Fluent/ic_fluent_arrow_rotate_clockwise_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="20" Width="20"/>
+                                <Label Content="双指旋转" FontSize="15" VerticalAlignment="Center"/>
+                                <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent="" Name="ToggleSwitchEnableTwoFingerRotation" FontFamily="Microsoft YaHei UI" Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled"/>
+                            </ui:SimpleStackPanel>
+                        </ui:SimpleStackPanel>
                     </Border>
                 </Grid>
 

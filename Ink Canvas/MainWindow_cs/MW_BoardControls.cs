@@ -294,12 +294,22 @@ namespace Ink_Canvas {
             TextBlockWhiteBoardIndexInfo.Text = string.Format("{0} / {1}", CurrentWhiteboardIndex, WhiteboardTotalCount);
 
             if (CurrentWhiteboardIndex == WhiteboardTotalCount) {
-                BoardLeftPannelNextPage1.Width = 26;
-                BoardLeftPannelNextPage2.Width = 0;
+                BitmapImage newImageSource = new BitmapImage();
+                newImageSource.BeginInit();
+                newImageSource.UriSource = new Uri("/Resources/Icons-Fluent/ic_fluent_add_circle_24_regular.png", UriKind.RelativeOrAbsolute);
+                newImageSource.EndInit();
+                BoardLeftPannelNextPage.Source = newImageSource;
+                BoardRightPannelNextPage.Source = newImageSource;
+                BoardRightPannelNextPageTextBlock.Text = "加页";
                 BoardLeftPannelNextPageTextBlock.Text = "加页";
             } else {
-                BoardLeftPannelNextPage1.Width = 0;
-                BoardLeftPannelNextPage2.Width = 26;
+                BitmapImage newImageSource = new BitmapImage();
+                newImageSource.BeginInit();
+                newImageSource.UriSource = new Uri("/Resources/Icons-Fluent/ic_fluent_arrow_circle_right_24_regular.png", UriKind.RelativeOrAbsolute);
+                newImageSource.EndInit();
+                BoardLeftPannelNextPage.Source = newImageSource;
+                BoardRightPannelNextPage.Source = newImageSource;
+                BoardRightPannelNextPageTextBlock.Text = "下一页";
                 BoardLeftPannelNextPageTextBlock.Text = "下一页";
             }
 

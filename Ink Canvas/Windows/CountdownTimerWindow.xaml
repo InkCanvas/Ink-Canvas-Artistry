@@ -171,7 +171,7 @@
                             Height="18" CornerRadius="9"
                             VerticalAlignment="Center" HorizontalAlignment="Center">
                         <ui:SimpleStackPanel Margin="6,0" Spacing="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Image Margin="0,0,2,0" Source="/Resources/Icons-png/ic_fluent_clock_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="10" Width="10"/>
+                            <Image Margin="0,0,2,0" Source="/Resources/Icons-Fluent/ic_fluent_clock_24_regular.png" RenderOptions.BitmapScalingMode="HighQuality" Height="10" Width="10"/>
                             <TextBlock Name="TextBlockStopTime" Text="12:30 PM" FontSize="9" VerticalAlignment="Center"/>
                         </ui:SimpleStackPanel>
                     </Border>

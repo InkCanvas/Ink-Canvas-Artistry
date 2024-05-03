@@ -161,7 +161,7 @@
     <Compile Include="Helpers\ForegroundWindowInfo.cs" />
     <Compile Include="MainWindow_cs\MW_AutoFold.cs" />
     <Compile Include="MainWindow_cs\MW_BoardIcons.cs" />
-    <Compile Include="MainWindow_cs\MW_FloatBarIcons.cs" />
+    <Compile Include="MainWindow_cs\MW_FloatingBarIcons.cs" />
     <Compile Include="MainWindow_cs\MW_AutoTheme.cs" />
     <Compile Include="MainWindow_cs\MW_SelectionGestures.cs" />
     <Compile Include="MainWindow_cs\MW_Hotkeys.cs" />
@@ -211,18 +211,6 @@
     <Compile Include="Windows\CountdownTimerWindow.xaml.cs">
       <DependentUpon>CountdownTimerWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resources\BoardDrawShapeImageDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Styles\Dark-Board.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Styles\Light-Board.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Windows\ChangeLogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -403,7 +391,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons-png\check-box-background.png" />
+    <Resource Include="Resources\Icons-png\eraser-line.png" />
+    <Resource Include="Resources\Icons-png\eraser-outline.png" />
+    <Resource Include="Resources\Icons-png\playCircle.png" />
+    <Resource Include="Resources\Icons-png\redo.png" />
+    <Resource Include="Resources\Icons-png\setting.png" />
+    <Resource Include="Resources\Icons-png\undo.png" />
+    <Resource Include="Resources\Icons-png\minimize.png" />
     <Resource Include="Resources\Icons-png\penUpright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-png\twoFingelMove-Blue.png" />
+    <Resource Include="Resources\Icons-png\twoFingelMove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-png\close-circle.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Ink Canvas Annotation.ico" />
@@ -429,18 +431,89 @@
     <Resource Include="Resources\Icons-png\Desmos.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons-png\checked-black.png" />
-    <Resource Include="Resources\Icons-png\checked-white.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_cursor_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_lasso_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_settings_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_whiteboard_24_regular.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons-png\ic_fluent_arrow_clockwise_24_regular.png" />
-    <Resource Include="Resources\Icons-png\ic_fluent_calendar_sync_24_regular.png" />
-    <Resource Include="Resources\Icons-png\ic_fluent_power_24_regular.png" />
-    <Resource Include="Resources\Icons-png\ic_fluent_scales_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_dark_theme_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_dual_screen_span_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_timer_24_regular.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons-png\ic_fluent_clock_24_regular.png" />
-    <Resource Include="Resources\Icons-png\ic_fluent_control_button_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_delete_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_cursorWITHdelete_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_arrow_circle_left_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_arrow_circle_right_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_weather_moon_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_weather_sunny_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_signature_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_save_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_camera_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_copy_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_copy_add_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_add_circle_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_flip_horizontal_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_flip_vertical_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_edit_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_folder_open_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_people_money_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_person_money_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_arrow_rotate_clockwise_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_scale_fit_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_scales_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_arrow_clockwise_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_calendar_sync_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_dismiss_circle_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_drag_24_regular.png" />
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_shapes_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_power_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_clock_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_book_question_mark_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_keyboard_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_control_button_24_regular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons-Fluent\ic_fluent_people_24_regular.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

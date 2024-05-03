@@ -1,11 +1,9 @@
 ﻿using Ink_Canvas.Helpers;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
-using System.Windows.Media;
-using Application = System.Windows.Application;
-using System.Diagnostics;
 
 namespace Ink_Canvas {
     public partial class MainWindow : Window {
@@ -18,25 +16,11 @@ namespace Ink_Canvas {
             } else {
                 if (inkColor == 0) lastBoardInkColor = 5;
             }
-            ComboBoxTheme_SelectionChanged(null, null);
             CheckColorTheme(true);
-            if (BoardPen.Opacity == 1) {
-                BoardPen.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
-            }
-            if (BoardEraser.Opacity == 1) {
-                BoardEraser.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
-            }
-            if (BoardSelect.Opacity == 1) {
-                BoardSelect.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
-            }
-            if (BoardEraserByStrokes.Opacity == 1) {
-                BoardEraserByStrokes.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
-            }
         }
 
         private void BoardEraserIcon_Click(object sender, RoutedEventArgs e) {
-            if (lastBorderMouseDownObject != sender) return;
-            if (BoardEraser.Opacity != 1) {
+            if (BoardEraser.Background.ToString() == "#FF679CF4") {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BoardDeleteIcon);
             } else {
                 forceEraser = true;
@@ -68,8 +52,7 @@ namespace Ink_Canvas {
         }
 
         private void BoardEraserIconByStrokes_Click(object sender, RoutedEventArgs e) {
-            if (lastBorderMouseDownObject != sender) return;
-            if (BoardEraserByStrokes.Opacity != 1) {
+            if (BoardEraserByStrokes.Background.ToString() == "#FF679CF4") {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BoardDeleteIcon);
             } else {
                 forceEraser = true;
