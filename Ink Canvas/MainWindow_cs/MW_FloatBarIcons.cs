@@ -1038,7 +1038,9 @@ namespace Ink_Canvas {
             CancelSingleFingerDragMode();
         }
 
-        private void CancelSingleFingerDragMode() {
+        bool lastIsInMultiTouchMode = false;
+
+        private void CancelSingleFingerDragMode(bool isDrawingShapes = false) {
             if (ToggleSwitchDrawShapeBorderAutoHide.IsOn) {
                 CollapseBorderDrawShape();
             }
@@ -1049,6 +1051,11 @@ namespace Ink_Canvas {
                 BtnFingerDragMode_Click(BtnFingerDragMode, null);
             }
             isLongPressSelected = false;
+
+            if (isDrawingShapes && isInMultiTouchMode) {
+                ToggleSwitchEnableMultiTouchMode.IsOn = false;
+                lastIsInMultiTouchMode = true;
+            }
         }
 
         private void BtnHideControl_Click(object sender, RoutedEventArgs e) {
