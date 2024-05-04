@@ -106,10 +106,10 @@ namespace Ink_Canvas {
 
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = false;
                 }
-                if (Settings.Appearance.EnableViewboxFloatingBarScaleTransform) // 浮动工具栏 UI 缩放 85%
+                if (Settings.Appearance.EnableViewboxFloatingBarScaleTransform) // 浮动工具栏 UI 缩放 90%
                 {
-                    ViewboxFloatingBarScaleTransform.ScaleX = 0.85;
-                    ViewboxFloatingBarScaleTransform.ScaleY = 0.85;
+                    ViewboxFloatingBarScaleTransform.ScaleX = 0.9;
+                    ViewboxFloatingBarScaleTransform.ScaleY = 0.9;
 
                     ToggleSwitchEnableViewboxFloatingBarScaleTransform.IsOn = true;
                 } else {
