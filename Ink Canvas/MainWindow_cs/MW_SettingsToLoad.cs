@@ -27,7 +27,8 @@ namespace Ink_Canvas {
                 CursorIcon_Click(null, null);
             }
             try {
-                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\Ink Canvas Annotation.lnk")) {
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\Ink Canvas Annotation.lnk")
+                    || File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\Ink Canvas Artistry.lnk")) {
                     ToggleSwitchRunAtStartup.IsOn = true;
                 }
             } catch (Exception ex) {

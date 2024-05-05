@@ -8,7 +8,7 @@
         ui:ThemeManager.RequestedTheme="Light" Topmost="True" Background="Transparent"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Title="Ink Canvas Annotation 使用指南"
+        Title="Ink Canvas Artistry 使用指南"
         Height="600" Width="500">
     <Border Background="#F0F3F9" CornerRadius="10" BorderThickness="1" BorderBrush="#0066BF" Margin="10,10,10,50">
         <Grid>

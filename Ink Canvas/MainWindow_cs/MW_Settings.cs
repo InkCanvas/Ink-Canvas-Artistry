@@ -63,10 +63,12 @@ namespace Ink_Canvas {
             if (!isLoaded) return;
             if (ToggleSwitchRunAtStartup.IsOn) {
                 StartAutomaticallyDel("InkCanvas");
-                StartAutomaticallyCreate("Ink Canvas Annotation");
+                StartAutomaticallyDel("Ink Canvas Annotation");
+                StartAutomaticallyCreate("Ink Canvas Artistry");
             } else {
                 StartAutomaticallyDel("InkCanvas");
                 StartAutomaticallyDel("Ink Canvas Annotation");
+                StartAutomaticallyDel("Ink Canvas Artistry");
             }
         }
 
