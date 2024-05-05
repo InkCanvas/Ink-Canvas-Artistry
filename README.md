@@ -1,6 +1,6 @@
 <div align="center">
 
-[![LOGO](Ink%20Canvas/Resources/Ink-Canvas-For-Annotation.png?raw=true "LOGO")](# "LOGO")
+[![LOGO](Images/Ink%20Canvas%20Artistry.png?raw=true "LOGO")](# "LOGO")
 
 # Ink Canvas Artistry
 [![UPSTREAM](https://img.shields.io/badge/UpStream-WXRIW%2FInk--Canvas-red.svg "LICENSE")](https://github.com/WXRIW/Ink-Canvas)
