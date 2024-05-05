@@ -9,8 +9,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/ChangSakura/Ink-Canvas?logo=github)](https://github.com/ChangSakura/Ink-Canvas/issues)
 [![交流群](https://img.shields.io/badge/-%E4%BA%A4%E6%B5%81%E7%BE%A4%20617707731-blue?style=flat&logo=TencentQQ)](https://qm.qq.com/q/AC777tzmEw)
 
-![Screenshot-1](./Images/Ink-Canvas-For-Annotation%20Screenshot.png)
-![Screenshot-2](./Images/Ink-Canvas-For-Annotation%20Blackboard%20Screenshot.png)
+![Screenshot-1](./Images/Screenshot1.png)
+![Screenshot-2](./Images/Screenshot2.png)
+![Screenshot-2](./Images/Screenshot3.png)
 
 </div>
 
