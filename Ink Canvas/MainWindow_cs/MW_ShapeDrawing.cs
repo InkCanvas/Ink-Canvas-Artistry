@@ -87,13 +87,17 @@ namespace Ink_Canvas {
             isLongPressSelected = false;
         }
 
-        private void BtnDrawLine_Click(object sender, EventArgs e) {
+        private void BtnDrawLine_Click(object sender, MouseButtonEventArgs e) {
             if (lastMouseDownSender == sender) {
                 forceEraser = true;
                 drawingShapeMode = 1;
                 inkCanvas.EditingMode = InkCanvasEditingMode.None;
                 inkCanvas.IsManipulationEnabled = true;
-                CancelSingleFingerDragMode(true);
+                if (e == null || e.StylusDevice == null) { // e == null: 快捷键 alt + L
+                    CancelSingleFingerDragMode();
+                } else {
+                    CancelSingleFingerDragMode(true);
+                }
             }
             lastMouseDownSender = null;
             if (isLongPressSelected) {
@@ -106,13 +110,17 @@ namespace Ink_Canvas {
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawDashedLine_Click(object sender, EventArgs e) {
+        private void BtnDrawDashedLine_Click(object sender, MouseButtonEventArgs e) {
             if (lastMouseDownSender == sender) {
                 forceEraser = true;
                 drawingShapeMode = 8;
                 inkCanvas.EditingMode = InkCanvasEditingMode.None;
                 inkCanvas.IsManipulationEnabled = true;
-                CancelSingleFingerDragMode(true);
+                if (e.StylusDevice == null) {
+                    CancelSingleFingerDragMode();
+                } else {
+                    CancelSingleFingerDragMode(true);
+                }
             }
             lastMouseDownSender = null;
             if (isLongPressSelected) {
@@ -125,13 +133,17 @@ namespace Ink_Canvas {
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawDotLine_Click(object sender, EventArgs e) {
+        private void BtnDrawDotLine_Click(object sender, MouseButtonEventArgs e) {
             if (lastMouseDownSender == sender) {
                 forceEraser = true;
                 drawingShapeMode = 18;
                 inkCanvas.EditingMode = InkCanvasEditingMode.None;
                 inkCanvas.IsManipulationEnabled = true;
-                CancelSingleFingerDragMode(true);
+                if (e.StylusDevice == null) {
+                    CancelSingleFingerDragMode();
+                } else {
+                    CancelSingleFingerDragMode(true);
+                }
             }
             lastMouseDownSender = null;
             if (isLongPressSelected) {
@@ -144,13 +156,17 @@ namespace Ink_Canvas {
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawArrow_Click(object sender, EventArgs e) {
+        private void BtnDrawArrow_Click(object sender, MouseButtonEventArgs e) {
             if (lastMouseDownSender == sender) {
                 forceEraser = true;
                 drawingShapeMode = 2;
                 inkCanvas.EditingMode = InkCanvasEditingMode.None;
                 inkCanvas.IsManipulationEnabled = true;
-                CancelSingleFingerDragMode(true);
+                if (e.StylusDevice == null) {
+                    CancelSingleFingerDragMode();
+                } else {
+                    CancelSingleFingerDragMode(true);
+                }
             }
             lastMouseDownSender = null;
             if (isLongPressSelected) {
@@ -163,13 +179,17 @@ namespace Ink_Canvas {
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawParallelLine_Click(object sender, EventArgs e) {
+        private void BtnDrawParallelLine_Click(object sender, MouseButtonEventArgs e) {
             if (lastMouseDownSender == sender) {
                 forceEraser = true;
                 drawingShapeMode = 15;
                 inkCanvas.EditingMode = InkCanvasEditingMode.None;
                 inkCanvas.IsManipulationEnabled = true;
-                CancelSingleFingerDragMode(true);
+                if (e.StylusDevice == null) {
+                    CancelSingleFingerDragMode();
+                } else {
+                    CancelSingleFingerDragMode(true);
+                }
             }
             lastMouseDownSender = null;
             if (isLongPressSelected) {
@@ -182,180 +202,256 @@ namespace Ink_Canvas {
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCoordinate1_Click(object sender, EventArgs e) {
+        private void BtnDrawCoordinate1_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 11;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCoordinate2_Click(object sender, EventArgs e) {
+        private void BtnDrawCoordinate2_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 12;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCoordinate3_Click(object sender, EventArgs e) {
+        private void BtnDrawCoordinate3_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 13;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCoordinate4_Click(object sender, EventArgs e) {
+        private void BtnDrawCoordinate4_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 14;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCoordinate5_Click(object sender, EventArgs e) {
+        private void BtnDrawCoordinate5_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 17;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawRectangle_Click(object sender, EventArgs e) {
+        private void BtnDrawRectangle_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 3;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawRectangleCenter_Click(object sender, EventArgs e) {
+        private void BtnDrawRectangleCenter_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 19;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawEllipse_Click(object sender, EventArgs e) {
+        private void BtnDrawEllipse_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 4;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCircle_Click(object sender, EventArgs e) {
+        private void BtnDrawCircle_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 5;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCenterEllipse_Click(object sender, EventArgs e) {
+        private void BtnDrawCenterEllipse_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 16;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCenterEllipseWithFocalPoint_Click(object sender, EventArgs e) {
+        private void BtnDrawCenterEllipseWithFocalPoint_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 23;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawDashedCircle_Click(object sender, EventArgs e) {
+        private void BtnDrawDashedCircle_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 10;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawHyperbola_Click(object sender, EventArgs e) {
+        private void BtnDrawHyperbola_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 24;
             drawMultiStepShapeCurrentStep = 0;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawHyperbolaWithFocalPoint_Click(object sender, EventArgs e) {
+        private void BtnDrawHyperbolaWithFocalPoint_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 25;
             drawMultiStepShapeCurrentStep = 0;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawParabola1_Click(object sender, EventArgs e) {
+        private void BtnDrawParabola1_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 20;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawParabolaWithFocalPoint_Click(object sender, EventArgs e) {
+        private void BtnDrawParabolaWithFocalPoint_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 22;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawParabola2_Click(object sender, EventArgs e) {
+        private void BtnDrawParabola2_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 21;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCylinder_Click(object sender, EventArgs e) {
+        private void BtnDrawCylinder_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 6;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCone_Click(object sender, EventArgs e) {
+        private void BtnDrawCone_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 7;
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 
-        private void BtnDrawCuboid_Click(object sender, EventArgs e) {
+        private void BtnDrawCuboid_Click(object sender, MouseButtonEventArgs e) {
             forceEraser = true;
             drawingShapeMode = 9;
             isFirstTouchCuboid = true;
@@ -363,7 +459,11 @@ namespace Ink_Canvas {
             CuboidFrontRectEndP = new Point();
             inkCanvas.EditingMode = InkCanvasEditingMode.None;
             inkCanvas.IsManipulationEnabled = true;
-            CancelSingleFingerDragMode(true);
+            if (e.StylusDevice == null) {
+                CancelSingleFingerDragMode();
+            } else {
+                CancelSingleFingerDragMode(true);
+            }
             DrawShapePromptToPen();
         }
 

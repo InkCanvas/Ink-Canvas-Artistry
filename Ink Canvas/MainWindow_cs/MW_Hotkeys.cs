@@ -91,7 +91,7 @@ namespace Ink_Canvas {
 
         private void KeyDrawLine(object sender, ExecutedRoutedEventArgs e) {
             if (StackPanelCanvasControls.Visibility == Visibility.Visible) {
-                BtnDrawLine_Click(lastMouseDownSender, e);
+                BtnDrawLine_Click(lastMouseDownSender, null);
             }
         }
 
