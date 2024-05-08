@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -88,5 +89,9 @@ namespace Ink_Canvas.Helpers
         }
 
         private readonly DrawingAttributes _drawingAttributes;
+
+        public static implicit operator Stroke(StrokeVisual v) {
+            throw new NotImplementedException();
+        }
     }
 }

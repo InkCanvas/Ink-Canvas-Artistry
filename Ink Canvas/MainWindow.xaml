@@ -91,6 +91,7 @@
         </Grid>
 
         <Canvas Name="Canvas"/>
+        
         <Label Name="Label" Visibility="Collapsed" Foreground="Gray" Content="0"/>
         <InkCanvas x:Name="inkCanvas" Background="Transparent" Cursor="Pen" ForceCursor="False"
                    TouchUp="Main_Grid_TouchUp" TouchDown="Main_Grid_TouchDown"
