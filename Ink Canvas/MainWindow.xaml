@@ -1565,7 +1565,7 @@
                             <ui:SimpleStackPanel Name="SymbolIconSelect" MouseDown="Border_MouseDown" MouseUp="SymbolIconSelect_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
                                 <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe958;" Foreground="{DynamicResource FloatBarForeground}"/>
                                 <ui:FontIcon Margin="6,-18,0,-8" Height="22" Width="10" FontSize="10" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf8af;" Foreground="{DynamicResource FloatBarForeground}"/>
-                                <TextBlock Text="套索选" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
+                                <TextBlock Text="选择" Margin="1,-1,0,0" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
                             </ui:SimpleStackPanel>
                             <ui:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="ImageDrawShape_MouseUp" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center">
                                 <ui:FontIcon Height="22" Width="30" FontSize="16" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf158;" Foreground="{DynamicResource FloatBarForeground}"/>
