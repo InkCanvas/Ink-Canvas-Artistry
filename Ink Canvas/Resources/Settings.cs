@@ -127,8 +127,10 @@ namespace Ink_Canvas
 
     public class PowerPointSettings
     {
-        [JsonProperty("isShowPPTNavigation")]
-        public bool IsShowPPTNavigation { get; set; } = true;
+        [JsonProperty("isShowPPTNavigationBottom")]
+        public bool IsShowPPTNavigationBottom { get; set; } = true;
+        [JsonProperty("isShowPPTNavigationSides")]
+        public bool IsShowPPTNavigationSides { get; set; } = true;
         [JsonProperty("isShowBottomPPTNavigationPanel")]
         public bool IsShowBottomPPTNavigationPanel { get; set; } = true;
         [JsonProperty("isShowSidePPTNavigationPanel")]

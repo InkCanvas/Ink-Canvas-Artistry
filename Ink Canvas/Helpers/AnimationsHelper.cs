@@ -153,6 +153,42 @@ namespace Ink_Canvas.Helpers
             } catch { }
         }
 
+        public static void ShowWithScaleFromBottom(UIElement element, double duration = 0.5) {
+            try {
+                if (element.Visibility == Visibility.Visible) return;
+
+                if (element == null)
+                    throw new ArgumentNullException(nameof(element));
+
+                var sb = new Storyboard();
+
+                // 水平方向的缩放动画
+                var scaleXAnimation = new DoubleAnimation {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(duration)
+                };
+                Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleX)"));
+
+                // 垂直方向的缩放动画
+                var scaleYAnimation = new DoubleAnimation {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(duration)
+                };
+                Storyboard.SetTargetProperty(scaleYAnimation, new PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleY)"));
+
+                sb.Children.Add(scaleXAnimation);
+                sb.Children.Add(scaleYAnimation);
+
+                element.Visibility = Visibility.Visible;
+                element.RenderTransformOrigin = new Point(0.5, 1); // 底部中心点为基准
+                element.RenderTransform = new ScaleTransform(1, 0);
+
+                sb.Begin((FrameworkElement)element);
+            } catch { }
+        }
+
         public static void HideWithSlideAndFade(UIElement element, double duration = 0.15)
         {
             try {

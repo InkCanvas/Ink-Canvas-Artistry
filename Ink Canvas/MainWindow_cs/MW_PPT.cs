@@ -58,9 +58,10 @@ namespace Ink_Canvas {
             } catch {
                 //BtnCheckPPT.Visibility = Visibility.Visible;
                 StackPanelPPTControls.Visibility = Visibility.Collapsed;
-                BottomViewboxPPTSidesControl.Visibility = Visibility.Collapsed;
-                LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-                RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
                 MessageBox.Show("未找到幻灯片");
             }
         }
@@ -275,16 +276,18 @@ namespace Ink_Canvas {
                 StackPanelPPTControls.Visibility = Visibility.Visible;
 
                 if (Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel) {
-                    AnimationsHelper.ShowWithSlideFromBottomAndFade(BottomViewboxPPTSidesControl);
+                    AnimationsHelper.ShowWithScaleFromBottom(PPTNavigationBottomLeft);
+                    AnimationsHelper.ShowWithScaleFromBottom(PPTNavigationBottomRight);
                 } else {
-                    BottomViewboxPPTSidesControl.Visibility = Visibility.Collapsed;
+                    PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+                    PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
                 }
                 if (Settings.PowerPointSettings.IsShowSidePPTNavigationPanel) {
-                    AnimationsHelper.ShowWithScaleFromLeft(LeftSidePanelForPPTNavigation);
-                    AnimationsHelper.ShowWithScaleFromRight(RightSidePanelForPPTNavigation);
+                    AnimationsHelper.ShowWithScaleFromLeft(PPTNavigationSidesLeft);
+                    AnimationsHelper.ShowWithScaleFromRight(PPTNavigationSidesRight);
                 } else {
-                    LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-                    RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+                    PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+                    PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
                 }
 
                 BtnPPTSlideShow.Visibility = Visibility.Collapsed;
@@ -327,7 +330,7 @@ namespace Ink_Canvas {
                 }
 
                 isEnteredSlideShowEndEvent = false;
-                PptNavigationTextBlock.Text = $"{Wn.View.CurrentShowPosition}/{Wn.Presentation.Slides.Count}";
+                PptNavigationTextBlockBottom.Text = $"{Wn.View.CurrentShowPosition}/{Wn.Presentation.Slides.Count}";
                 LogHelper.NewLog("PowerPoint Slide Show Loading process complete");
 
                 new Thread(new ThreadStart(() => {
@@ -391,9 +394,10 @@ namespace Ink_Canvas {
                 BtnPPTSlideShow.Visibility = Visibility.Visible;
                 BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
                 StackPanelPPTControls.Visibility = Visibility.Collapsed;
-                BottomViewboxPPTSidesControl.Visibility = Visibility.Collapsed;
-                LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-                RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
 
                 ViewBoxStackPanelMain.Margin = new Thickness(10, 10, 10, 55);
 
@@ -458,7 +462,7 @@ namespace Ink_Canvas {
                         }
                     } catch { }
 
-                    PptNavigationTextBlock.Text = $"{Wn.View.CurrentShowPosition}/{Wn.Presentation.Slides.Count}";
+                    PptNavigationTextBlockBottom.Text = $"{Wn.View.CurrentShowPosition}/{Wn.Presentation.Slides.Count}";
                 });
                 previousSlideID = Wn.View.CurrentShowPosition;
 
@@ -493,9 +497,10 @@ namespace Ink_Canvas {
                 })).Start();
             } catch {
                 StackPanelPPTControls.Visibility = Visibility.Collapsed;
-                BottomViewboxPPTSidesControl.Visibility = Visibility.Collapsed;
-                LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-                RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -522,9 +527,10 @@ namespace Ink_Canvas {
                 })).Start();
             } catch {
                 StackPanelPPTControls.Visibility = Visibility.Collapsed;
-                BottomViewboxPPTSidesControl.Visibility = Visibility.Collapsed;
-                LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-                RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
             }
         }
 

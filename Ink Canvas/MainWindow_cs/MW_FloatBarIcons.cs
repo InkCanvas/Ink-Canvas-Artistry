@@ -292,9 +292,10 @@ namespace Ink_Canvas {
             if (inkCanvas.EditingMode == InkCanvasEditingMode.Select) PenIcon_Click(null, null);
 
             if (currentMode == 0) {
-                BottomViewboxPPTSidesControl.Visibility = Visibility.Collapsed;
-                LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-                RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
                 //进入黑板
 
                 /*
@@ -330,11 +331,12 @@ namespace Ink_Canvas {
 
                 if (StackPanelPPTControls.Visibility == Visibility.Visible) {
                     if (Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel) {
-                        AnimationsHelper.ShowWithSlideFromBottomAndFade(BottomViewboxPPTSidesControl);
+                        AnimationsHelper.ShowWithScaleFromBottom(PPTNavigationBottomLeft);
+                        AnimationsHelper.ShowWithScaleFromBottom(PPTNavigationBottomRight);
                     }
                     if (Settings.PowerPointSettings.IsShowSidePPTNavigationPanel) {
-                        AnimationsHelper.ShowWithScaleFromLeft(LeftSidePanelForPPTNavigation);
-                        AnimationsHelper.ShowWithScaleFromRight(RightSidePanelForPPTNavigation);
+                        AnimationsHelper.ShowWithScaleFromLeft(PPTNavigationSidesLeft);
+                        AnimationsHelper.ShowWithScaleFromRight(PPTNavigationSidesRight);
                     }
                 }
 

@@ -27,8 +27,12 @@ namespace Ink_Canvas {
             BlackboardRightSide.Visibility = Visibility.Collapsed;
             BorderTools.Visibility = Visibility.Collapsed;
             BorderSettings.Visibility = Visibility.Collapsed;
-            LeftSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
-            RightSidePanelForPPTNavigation.Visibility = Visibility.Collapsed;
+
+            PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
+            PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
+            PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
+            PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
+
             BorderSettings.Margin = new Thickness(0, 150, 0, 150);
             TwoFingerGestureBorder.Visibility = Visibility.Collapsed;
             BoardTwoFingerGestureBorder.Visibility = Visibility.Collapsed;
@@ -36,7 +40,6 @@ namespace Ink_Canvas {
             BoardBorderDrawShape.Visibility = Visibility.Collapsed;
             GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
 
-            //if (!App.StartArgs.Contains("-o"))
 
             ViewBoxStackPanelMain.Visibility = Visibility.Collapsed;
             ViewBoxStackPanelShapes.Visibility = Visibility.Collapsed;
