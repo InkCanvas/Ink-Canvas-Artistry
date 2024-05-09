@@ -108,6 +108,7 @@
                    MouseMove="inkCanvas_MouseMove"
                    MouseUp="inkCanvas_MouseUp"
                    ManipulationStarting="inkCanvas_ManipulationStarting"
+                   ManipulationStarted="inkCanvas_ManipulationStarted"
                    SelectionChanged="inkCanvas_SelectionChanged"
                    StrokeCollected="inkCanvas_StrokeCollected"/>
         
@@ -1662,7 +1663,7 @@
                         <ui:SimpleStackPanel Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
                             <Border Margin="0,2" BorderBrush="{DynamicResource FloatBarForeground}" BorderThickness="1,0,0,0" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp">
                                 <ui:SimpleStackPanel Margin="2,-2,0,-2" Orientation="Vertical" HorizontalAlignment="Center" Background="Transparent">
-                                    <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="18" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe929;" Foreground="{DynamicResource FloatBarForeground}"/>
+                                    <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe929;" Foreground="{DynamicResource FloatBarForeground}"/>
                                     <TextBlock Margin="0,-1,0,0" Text="画板" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
                                 </ui:SimpleStackPanel>
                             </Border>
@@ -1739,7 +1740,7 @@
 
                 <Border Margin="2,0,0,0" x:Name="EnableTwoFingerGestureBorder" Visibility="Visible" Width="36" Height="36" MouseUp="TwoFingerGestureBorder_MouseUp" CornerRadius="5" Background="{DynamicResource FloatBarBackground}" BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1" >
                     <ui:SimpleStackPanel>
-                        <ui:FontIcon Margin="0,1.5,0,-1.5" x:Name="EnableTwoFingerGestureBtn" Opacity="0.5" Height="22" Width="28" FontSize="22" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf271;" Foreground="{DynamicResource FloatBarForeground}"/>
+                        <ui:FontIcon Margin="0,1.5,0,-1.5" x:Name="EnableTwoFingerGestureBtn" Opacity="0.5" Height="22" Width="28" FontSize="20" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf271;" Foreground="{DynamicResource FloatBarForeground}"/>
                         <TextBlock Text="手势" Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" Foreground="{DynamicResource FloatBarForeground}" FontSize="8" TextAlignment="Center"/>
                     </ui:SimpleStackPanel>
                 </Border>

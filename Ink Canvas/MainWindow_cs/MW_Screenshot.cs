@@ -6,7 +6,12 @@ using System.Windows;
 namespace Ink_Canvas {
     public partial class MainWindow : Window {
         private void SaveScreenShot(bool isHideNotification, string fileName = null) {
+            /*
+            var size = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            var rc = new System.Drawing.Rectangle(new System.Drawing.Point(0, 0), new System.Drawing.Size(size.Width, size.Height));
+            */
             System.Drawing.Rectangle rc = System.Windows.Forms.SystemInformation.VirtualScreen;
+
             var bitmap = new System.Drawing.Bitmap(rc.Width, rc.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             using (System.Drawing.Graphics memoryGrahics = System.Drawing.Graphics.FromImage(bitmap)) {

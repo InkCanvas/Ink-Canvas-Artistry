@@ -97,7 +97,7 @@ namespace Ink_Canvas {
             foreach (Stroke stroke in resultStrokes) {
                 stroke.Transform(m, false);
             }
-            _currentCommitType = CommitReason.Rotate;
+            _currentCommitType = CommitReason.Manipulation;
             inkCanvas.Strokes.Replace(targetStrokes, resultStrokes);
             _currentCommitType = CommitReason.UserInput;
             isProgramChangeStrokeSelection = true;
@@ -127,7 +127,7 @@ namespace Ink_Canvas {
             foreach (Stroke stroke in resultStrokes) {
                 stroke.Transform(m, false);
             }
-            _currentCommitType = CommitReason.Rotate;
+            _currentCommitType = CommitReason.Manipulation;
             inkCanvas.Strokes.Replace(targetStrokes, resultStrokes);
             _currentCommitType = CommitReason.UserInput;
             isProgramChangeStrokeSelection = true;
@@ -155,7 +155,7 @@ namespace Ink_Canvas {
             foreach (Stroke stroke in resultStrokes) {
                 stroke.Transform(m, false);
             }
-            _currentCommitType = CommitReason.Rotate;
+            _currentCommitType = CommitReason.Manipulation;
             inkCanvas.Strokes.Replace(targetStrokes, resultStrokes);
             _currentCommitType = CommitReason.UserInput;
             isProgramChangeStrokeSelection = true;
@@ -183,7 +183,7 @@ namespace Ink_Canvas {
             foreach (Stroke stroke in resultStrokes) {
                 stroke.Transform(m, false);
             }
-            _currentCommitType = CommitReason.Rotate;
+            _currentCommitType = CommitReason.Manipulation;
             inkCanvas.Strokes.Replace(targetStrokes, resultStrokes);
             _currentCommitType = CommitReason.UserInput;
             isProgramChangeStrokeSelection = true;

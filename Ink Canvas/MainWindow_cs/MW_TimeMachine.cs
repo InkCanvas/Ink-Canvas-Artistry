@@ -11,7 +11,7 @@ namespace Ink_Canvas {
             ShapeDrawing,
             ShapeRecognition,
             ClearingCanvas,
-            Rotate
+            Manipulation
         }
 
         private CommitReason _currentCommitType = CommitReason.UserInput;
@@ -40,8 +40,8 @@ namespace Ink_Canvas {
             }
 
             if (_currentCommitType == CommitReason.CodeInput || _currentCommitType == CommitReason.ShapeDrawing) return;
-            if (_currentCommitType == CommitReason.Rotate) {
-                timeMachine.CommitStrokeRotateHistory(e.Removed, e.Added);
+            if (_currentCommitType == CommitReason.Manipulation) {
+                timeMachine.CommitStrokeManipulationHistory(e.Removed, e.Added);
                 return;
             }
             if ((e.Added.Count != 0 || e.Removed.Count != 0) && IsEraseByPoint) {

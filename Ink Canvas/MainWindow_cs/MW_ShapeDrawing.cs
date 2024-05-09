@@ -1362,13 +1362,15 @@ namespace Ink_Canvas {
             }
             if (_currentCommitType == CommitReason.ShapeDrawing && drawingShapeMode != 9) {
                 _currentCommitType = CommitReason.UserInput;
-                StrokeCollection collection;
+                StrokeCollection collection = null;
                 if (lastTempStrokeCollection != null && lastTempStrokeCollection.Count > 0) {
                     collection = lastTempStrokeCollection;
-                } else {
+                } else if (lastTempStroke != null) {
                     collection = new StrokeCollection() { lastTempStroke };
                 }
-                timeMachine.CommitStrokeUserInputHistory(collection);
+                if (collection != null) {
+                    timeMachine.CommitStrokeUserInputHistory(collection);
+                }
             }
             lastTempStroke = null;
             lastTempStrokeCollection = null;

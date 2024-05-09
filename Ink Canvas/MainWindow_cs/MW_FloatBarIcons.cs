@@ -825,7 +825,7 @@ namespace Ink_Canvas {
                             inkCanvas.Strokes.Remove(strokes);
                     }
                 }
-            } else if (item.CommitType == TimeMachineHistoryType.Rotate) {
+            } else if (item.CommitType == TimeMachineHistoryType.Manipulation) {
                 if (item.StrokeHasBeenCleared) {
 
                     foreach (var strokes in item.CurrentStroke) {
@@ -917,7 +917,7 @@ namespace Ink_Canvas {
                             inkCanvas.Strokes.Remove(strokes);
                     }
                 }
-            } else if (item.CommitType == TimeMachineHistoryType.Rotate) {
+            } else if (item.CommitType == TimeMachineHistoryType.Manipulation) {
                 if (item.StrokeHasBeenCleared) {
 
                     foreach (var strokes in item.CurrentStroke) {

@@ -153,6 +153,7 @@ namespace Ink_Canvas {
                         BtnExit.Background = new SolidColorBrush(StringToColor("#FF555555"));
                     }
                 }
+                SystemEvents_UserPreferenceChanged(null, null);
             } else {
                 Settings.Appearance = new Appearance();
             }
