@@ -1,6 +1,7 @@
 ﻿using Ink_Canvas.Helpers;
 using Microsoft.Office.Interop.PowerPoint;
 using iNKORE.UI.WPF.Modern;
+using iNKORE.UI.WPF.Modern.Helpers;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -16,7 +17,6 @@ using System.Windows.Threading;
 using Application = System.Windows.Application;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
-using iNKORE.UI.WPF.Helpers;
 
 namespace Ink_Canvas {
     public partial class MainWindow : Window {

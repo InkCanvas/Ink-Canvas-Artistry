@@ -81,6 +81,14 @@ namespace Ink_Canvas {
             }
 
             CheckColorTheme(true);
+
+            // 删除旧版本快捷方式
+            string shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Ink Canvas Annotation.lnk");
+            if (File.Exists(shortcutPath)) {
+                try {
+                    File.Delete(shortcutPath);
+                } catch { }
+            }
         }
 
         #endregion
