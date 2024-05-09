@@ -16,7 +16,9 @@
 </div>
 
 ## 👀 前言
-使用和分发本软件 (旧名 Ink-Canvas-For-Annotation)前，请您应当且务必知晓相关开源协议，本软件基于 https://github.com/WXRIW/Ink-Canvas 修改而成，增添了包括但不限于隐藏到侧边栏、在希沃白板、希沃视频展台等软件中进行自动收纳等功能，将画板 UI 独立，更改了相关操作逻辑。对于墨迹功能的相关 issue 提出，应优先查阅 https://github.com/WXRIW/Ink-Canvas/issues 。
+本软件适用于 windows 8.1 32 位及以上的系统（Win8 需要安装 [.Net 4.7.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-offline-installer)）
+
+使用和分发本软件（原名 Ink-Canvas-For-Annotation）前，请您应当且务必知晓相关开源协议，本软件基于 https://github.com/WXRIW/Ink-Canvas 修改而成，增添了包括但不限于隐藏到侧边栏、在希沃白板、希沃视频展台等软件中进行自动收纳等功能，将画板 UI 独立，更改了相关操作逻辑。对于墨迹功能的相关 issue 提出，应优先查阅 https://github.com/WXRIW/Ink-Canvas/issues 。
 
 [直接下载](https://github.com/ChangSakura/Ink-Canvas/releases/latest "Latest Releases")
 ——该安装包使用 Inno Setup Compiler 打包，默认的推荐设置适配希沃六代机的使用。
