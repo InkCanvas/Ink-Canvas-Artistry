@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
@@ -85,9 +87,10 @@ namespace Ink_Canvas {
             TouchDownPointsList[e.StylusDevice.Id] = InkCanvasEditingMode.None;
         }
 
-        private void MainWindow_StylusUp(object sender, StylusEventArgs e) {
+        private async void MainWindow_StylusUp(object sender, StylusEventArgs e) {
             try {
                 inkCanvas.Strokes.Add(GetStrokeVisual(e.StylusDevice.Id).Stroke);
+                await Task.Delay(5); // 避免渲染墨迹完成前预览墨迹被删除导致墨迹闪烁
                 inkCanvas.Children.Remove(GetVisualCanvas(e.StylusDevice.Id));
 
                 inkCanvas_StrokeCollected(inkCanvas, new InkCanvasStrokeCollectedEventArgs(GetStrokeVisual(e.StylusDevice.Id).Stroke));
