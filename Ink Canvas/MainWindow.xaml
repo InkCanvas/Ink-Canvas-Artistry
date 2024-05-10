@@ -386,7 +386,7 @@
 
                                                     <StackPanel Orientation="Horizontal" Height="30">
                                                         <Label Margin="0,0,10,0" Content="粗细" Foreground="{DynamicResource BoardBarForeground}" FontSize="15" VerticalAlignment="Center"/>
-                                                        <Slider x:Name="BoardInkWidthSlider" Minimum="1" Maximum="15" Width="230" FontFamily="Microsoft YaHei UI" 
+                                                        <Slider x:Name="BoardInkWidthSlider" Minimum="1" Maximum="35" Width="230" FontFamily="Microsoft YaHei UI" 
                                                             FontSize="20" IsSnapToTickEnabled="True" Value="5" TickFrequency="1" TickPlacement="None" ValueChanged="InkWidthSlider_ValueChanged"/>
                                                         <TextBlock Text="{Binding Value, ElementName=BoardInkWidthSlider, Mode=OneWay}" Foreground="{DynamicResource BoardBarForeground}" VerticalAlignment="Bottom" Margin="10,0,0,8" FontSize="14"/>
                                                     </StackPanel>
@@ -1489,9 +1489,9 @@
 
                                                         <StackPanel Orientation="Horizontal" Height="30">
                                                             <Label Margin="0,0,10,0" Content="粗细" Foreground="{DynamicResource FloatBarForeground}" FontSize="15" VerticalAlignment="Center"/>
-                                                            <Slider x:Name="InkWidthSlider" Minimum="1" Maximum="15" Width="230" FontFamily="Microsoft YaHei UI"
+                                                            <Slider x:Name="InkWidthSlider" Minimum="1" Maximum="35" Width="230" FontFamily="Microsoft YaHei UI"
                                                                     FontSize="20" IsSnapToTickEnabled="True" Value="5" TickFrequency="1" TickPlacement="None" ValueChanged="InkWidthSlider_ValueChanged"/>
-                                                            <TextBlock Text="{Binding Value, ElementName=InkWidthSlider, Mode=OneWay}" VerticalAlignment="Bottom" Margin="10,0,0,8" FontSize="14"/>
+                                                            <TextBlock Text="{Binding Value, ElementName=InkWidthSlider, Mode=OneWay}" Foreground="{DynamicResource FloatBarForeground}" VerticalAlignment="Bottom" Margin="10,0,0,8" FontSize="14"/>
                                                         </StackPanel>
                                                     </ui:SimpleStackPanel>
                                                 </Viewbox>

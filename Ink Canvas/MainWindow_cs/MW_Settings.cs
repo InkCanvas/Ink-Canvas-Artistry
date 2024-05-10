@@ -557,11 +557,11 @@ namespace Ink_Canvas {
             Settings.Automation.AutoDelSavedFiles = AutoDelSavedFilesDays;
             Settings.Automation.AutoDelSavedFilesDaysThreshold = AutoDelSavedFilesDaysThreshold;
 
-            Settings.PowerPointSettings.IsShowPPTNavigationBottom = true;
-            Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel = false;
+            Settings.PowerPointSettings.IsShowPPTNavigationBottom = false;
+            Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel = true;
             Settings.PowerPointSettings.IsShowSidePPTNavigationPanel = true;
             Settings.PowerPointSettings.PowerPointSupport = true;
-            Settings.PowerPointSettings.IsShowCanvasAtNewSlideShow = false;
+            Settings.PowerPointSettings.IsShowCanvasAtNewSlideShow = true;
             Settings.PowerPointSettings.IsNoClearStrokeOnSelectWhenInPowerPoint = true;
             Settings.PowerPointSettings.IsShowStrokeOnSelectInPowerPoint = false;
             Settings.PowerPointSettings.IsAutoSaveStrokesInPowerPoint = true;
@@ -585,7 +585,7 @@ namespace Ink_Canvas {
             Settings.Gesture.IsEnableTwoFingerTranslate = true;
             Settings.Gesture.IsEnableTwoFingerZoom = false;
             Settings.Gesture.IsEnableTwoFingerRotation = false;
-            Settings.Gesture.IsEnableTwoFingerRotationOnSelection = false;
+            Settings.Gesture.IsEnableTwoFingerRotationOnSelection = true;
 
             Settings.InkToShape.IsInkToShapeEnabled = true;
 
