@@ -53,7 +53,8 @@ namespace Ink_Canvas {
                 eraserMultiplier = 1 / Settings.Advanced.TouchMultiplier;
             }
 
-            if (boundWidth > BoundsWidth * 2.5) {
+            if ((Settings.Advanced.TouchMultiplier != 0 || !Settings.Advanced.IsSpecialScreen) //启用特殊屏幕且触摸倍数为 0 时禁用橡皮
+                && (boundWidth > BoundsWidth * 2.5)) {
                 if (drawingShapeMode == 0 && forceEraser) return;
                 double k = 1;
                 switch (Settings.Canvas.EraserSize) {
