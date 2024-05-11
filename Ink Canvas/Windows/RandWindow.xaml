@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-        xmlns:local="clr-namespace:Ink_Canvas" FontFamily="Microsoft YaHei UI"
+        xmlns:local="clr-namespace:Ink_Canvas"
         ui:ThemeManager.RequestedTheme="Light" Topmost="True" Background="Transparent"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Title="Ink Canvas 抽奖" Height="500" Width="900">
-    <Border Background="#F0F3F9" CornerRadius="10" BorderThickness="1" BorderBrush="#0066BF" Margin="0">
+    <Border Background="#F0F3F9" CornerRadius="10" BorderThickness="1" BorderBrush="#0066BF">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.8*"/>
@@ -22,33 +22,31 @@
                     <Label Name="LabelOutput3" FontSize="70" Visibility="Collapsed" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </ui:SimpleStackPanel>
             </Viewbox>
-            <ui:SimpleStackPanel Spacing="50" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ui:SimpleStackPanel Spacing="40" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <Border x:Name="BorderBtnMinus" MouseUp="BorderBtnMinus_MouseUp" Background="#FBFBFD" Height="70" Width="70" CornerRadius="100">
                         <Border.Effect>
                             <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
                         </Border.Effect>
-                        <Viewbox Margin="20">
-                            <ui:SymbolIcon Symbol="Remove" Foreground="Black"/>
+                        <Viewbox>
+                            <ui:FontIcon Height="80" Width="80" FontSize="36" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xecc9;" Foreground="Black"/>
                         </Viewbox>
                     </Border>
-                    <Label Name="LabelNumberCount" Content="1" FontFamily="Segeo UI" FontSize="55" Margin="30"/>
+                    <TextBlock Width="80" Name="LabelNumberCount" Text="1" TextAlignment="Center" FontSize="55" Margin="30"/>
                     <Border x:Name="BorderBtnAdd" MouseUp="BorderBtnAdd_MouseUp" Background="#FBFBFD" Height="70" Width="70" CornerRadius="100">
                         <Border.Effect>
                             <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
                         </Border.Effect>
-                        <Viewbox Margin="20">
-                            <ui:SymbolIcon Symbol="Add" Foreground="Black"/>
+                        <Viewbox>
+                            <ui:FontIcon Height="80" Width="80" FontSize="36" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xecc8;" Foreground="Black"/>
                         </Viewbox>
                     </Border>
                 </StackPanel>
                 <Grid>
                     <Border x:Name="BorderBtnRand" MouseUp="BorderBtnRand_MouseUp" Background="#0066BF"
                         Height="70" Width="200" CornerRadius="10">
-                        <ui:SimpleStackPanel Margin="3,0" Spacing="20" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Viewbox Margin="0,20">
-                                <ui:SymbolIcon Name="SymbolIconStart" Symbol="Contact" Foreground="White"/>
-                            </Viewbox>
+                        <ui:SimpleStackPanel Margin="3,0" Spacing="10" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <ui:FontIcon Height="40" Width="40" FontSize="30" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe77b;" Foreground="White"/>
                             <TextBlock Text="抽奖" Foreground="White" FontSize="35" Margin="-1,-1,4,0" VerticalAlignment="Center"/>
                         </ui:SimpleStackPanel>
                     </Border>
@@ -71,8 +69,8 @@
                     <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
                 </Border.Effect>
                 <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Viewbox Margin="15,12">
-                        <ui:SymbolIcon Symbol="People" Foreground="Black"/>
+                    <Viewbox Margin="15,10,10,10">
+                        <ui:FontIcon Height="20" Width="20" FontSize="18" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe716;" Foreground="Black"/>
                     </Viewbox>
                     <TextBlock Margin="-5,12,15,12" Name="TextBlockPeopleCount" Text="点击此处以导入名单" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </ui:SimpleStackPanel>
@@ -84,8 +82,8 @@
                 <Border.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.1" BlurRadius="3"/>
                 </Border.Effect>
-                <Viewbox Margin="14">
-                    <ui:SymbolIcon Symbol="Clear" Foreground="White"/>
+                <Viewbox>
+                    <ui:FontIcon Height="80" Width="80" FontSize="36" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf78a;" Foreground="White"/>
                 </Viewbox>
             </Border>
         </Grid>

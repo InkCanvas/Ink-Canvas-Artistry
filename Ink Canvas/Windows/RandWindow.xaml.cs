@@ -42,17 +42,13 @@ namespace Ink_Canvas {
         private void BorderBtnAdd_MouseUp(object sender, MouseButtonEventArgs e) {
             if (TotalCount >= PeopleCount) return;
             TotalCount++;
-            LabelNumberCount.Content = TotalCount.ToString();
-            SymbolIconStart.Symbol = Symbol.People;
+            LabelNumberCount.Text = TotalCount.ToString();
         }
 
         private void BorderBtnMinus_MouseUp(object sender, MouseButtonEventArgs e) {
             if (TotalCount < 2) return;
             TotalCount--;
-            LabelNumberCount.Content = TotalCount.ToString();
-            if (TotalCount == 1) {
-                SymbolIconStart.Symbol = Symbol.Contact;
-            }
+            LabelNumberCount.Text = TotalCount.ToString();
         }
 
         private void BorderBtnRand_MouseUp(object sender, MouseButtonEventArgs e) {

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ink_Canvas" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False"
-        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern" FontFamily="Microsoft YaHei UI" Topmost="True"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern" Topmost="True"
         mc:Ignorable="d" ui:WindowHelper.UseModernWindowStyle="True" Loaded="Window_Loaded" Closed="Window_Closed"
         Title="" Height="390" Width="600">
     <Grid>
@@ -14,7 +14,7 @@
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Label Content="Ink Canvas 画板功能更新！" FontFamily="Microsoft YaHei UI" FontSize="26" Margin="20,0"/>
+        <Label Content="Ink Canvas 画板功能更新！" FontSize="26" Margin="20,0"/>
         <StackPanel Grid.Row="1" Visibility="Collapsed">
             <TextBlock Name="TextBlockChangeLogTitle" Text="更新日志" FontSize="18" FontWeight="Bold" Margin="35,10,35,0"/>
             <TextBlock Name="TextBlockChangeLog" Text="修复一堆 Bug。" TextWrapping="Wrap" FontSize="14" Margin="55,5"/>
@@ -46,6 +46,6 @@
             <TextBlock Text="建议配置屏幕为：3840×2160 (缩放: 250%)，或1920×1080 (缩放: 125%)，以获得最佳体验（否则可能造成橡皮大小过大或过小等问题，可在设置中调整）。" TextWrapping="Wrap" FontSize="14" Margin="25,5,-10,0"/>-->
         </ui:SimpleStackPanel>
         <Label Name="LabelVersion" Grid.Row="3" VerticalContentAlignment="Center" FontSize="12" Margin="20,0"/>
-        <Button Content="确定" Grid.Row="3" HorizontalAlignment="Right" Margin="10" Width="100" FontFamily="Microsoft YaHei UI" Click="Button_Click"/>
+        <Button Content="确定" Grid.Row="3" HorizontalAlignment="Right" Margin="10" Width="100" Click="Button_Click"/>
     </Grid>
 </Window>

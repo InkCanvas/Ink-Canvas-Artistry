@@ -28,6 +28,8 @@ namespace Ink_Canvas
     {
         [JsonProperty("inkWidth")]
         public double InkWidth { get; set; } = 2.5;
+        [JsonProperty("inkAlpha")]
+        public int InkAlpha { get; set; } = 140;
         [JsonProperty("isShowCursor")]
         public bool IsShowCursor { get; set; } = false;
         [JsonProperty("inkStyle")]
@@ -151,6 +153,8 @@ namespace Ink_Canvas
         public bool IsNotifyPreviousPage { get; set; } = false;
         [JsonProperty("isNotifyHiddenPage")]
         public bool IsNotifyHiddenPage { get; set; } = true;
+        [JsonProperty("isNotifyAutoPlayPresentation")]
+        public bool IsNotifyAutoPlayPresentation { get; set; } = true;
         [JsonProperty("isEnableTwoFingerGestureInPresentationMode")]
         public bool IsEnableTwoFingerGestureInPresentationMode { get; set; } = false;
         [JsonProperty("isEnableFingerGestureSlideShowControl")]

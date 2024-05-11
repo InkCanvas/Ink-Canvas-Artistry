@@ -1,7 +1,6 @@
 ﻿using Ink_Canvas.Helpers;
 using Microsoft.Office.Interop.PowerPoint;
 using iNKORE.UI.WPF.Modern;
-using iNKORE.UI.WPF.Modern.Helpers;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -13,7 +12,6 @@ using System.Windows;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 using Application = System.Windows.Application;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
@@ -123,14 +121,15 @@ namespace Ink_Canvas {
                 //BtnCheckPPT.Visibility = Visibility.Collapsed;
 
                 // 跳转到上次播放页
-                if (Settings.PowerPointSettings.IsNotifyPreviousPage)
-                    Application.Current.Dispatcher.BeginInvoke(() => {
+                if (Settings.PowerPointSettings.IsNotifyPreviousPage) {
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() => {
                         string folderPath = Settings.Automation.AutoSavedStrokesLocation + @"\Auto Saved - Presentations\" + presentation.Name + "_" + presentation.Slides.Count;
                         try {
                             if (File.Exists(folderPath + "/Position")) {
                                 if (int.TryParse(File.ReadAllText(folderPath + "/Position"), out var page)) {
                                     if (page <= 0) return;
-                                    new YesOrNoNotificationWindow($"上次播放到了第 {page} 页, 是否立即跳转", () => {
+                                    new YesOrNoNotificationWindow($"上次播放到了第 {page} 页, 是否立即跳转", () =>
+                                    {
                                         if (pptApplication.SlideShowWindows.Count >= 1) {
                                             // 如果已经播放了的话, 跳转
                                             presentation.SlideShowWindow.View.GotoSlide(page);
@@ -143,8 +142,8 @@ namespace Ink_Canvas {
                         } catch (Exception ex) {
                             LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
                         }
-                    }, DispatcherPriority.Normal);
-
+                    }));
+                }
 
                 //检查是否有隐藏幻灯片
                 if (Settings.PowerPointSettings.IsNotifyHiddenPage) {
@@ -156,23 +155,37 @@ namespace Ink_Canvas {
                         }
                     }
 
-                    Application.Current.Dispatcher.BeginInvoke(() => {
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    {
                         if (isHaveHiddenSlide && !IsShowingRestoreHiddenSlidesWindow) {
                             IsShowingRestoreHiddenSlidesWindow = true;
                             new YesOrNoNotificationWindow("检测到此演示文档中包含隐藏的幻灯片，是否取消隐藏？",
                                 () => {
                                     foreach (Slide slide in slides) {
-                                        if (slide.SlideShowTransition.Hidden ==
-                                            Microsoft.Office.Core.MsoTriState.msoTrue) {
-                                            slide.SlideShowTransition.Hidden =
-                                                Microsoft.Office.Core.MsoTriState.msoFalse;
+                                        if (slide.SlideShowTransition.Hidden == Microsoft.Office.Core.MsoTriState.msoTrue) {
+                                            slide.SlideShowTransition.Hidden = Microsoft.Office.Core.MsoTriState.msoFalse;
                                         }
                                     }
                                 }).ShowDialog();
                         }
 
                         BtnPPTSlideShow.Visibility = Visibility.Visible;
-                    }, DispatcherPriority.Normal);
+                    }));
+                }
+
+                //检测是否有自动播放
+                if (Settings.PowerPointSettings.IsNotifyAutoPlayPresentation
+                    && presentation.SlideShowSettings.AdvanceMode == PpSlideShowAdvanceMode.ppSlideShowUseSlideTimings
+                    && BtnPPTSlideShowEnd.Visibility != Visibility.Visible) {
+                    
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        new YesOrNoNotificationWindow("检测到此演示文档中自动播放或排练计时已经启用，可能导致幻灯片自动翻页，是否取消？",
+                            () => {
+                                presentation.SlideShowSettings.AdvanceMode = PpSlideShowAdvanceMode.ppSlideShowManualAdvance;
+                            }).ShowDialog();
+                    }));
+                    presentation.SlideShowSettings.AdvanceMode = PpSlideShowAdvanceMode.ppSlideShowManualAdvance;
                 }
 
                 //如果检测到已经开始放映，则立即进入画板模式
@@ -297,7 +310,7 @@ namespace Ink_Canvas {
                 if (Settings.Appearance.IsColorfulViewboxFloatingBar) {
                     ViewboxFloatingBar.Opacity = 0.8;
                 } else {
-                    ViewboxFloatingBar.Opacity = 0.5;
+                    ViewboxFloatingBar.Opacity = 0.75;
                 }
 
                 if (Settings.PowerPointSettings.IsShowCanvasAtNewSlideShow && Main_Grid.Background == Brushes.Transparent) {
@@ -326,7 +339,7 @@ namespace Ink_Canvas {
                 BorderFloatingBarMainControls.Visibility = Visibility.Visible;
 
                 if (Settings.PowerPointSettings.IsShowCanvasAtNewSlideShow) {
-                    BorderPenColorRed_MouseUp(BorderPenColorRed, null);
+                    BtnColorRed_Click(null, null);
                 }
 
                 isEnteredSlideShowEndEvent = false;

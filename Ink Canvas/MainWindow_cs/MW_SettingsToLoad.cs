@@ -48,11 +48,11 @@ namespace Ink_Canvas {
                 }
                 if (Settings.Startup.IsEnableNibMode) {
                     ToggleSwitchEnableNibMode.IsOn = true;
-                    ToggleSwitchBoardEnableNibMode.IsOn = true;
+                    BoardToggleSwitchEnableNibMode.IsOn = true;
                     BoundsWidth = Settings.Advanced.NibModeBoundsWidth;
                 } else {
                     ToggleSwitchEnableNibMode.IsOn = false;
-                    ToggleSwitchBoardEnableNibMode.IsOn = false;
+                    BoardToggleSwitchEnableNibMode.IsOn = false;
                     BoundsWidth = Settings.Advanced.FingerModeBoundsWidth;
                 }
                 if (Settings.Startup.IsAutoUpdate) {
@@ -205,6 +205,11 @@ namespace Ink_Canvas {
                 } else {
                     ToggleSwitchNotifyHiddenPage.IsOn = false;
                 }
+                if (Settings.PowerPointSettings.IsNotifyAutoPlayPresentation) {
+                    ToggleSwitchNotifyAutoPlayPresentation.IsOn = true;
+                } else {
+                    ToggleSwitchNotifyAutoPlayPresentation.IsOn = false;
+                }
                 if (Settings.PowerPointSettings.IsSupportWPS) {
                     ToggleSwitchSupportWPS.IsOn = true;
                 } else {
@@ -284,6 +289,9 @@ namespace Ink_Canvas {
                 drawingAttributes.Width = Settings.Canvas.InkWidth;
 
                 InkWidthSlider.Value = Settings.Canvas.InkWidth * 2;
+                BoardInkWidthSlider.Value = Settings.Canvas.InkWidth * 2;
+                InkAlphaSlider.Value = Settings.Canvas.InkAlpha;
+                BoardInkAlphaSlider.Value = Settings.Canvas.InkAlpha;
 
                 ComboBoxHyperbolaAsymptoteOption.SelectedIndex = (int)Settings.Canvas.HyperbolaAsymptoteOption;
 

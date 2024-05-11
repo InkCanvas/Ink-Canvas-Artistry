@@ -291,6 +291,9 @@ namespace Ink_Canvas {
                     if ((stylusPoint.PressureFactor > 0.501 || stylusPoint.PressureFactor < 0.5) && stylusPoint.PressureFactor != 0) {
                         return;
                     }
+                    if (inkColor > 100) { // 荧光笔功能
+                        return;
+                    }
                 }
 
 

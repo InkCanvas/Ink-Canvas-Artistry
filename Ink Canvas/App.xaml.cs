@@ -38,7 +38,7 @@ namespace Ink_Canvas
             LogHelper.NewLog(string.Format("Ink Canvas Starting (Version: {0})", Assembly.GetExecutingAssembly().GetName().Version.ToString()));
 
             bool ret;
-            mutex = new System.Threading.Mutex(true, "Ink_Canvas", out ret);
+            mutex = new System.Threading.Mutex(true, "Ink_Canvas_Artistry", out ret);
 
             if (!ret && !e.Args.Contains("-m")) //-m multiple
             {

@@ -21,7 +21,7 @@
                                          VerticalAlignment="Center"
                                          HorizontalAlignment="Center">
                         <TextBlock Name="TextBlockHour" FontFamily="Segeo UI"
-                                   Margin="0,0,0,0" Visibility="Collapsed"
+                                   Visibility="Collapsed"
                                    Foreground="#5B5D5F"
                                    Text="00" FontSize="26"/>
                         <ItemsControl Name="TextControlHour" ItemsSource="{Binding ElementName=TextBlockHour, Path=Text}">
@@ -68,7 +68,7 @@
                                    FontSize="{Binding ElementName=TextBlockHour, Path=FontSize}"
                                    FontWeight="DemiBold"/>
                         <TextBlock Name="TextBlockMinute" FontFamily="{Binding ElementName=TextBlockHour, Path=FontFamily}"
-                                   Margin="0,0,0,0" Visibility="Collapsed"
+                                   Visibility="Collapsed"
                                    Foreground="{Binding ElementName=TextBlockHour, Path=Foreground}"
                                    Text="01" FontSize="26"/>
                         <ItemsControl Name="TextControlMinute" ItemsSource="{Binding ElementName=TextBlockMinute, Path=Text}">
@@ -127,7 +127,7 @@
                                    FontSize="{Binding ElementName=TextBlockHour, Path=FontSize}"
                                    FontWeight="DemiBold"/>
                         <TextBlock Name="TextBlockSecond" FontFamily="{Binding ElementName=TextBlockHour, Path=FontFamily}"
-                                   Margin="0,0,0,0" Visibility="Collapsed"
+                                   Visibility="Collapsed"
                                    Foreground="{Binding ElementName=TextBlockHour, Path=Foreground}"
                                    Text="00" FontSize="26"/>
                         <ItemsControl Name="TextControlSecond" ItemsSource="{Binding ElementName=TextBlockSecond, Path=Text}">

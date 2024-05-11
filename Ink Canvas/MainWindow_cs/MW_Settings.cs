@@ -105,9 +105,9 @@ namespace Ink_Canvas {
         private void ToggleSwitchEnableNibMode_Toggled(object sender, RoutedEventArgs e) {
             if (!isLoaded) return;
             if (sender == ToggleSwitchEnableNibMode) {
-                ToggleSwitchBoardEnableNibMode.IsOn = ToggleSwitchEnableNibMode.IsOn;
+                BoardToggleSwitchEnableNibMode.IsOn = ToggleSwitchEnableNibMode.IsOn;
             } else {
-                ToggleSwitchEnableNibMode.IsOn = ToggleSwitchBoardEnableNibMode.IsOn;
+                ToggleSwitchEnableNibMode.IsOn = BoardToggleSwitchEnableNibMode.IsOn;
             }
             Settings.Startup.IsEnableNibMode = ToggleSwitchEnableNibMode.IsOn;
 
@@ -212,17 +212,6 @@ namespace Ink_Canvas {
         private void ComboBoxEraserSize_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (!isLoaded) return;
             Settings.Canvas.EraserSize = ComboBoxEraserSize.SelectedIndex;
-            SaveSettingsToFile();
-        }
-
-
-        private void InkWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            if (!isLoaded) return;
-            if (sender == BoardInkWidthSlider) InkWidthSlider.Value = ((Slider)sender).Value;
-            if (sender == InkWidthSlider) BoardInkWidthSlider.Value = ((Slider)sender).Value;
-            drawingAttributes.Height = ((Slider)sender).Value / 2;
-            drawingAttributes.Width = ((Slider)sender).Value / 2;
-            Settings.Canvas.InkWidth = ((Slider)sender).Value / 2;
             SaveSettingsToFile();
         }
 
@@ -383,6 +372,12 @@ namespace Ink_Canvas {
         private void ToggleSwitchNotifyHiddenPage_Toggled(object sender, RoutedEventArgs e) {
             if (!isLoaded) return;
             Settings.PowerPointSettings.IsNotifyHiddenPage = ToggleSwitchNotifyHiddenPage.IsOn;
+            SaveSettingsToFile();
+        }
+
+        private void ToggleSwitchNotifyAutoPlayPresentation_Toggled(object sender, RoutedEventArgs e) {
+            if (!isLoaded) return;
+            Settings.PowerPointSettings.IsNotifyAutoPlayPresentation = ToggleSwitchNotifyAutoPlayPresentation.IsOn;
             SaveSettingsToFile();
         }
 
@@ -568,11 +563,13 @@ namespace Ink_Canvas {
             Settings.PowerPointSettings.IsAutoSaveScreenShotInPowerPoint = true;
             Settings.PowerPointSettings.IsNotifyPreviousPage = false;
             Settings.PowerPointSettings.IsNotifyHiddenPage = false;
+            Settings.PowerPointSettings.IsNotifyAutoPlayPresentation = true;
             Settings.PowerPointSettings.IsEnableTwoFingerGestureInPresentationMode = false;
             Settings.PowerPointSettings.IsEnableFingerGestureSlideShowControl = false;
             Settings.PowerPointSettings.IsSupportWPS = true;
 
             Settings.Canvas.InkWidth = 2.5;
+            Settings.Canvas.InkAlpha = 80;
             Settings.Canvas.IsShowCursor = false;
             Settings.Canvas.InkStyle = 0;
             Settings.Canvas.EraserSize = 1;

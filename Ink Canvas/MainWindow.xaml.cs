@@ -12,7 +12,6 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace Ink_Canvas {
     public partial class MainWindow : Window {
-
         #region Window Initialization
 
         public MainWindow() {

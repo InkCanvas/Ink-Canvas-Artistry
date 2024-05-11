@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Ink_Canvas
 {
-    /// <summary>
-    /// Interaction logic for RestoreHiddenSlidesWindow.xaml
-    /// </summary>
     public partial class YesOrNoNotificationWindow : Window
     {
         private readonly Action _yesAction;
@@ -17,7 +13,7 @@ namespace Ink_Canvas
             _yesAction = yesAction;
             _noAction = noAction;
             InitializeComponent();
-            Label.Content = text;
+            Label.Text = text;
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)
@@ -27,7 +23,6 @@ namespace Ink_Canvas
                 Close();
                 return;
             }
-
             _yesAction.Invoke();
             Close();
 
@@ -40,7 +35,6 @@ namespace Ink_Canvas
                 Close();
                 return;
             }
-
             _noAction.Invoke();
             Close();
         }
