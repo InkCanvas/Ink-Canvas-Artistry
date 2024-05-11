@@ -90,7 +90,10 @@ namespace Ink_Canvas {
 
         private async void MainWindow_StylusUp(object sender, StylusEventArgs e) {
             try {
-                inkCanvas.Strokes.Add(GetStrokeVisual(e.StylusDevice.Id).Stroke);
+                if (e.StylusDevice.TabletDevice.Type == TabletDeviceType.Stylus) { // 数位板 TabletDeviceType.Stylus
+                } else { // 触摸屏 TabletDeviceType.Touch 
+                    inkCanvas.Strokes.Add(GetStrokeVisual(e.StylusDevice.Id).Stroke);
+                }
                 await Task.Delay(5); // 避免渲染墨迹完成前预览墨迹被删除导致墨迹闪烁
                 inkCanvas.Children.Remove(GetVisualCanvas(e.StylusDevice.Id));
 
