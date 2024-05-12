@@ -225,11 +225,17 @@ namespace Ink_Canvas {
             BoardViewboxBtnColorOrangeContent.Visibility = Visibility.Collapsed;
 
             ViewboxBtnHighlighterColorRedContent.Visibility = Visibility.Collapsed;
+            BoardViewboxBtnHighlighterColorRedContent.Visibility = Visibility.Collapsed;
             ViewboxBtnHighlighterColorOrangeContent.Visibility = Visibility.Collapsed;
+            BoardViewboxBtnHighlighterColorOrangeContent.Visibility = Visibility.Collapsed;
             ViewboxBtnHighlighterColorYellowContent.Visibility = Visibility.Collapsed;
+            BoardViewboxBtnHighlighterColorYellowContent.Visibility = Visibility.Collapsed;
             ViewboxBtnHighlighterColorTealContent.Visibility = Visibility.Collapsed;
+            BoardViewboxBtnHighlighterColorTealContent.Visibility = Visibility.Collapsed;
             ViewboxBtnHighlighterColorBlueContent.Visibility = Visibility.Collapsed;
+            BoardViewboxBtnHighlighterColorBlueContent.Visibility = Visibility.Collapsed;
             ViewboxBtnHighlighterColorPurpleContent.Visibility = Visibility.Collapsed;
+            BoardViewboxBtnHighlighterColorPurpleContent.Visibility = Visibility.Collapsed;
             switch (inkColor) {
                 case 0:
                     ViewboxBtnColorBlackContent.Visibility = Visibility.Visible;
@@ -269,21 +275,27 @@ namespace Ink_Canvas {
                     break;
                 case 101:
                     ViewboxBtnHighlighterColorRedContent.Visibility = Visibility.Visible;
+                    BoardViewboxBtnHighlighterColorRedContent.Visibility = Visibility.Visible;
                     break;
                 case 102:
                     ViewboxBtnHighlighterColorOrangeContent.Visibility = Visibility.Visible;
+                    BoardViewboxBtnHighlighterColorOrangeContent.Visibility = Visibility.Visible;
                     break;
                 case 103:
                     ViewboxBtnHighlighterColorYellowContent.Visibility = Visibility.Visible;
+                    BoardViewboxBtnHighlighterColorYellowContent.Visibility = Visibility.Visible;
                     break;
                 case 104:
                     ViewboxBtnHighlighterColorTealContent.Visibility = Visibility.Visible;
+                    BoardViewboxBtnHighlighterColorTealContent.Visibility = Visibility.Visible;
                     break;
                 case 105:
                     ViewboxBtnHighlighterColorBlueContent.Visibility = Visibility.Visible;
+                    BoardViewboxBtnHighlighterColorBlueContent.Visibility = Visibility.Visible;
                     break;
                 case 106:
                     ViewboxBtnHighlighterColorPurpleContent.Visibility = Visibility.Visible;
+                    BoardViewboxBtnHighlighterColorPurpleContent.Visibility = Visibility.Visible;
                     break;
             }
         }
