@@ -13,9 +13,14 @@ namespace Ink_Canvas {
             if (!isLoaded) return;
             if (sender == BoardInkWidthSlider) InkWidthSlider.Value = ((Slider)sender).Value;
             if (sender == InkWidthSlider) BoardInkWidthSlider.Value = ((Slider)sender).Value;
-            drawingAttributes.Height = ((Slider)sender).Value / 2;
-            drawingAttributes.Width = ((Slider)sender).Value / 2;
             Settings.Canvas.InkWidth = ((Slider)sender).Value / 2;
+            if (inkColor > 100) {
+                drawingAttributes.Height = 30 + ((Slider)sender).Value;
+                drawingAttributes.Width = 30 + ((Slider)sender).Value;
+            } else {
+                drawingAttributes.Height = ((Slider)sender).Value / 2;
+                drawingAttributes.Width = ((Slider)sender).Value / 2;
+            }
             SaveSettingsToFile();
         }
 
@@ -185,7 +190,7 @@ namespace Ink_Canvas {
             }
             if (drawingAttributes != null && isLoaded) {
                 if (inkColor > 100) {
-                    drawingAttributes.Height = 30;
+                    drawingAttributes.Height = 30 + Settings.Canvas.InkWidth;
                     drawingAttributes.Width = 5;
                     byte NowR = drawingAttributes.Color.R;
                     byte NowG = drawingAttributes.Color.G;
