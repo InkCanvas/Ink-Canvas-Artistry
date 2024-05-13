@@ -1,5 +1,6 @@
 ﻿using Ink_Canvas.Helpers;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
@@ -301,8 +302,11 @@ namespace Ink_Canvas {
         }
 
         private void CheckLastColor(int inkColor) {
-            if (currentMode == 0) lastDesktopInkColor = inkColor;
-            else lastBoardInkColor = inkColor;
+            if (currentMode == 0) {
+                lastDesktopInkColor = inkColor;
+            } else {
+                lastBoardInkColor = inkColor;
+            }
         }
 
         private void BtnColorBlack_Click(object sender, RoutedEventArgs e) {

@@ -260,6 +260,7 @@ namespace Ink_Canvas {
             if (inkCanvas.EditingMode == InkCanvasEditingMode.Select) PenIcon_Click(null, null);
 
             if (currentMode == 0) {
+                currentMode = 1;
                 //进入画板
                 PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
@@ -281,10 +282,8 @@ namespace Ink_Canvas {
                     });
                 })).Start();
 
-                if (Settings.Canvas.UsingWhiteboard) {
-                    BtnColorBlack_Click(null, null);
-                } else {
-                    BtnColorWhite_Click(null, null);
+                if (Pen_Icon.Background == null) {
+                    PenIcon_Click(BoardPenIcon, null);
                 }
 
                 if (Settings.Gesture.AutoSwitchTwoFingerGesture) // 自动关闭多指书写、开启双指移动
@@ -293,6 +292,7 @@ namespace Ink_Canvas {
                     if (isInMultiTouchMode) ToggleSwitchEnableMultiTouchMode.IsOn = false;
                 }
             } else {
+                currentMode = 0;
                 //退出画板
                 HideSubPanelsImmediately();
 
@@ -1030,8 +1030,7 @@ namespace Ink_Canvas {
 
         private void BtnSwitch_Click(object sender, RoutedEventArgs e) {
             if (Main_Grid.Background == Brushes.Transparent) {
-                if (currentMode == 0) {
-                    currentMode++;
+                if (currentMode == 1) {
                     GridBackgroundCover.Visibility = Visibility.Collapsed;
                     AnimationsHelper.HideWithSlideAndFade(BlackboardLeftSide);
                     AnimationsHelper.HideWithSlideAndFade(BlackboardCenterSide);
@@ -1061,7 +1060,7 @@ namespace Ink_Canvas {
                 Topmost = true;
                 BtnHideInkCanvas_Click(BtnHideInkCanvas, e);
             } else {
-                switch ((++currentMode) % 2) {
+                switch (currentMode) {
                     case 0: //屏幕模式
                         currentMode = 0;
                         GridBackgroundCover.Visibility = Visibility.Collapsed;
