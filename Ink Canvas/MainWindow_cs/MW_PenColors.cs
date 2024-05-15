@@ -192,7 +192,7 @@ namespace Ink_Canvas {
             if (drawingAttributes != null && isLoaded) {
                 if (inkColor > 100) {
                     drawingAttributes.Height = 30 + Settings.Canvas.InkWidth;
-                    drawingAttributes.Width = 5;
+                    drawingAttributes.Width = 30 + Settings.Canvas.InkWidth;
                     byte NowR = drawingAttributes.Color.R;
                     byte NowG = drawingAttributes.Color.G;
                     byte NowB = drawingAttributes.Color.B;

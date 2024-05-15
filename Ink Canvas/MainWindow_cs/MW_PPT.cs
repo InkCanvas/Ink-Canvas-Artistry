@@ -15,6 +15,7 @@ using System.Windows.Media;
 using Application = System.Windows.Application;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
+using Microsoft.Office.Core;
 
 namespace Ink_Canvas {
     public partial class MainWindow : Window {
@@ -175,17 +176,25 @@ namespace Ink_Canvas {
 
                 //检测是否有自动播放
                 if (Settings.PowerPointSettings.IsNotifyAutoPlayPresentation
-                    && presentation.SlideShowSettings.AdvanceMode == PpSlideShowAdvanceMode.ppSlideShowUseSlideTimings
+                    // && presentation.SlideShowSettings.AdvanceMode == PpSlideShowAdvanceMode.ppSlideShowUseSlideTimings
                     && BtnPPTSlideShowEnd.Visibility != Visibility.Visible) {
-                    
-                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
-                    {
-                        new YesOrNoNotificationWindow("检测到此演示文档中自动播放或排练计时已经启用，可能导致幻灯片自动翻页，是否取消？",
-                            () => {
-                                presentation.SlideShowSettings.AdvanceMode = PpSlideShowAdvanceMode.ppSlideShowManualAdvance;
-                            }).ShowDialog();
-                    }));
-                    presentation.SlideShowSettings.AdvanceMode = PpSlideShowAdvanceMode.ppSlideShowManualAdvance;
+                    bool hasSlideTimings = false;
+                    foreach (Slide slide in presentation.Slides) {
+                        if (slide.SlideShowTransition.AdvanceOnTime == MsoTriState.msoTrue && slide.SlideShowTransition.AdvanceTime > 0) {
+                            hasSlideTimings = true;
+                            break;
+                        }
+                    }
+                    if (hasSlideTimings) {
+                        Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        {
+                            new YesOrNoNotificationWindow("检测到此演示文档中自动播放或排练计时已经启用，可能导致幻灯片自动翻页，是否取消？",
+                                () => {
+                                    presentation.SlideShowSettings.AdvanceMode = PpSlideShowAdvanceMode.ppSlideShowManualAdvance;
+                                }).ShowDialog();
+                        }));
+                        presentation.SlideShowSettings.AdvanceMode = PpSlideShowAdvanceMode.ppSlideShowManualAdvance;
+                    }
                 }
 
                 //如果检测到已经开始放映，则立即进入画板模式
