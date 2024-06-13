@@ -1,8 +1,10 @@
 ﻿using Ink_Canvas.Helpers;
 using Newtonsoft.Json;
+using OSVersionExtension;
 using System;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Interop;
 using System.Windows.Media;
 using File = System.IO.File;
 
@@ -351,6 +353,12 @@ namespace Ink_Canvas {
                 TouchMultiplierSlider.Visibility = ToggleSwitchIsSpecialScreen.IsOn ? Visibility.Visible : Visibility.Collapsed;
 
                 ToggleSwitchIsQuadIR.IsOn = Settings.Advanced.IsQuadIR;
+
+                ToggleSwitchIsEnableEdgeGestureUtil.IsOn = Settings.Advanced.IsEnableEdgeGestureUtil;
+                if (Settings.Advanced.IsEnableEdgeGestureUtil)
+                {
+                    if (OSVersion.GetOperatingSystem() >= OSVersionExtension.OperatingSystem.Windows10) EdgeGestureUtil.DisableEdgeGestures(new WindowInteropHelper(this).Handle, true);
+                }
             } else {
                 Settings.Advanced = new Advanced();
             }
