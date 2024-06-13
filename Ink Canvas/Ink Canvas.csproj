@@ -92,6 +92,7 @@
 		<PackageReference Include="Newtonsoft.Json">
 			<Version>13.0.3</Version>
 		</PackageReference>
+		<PackageReference Include="OSVersionExt" Version="3.0.0" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 	<ItemGroup>

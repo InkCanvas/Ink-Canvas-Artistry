@@ -1,11 +1,13 @@
 ﻿using Ink_Canvas.Helpers;
 using Newtonsoft.Json;
+using OSVersionExtension;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using File = System.IO.File;
 
 namespace Ink_Canvas {
@@ -675,6 +677,14 @@ namespace Ink_Canvas {
                 BoundsWidth = Settings.Advanced.FingerModeBoundsWidth;
             }
 
+            SaveSettingsToFile();
+        }
+
+        private void ToggleSwitchIsEnableEdgeGestureUtil_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (!isLoaded) return;
+            Settings.Advanced.IsEnableEdgeGestureUtil = ToggleSwitchIsEnableEdgeGestureUtil.IsOn;
+            if (OSVersion.GetOperatingSystem() >= OSVersionExtension.OperatingSystem.Windows10) EdgeGestureUtil.DisableEdgeGestures(new WindowInteropHelper(this).Handle, ToggleSwitchIsEnableEdgeGestureUtil.IsOn);
             SaveSettingsToFile();
         }
 
