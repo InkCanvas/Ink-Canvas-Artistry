@@ -1,9 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Ink_Canvas {
-    public partial class MainWindow : Window {
-        private void InkAlphaSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+namespace Ink_Canvas
+{
+    public partial class MainWindow : Window
+    {
+        private void InkAlphaSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
             if (!isLoaded) return;
             if (sender == BoardInkAlphaSlider) InkAlphaSlider.Value = ((Slider)sender).Value;
             if (sender == InkAlphaSlider) BoardInkAlphaSlider.Value = ((Slider)sender).Value;
@@ -14,31 +17,37 @@ namespace Ink_Canvas {
             CheckColorTheme();
         }
 
-        private void BtnHighlighterColorRed_Click(object sender, RoutedEventArgs e) {
+        private void BtnHighlighterColorRed_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(101);
             ColorSwitchCheck();
         }
 
-        private void BtnHighlighterColorOrange_Click(object sender, RoutedEventArgs e) {
+        private void BtnHighlighterColorOrange_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(102);
             ColorSwitchCheck();
         }
 
-        private void BtnHighlighterColorYellow_Click(object sender, RoutedEventArgs e) {
+        private void BtnHighlighterColorYellow_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(103);
             ColorSwitchCheck();
         }
 
-        private void BtnHighlighterColorTeal_Click(object sender, RoutedEventArgs e) {
+        private void BtnHighlighterColorTeal_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(104);
             ColorSwitchCheck();
         }
-        private void BtnHighlighterColorBlue_Click(object sender, RoutedEventArgs e) {
+        private void BtnHighlighterColorBlue_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(105);
             ColorSwitchCheck();
         }
 
-        private void BtnHighlighterColorPurple_Click(object sender, RoutedEventArgs e) {
+        private void BtnHighlighterColorPurple_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(106);
             ColorSwitchCheck();
         }

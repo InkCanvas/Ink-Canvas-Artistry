@@ -10,11 +10,14 @@ using System.Windows.Media;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
 
-namespace Ink_Canvas {
-    public partial class MainWindow : Window {
+namespace Ink_Canvas
+{
+    public partial class MainWindow : Window
+    {
         #region Window Initialization
 
-        public MainWindow() {
+        public MainWindow()
+        {
             /*
                 处于画板模式内：Topmost == false / currentMode != 0
                 处于 PPT 放映内：BtnPPTSlideShowEnd.Visibility
@@ -45,25 +48,36 @@ namespace Ink_Canvas {
             ViewboxFloatingBar.Margin = new Thickness((SystemParameters.WorkArea.Width - 284) / 2, SystemParameters.WorkArea.Height - 60, -2000, -200);
             ViewboxFloatingBarMarginAnimation(100);
 
-            try {
+            try
+            {
                 if (File.Exists("debug.ini")) Label.Visibility = Visibility.Visible;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
             }
-            try {
-                if (File.Exists("Log.txt")) {
+            try
+            {
+                if (File.Exists("Log.txt"))
+                {
                     FileInfo fileInfo = new FileInfo("Log.txt");
                     long fileSizeInKB = fileInfo.Length / 1024;
-                    if (fileSizeInKB > 512) {
-                        try {
+                    if (fileSizeInKB > 512)
+                    {
+                        try
+                        {
                             File.Delete("Log.txt");
                             LogHelper.WriteLogToFile("The Log.txt file has been successfully deleted. Original file size: " + fileSizeInKB + " KB", LogHelper.LogType.Info);
-                        } catch (Exception ex) {
+                        }
+                        catch (Exception ex)
+                        {
                             LogHelper.WriteLogToFile(ex + " | Can not delete the Log.txt file. File size: " + fileSizeInKB + " KB", LogHelper.LogType.Error);
                         }
                     }
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
             }
 
@@ -73,9 +87,12 @@ namespace Ink_Canvas {
             inkCanvas.Strokes.StrokesChanged += StrokesOnStrokesChanged;
 
             Microsoft.Win32.SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
-            try {
+            try
+            {
                 if (File.Exists("SpecialVersion.ini")) SpecialVersionResetToSuggestion_Click();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
             }
 
@@ -83,10 +100,13 @@ namespace Ink_Canvas {
 
             // 删除旧版本快捷方式
             string shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Ink Canvas Annotation.lnk");
-            if (File.Exists(shortcutPath)) {
-                try {
+            if (File.Exists(shortcutPath))
+            {
+                try
+                {
                     File.Delete(shortcutPath);
-                } catch { }
+                }
+                catch { }
             }
         }
 
@@ -97,8 +117,10 @@ namespace Ink_Canvas {
         Color Ink_DefaultColor = Colors.Red;
 
         DrawingAttributes drawingAttributes;
-        private void loadPenCanvas() {
-            try {
+        private void loadPenCanvas()
+        {
+            try
+            {
                 //drawingAttributes = new DrawingAttributes();
                 drawingAttributes = inkCanvas.DefaultDrawingAttributes;
                 drawingAttributes.Color = Ink_DefaultColor;
@@ -108,37 +130,52 @@ namespace Ink_Canvas {
 
                 inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
                 inkCanvas.Gesture += InkCanvas_Gesture;
-            } catch { }
+            }
+            catch { }
         }
         //ApplicationGesture lastApplicationGesture = ApplicationGesture.AllGestures;
         DateTime lastGestureTime = DateTime.Now;
-        private void InkCanvas_Gesture(object sender, InkCanvasGestureEventArgs e) {
+        private void InkCanvas_Gesture(object sender, InkCanvasGestureEventArgs e)
+        {
             ReadOnlyCollection<GestureRecognitionResult> gestures = e.GetGestureRecognitionResults();
-            try {
-                foreach (GestureRecognitionResult gest in gestures) {
+            try
+            {
+                foreach (GestureRecognitionResult gest in gestures)
+                {
                     //Trace.WriteLine(string.Format("Gesture: {0}, Confidence: {1}", gest.ApplicationGesture, gest.RecognitionConfidence));
-                    if (StackPanelPPTControls.Visibility == Visibility.Visible) {
-                        if (gest.ApplicationGesture == ApplicationGesture.Left) {
+                    if (StackPanelPPTControls.Visibility == Visibility.Visible)
+                    {
+                        if (gest.ApplicationGesture == ApplicationGesture.Left)
+                        {
                             BtnPPTSlidesDown_Click(BtnPPTSlidesDown, null);
                         }
-                        if (gest.ApplicationGesture == ApplicationGesture.Right) {
+                        if (gest.ApplicationGesture == ApplicationGesture.Right)
+                        {
                             BtnPPTSlidesUp_Click(BtnPPTSlidesUp, null);
                         }
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        private void inkCanvas_EditingModeChanged(object sender, RoutedEventArgs e) {
+        private void inkCanvas_EditingModeChanged(object sender, RoutedEventArgs e)
+        {
             var inkCanvas1 = sender as InkCanvas;
             if (inkCanvas1 == null) return;
-            if (Settings.Canvas.IsShowCursor) {
-                if (inkCanvas1.EditingMode == InkCanvasEditingMode.Ink || drawingShapeMode != 0) {
+            if (Settings.Canvas.IsShowCursor)
+            {
+                if (inkCanvas1.EditingMode == InkCanvasEditingMode.Ink || drawingShapeMode != 0)
+                {
                     inkCanvas1.ForceCursor = true;
-                } else {
+                }
+                else
+                {
                     inkCanvas1.ForceCursor = false;
                 }
-            } else {
+            }
+            else
+            {
                 inkCanvas1.ForceCursor = false;
             }
             if (inkCanvas1.EditingMode == InkCanvasEditingMode.Ink) forcePointEraser = !forcePointEraser;
@@ -152,11 +189,13 @@ namespace Ink_Canvas {
         public static string settingsFileName = "Settings.json";
         bool isLoaded = false;
 
-        private void Window_Loaded(object sender, RoutedEventArgs e) {
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             loadPenCanvas();
             //加载设置
             LoadSettings(true);
-            if (Environment.Is64BitProcess) {
+            if (Environment.Is64BitProcess)
+            {
                 GroupBoxInkRecognition.Visibility = Visibility.Collapsed;
             }
 
@@ -168,46 +207,62 @@ namespace Ink_Canvas {
             isLoaded = true;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
             LogHelper.WriteLogToFile("Ink Canvas closing", LogHelper.LogType.Event);
-            if (!CloseIsFromButton && Settings.Advanced.IsSecondConfimeWhenShutdownApp) {
+            if (!CloseIsFromButton && Settings.Advanced.IsSecondConfimeWhenShutdownApp)
+            {
                 e.Cancel = true;
-                if (MessageBox.Show("是否继续关闭 Ink Canvas 画板，这将丢失当前未保存的工作。", "Ink Canvas 画板", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK) {
-                    if (MessageBox.Show("真的狠心关闭 Ink Canvas 画板吗？", "Ink Canvas 画板", MessageBoxButton.OKCancel, MessageBoxImage.Error) == MessageBoxResult.OK) {
-                        if (MessageBox.Show("是否取消关闭 Ink Canvas 画板？", "Ink Canvas 画板", MessageBoxButton.OKCancel, MessageBoxImage.Error) != MessageBoxResult.OK) {
+                if (MessageBox.Show("是否继续关闭 Ink Canvas 画板，这将丢失当前未保存的工作。", "Ink Canvas 画板", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                {
+                    if (MessageBox.Show("真的狠心关闭 Ink Canvas 画板吗？", "Ink Canvas 画板", MessageBoxButton.OKCancel, MessageBoxImage.Error) == MessageBoxResult.OK)
+                    {
+                        if (MessageBox.Show("是否取消关闭 Ink Canvas 画板？", "Ink Canvas 画板", MessageBoxButton.OKCancel, MessageBoxImage.Error) != MessageBoxResult.OK)
+                        {
                             e.Cancel = false;
                         }
                     }
                 }
             }
-            if (e.Cancel) {
+            if (e.Cancel)
+            {
                 LogHelper.WriteLogToFile("Ink Canvas closing cancelled", LogHelper.LogType.Event);
             }
         }
 
-        private void Window_Closed(object sender, EventArgs e) {
+        private void Window_Closed(object sender, EventArgs e)
+        {
             LogHelper.WriteLogToFile("Ink Canvas closed", LogHelper.LogType.Event);
         }
 
-        private async void AutoUpdate() {
+        private async void AutoUpdate()
+        {
             if (Settings.Startup.IsAutoUpdateWithProxy) AvailableLatestVersion = await AutoUpdateHelper.CheckForUpdates(Settings.Startup.AutoUpdateProxy);
             else AvailableLatestVersion = await AutoUpdateHelper.CheckForUpdates();
 
-            if (AvailableLatestVersion != null) {
+            if (AvailableLatestVersion != null)
+            {
                 bool IsDownloadSuccessful = false;
                 if (Settings.Startup.IsAutoUpdateWithProxy) IsDownloadSuccessful = await AutoUpdateHelper.DownloadSetupFileAndSaveStatus(AvailableLatestVersion, Settings.Startup.AutoUpdateProxy);
                 else IsDownloadSuccessful = await AutoUpdateHelper.DownloadSetupFileAndSaveStatus(AvailableLatestVersion);
 
-                if (IsDownloadSuccessful) {
-                    if (!Settings.Startup.IsAutoUpdateWithSilence) {
-                        if (MessageBox.Show("ICA 新版本安装包已下载完成，是否立即更新？", "Ink Canvas Artistry New Version Available", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes) {
+                if (IsDownloadSuccessful)
+                {
+                    if (!Settings.Startup.IsAutoUpdateWithSilence)
+                    {
+                        if (MessageBox.Show("ICA 新版本安装包已下载完成，是否立即更新？", "Ink Canvas Artistry New Version Available", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
                             AutoUpdateHelper.InstallNewVersionApp(AvailableLatestVersion, false);
                         }
-                    } else {
+                    }
+                    else
+                    {
                         timerCheckAutoUpdateWithSilence.Start();
                     }
                 }
-            } else {
+            }
+            else
+            {
                 AutoUpdateHelper.DeleteUpdatesFolder();
             }
         }

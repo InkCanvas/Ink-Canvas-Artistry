@@ -2,10 +2,14 @@
 using System;
 using System.Windows;
 
-namespace Ink_Canvas {
-    public partial class MainWindow : Window {
-        public static bool StartAutomaticallyCreate(string exeName) {
-            try {
+namespace Ink_Canvas
+{
+    public partial class MainWindow : Window
+    {
+        public static bool StartAutomaticallyCreate(string exeName)
+        {
+            try
+            {
                 WshShell shell = new WshShell();
                 IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + exeName + ".lnk");
                 //设置快捷方式的目标所在的位置(源程序完整路径)
@@ -21,15 +25,19 @@ namespace Ink_Canvas {
                 //shortcut.Hotkey = "CTRL+ALT+D";
                 shortcut.Save();
                 return true;
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
             return false;
         }
 
-        public static bool StartAutomaticallyDel(string exeName) {
-            try {
+        public static bool StartAutomaticallyDel(string exeName)
+        {
+            try
+            {
                 System.IO.File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + exeName + ".lnk");
                 return true;
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
             return false;
         }
     }

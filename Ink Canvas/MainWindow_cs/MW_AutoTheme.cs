@@ -6,9 +6,12 @@ using System.Windows.Media;
 using Application = System.Windows.Application;
 using System.Windows.Controls;
 
-namespace Ink_Canvas {
-    public partial class MainWindow : Window {
-        private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+namespace Ink_Canvas
+{
+    public partial class MainWindow : Window
+    {
+        private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             if (!isLoaded) return;
             Settings.Appearance.Theme = ComboBoxTheme.SelectedIndex;
             SystemEvents_UserPreferenceChanged(null, null);
@@ -16,8 +19,10 @@ namespace Ink_Canvas {
         }
         Color FloatBarForegroundColor = Color.FromRgb(102, 102, 102);
         Color BoardBarForegroundColor = Color.FromRgb(102, 102, 102);
-        private void SetTheme(string theme) {
-            if (theme == "Light") {
+        private void SetTheme(string theme)
+        {
+            if (theme == "Light")
+            {
                 ResourceDictionary rd1 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light.xaml", UriKind.Relative) };
                 Application.Current.Resources.MergedDictionaries.Add(rd1);
 
@@ -30,10 +35,13 @@ namespace Ink_Canvas {
                 ResourceDictionary rd4 = new ResourceDictionary() { Source = new Uri("Resources/IconImageDictionary.xaml", UriKind.Relative) };
                 Application.Current.Resources.MergedDictionaries.Add(rd4);
 
-                if (Settings.Canvas.UsingWhiteboard) {
+                if (Settings.Canvas.UsingWhiteboard)
+                {
                     ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
                     Application.Current.Resources.MergedDictionaries.Add(rd5);
-                } else {
+                }
+                else
+                {
                     ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
                     Application.Current.Resources.MergedDictionaries.Add(rd5);
                 }
@@ -44,7 +52,9 @@ namespace Ink_Canvas {
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Light);
                 FloatBarForegroundColor = (Color)Application.Current.FindResource("FloatBarForegroundColor");
                 BoardBarForegroundColor = (Color)Application.Current.FindResource("BoardBarForegroundColor");
-            } else if (theme == "Dark") {
+            }
+            else if (theme == "Dark")
+            {
                 ResourceDictionary rd1 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark.xaml", UriKind.Relative) };
                 Application.Current.Resources.MergedDictionaries.Add(rd1);
 
@@ -57,10 +67,13 @@ namespace Ink_Canvas {
                 ResourceDictionary rd4 = new ResourceDictionary() { Source = new Uri("Resources/IconImageDictionary.xaml", UriKind.Relative) };
                 Application.Current.Resources.MergedDictionaries.Add(rd4);
 
-                if (Settings.Canvas.UsingWhiteboard) {
+                if (Settings.Canvas.UsingWhiteboard)
+                {
                     ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
                     Application.Current.Resources.MergedDictionaries.Add(rd5);
-                } else {
+                }
+                else
+                {
                     ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
                     Application.Current.Resources.MergedDictionaries.Add(rd5);
                 }
@@ -74,8 +87,10 @@ namespace Ink_Canvas {
             }
         }
 
-        private void SystemEvents_UserPreferenceChanged(object sender, Microsoft.Win32.UserPreferenceChangedEventArgs e) {
-            switch (Settings.Appearance.Theme) {
+        private void SystemEvents_UserPreferenceChanged(object sender, Microsoft.Win32.UserPreferenceChangedEventArgs e)
+        {
+            switch (Settings.Appearance.Theme)
+            {
                 case 0:
                     SetTheme("Light");
                     break;
@@ -89,17 +104,21 @@ namespace Ink_Canvas {
             }
         }
 
-        private bool IsSystemThemeLight() {
+        private bool IsSystemThemeLight()
+        {
             bool light = false;
-            try {
+            try
+            {
                 RegistryKey registryKey = Registry.CurrentUser;
                 RegistryKey themeKey = registryKey.OpenSubKey("software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
                 int keyValue = 0;
-                if (themeKey != null) {
+                if (themeKey != null)
+                {
                     keyValue = (int)themeKey.GetValue("SystemUsesLightTheme");
                 }
                 if (keyValue == 1) light = true;
-            } catch { }
+            }
+            catch { }
             return light;
         }
     }

@@ -90,7 +90,8 @@ namespace Ink_Canvas.Helpers
 
         private readonly DrawingAttributes _drawingAttributes;
 
-        public static implicit operator Stroke(StrokeVisual v) {
+        public static implicit operator Stroke(StrokeVisual v)
+        {
             throw new NotImplementedException();
         }
     }

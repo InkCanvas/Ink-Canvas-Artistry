@@ -9,7 +9,8 @@ namespace Ink_Canvas.Helpers
     {
         public static void ShowWithSlideFromBottomAndFade(UIElement element, double duration = 0.15)
         {
-            try {
+            try
+            {
                 if (element.Visibility == Visibility.Visible) return;
 
                 if (element == null)
@@ -18,7 +19,8 @@ namespace Ink_Canvas.Helpers
                 var sb = new Storyboard();
 
                 // 渐变动画
-                var fadeInAnimation = new DoubleAnimation {
+                var fadeInAnimation = new DoubleAnimation
+                {
                     From = 0.5,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -26,7 +28,8 @@ namespace Ink_Canvas.Helpers
                 Storyboard.SetTargetProperty(fadeInAnimation, new PropertyPath(UIElement.OpacityProperty));
 
                 // 滑动动画
-                var slideAnimation = new DoubleAnimation {
+                var slideAnimation = new DoubleAnimation
+                {
                     From = element.RenderTransform.Value.OffsetY + 10, // 滑动距离
                     To = 0,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -40,12 +43,14 @@ namespace Ink_Canvas.Helpers
                 element.RenderTransform = new TranslateTransform();
 
                 sb.Begin((FrameworkElement)element);
-            } catch { }
+            }
+            catch { }
         }
 
         public static void ShowWithSlideFromLeftAndFade(UIElement element, double duration = 0.25)
         {
-            try {
+            try
+            {
                 if (element.Visibility == Visibility.Visible) return;
 
                 if (element == null)
@@ -54,7 +59,8 @@ namespace Ink_Canvas.Helpers
                 var sb = new Storyboard();
 
                 // 渐变动画
-                var fadeInAnimation = new DoubleAnimation {
+                var fadeInAnimation = new DoubleAnimation
+                {
                     From = 0.5,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -62,7 +68,8 @@ namespace Ink_Canvas.Helpers
                 Storyboard.SetTargetProperty(fadeInAnimation, new PropertyPath(UIElement.OpacityProperty));
 
                 // 滑动动画
-                var slideAnimation = new DoubleAnimation {
+                var slideAnimation = new DoubleAnimation
+                {
                     From = element.RenderTransform.Value.OffsetX - 20, // 滑动距离
                     To = 0,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -76,12 +83,14 @@ namespace Ink_Canvas.Helpers
                 element.RenderTransform = new TranslateTransform();
 
                 sb.Begin((FrameworkElement)element);
-            } catch { }
+            }
+            catch { }
         }
 
         public static void ShowWithScaleFromLeft(UIElement element, double duration = 0.5)
         {
-            try {
+            try
+            {
                 if (element.Visibility == Visibility.Visible) return;
 
                 if (element == null)
@@ -90,7 +99,8 @@ namespace Ink_Canvas.Helpers
                 var sb = new Storyboard();
 
                 // 水平方向的缩放动画
-                var scaleXAnimation = new DoubleAnimation {
+                var scaleXAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -98,7 +108,8 @@ namespace Ink_Canvas.Helpers
                 Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleX)"));
 
                 // 垂直方向的缩放动画
-                var scaleYAnimation = new DoubleAnimation {
+                var scaleYAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -113,12 +124,14 @@ namespace Ink_Canvas.Helpers
                 element.RenderTransform = new ScaleTransform(0, 0);
 
                 sb.Begin((FrameworkElement)element);
-            } catch { }
+            }
+            catch { }
         }
 
         public static void ShowWithScaleFromRight(UIElement element, double duration = 0.5)
         {
-            try {
+            try
+            {
                 if (element.Visibility == Visibility.Visible) return;
 
                 if (element == null)
@@ -127,7 +140,8 @@ namespace Ink_Canvas.Helpers
                 var sb = new Storyboard();
 
                 // 水平方向的缩放动画
-                var scaleXAnimation = new DoubleAnimation {
+                var scaleXAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -135,7 +149,8 @@ namespace Ink_Canvas.Helpers
                 Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleX)"));
 
                 // 垂直方向的缩放动画
-                var scaleYAnimation = new DoubleAnimation {
+                var scaleYAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -150,11 +165,14 @@ namespace Ink_Canvas.Helpers
                 element.RenderTransform = new ScaleTransform(0, 0);
 
                 sb.Begin((FrameworkElement)element);
-            } catch { }
+            }
+            catch { }
         }
 
-        public static void ShowWithScaleFromBottom(UIElement element, double duration = 0.5) {
-            try {
+        public static void ShowWithScaleFromBottom(UIElement element, double duration = 0.5)
+        {
+            try
+            {
                 if (element.Visibility == Visibility.Visible) return;
 
                 if (element == null)
@@ -163,7 +181,8 @@ namespace Ink_Canvas.Helpers
                 var sb = new Storyboard();
 
                 // 水平方向的缩放动画
-                var scaleXAnimation = new DoubleAnimation {
+                var scaleXAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -171,7 +190,8 @@ namespace Ink_Canvas.Helpers
                 Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleX)"));
 
                 // 垂直方向的缩放动画
-                var scaleYAnimation = new DoubleAnimation {
+                var scaleYAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = 1,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -186,12 +206,14 @@ namespace Ink_Canvas.Helpers
                 element.RenderTransform = new ScaleTransform(1, 0);
 
                 sb.Begin((FrameworkElement)element);
-            } catch { }
+            }
+            catch { }
         }
 
         public static void HideWithSlideAndFade(UIElement element, double duration = 0.15)
         {
-            try {
+            try
+            {
                 if (element.Visibility == Visibility.Collapsed) return;
 
                 if (element == null)
@@ -200,7 +222,8 @@ namespace Ink_Canvas.Helpers
                 var sb = new Storyboard();
 
                 // 渐变动画
-                var fadeOutAnimation = new DoubleAnimation {
+                var fadeOutAnimation = new DoubleAnimation
+                {
                     From = 1,
                     To = 0,
                     Duration = TimeSpan.FromSeconds(duration)
@@ -208,7 +231,8 @@ namespace Ink_Canvas.Helpers
                 Storyboard.SetTargetProperty(fadeOutAnimation, new PropertyPath(UIElement.OpacityProperty));
 
                 // 滑动动画
-                var slideAnimation = new DoubleAnimation {
+                var slideAnimation = new DoubleAnimation
+                {
                     From = 0,
                     To = element.RenderTransform.Value.OffsetY + 10, // 滑动距离
                     Duration = TimeSpan.FromSeconds(duration)
@@ -225,7 +249,8 @@ namespace Ink_Canvas.Helpers
 
                 element.RenderTransform = new TranslateTransform();
                 sb.Begin((FrameworkElement)element);
-            } catch { }
+            }
+            catch { }
         }
 
     }

@@ -118,7 +118,6 @@
                    MouseMove="inkCanvas_MouseMove"
                    MouseUp="inkCanvas_MouseUp"
                    ManipulationStarting="inkCanvas_ManipulationStarting"
-                   ManipulationStarted="inkCanvas_ManipulationStarted"
                    SelectionChanged="inkCanvas_SelectionChanged"
                    StrokeCollected="inkCanvas_StrokeCollected" />
 

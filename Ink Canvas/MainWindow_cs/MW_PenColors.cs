@@ -1,35 +1,45 @@
 ﻿using Ink_Canvas.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Media;
 
-namespace Ink_Canvas {
-    public partial class MainWindow : Window {
+namespace Ink_Canvas
+{
+    public partial class MainWindow : Window
+    {
         int inkColor = 1;
 
-        private void InkWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+        private void InkWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
             if (!isLoaded) return;
             if (sender == BoardInkWidthSlider) InkWidthSlider.Value = ((Slider)sender).Value;
             if (sender == InkWidthSlider) BoardInkWidthSlider.Value = ((Slider)sender).Value;
             Settings.Canvas.InkWidth = ((Slider)sender).Value / 2;
-            if (inkColor > 100) {
+            if (inkColor > 100)
+            {
                 drawingAttributes.Height = 30 + ((Slider)sender).Value;
                 drawingAttributes.Width = 30 + ((Slider)sender).Value;
-            } else {
+            }
+            else
+            {
                 drawingAttributes.Height = ((Slider)sender).Value / 2;
                 drawingAttributes.Width = ((Slider)sender).Value / 2;
             }
             SaveSettingsToFile();
         }
 
-        private void ColorSwitchCheck() {
+        private void ColorSwitchCheck()
+        {
             forceEraser = false;
             HideSubPanels("color");
-            if (Main_Grid.Background == Brushes.Transparent) {
-                if (currentMode == 1) {
+            if (Main_Grid.Background == Brushes.Transparent)
+            {
+                if (currentMode == 1)
+                {
                     currentMode = 0;
                     GridBackgroundCover.Visibility = Visibility.Collapsed;
                     AnimationsHelper.HideWithSlideAndFade(BlackboardLeftSide);
@@ -40,13 +50,28 @@ namespace Ink_Canvas {
             }
 
             StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
-            if (strokes.Count != 0) {
-                foreach (Stroke stroke in strokes) {
-                    try {
+            if (strokes.Count != 0)
+            {
+                foreach (Stroke stroke in strokes)
+                {
+                    try
+                    {
                         stroke.DrawingAttributes.Color = inkCanvas.DefaultDrawingAttributes.Color;
-                    } catch { }
+                    }
+                    catch { }
                 }
-            } else {
+            }
+            if (DrawingAttributesHistory.Count > 0)
+            {
+                timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
+                DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
+                foreach (var item in DrawingAttributesHistoryFlag)
+                {
+                    item.Value.Clear();
+                }
+            }
+            else
+            {
                 inkCanvas.IsManipulationEnabled = true;
                 drawingShapeMode = 0;
                 inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
@@ -61,76 +86,131 @@ namespace Ink_Canvas {
         bool isUselightThemeColor = false, isDesktopUselightThemeColor = false;
         int lastDesktopInkColor = 1, lastBoardInkColor = 5;
 
-        private void CheckColorTheme(bool changeColorTheme = false) {
-            if (changeColorTheme) {
-                if (currentMode != 0) {
-                    if (Settings.Canvas.UsingWhiteboard) {
+        private void CheckColorTheme(bool changeColorTheme = false)
+        {
+            if (changeColorTheme)
+            {
+                if (currentMode != 0)
+                {
+                    if (Settings.Canvas.UsingWhiteboard)
+                    {
                         GridBackgroundCover.Background = new SolidColorBrush(StringToColor("#FFF2F2F2"));
                         isUselightThemeColor = false;
-                    } else {
+                    }
+                    else
+                    {
                         GridBackgroundCover.Background = new SolidColorBrush(StringToColor("#FF1F1F1F"));
                         isUselightThemeColor = true;
                     }
                 }
             }
 
-            if (currentMode == 0) {
+            if (currentMode == 0)
+            {
                 isUselightThemeColor = isDesktopUselightThemeColor;
                 inkColor = lastDesktopInkColor;
-            } else {
+            }
+            else
+            {
                 inkColor = lastBoardInkColor;
             }
 
-            if (inkColor == 101) { // Highlighter Red
+            if (inkColor == 101)
+            { // Highlighter Red
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(220, 38, 38);
-            } else if (inkColor == 102) { // Highlighter Orange
+            }
+            else if (inkColor == 102)
+            { // Highlighter Orange
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(234, 88, 12);
-            } else if (inkColor == 103) { // Highlighter Yellow
+            }
+            else if (inkColor == 103)
+            { // Highlighter Yellow
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(234, 179, 8);
-            } else if (inkColor == 104) { // Highlighter Teal
+            }
+            else if (inkColor == 104)
+            { // Highlighter Teal
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(13, 148, 136);
-            } else if (inkColor == 105) { // Highlighter Blue
+            }
+            else if (inkColor == 105)
+            { // Highlighter Blue
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(37, 99, 235);
-            } else if (inkColor == 106) { // Highlighter Purple
+            }
+            else if (inkColor == 106)
+            { // Highlighter Purple
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(147, 51, 234);
-            } else if (inkColor == 0) { // Black
+            }
+            else if (inkColor == 0)
+            { // Black
                 inkCanvas.DefaultDrawingAttributes.Color = Colors.Black;
-            } else if (inkColor == 5) { // White
+            }
+            else if (inkColor == 5)
+            { // White
                 inkCanvas.DefaultDrawingAttributes.Color = Colors.White;
-            } else if (isUselightThemeColor) {
-                if (inkColor == 1) { // Red
+            }
+            else if (isUselightThemeColor)
+            {
+                if (inkColor == 1)
+                { // Red
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(239, 68, 68);
-                } else if (inkColor == 2) { // Green
+                }
+                else if (inkColor == 2)
+                { // Green
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(34, 197, 94);
-                } else if (inkColor == 3) { // Blue
+                }
+                else if (inkColor == 3)
+                { // Blue
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(59, 130, 246);
-                } else if (inkColor == 4) { // Yellow
+                }
+                else if (inkColor == 4)
+                { // Yellow
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(250, 204, 21);
-                } else if (inkColor == 6) { // Pink
+                }
+                else if (inkColor == 6)
+                { // Pink
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(236, 72, 153);
-                } else if (inkColor == 7) { // Teal
+                }
+                else if (inkColor == 7)
+                { // Teal
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(20, 184, 166);
-                } else if (inkColor == 8) { // Orange
+                }
+                else if (inkColor == 8)
+                { // Orange
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(249, 115, 22);
                 }
-            } else {
-                if (inkColor == 1) { // Red
+            }
+            else
+            {
+                if (inkColor == 1)
+                { // Red
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(220, 38, 38);
-                } else if (inkColor == 2) { // Green
+                }
+                else if (inkColor == 2)
+                { // Green
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(22, 163, 74);
-                } else if (inkColor == 3) { // Blue
+                }
+                else if (inkColor == 3)
+                { // Blue
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(37, 99, 235);
-                } else if (inkColor == 4) { // Yellow
+                }
+                else if (inkColor == 4)
+                { // Yellow
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(234, 179, 8);
-                } else if (inkColor == 6) { // Pink ( Purple )
+                }
+                else if (inkColor == 6)
+                { // Pink ( Purple )
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(147, 51, 234);
-                } else if (inkColor == 7) { // Teal
+                }
+                else if (inkColor == 7)
+                { // Teal
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(13, 148, 136);
-                } else if (inkColor == 8) { // Orange
+                }
+                else if (inkColor == 8)
+                { // Orange
                     inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(234, 88, 12);
                 }
             }
-            if (isUselightThemeColor) { // 亮系
+            if (isUselightThemeColor)
+            { // 亮系
                 // Red
                 BorderPenColorRed.Background = new SolidColorBrush(Color.FromRgb(239, 68, 68));
                 BoardBorderPenColorRed.Background = new SolidColorBrush(Color.FromRgb(239, 68, 68));
@@ -159,7 +239,9 @@ namespace Ink_Canvas {
                 ColorThemeSwitchIcon2.Height = 26;
                 ColorThemeSwitchTextBlock.Text = "暗系";
                 BoardColorThemeSwitchTextBlock.Text = "暗系";
-            } else { // 暗系
+            }
+            else
+            { // 暗系
                 // Red
                 BorderPenColorRed.Background = new SolidColorBrush(Color.FromRgb(220, 38, 38));
                 BoardBorderPenColorRed.Background = new SolidColorBrush(Color.FromRgb(220, 38, 38));
@@ -189,8 +271,10 @@ namespace Ink_Canvas {
                 ColorThemeSwitchTextBlock.Text = "亮系";
                 BoardColorThemeSwitchTextBlock.Text = "亮系";
             }
-            if (drawingAttributes != null && isLoaded) {
-                if (inkColor > 100) {
+            if (drawingAttributes != null && isLoaded)
+            {
+                if (inkColor > 100)
+                {
                     drawingAttributes.Height = 30 + Settings.Canvas.InkWidth;
                     drawingAttributes.Width = 30 + Settings.Canvas.InkWidth;
                     byte NowR = drawingAttributes.Color.R;
@@ -198,7 +282,9 @@ namespace Ink_Canvas {
                     byte NowB = drawingAttributes.Color.B;
                     drawingAttributes.Color = Color.FromArgb((byte)Settings.Canvas.InkAlpha, NowR, NowG, NowB);
                     drawingAttributes.IsHighlighter = true;
-                } else {
+                }
+                else
+                {
                     drawingAttributes.Height = Settings.Canvas.InkWidth;
                     drawingAttributes.Width = Settings.Canvas.InkWidth;
                     drawingAttributes.IsHighlighter = false;
@@ -237,7 +323,8 @@ namespace Ink_Canvas {
             BoardViewboxBtnHighlighterColorBlueContent.Visibility = Visibility.Collapsed;
             ViewboxBtnHighlighterColorPurpleContent.Visibility = Visibility.Collapsed;
             BoardViewboxBtnHighlighterColorPurpleContent.Visibility = Visibility.Collapsed;
-            switch (inkColor) {
+            switch (inkColor)
+            {
                 case 0:
                     ViewboxBtnColorBlackContent.Visibility = Visibility.Visible;
                     BoardViewboxBtnColorBlackContent.Visibility = Visibility.Visible;
@@ -301,62 +388,77 @@ namespace Ink_Canvas {
             }
         }
 
-        private void CheckLastColor(int inkColor) {
-            if (currentMode == 0) {
+        private void CheckLastColor(int inkColor)
+        {
+            if (currentMode == 0)
+            {
                 lastDesktopInkColor = inkColor;
-            } else {
+            }
+            else
+            {
                 lastBoardInkColor = inkColor;
             }
         }
 
-        private void BtnColorBlack_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorBlack_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(0);
             ColorSwitchCheck();
         }
 
-        private void BtnColorRed_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorRed_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(1);
             ColorSwitchCheck();
         }
 
-        private void BtnColorGreen_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorGreen_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(2);
             ColorSwitchCheck();
         }
 
-        private void BtnColorBlue_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorBlue_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(3);
             ColorSwitchCheck();
         }
 
-        private void BtnColorYellow_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorYellow_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(4);
             ColorSwitchCheck();
         }
 
-        private void BtnColorWhite_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorWhite_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(5);
             ColorSwitchCheck();
         }
 
-        private void BtnColorPink_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorPink_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(6);
             ColorSwitchCheck();
         }
 
-        private void BtnColorTeal_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorTeal_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(7);
             ColorSwitchCheck();
         }
 
-        private void BtnColorOrange_Click(object sender, RoutedEventArgs e) {
+        private void BtnColorOrange_Click(object sender, RoutedEventArgs e)
+        {
             CheckLastColor(8);
             ColorSwitchCheck();
         }
 
-        private Color StringToColor(string colorStr) {
+        private Color StringToColor(string colorStr)
+        {
             Byte[] argb = new Byte[4];
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++)
+            {
                 char[] charArray = colorStr.Substring(i * 2 + 1, 2).ToCharArray();
                 Byte b1 = toByte(charArray[0]);
                 Byte b2 = toByte(charArray[1]);
@@ -365,7 +467,8 @@ namespace Ink_Canvas {
             return Color.FromArgb(argb[0], argb[1], argb[2], argb[3]);//#FFFFFFFF
         }
 
-        private static byte toByte(char c) {
+        private static byte toByte(char c)
+        {
             byte b = (byte)"0123456789ABCDEF".IndexOf(c);
             return b;
         }

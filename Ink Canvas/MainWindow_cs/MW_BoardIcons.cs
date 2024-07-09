@@ -7,42 +7,57 @@ using System.Windows.Media;
 using Application = System.Windows.Application;
 using System.Diagnostics;
 
-namespace Ink_Canvas {
-    public partial class MainWindow : Window {
-        private void BoardChangeBackgroundColorBtn_MouseUp(object sender, RoutedEventArgs e) {
+namespace Ink_Canvas
+{
+    public partial class MainWindow : Window
+    {
+        private void BoardChangeBackgroundColorBtn_MouseUp(object sender, RoutedEventArgs e)
+        {
             if (!isLoaded) return;
             Settings.Canvas.UsingWhiteboard = !Settings.Canvas.UsingWhiteboard;
             SaveSettingsToFile();
-            if (Settings.Canvas.UsingWhiteboard) {
+            if (Settings.Canvas.UsingWhiteboard)
+            {
                 if (inkColor == 5) lastBoardInkColor = 0;
-            } else {
+            }
+            else
+            {
                 if (inkColor == 0) lastBoardInkColor = 5;
             }
             ComboBoxTheme_SelectionChanged(null, null);
             CheckColorTheme(true);
-            if (BoardPen.Opacity == 1) {
+            if (BoardPen.Opacity == 1)
+            {
                 BoardPen.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
             }
-            if (BoardEraser.Opacity == 1) {
+            if (BoardEraser.Opacity == 1)
+            {
                 BoardEraser.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
             }
-            if (BoardSelect.Opacity == 1) {
+            if (BoardSelect.Opacity == 1)
+            {
                 BoardSelect.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
             }
-            if (BoardEraserByStrokes.Opacity == 1) {
+            if (BoardEraserByStrokes.Opacity == 1)
+            {
                 BoardEraserByStrokes.Background = (Brush)Application.Current.FindResource("BoardBarBackground");
             }
         }
 
-        private void BoardEraserIcon_Click(object sender, RoutedEventArgs e) {
+        private void BoardEraserIcon_Click(object sender, RoutedEventArgs e)
+        {
             if (lastBorderMouseDownObject != sender) return;
-            if (BoardEraser.Opacity != 1) {
+            if (BoardEraser.Opacity != 1)
+            {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BoardDeleteIcon);
-            } else {
+            }
+            else
+            {
                 forceEraser = true;
                 forcePointEraser = true;
                 double k = 1;
-                switch (Settings.Canvas.EraserSize) {
+                switch (Settings.Canvas.EraserSize)
+                {
                     case 0:
                         k = 0.5;
                         break;
@@ -67,11 +82,15 @@ namespace Ink_Canvas {
             }
         }
 
-        private void BoardEraserIconByStrokes_Click(object sender, RoutedEventArgs e) {
+        private void BoardEraserIconByStrokes_Click(object sender, RoutedEventArgs e)
+        {
             if (lastBorderMouseDownObject != sender) return;
-            if (BoardEraserByStrokes.Opacity != 1) {
+            if (BoardEraserByStrokes.Opacity != 1)
+            {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BoardDeleteIcon);
-            } else {
+            }
+            else
+            {
                 forceEraser = true;
                 forcePointEraser = false;
 
@@ -86,17 +105,20 @@ namespace Ink_Canvas {
             }
         }
 
-        private void BoardSymbolIconDelete_MouseUp(object sender, MouseButtonEventArgs e) {
+        private void BoardSymbolIconDelete_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             PenIcon_Click(null, null);
             SymbolIconDelete_MouseUp(sender, e);
         }
 
-        private void BoardLaunchEasiCamera_MouseUp(object sender, MouseButtonEventArgs e) {
+        private void BoardLaunchEasiCamera_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             ImageBlackboard_MouseUp(null, null);
             SoftwareLauncher.LaunchEasiCamera("希沃视频展台");
         }
 
-        private void BoardLaunchDesmos_MouseUp(object sender, MouseButtonEventArgs e) {
+        private void BoardLaunchDesmos_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             HideSubPanelsImmediately();
             ImageBlackboard_MouseUp(null, null);
             Process.Start("https://www.desmos.com/calculator?lang=zh-CN");
