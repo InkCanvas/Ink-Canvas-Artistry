@@ -389,7 +389,7 @@
                                     <ui:SimpleStackPanel>
                                         <Border Background="{DynamicResource BoardBarTitleBackground}"
                                                 BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1"
-                                                CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5">
+                                                CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5">
                                             <TextBlock Text="手势功能" Foreground="{DynamicResource BoardBarForeground}"
                                                        FontSize="11" FontWeight="Bold" TextAlignment="Left" />
                                         </Border>
@@ -520,7 +520,7 @@
                                     <ui:SimpleStackPanel>
                                         <Border Background="{DynamicResource BoardBarTitleBackground}"
                                                 BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1"
-                                                CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5">
+                                                CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5">
                                             <TextBlock Text="墨迹选项" Foreground="{DynamicResource BoardBarForeground}"
                                                        FontWeight="Bold" />
                                         </Border>
@@ -885,7 +885,7 @@
                                                                         </Viewbox>
                                                                     </Border>
                                                                     <Border x:Name="BoardBorderHighlighterColorPurple"
-                                                                            Background="#ff86f6"
+                                                                            Background="#9333ea"
                                                                             BorderBrush="{DynamicResource BoardBarBorderBrush}"
                                                                             BorderThickness="1" CornerRadius="4"
                                                                             Width="30"
@@ -991,7 +991,7 @@
                                 <ui:SimpleStackPanel Orientation="Vertical">
                                     <Border Background="{DynamicResource BoardBarTitleBackground}"
                                             BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1"
-                                            CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5,0,5">
+                                            CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5,0,5">
                                         <ui:SimpleStackPanel Orientation="Horizontal">
                                             <TextBlock Text="图形(第一行支持长按保持选中)" FontSize="14"
                                                        Foreground="{DynamicResource BoardBarForeground}"
@@ -1161,7 +1161,7 @@
                                     <ui:SimpleStackPanel>
                                         <Border Background="{DynamicResource BoardBarTitleBackground}"
                                                 BorderBrush="{DynamicResource BoardBarBorderBrush}" BorderThickness="1"
-                                                CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5">
+                                                CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5">
                                             <TextBlock Text="更多功能" FontSize="16"
                                                        Foreground="{DynamicResource BoardBarForeground}"
                                                        FontWeight="Bold" />
@@ -1599,14 +1599,14 @@
                                             Foreground="#666666" />
                                     </ui:SimpleStackPanel>
                                 </Border>
-                                <ui:SimpleStackPanel Orientation="Horizontal">
+                                <ui:SimpleStackPanel x:Name="IsAutoUpdateWithSilenceBlock" Orientation="Horizontal">
                                     <TextBlock Text="静默更新" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithSilence" OnContent="开"
                                                      OffContent="关"
                                                      Toggled="ToggleSwitchIsAutoUpdateWithSilence_Toggled" />
                                 </ui:SimpleStackPanel>
                                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="12"
-                                        Visibility="{Binding ElementName=ToggleSwitchIsAutoUpdateWithSilence, Path=Visibility}">
+                                        Visibility="{Binding ElementName=IsAutoUpdateWithSilenceBlock, Path=Visibility}">
                                     <ui:SimpleStackPanel Spacing="12">
                                         <TextBlock
                                             Text="# 关闭静默更新后，已完成安装包的下载后将会弹窗询问是否进行更新，开启静默更新后将会在安装包下载完成后每隔十分钟进行如下检测：①处于静默更新时间段内 ②未处于书写模式 ③未处于画板内。若以上检测通过即会关闭软件进行自动更新。"
@@ -2695,7 +2695,7 @@
                                     <ui:SimpleStackPanel>
                                         <Border Background="{DynamicResource FloatBarTitleBackground}"
                                                 BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1"
-                                                CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5">
+                                                CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5">
                                             <TextBlock Text="墨迹选项" Foreground="{DynamicResource FloatBarForeground}"
                                                        FontWeight="Bold" />
                                         </Border>
@@ -3052,7 +3052,7 @@
                                                                     </Viewbox>
                                                                 </Border>
                                                                 <Border x:Name="BorderHighlighterColorPurple"
-                                                                        Background="#ff86f6"
+                                                                        Background="#9333ea"
                                                                         BorderBrush="{DynamicResource FloatBarBorderBrush}"
                                                                         BorderThickness="1" CornerRadius="4" Width="30"
                                                                         MouseUp="BtnHighlighterColorPurple_Click">
@@ -3138,7 +3138,7 @@
                                     <ui:SimpleStackPanel Orientation="Vertical">
                                         <Border Background="{DynamicResource FloatBarTitleBackground}"
                                                 BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1"
-                                                CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5,0,5">
+                                                CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5,0,5">
                                             <ui:SimpleStackPanel Orientation="Horizontal">
                                                 <TextBlock Text="图形(第一行支持长按保持选中)" FontSize="10"
                                                            Foreground="{DynamicResource FloatBarForeground}"
@@ -3356,7 +3356,7 @@
                                     <ui:SimpleStackPanel>
                                         <Border Background="{DynamicResource FloatBarTitleBackground}"
                                                 BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1"
-                                                CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5">
+                                                CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5">
                                             <TextBlock Text="更多设置" Foreground="{DynamicResource FloatBarForeground}"
                                                        FontWeight="Bold" />
                                         </Border>
@@ -3496,7 +3496,7 @@
                         <ui:SimpleStackPanel>
                             <Border Background="{DynamicResource FloatBarTitleBackground}"
                                     BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1"
-                                    CornerRadius="5,5,0,0" Margin="-1 -1 0 0" Padding="15,5">
+                                    CornerRadius="5,5,0,0" Margin="-1 -1 -1 0" Padding="15,5">
                                 <TextBlock Text="手势选项" FontSize="10" Foreground="{DynamicResource FloatBarForeground}"
                                            FontWeight="Bold" />
                             </Border>

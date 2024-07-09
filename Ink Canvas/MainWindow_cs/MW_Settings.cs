@@ -17,7 +17,7 @@ namespace Ink_Canvas {
         private void ToggleSwitchIsAutoUpdate_Toggled(object sender, RoutedEventArgs e) {
             if (!isLoaded) return;
             Settings.Startup.IsAutoUpdate = ToggleSwitchIsAutoUpdate.IsOn;
-            ToggleSwitchIsAutoUpdateWithSilence.Visibility = ToggleSwitchIsAutoUpdate.IsOn ? Visibility.Visible : Visibility.Collapsed;
+            IsAutoUpdateWithSilenceBlock.Visibility = ToggleSwitchIsAutoUpdate.IsOn ? Visibility.Visible : Visibility.Collapsed;
             SaveSettingsToFile();
         }
         private void ToggleSwitchIsAutoUpdateWithSilence_Toggled(object sender, RoutedEventArgs e) {
