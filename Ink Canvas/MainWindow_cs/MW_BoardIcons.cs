@@ -46,7 +46,6 @@ namespace Ink_Canvas
 
         private void BoardEraserIcon_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             if (BoardEraser.Opacity != 1)
             {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BoardDeleteIcon);
@@ -84,7 +83,6 @@ namespace Ink_Canvas
 
         private void BoardEraserIconByStrokes_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             if (BoardEraserByStrokes.Opacity != 1)
             {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BoardDeleteIcon);
@@ -113,14 +111,14 @@ namespace Ink_Canvas
 
         private void BoardLaunchEasiCamera_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ImageBlackboard_MouseUp(null, null);
+            ImageBlackboard_Click(null, null);
             SoftwareLauncher.LaunchEasiCamera("希沃视频展台");
         }
 
         private void BoardLaunchDesmos_MouseUp(object sender, MouseButtonEventArgs e)
         {
             HideSubPanelsImmediately();
-            ImageBlackboard_MouseUp(null, null);
+            ImageBlackboard_Click(null, null);
             Process.Start("https://www.desmos.com/calculator?lang=zh-CN");
         }
 

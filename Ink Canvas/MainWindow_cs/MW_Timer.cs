@@ -100,7 +100,7 @@ namespace Ink_Canvas
                 {
                     if (!unfoldFloatingBarByUser && !isFloatingBarFolded)
                     {
-                        FoldFloatingBar_MouseUp(null, null);
+                        FoldFloatingBar_Click(null, null);
                     }
                 }
                 else if (WinTabWindowsChecker.IsWindowExisted("幻灯片放映", false))

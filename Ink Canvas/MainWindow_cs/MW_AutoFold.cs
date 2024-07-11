@@ -11,7 +11,7 @@ namespace Ink_Canvas
     {
         bool isFloatingBarFolded = false, isFloatingBarChangingHideMode = false;
 
-        private async void FoldFloatingBar_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void FoldFloatingBar_Click(object sender, RoutedEventArgs e)
         {
             if (sender == null)
             {
@@ -29,7 +29,7 @@ namespace Ink_Canvas
             {
                 isFloatingBarChangingHideMode = true;
                 isFloatingBarFolded = true;
-                if (currentMode != 0) ImageBlackboard_MouseUp(null, null);
+                if (currentMode != 0) ImageBlackboard_Click(null, null);
                 if (StackPanelCanvasControls.Visibility == Visibility.Visible)
                 {
                     if (foldFloatingBarByUser && inkCanvas.Strokes.Count > 2)
@@ -37,8 +37,7 @@ namespace Ink_Canvas
                         ShowNotification("正在清空墨迹并收纳至侧边栏，可进入批注模式后通过【撤销】功能来恢复原先墨迹。");
                     }
                 }
-                lastBorderMouseDownObject = sender;
-                CursorWithDelIcon_Click(sender, null);
+                CursorWithDelIcon_Click(null, null);
                 SidePannelMarginAnimation(-16);
             });
 

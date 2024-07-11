@@ -67,7 +67,7 @@ namespace Ink_Canvas
                     }
                     if (Settings.Startup.IsFoldAtStartup)
                     {
-                        FoldFloatingBar_MouseUp(Fold_Icon, null);
+                        FoldFloatingBar_Click(Fold_Icon, null);
                     }
                 }
                 if (Settings.Startup.IsEnableNibMode)

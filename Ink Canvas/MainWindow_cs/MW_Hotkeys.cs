@@ -49,7 +49,7 @@ namespace Ink_Canvas
         {
             try
             {
-                SymbolIconUndo_MouseUp(lastBorderMouseDownObject, null);
+                SymbolIconUndo_Click(null, null);
             }
             catch { }
         }
@@ -58,14 +58,14 @@ namespace Ink_Canvas
         {
             try
             {
-                SymbolIconRedo_MouseUp(lastBorderMouseDownObject, null);
+                SymbolIconRedo_Click(null, null);
             }
             catch { }
         }
 
         private void HotKey_Clear(object sender, ExecutedRoutedEventArgs e)
         {
-            SymbolIconDelete_MouseUp(lastBorderMouseDownObject, null);
+            SymbolIconDelete_MouseUp(null, null);
         }
 
 
@@ -76,23 +76,23 @@ namespace Ink_Canvas
 
         private void KeyChangeToDrawTool(object sender, ExecutedRoutedEventArgs e)
         {
-            PenIcon_Click(lastBorderMouseDownObject, null);
+            PenIcon_Click(null, null);
         }
 
         private void KeyChangeToQuitDrawTool(object sender, ExecutedRoutedEventArgs e)
         {
             if (currentMode != 0)
             {
-                ImageBlackboard_MouseUp(lastBorderMouseDownObject, null);
+                ImageBlackboard_Click(null, null);
             }
-            CursorIcon_Click(lastBorderMouseDownObject, null);
+            CursorIcon_Click(null, null);
         }
 
         private void KeyChangeToSelect(object sender, ExecutedRoutedEventArgs e)
         {
             if (StackPanelCanvasControls.Visibility == Visibility.Visible)
             {
-                SymbolIconSelect_MouseUp(lastBorderMouseDownObject, null);
+                SymbolIconSelect_Click(null, null);
             }
         }
 
@@ -102,18 +102,18 @@ namespace Ink_Canvas
             {
                 if (Eraser_Icon.Background != null)
                 {
-                    EraserIconByStrokes_Click(lastBorderMouseDownObject, null);
+                    EraserIconByStrokes_Click(null, null);
                 }
                 else
                 {
-                    EraserIcon_Click(lastBorderMouseDownObject, null);
+                    EraserIcon_Click(null, null);
                 }
             }
         }
 
         private void KeyChangeToBoard(object sender, ExecutedRoutedEventArgs e)
         {
-            ImageBlackboard_MouseUp(lastBorderMouseDownObject, null);
+            ImageBlackboard_Click(null, null);
         }
 
         private void KeyCapture(object sender, ExecutedRoutedEventArgs e)

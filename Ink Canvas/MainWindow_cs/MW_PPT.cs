@@ -277,7 +277,7 @@ namespace Ink_Canvas
         {
             if (Settings.Automation.IsAutoFoldInPPTSlideShow && !isFloatingBarFolded)
             {
-                FoldFloatingBar_MouseUp(null, null);
+                FoldFloatingBar_Click(null, null);
             }
             else if (isFloatingBarFolded)
             {
@@ -289,7 +289,7 @@ namespace Ink_Canvas
             {
                 if (currentMode != 0)
                 {
-                    ImageBlackboard_MouseUp(null, null);
+                    ImageBlackboard_Click(null, null);
                 }
 
                 //调整颜色

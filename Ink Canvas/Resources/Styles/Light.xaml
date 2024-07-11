@@ -5,4 +5,8 @@
     <SolidColorBrush x:Key="FloatBarBorderBrush" Color="Black" Opacity="0.8"/>
     <SolidColorBrush x:Key="FloatBarForeground" Color="Black"/>
     <Color x:Key="FloatBarForegroundColor">#FF666666</Color>
+    
+    <Color x:Key="FloatBarButtonBackgroundKey">Transparent</Color>
+    <Color x:Key="FloatBarButtonBackgroundPointerOverKey">#66FFFFFF</Color>
+    <Color x:Key="FloatBarButtonButtonBackgroundPressedKey">#99FFFFFF</Color>
 </ResourceDictionary>

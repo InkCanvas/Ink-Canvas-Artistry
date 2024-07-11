@@ -237,17 +237,15 @@ namespace Ink_Canvas
             isHidingSubPanelsWhenInking = false;
         }
 
-        private void SymbolIconUndo_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconUndo_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             if (!BtnUndo.IsEnabled) return;
             BtnUndo_Click(BtnUndo, null);
             HideSubPanels();
         }
 
-        private void SymbolIconRedo_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconRedo_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             if (!BtnRedo.IsEnabled) return;
             BtnRedo_Click(BtnRedo, null);
             HideSubPanels();
@@ -257,7 +255,7 @@ namespace Ink_Canvas
         {
             if (currentMode != 0)
             {
-                ImageBlackboard_MouseUp(null, null);
+                ImageBlackboard_Click(null, null);
             }
             else
             {
@@ -271,10 +269,8 @@ namespace Ink_Canvas
             }
         }
 
-        private void SymbolIconDelete_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconDelete_MouseUp(object sender, RoutedEventArgs e)
         {
-            if (sender != lastBorderMouseDownObject) return;
-
             if (inkCanvas.GetSelectedStrokes().Count > 0)
             {
                 inkCanvas.Strokes.Remove(inkCanvas.GetSelectedStrokes());
@@ -299,7 +295,7 @@ namespace Ink_Canvas
             BtnSettings_Click(null, null);
         }
 
-        private void SymbolIconSelect_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconSelect_Click(object sender, RoutedEventArgs e)
         {
             BtnSelect_Click(null, null);
             HideSubPanels("select");
@@ -314,7 +310,7 @@ namespace Ink_Canvas
 
         bool Not_Enter_Blackboard_fir_Mouse_Click = true;
         bool isDisplayingOrHidingBlackboard = false;
-        private void ImageBlackboard_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ImageBlackboard_Click(object sender, RoutedEventArgs e)
         {
             if (isDisplayingOrHidingBlackboard) return;
             isDisplayingOrHidingBlackboard = true;
@@ -455,7 +451,6 @@ namespace Ink_Canvas
 
         private void SymbolIconRand_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
             new RandWindow().Show();
@@ -463,8 +458,6 @@ namespace Ink_Canvas
 
         private void SymbolIconRandOne_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
 
@@ -473,8 +466,6 @@ namespace Ink_Canvas
 
         private void GridInkReplayButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
 
@@ -565,7 +556,7 @@ namespace Ink_Canvas
             }
         }
 
-        private void SymbolIconTools_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconTools_Click(object sender, RoutedEventArgs e)
         {
             if (BorderTools.Visibility == Visibility.Visible)
             {

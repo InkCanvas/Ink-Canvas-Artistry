@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 using MessageBox = System.Windows.MessageBox;
 using Point = System.Windows.Point;
@@ -17,7 +16,7 @@ namespace Ink_Canvas
     {
         #region Floating Bar Control
 
-        private void ImageDrawShape_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ImageDrawShape_Click(object sender, RoutedEventArgs e)
         {
             if (BorderDrawShape.Visibility == Visibility.Visible)
             {

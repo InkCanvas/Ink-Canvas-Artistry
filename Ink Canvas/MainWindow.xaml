@@ -47,6 +47,32 @@
         <RoutedUICommand x:Key="HotKey_ChangeToPen4" Text=" " />
         <RoutedUICommand x:Key="HotKey_ChangeToPen5" Text=" " />
         <RoutedUICommand x:Key="HotKey_DrawLine" Text=" " />
+
+        <!-- 定义 SolidColorBrush 资源 -->
+        <SolidColorBrush x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundKey}" Color="{DynamicResource FloatBarButtonBackgroundKey}"/>
+        <SolidColorBrush x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundPointerOverKey}" Color="{DynamicResource FloatBarButtonBackgroundPointerOverKey}"/>
+        <SolidColorBrush x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundPressedKey}" Color="{DynamicResource FloatBarButtonButtonBackgroundPressedKey}"/>
+        <!-- 定义按钮样式 -->
+        <Style x:Key="FloatBarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource {x:Static ui:ThemeKeys.ButtonBackgroundKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource {x:Static ui:ThemeKeys.ButtonBackgroundPointerOverKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource {x:Static ui:ThemeKeys.ButtonBackgroundPressedKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <!--输入命令绑定-->
     <Window.InputBindings>
@@ -344,7 +370,7 @@
                             </Grid>
                         </Border>
                         <Border Margin="5,0,0,0" Width="55" Height="55" MouseDown="Border_MouseDown"
-                                MouseUp="ImageBlackboard_MouseUp" CornerRadius="5"
+                                MouseUp="ImageBlackboard_Click" CornerRadius="5"
                                 Background="{DynamicResource BoardBarBackground}" BorderThickness="1"
                                 BorderBrush="{DynamicResource BoardBarBorderBrush}">
                             <Grid Margin="5">
@@ -482,7 +508,7 @@
                             </Grid>
                         </Border>
                         <Border x:Name="BoardSelect" Width="60" Height="55" MouseDown="Border_MouseDown"
-                                MouseUp="SymbolIconSelect_MouseUp" CornerRadius="5,0,0,5"
+                                MouseUp="SymbolIconSelect_Click" CornerRadius="5,0,0,5"
                                 Background="{DynamicResource BoardBarBackground}" BorderThickness="1 1 0.25 1"
                                 BorderBrush="{DynamicResource BoardBarBorderBrush}">
                             <Grid Margin="5">
@@ -978,7 +1004,7 @@
                             </Grid>
                         </Border>
                         <Border x:Name="BoardGeometry" Width="60" Height="55" MouseDown="Border_MouseDown"
-                                MouseUp="ImageDrawShape_MouseUp" Background="{DynamicResource BoardBarBackground}"
+                                MouseUp="ImageDrawShape_Click" Background="{DynamicResource BoardBarBackground}"
                                 BorderThickness="0 1 0.25 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
                             <Grid Margin="5">
                                 <ikw:SimpleStackPanel Width="28" Height="28" VerticalAlignment="Top"
@@ -1113,7 +1139,7 @@
                             </Border>
                         </Border>
                         <Border x:Name="BoardUndo" Width="60" Height="55" MouseDown="Border_MouseDown"
-                                MouseUp="SymbolIconUndo_MouseUp"
+                                MouseUp="SymbolIconUndo_Click"
                                 IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}"
                                 Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 0.25 1"
                                 BorderBrush="{DynamicResource BoardBarBorderBrush}">
@@ -1132,7 +1158,7 @@
                             </Grid>
                         </Border>
                         <Border x:Name="BoardRedo" Width="60" Height="55" CornerRadius="0,5,5,0"
-                                MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_MouseUp"
+                                MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_Click"
                                 IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}"
                                 Background="{DynamicResource BoardBarBackground}" BorderThickness="0 1 1 1"
                                 BorderBrush="{DynamicResource BoardBarBorderBrush}">
@@ -1151,7 +1177,7 @@
                             </Grid>
                         </Border>
                         <Border Margin="5,0,0,0" Width="60" Height="55" MouseDown="Border_MouseDown"
-                                MouseUp="SymbolIconTools_MouseUp" Background="{DynamicResource BoardBarBackground}"
+                                MouseUp="SymbolIconTools_Click" Background="{DynamicResource BoardBarBackground}"
                                 CornerRadius="5,0,0,5" BorderThickness="1 1 0.25 1"
                                 BorderBrush="{DynamicResource BoardBarBorderBrush}">
                             <Grid Margin="5">
@@ -1330,7 +1356,7 @@
                                 </Border>
                             </Grid>
                         </Border>
-                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_MouseUp"
+                        <Border Width="60" Height="55" MouseDown="Border_MouseDown" MouseUp="ImageBlackboard_Click"
                                 CornerRadius="0,5,5,0" Background="{DynamicResource BoardBarBackground}"
                                 BorderThickness="0 1 1 1" BorderBrush="{DynamicResource BoardBarBorderBrush}">
                             <Grid Margin="5">
@@ -2662,38 +2688,45 @@
                         Name="BorderFloatingBarMainControls" Background="{DynamicResource FloatBarBackground}"
                         CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource FloatBarBorderBrush}">
                     <ikw:SimpleStackPanel Margin="2,0" Name="StackPanelFloatingBar" Orientation="Horizontal">
-                        <ikw:SimpleStackPanel Name="Cursor_Icon" MouseDown="Border_MouseDown" MouseUp="CursorIcon_Click"
-                                             Background="Transparent" Orientation="Vertical"
-                                             HorizontalAlignment="Center" Width="28">
-                            <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                         FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe8b0;"
-                                         Foreground="{DynamicResource FloatBarForeground}" />
-                            <TextBlock Text="鼠标" Margin="1,-1,0,0" x:Name="FloatBarSelectIconTextBlock"
-                                       Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                       TextAlignment="Center" />
-                        </ikw:SimpleStackPanel>
-                        <ikw:SimpleStackPanel Name="Pen_Icon" MouseDown="Border_MouseDown" MouseUp="PenIcon_Click"
-                                             Background="Transparent" Orientation="Vertical"
-                                             HorizontalAlignment="Center" Width="30">
-                            <ui:FontIcon x:Name="PenIcon" Height="22" Width="30" FontSize="16"
-                                         FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xee56;"
-                                         Foreground="{DynamicResource FloatBarForeground}" />
-                            <TextBlock Text="批注" Margin="1,-1,0,0"
-                                       Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                       Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                       TextAlignment="Center" />
-                        </ikw:SimpleStackPanel>
-                        <ikw:SimpleStackPanel Name="SymbolIconDelete" MouseDown="Border_MouseDown"
-                                             MouseUp="SymbolIconDelete_MouseUp" Background="Transparent"
-                                             Orientation="Vertical" HorizontalAlignment="Center" Width="30">
-                            <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                         FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe74d;"
-                                         Foreground="{DynamicResource FloatBarForeground}" />
-                            <TextBlock Text="清空" Margin="1,-1,0,0"
-                                       Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                       Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                       TextAlignment="Center" />
-                        </ikw:SimpleStackPanel>
+                        <Button Width="28" Padding="0" BorderThickness="0"
+                                Click="CursorIcon_Click"
+                                Style="{StaticResource FloatBarButtonStyle}">
+                            <ikw:SimpleStackPanel Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" Width="28">
+                                <ui:FontIcon Height="22" Width="30" FontSize="16" Glyph="&#xe8b0;"
+                                             FontFamily="{StaticResource FluentIconFontFamily}"
+                                             Foreground="{DynamicResource FloatBarForeground}" />
+                                <TextBlock Text="鼠标" Margin="1,-1,0,0" x:Name="FloatBarSelectIconTextBlock"
+                                           FontSize="8" TextAlignment="Center"
+                                           Foreground="{DynamicResource FloatBarForeground}"/>
+                            </ikw:SimpleStackPanel>
+                        </Button>
+                        <Button Width="30" Padding="0" BorderThickness="0"
+                                Click="PenIcon_Click"
+                                Style="{StaticResource FloatBarButtonStyle}">
+                            <ikw:SimpleStackPanel Name="Pen_Icon" Background="Transparent" Orientation="Vertical"
+                                                  HorizontalAlignment="Center" Width="30">
+                                <ui:FontIcon x:Name="PenIcon" Height="22" Width="30" FontSize="16"
+                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xee56;"
+                                             Foreground="{DynamicResource FloatBarForeground}" />
+                                <TextBlock Text="批注" Margin="1,-1,0,0"
+                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                           TextAlignment="Center" />
+                            </ikw:SimpleStackPanel>
+                        </Button>
+                        <Button Width="30" Padding="0" BorderThickness="0"
+                                Click="SymbolIconDelete_MouseUp"
+                                Style="{StaticResource FloatBarButtonStyle}">
+                            <ikw:SimpleStackPanel Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" Width="30">
+                                <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe74d;"
+                                             Foreground="{DynamicResource FloatBarForeground}" />
+                                <TextBlock Text="清空" Margin="1,-1,0,0"
+                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                           TextAlignment="Center" />
+                            </ikw:SimpleStackPanel>
+                        </Button>
                         <ikw:SimpleStackPanel Name="StackPanelCanvasControls" Visibility="Visible"
                                              Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
                             <Grid Width="0">
@@ -3086,59 +3119,71 @@
                                     </ikw:SimpleStackPanel>
                                 </Border>
                             </Grid>
-                            <ikw:SimpleStackPanel Name="Eraser_Icon" MouseUp="EraserIcon_Click"
-                                                 MouseDown="Border_MouseDown" Background="Transparent"
-                                                 Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe75c;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <ui:FontIcon Margin="5,-22,0,-8" Height="22" Width="20" FontSize="12"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf0b6;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Text="圆形擦" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Name="EraserByStrokes_Icon" MouseUp="EraserIconByStrokes_Click"
-                                                 MouseDown="Border_MouseDown" Background="Transparent"
-                                                 Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe75c;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <ui:FontIcon Margin="12,-22,0,-8" Height="22" Width="10" FontSize="8"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf128;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Text="墨迹擦" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Name="SymbolIconSelect" MouseDown="Border_MouseDown"
-                                                 MouseUp="SymbolIconSelect_MouseUp" Background="Transparent"
-                                                 Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe958;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <ui:FontIcon Margin="6,-18,0,-8" Height="22" Width="10" FontSize="10"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf8af;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Text="选择" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="ImageDrawShape_MouseUp"
-                                                 Background="Transparent" Orientation="Vertical"
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                Click="EraserIcon_Click"
+                                Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Name="Eraser_Icon" Background="Transparent"
+                                                      Orientation="Vertical" HorizontalAlignment="Center">
+                                    <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe75c;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <ui:FontIcon Margin="5,-22,0,-8" Height="22" Width="20" FontSize="12"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf0b6;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Text="圆形擦" Margin="1,-1,0,0"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                Click="EraserIconByStrokes_Click"
+                                Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Name="EraserByStrokes_Icon" Background="Transparent"
+                                                     Orientation="Vertical" HorizontalAlignment="Center">
+                                    <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe75c;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <ui:FontIcon Margin="12,-22,0,-8" Height="22" Width="10" FontSize="8"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf128;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Text="墨迹擦" Margin="1,-1,0,0"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="SymbolIconSelect_Click"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Name="SymbolIconSelect" Background="Transparent"
+                                                      Orientation="Vertical" HorizontalAlignment="Center">
+                                    <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe958;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <ui:FontIcon Margin="6,-18,0,-8" Height="22" Width="10" FontSize="10"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf8af;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Text="选择" Margin="1,-1,0,0"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="ImageDrawShape_Click"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Background="Transparent" Orientation="Vertical"
                                                  HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf158;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Text="图形" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
+                                    <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf158;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Text="图形" Margin="1,-1,0,0"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
                             <Grid Width="0">
                                 <Border x:Name="BorderDrawShape" Visibility="Visible"
                                         Background="{DynamicResource FloatBarBackground}"
@@ -3279,85 +3324,103 @@
                                     </ikw:SimpleStackPanel>
                                 </Border>
                             </Grid>
-                            <ikw:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconUndo_MouseUp"
-                                                 Background="Transparent" Orientation="Vertical"
-                                                 HorizontalAlignment="Center"
-                                                 IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}">
-                                <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe7a7;"
-                                             Foreground="{DynamicResource FloatBarForeground}"
-                                             Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
-                                <TextBlock Text="撤销" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconRedo_MouseUp"
-                                                 Background="Transparent" Orientation="Vertical"
-                                                 HorizontalAlignment="Center"
-                                                 IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}">
-                                <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe7a6;"
-                                             Foreground="{DynamicResource FloatBarForeground}"
-                                             Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
-                                <TextBlock Text="重做" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Margin="1.5,0,2.5,0" MouseDown="Border_MouseDown"
-                                                 MouseUp="CursorWithDelIcon_Click" Background="Transparent"
-                                                 Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Margin="-5,0,0,0" Height="22" Width="30" FontSize="14"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe8b0;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <ui:FontIcon Margin="12,-22,0,-8" Height="22" Width="15" FontSize="10"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe74d;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Text="清并鼠" Margin="1,-1,0,0"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                        </ikw:SimpleStackPanel>
-                        <ikw:SimpleStackPanel
-                            Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
-                            <Border Margin="0,2" BorderBrush="{DynamicResource FloatBarForeground}"
-                                    BorderThickness="1,0,0,0" MouseDown="Border_MouseDown"
-                                    MouseUp="ImageBlackboard_MouseUp">
-                                <ikw:SimpleStackPanel Margin="2,-2,0,-2" Orientation="Vertical"
-                                                     HorizontalAlignment="Center" Background="Transparent">
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="SymbolIconUndo_Click"
+                                    IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Background="Transparent" Orientation="Vertical"
+                                                      HorizontalAlignment="Center">
                                     <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16"
-                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe929;"
-                                                 Foreground="{DynamicResource FloatBarForeground}" />
-                                    <TextBlock Margin="0,-1,0,0" Text="画板"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe7a7;"
+                                                 Foreground="{DynamicResource FloatBarForeground}"
+                                                 Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
+                                    <TextBlock Text="撤销" Margin="1,-1,0,0"
                                                Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
                                                Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
                                                TextAlignment="Center" />
                                 </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="SymbolIconRedo_Click"
+                                    IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Background="Transparent" Orientation="Vertical"
+                                                      HorizontalAlignment="Center">
+                                    <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe7a6;"
+                                                 Foreground="{DynamicResource FloatBarForeground}"
+                                                 Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
+                                    <TextBlock Text="重做" Margin="1,-1,0,0"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="CursorWithDelIcon_Click"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Margin="1.5,0,2.5,0" Background="Transparent"
+                                                      Orientation="Vertical" HorizontalAlignment="Center">
+                                    <ui:FontIcon Margin="-5,0,0,0" Height="22" Width="30" FontSize="14"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe8b0;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <ui:FontIcon Margin="12,-22,0,-8" Height="22" Width="15" FontSize="10"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe74d;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Text="清并鼠" Margin="1,-1,0,0"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            
+                        </ikw:SimpleStackPanel>
+                        <ikw:SimpleStackPanel Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
+                            <Border Margin="0,2" BorderBrush="{DynamicResource FloatBarForeground}"
+                                    BorderThickness="1,0,0,0">
+                                <Button Width="30" Padding="0" BorderThickness="0"
+                                        Style="{StaticResource FloatBarButtonStyle}"
+                                        Click="ImageBlackboard_Click">
+                                    <ikw:SimpleStackPanel Margin="1,-2,0,-2" Orientation="Vertical"
+                                                     HorizontalAlignment="Center" Background="Transparent">
+                                        <ui:FontIcon Margin="0,2,0,-2" Height="22" Width="30" FontSize="16"
+                                                     FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe929;"
+                                                     Foreground="{DynamicResource FloatBarForeground}" />
+                                        <TextBlock Margin="0,-1,0,0" Text="画板"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                    </ikw:SimpleStackPanel>
+                                </Button>
                             </Border>
-                            <ikw:SimpleStackPanel MouseDown="Border_MouseDown" MouseUp="SymbolIconTools_MouseUp"
-                                                 Background="Transparent" Orientation="Vertical"
-                                                 HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe8a9;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Margin="0,-1,0,0" Text="工具"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel x:Name="Fold_Icon" MouseDown="Border_MouseDown"
-                                                 MouseUp="FoldFloatingBar_MouseUp" Background="Transparent"
-                                                 Orientation="Vertical" HorizontalAlignment="Center">
-                                <ui:FontIcon Height="22" Width="30" FontSize="16"
-                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xed1a;"
-                                             Foreground="{DynamicResource FloatBarForeground}" />
-                                <TextBlock Margin="0,-1,0,0" Text="隐藏"
-                                           Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
-                                           Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
-                                           TextAlignment="Center" />
-                            </ikw:SimpleStackPanel>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="SymbolIconTools_Click"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel Background="Transparent" Orientation="Vertical"
+                                                      HorizontalAlignment="Center">
+                                    <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe8a9;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Margin="0,-1,0,0" Text="工具"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button Width="30" Padding="0" BorderThickness="0"
+                                    Click="FoldFloatingBar_Click"
+                                    Style="{StaticResource FloatBarButtonStyle}">
+                                <ikw:SimpleStackPanel x:Name="Fold_Icon" Background="Transparent"
+                                                      Orientation="Vertical" HorizontalAlignment="Center">
+                                    <ui:FontIcon Height="22" Width="30" FontSize="16"
+                                                 FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xed1a;"
+                                                 Foreground="{DynamicResource FloatBarForeground}" />
+                                    <TextBlock Margin="0,-1,0,0" Text="隐藏"
+                                               Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
+                                               Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
+                                               TextAlignment="Center" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
                             <Grid Width="0">
                                 <Border Name="BorderTools" Margin="-125,-180,-45,40" CornerRadius="5"
                                         Background="{DynamicResource FloatBarBackground}" BorderThickness="1"
@@ -3485,18 +3548,22 @@
                 </Border>
 
                 <Border Margin="2,0,0,0" x:Name="EnableTwoFingerGestureBorder" Visibility="Visible" Width="36"
-                        Height="36" MouseUp="TwoFingerGestureBorder_MouseUp" CornerRadius="5"
+                        Height="36" CornerRadius="5"
                         Background="{DynamicResource FloatBarBackground}"
                         BorderBrush="{DynamicResource FloatBarBorderBrush}" BorderThickness="1">
-                    <ikw:SimpleStackPanel>
-                        <ui:FontIcon Margin="0,1.5,0,-1.5" x:Name="EnableTwoFingerGestureBtn" Opacity="0.5" Height="22"
+                    <Button Width="30" Padding="0" BorderThickness="0"
+                            Style="{StaticResource FloatBarButtonStyle}"
+                            Click="TwoFingerGestureBorder_MouseUp">
+                        <ikw:SimpleStackPanel>
+                            <ui:FontIcon Margin="0,1.5,0,-1.5" x:Name="EnableTwoFingerGestureBtn" Opacity="0.5" Height="22"
                                      Width="28" FontSize="20" FontFamily="{StaticResource FluentIconFontFamily}"
                                      Glyph="&#xf271;" Foreground="{DynamicResource FloatBarForeground}" />
-                        <TextBlock Text="手势"
+                            <TextBlock Text="手势"
                                    Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}"
                                    Foreground="{DynamicResource FloatBarForeground}" FontSize="8"
                                    TextAlignment="Center" />
-                    </ikw:SimpleStackPanel>
+                        </ikw:SimpleStackPanel>
+                    </Button>
                 </Border>
                 <Grid Width="0">
                     <Border Name="TwoFingerGestureBorder" VerticalAlignment="Top" Visibility="Visible"
