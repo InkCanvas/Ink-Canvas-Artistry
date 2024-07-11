@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+        xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
         xmlns:local="clr-namespace:Ink_Canvas"
         ui:ThemeManager.RequestedTheme="Light" Topmost="True" Background="Transparent"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded"
@@ -16,13 +17,13 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Viewbox HorizontalAlignment="Center" Margin="20,0">
-                <ui:SimpleStackPanel Orientation="Horizontal" Spacing="50" MinHeight="470">
+                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="50" MinHeight="470">
                     <Label Name="LabelOutput" FontSize="70" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Label Name="LabelOutput2" FontSize="70" Visibility="Collapsed" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Label Name="LabelOutput3" FontSize="70" Visibility="Collapsed" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </ui:SimpleStackPanel>
+                </ikw:SimpleStackPanel>
             </Viewbox>
-            <ui:SimpleStackPanel Spacing="40" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ikw:SimpleStackPanel Spacing="40" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <Border x:Name="BorderBtnMinus" MouseUp="BorderBtnMinus_MouseUp" Background="#FBFBFD" Height="70" Width="70" CornerRadius="100">
                         <Border.Effect>
@@ -45,22 +46,22 @@
                 <Grid>
                     <Border x:Name="BorderBtnRand" MouseUp="BorderBtnRand_MouseUp" Background="#0066BF"
                         Height="70" Width="200" CornerRadius="10">
-                        <ui:SimpleStackPanel Margin="3,0" Spacing="10" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <ikw:SimpleStackPanel Margin="3,0" Spacing="10" Orientation="Horizontal" HorizontalAlignment="Center">
                             <ui:FontIcon Height="40" Width="40" FontSize="30" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe77b;" Foreground="White"/>
                             <TextBlock Text="抽奖" Foreground="White" FontSize="35" Margin="-1,-1,4,0" VerticalAlignment="Center"/>
-                        </ui:SimpleStackPanel>
+                        </ikw:SimpleStackPanel>
                     </Border>
                     <Border x:Name="BorderBtnRandCover" Background="#BFBFBF" Visibility="Collapsed"
                         Height="70" Width="200" CornerRadius="10">
-                        <ui:SimpleStackPanel Margin="3,0" Spacing="20" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <ikw:SimpleStackPanel Margin="3,0" Spacing="20" Orientation="Horizontal" HorizontalAlignment="Center">
                             <Viewbox Margin="0,20">
                                 <ui:SymbolIcon Symbol="{Binding ElementName=SymbolIconStart, Path=Symbol}" Foreground="White"/>
                             </Viewbox>
                             <TextBlock Text="抽奖" Foreground="White" FontSize="35" Margin="-1,-1,4,0" VerticalAlignment="Center"/>
-                        </ui:SimpleStackPanel>
+                        </ikw:SimpleStackPanel>
                     </Border>
                 </Grid>
-            </ui:SimpleStackPanel>
+            </ikw:SimpleStackPanel>
             <Border x:Name="BorderBtnHelp" MouseUp="BorderBtnHelp_MouseUp"
                     Background="#FBFBFD" Grid.Column="1"
                     Margin="10,10,60,10" Height="40"
@@ -68,12 +69,12 @@
                 <Border.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
                 </Border.Effect>
-                <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Viewbox Margin="15,10,10,10">
                         <ui:FontIcon Height="20" Width="20" FontSize="18" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe716;" Foreground="Black"/>
                     </Viewbox>
                     <TextBlock Margin="-5,12,15,12" Name="TextBlockPeopleCount" Text="点击此处以导入名单" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </ui:SimpleStackPanel>
+                </ikw:SimpleStackPanel>
             </Border>
             <Border x:Name="BtnClose" MouseUp="BtnClose_MouseUp"
                     HorizontalAlignment="Right" VerticalAlignment="{Binding ElementName=BorderBtnHelp, Path=VerticalAlignment}"

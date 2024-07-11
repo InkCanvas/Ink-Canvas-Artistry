@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ink_Canvas" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False"
-        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern" Topmost="True"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+        xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+        Topmost="True"
         mc:Ignorable="d" ui:WindowHelper.UseModernWindowStyle="True" Loaded="Window_Loaded" Closed="Window_Closed"
         Title="" Height="390" Width="600">
     <Grid>
@@ -28,7 +30,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image Source="Resources/InkCanvas.ico"/>
             <Viewbox Grid.Column="1" Margin="20">
                 <ui:SymbolIcon Symbol="Emoji2" Foreground="#0865B5"/>
             </Viewbox>
@@ -36,7 +37,7 @@
                 <ui:SymbolIcon Symbol="Emoji" Foreground="#169141"/>
             </Viewbox>
         </Grid>
-        <ui:SimpleStackPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="50,0">
+        <ikw:SimpleStackPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="50,0">
             <TextBlock Text="更新日志" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
             <TextBlock Text="1. 支持多步撤销/重做" TextWrapping="Wrap" FontSize="14" Margin="25,5,0,0"/>
             <TextBlock Text="2. 添加 PowerPoint 相关功能" TextWrapping="Wrap" FontSize="14" Margin="25,5,0,0"/>
@@ -44,7 +45,7 @@
             <TextBlock Text="4. 增加双曲线渐近线选项" TextWrapping="Wrap" FontSize="14" Margin="25,5,0,0"/>
             <!--<TextBlock Text="建议" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
             <TextBlock Text="建议配置屏幕为：3840×2160 (缩放: 250%)，或1920×1080 (缩放: 125%)，以获得最佳体验（否则可能造成橡皮大小过大或过小等问题，可在设置中调整）。" TextWrapping="Wrap" FontSize="14" Margin="25,5,-10,0"/>-->
-        </ui:SimpleStackPanel>
+        </ikw:SimpleStackPanel>
         <Label Name="LabelVersion" Grid.Row="3" VerticalContentAlignment="Center" FontSize="12" Margin="20,0"/>
         <Button Content="确定" Grid.Row="3" HorizontalAlignment="Right" Margin="10" Width="100" Click="Button_Click"/>
     </Grid>
