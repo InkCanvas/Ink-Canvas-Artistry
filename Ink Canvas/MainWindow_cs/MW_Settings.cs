@@ -54,7 +54,7 @@ namespace Ink_Canvas
         private async void BtnCheckAutoUpdateProxyReturnedData_Click(object sender, RoutedEventArgs e)
         {
             string ProxyReturnedData = await AutoUpdateHelper.GetRemoteVersion(Settings.Startup.AutoUpdateProxy + "https://raw.githubusercontent.com/ChangSakura/Ink-Canvas/master/AutomaticUpdateVersionControl.txt");
-            ShowNotification(ProxyReturnedData);
+            ShowNotificationAsync(ProxyReturnedData);
         }
 
         private void AutoUpdateWithSilenceStartTimeComboBox_SelectionChanged(object sender, RoutedEventArgs e)
@@ -718,7 +718,7 @@ namespace Ink_Canvas
                 ToggleSwitchRunAtStartup.IsOn = true;
             }
             catch { }
-            ShowNotification("设置已重置为默认推荐设置~");
+            ShowNotificationAsync("设置已重置为默认推荐设置~");
         }
 
         private async void SpecialVersionResetToSuggestion_Click()

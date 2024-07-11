@@ -1,7 +1,5 @@
 ﻿using Ink_Canvas.Helpers;
-using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,23 +12,17 @@ namespace Ink_Canvas
 
         public static void ShowNewMessage(string notice, bool isShowImmediately = true)
         {
-            (Application.Current?.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow)?.ShowNotification(notice, isShowImmediately);
+            (Application.Current?.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow)?.ShowNotificationAsync(notice, isShowImmediately);
         }
 
-        public void ShowNotification(string notice, bool isShowImmediately = true)
+        public async Task ShowNotificationAsync(string notice, bool isShowImmediately = true)
         {
             try
             {
-                lastNotificationShowTime = Environment.TickCount;
-
                 TextBlockNotice.Text = notice;
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(GridNotifications);
-
-                Task.Run(async () =>
-                {
-                    await Task.Delay(300);
-                    AnimationsHelper.HideWithSlideAndFade(GridNotifications);
-                });
+                await Task.Delay(2000);
+                AnimationsHelper.HideWithSlideAndFade(GridNotifications);
             }
             catch { }
         }

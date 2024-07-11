@@ -7,7 +7,7 @@
         xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
         xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
         mc:Ignorable="d" Topmost="True" WindowStartupLocation="CenterScreen" ui:WindowHelper.UseModernWindowStyle="True"
-        ResizeMode="NoResize" Closed="Window_Closed" ui:ThemeManager.RequestedTheme="Light"
+        ResizeMode="NoResize" Closed="Window_Closed"
         Title="演示文档设置 - Ink Canvas Artistry" Height="160" Width="450">
     <Grid Background="{DynamicResource FloatBarBackground}">
         <Grid Margin="10">
@@ -18,7 +18,7 @@
             <Viewbox HorizontalAlignment="Left" Margin="10" Height="30">
                 <ui:FontIcon Height="22" Width="30" FontSize="20" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe786;" Foreground="{DynamicResource FloatBarForeground}"/>
             </Viewbox>
-            <TextBlock TextWrapping="Wrap" Name="Label" Margin="60,0,10,0" VerticalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Name="Label" Margin="60,0,10,0" VerticalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}"/>
             <ikw:SimpleStackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal" Spacing="10">
                 <Button Margin="0" Content="是" Width="100" Click="ButtonYes_Click" Foreground="White">
                     <Button.Resources>

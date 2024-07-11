@@ -48,12 +48,12 @@ namespace Ink_Canvas
                 inkCanvas.Strokes.Save(fs);
                 if (newNotice)
                 {
-                    ShowNotification("墨迹成功保存至 " + savePathWithName);
+                    ShowNotificationAsync("墨迹成功保存至 " + savePathWithName);
                 }
             }
             catch (Exception Ex)
             {
-                ShowNotification("墨迹保存失败");
+                ShowNotificationAsync("墨迹保存失败");
                 LogHelper.WriteLogToFile("墨迹保存失败 | " + Ex.ToString(), LogHelper.LogType.Error);
             }
         }
@@ -106,7 +106,7 @@ namespace Ink_Canvas
                 }
                 catch
                 {
-                    ShowNotification("墨迹打开失败");
+                    ShowNotificationAsync("墨迹打开失败");
                 }
             }
         }

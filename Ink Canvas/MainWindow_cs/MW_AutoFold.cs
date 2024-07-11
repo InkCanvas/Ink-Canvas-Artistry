@@ -34,7 +34,7 @@ namespace Ink_Canvas
                 {
                     if (foldFloatingBarByUser && inkCanvas.Strokes.Count > 2)
                     {
-                        ShowNotification("正在清空墨迹并收纳至侧边栏，可进入批注模式后通过【撤销】功能来恢复原先墨迹。");
+                        ShowNotificationAsync("正在清空墨迹并收纳至侧边栏，可进入批注模式后通过【撤销】功能来恢复原先墨迹。");
                     }
                 }
                 CursorWithDelIcon_Click(null, null);
