@@ -407,7 +407,8 @@
                                                     <ui:ToggleSwitch MinWidth="0" Width="42"
                                                                      Name="BoardToggleSwitchEnableMultiTouchMode"
                                                                      IsOn="False" OnContent="" OffContent=""
-                                                                     Toggled="ToggleSwitchEnableMultiTouchMode_Toggled" />
+                                                                     Toggled="ToggleSwitchEnableMultiTouchMode_Toggled"
+                                                                     ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                 </Viewbox>
                                             </ikw:SimpleStackPanel>
                                             <ikw:SimpleStackPanel
@@ -424,7 +425,8 @@
                                                     <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent=""
                                                                      Name="BoardToggleSwitchEnableTwoFingerTranslate"
                                                                      IsOn="False"
-                                                                     Toggled="ToggleSwitchEnableTwoFingerTranslate_Toggled" />
+                                                                     Toggled="ToggleSwitchEnableTwoFingerTranslate_Toggled"
+                                                                     ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                 </Viewbox>
                                             </ikw:SimpleStackPanel>
                                             <ikw:SimpleStackPanel
@@ -441,7 +443,8 @@
                                                     <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent=""
                                                                      Name="BoardToggleSwitchEnableTwoFingerZoom"
                                                                      IsOn="False"
-                                                                     Toggled="ToggleSwitchEnableTwoFingerZoom_Toggled" />
+                                                                     Toggled="ToggleSwitchEnableTwoFingerZoom_Toggled"
+                                                                     ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                 </Viewbox>
                                             </ikw:SimpleStackPanel>
                                             <ikw:SimpleStackPanel
@@ -457,7 +460,8 @@
                                                 <Viewbox Width="36" Height="25">
                                                     <ui:ToggleSwitch MinWidth="0" Width="42" OnContent="" OffContent=""
                                                                      Name="BoardToggleSwitchEnableTwoFingerRotation"
-                                                                     Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled" />
+                                                                     Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled"
+                                                                     ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                 </Viewbox>
                                             </ikw:SimpleStackPanel>
                                         </ikw:SimpleStackPanel>
@@ -539,7 +543,8 @@
                                                                     <ComboBox Height="30" VerticalAlignment="Center"
                                                                               Name="BoardComboBoxPenStyle"
                                                                               SelectedIndex="0"
-                                                                              SelectionChanged="ComboBoxPenStyle_SelectionChanged">
+                                                                              SelectionChanged="ComboBoxPenStyle_SelectionChanged"
+                                                                              ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}">
                                                                         <ComboBoxItem Content="点集笔锋" />
                                                                         <ComboBoxItem Content="速率笔锋" />
                                                                         <ComboBoxItem Content="关闭笔锋" />
@@ -558,7 +563,8 @@
                                                                             MinWidth="0" Width="70" OnContent="开"
                                                                             OffContent="关" Margin="10,0,0,0"
                                                                             Toggled="ToggleSwitchEnableNibMode_Toggled"
-                                                                            IsOn="True" />
+                                                                            IsOn="True"
+                                                                            ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                                     </ikw:SimpleStackPanel>
                                                                     <ikw:SimpleStackPanel Orientation="Horizontal"
                                                                         Width="135">
@@ -570,7 +576,8 @@
                                                                             Width="70" OnContent="开" OffContent="关"
                                                                             Toggled="ToggleSwitchEnableInkToShape_Toggled"
                                                                             MinWidth="0"
-                                                                            IsOn="{Binding ElementName=ToggleSwitchEnableInkToShape, Path=IsOn}" />
+                                                                            IsOn="{Binding ElementName=ToggleSwitchEnableInkToShape, Path=IsOn}"
+                                                                            ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                                     </ikw:SimpleStackPanel>
                                                                 </ikw:SimpleStackPanel>
                                                             </Controls:UniformGrid>
@@ -582,7 +589,8 @@
                                                                         Maximum="30" Width="250" FontSize="20"
                                                                         IsSnapToTickEnabled="True" Value="5"
                                                                         TickFrequency="1" TickPlacement="None"
-                                                                        ValueChanged="InkWidthSlider_ValueChanged" />
+                                                                        ValueChanged="InkWidthSlider_ValueChanged"
+                                                                        ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                                 <TextBlock
                                                                     Text="{Binding Value, ElementName=InkWidthSlider, Mode=OneWay}"
                                                                     Foreground="{DynamicResource BoardBarForeground}"
@@ -790,7 +798,8 @@
                                                                     Maximum="240" Value="120" Width="140"
                                                                     IsSnapToTickEnabled="True" TickFrequency="20"
                                                                     TickPlacement="None"
-                                                                    ValueChanged="InkAlphaSlider_ValueChanged" />
+                                                                    ValueChanged="InkAlphaSlider_ValueChanged"
+                                                                    ui:ThemeManager.RequestedTheme="{DynamicResource BoardTheme}"/>
                                                         </Viewbox>
                                                     </ikw:SimpleStackPanel>
 
