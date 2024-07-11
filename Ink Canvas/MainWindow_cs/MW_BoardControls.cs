@@ -85,7 +85,7 @@ namespace Ink_Canvas
         {
             if (Settings.Automation.IsAutoSaveStrokesAtClear && inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber)
             {
-                SaveScreenShot(true);
+                SaveScreenshot(true);
             }
             if (CurrentWhiteboardIndex >= WhiteboardTotalCount)
             {
@@ -108,7 +108,7 @@ namespace Ink_Canvas
             if (WhiteboardTotalCount >= 99) return;
             if (Settings.Automation.IsAutoSaveStrokesAtClear && inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber)
             {
-                SaveScreenShot(true);
+                SaveScreenshot(true);
             }
             SaveStrokes();
             ClearStrokes(true);

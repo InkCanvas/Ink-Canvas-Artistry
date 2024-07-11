@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Ink_Canvas
@@ -25,17 +26,11 @@ namespace Ink_Canvas
                 TextBlockNotice.Text = notice;
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(GridNotifications);
 
-                new Thread(new ThreadStart(() =>
+                Task.Run(async () =>
                 {
-                    Thread.Sleep(notificationShowTime + 300);
-                    if (Environment.TickCount - lastNotificationShowTime >= notificationShowTime)
-                    {
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            AnimationsHelper.HideWithSlideAndFade(GridNotifications);
-                        });
-                    }
-                })).Start();
+                    await Task.Delay(300);
+                    AnimationsHelper.HideWithSlideAndFade(GridNotifications);
+                });
             }
             catch { }
         }
