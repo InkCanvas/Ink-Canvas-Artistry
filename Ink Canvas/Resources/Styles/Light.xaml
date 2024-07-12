@@ -5,6 +5,14 @@
     <SolidColorBrush x:Key="FloatBarBorderBrush" Color="Black" Opacity="0.8"/>
     <SolidColorBrush x:Key="FloatBarForeground" Color="Black"/>
     <Color x:Key="FloatBarForegroundColor">#FF666666</Color>
+
+    <SolidColorBrush x:Key="SettingsPageForeground" Color="Black"/>
+    <SolidColorBrush x:Key="SettingsPageAnnotationForeground" Color="#666666"/>
+    <SolidColorBrush x:Key="SettingsPageBorderBrush" Color="Black" Opacity="0.8"/>
+    <SolidColorBrush x:Key="SettingsPageBackground" Color="White" Opacity="0.95"/>
+
+    <SolidColorBrush x:Key="RedBrush" Color="DarkRed"/>
+    <SolidColorBrush x:Key="PurpleBrush" Color="DarkBlue"/>
     
     <Color x:Key="FloatBarButtonBackgroundKey">Transparent</Color>
     <Color x:Key="FloatBarButtonBackgroundPointerOverKey">#66FFFFFF</Color>

@@ -160,7 +160,7 @@
                   PreviewTouchUp="GridInkCanvasSelectionCover_PreviewTouchUp"
                   TouchDown="GridInkCanvasSelectionCover_TouchDown"
                   TouchUp="GridInkCanvasSelectionCover_TouchUp"
-                  Background="#01FFFFFF" Opacity="0.01" Visibility="Visible" Margin="1,0,-1,0" />
+                  Background="#01FFFFFF" Opacity="0.01" Visibility="Visible" Margin="-36,0,36,0" />
             <Border Name="BorderStrokeSelectionControl"
                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,900,0,0"
                     CornerRadius="5" Height="80"
@@ -1527,18 +1527,18 @@
         </Grid>
 
         <!--// 设置界面 //-->
-        <Border Name="BorderSettings" Background="White" BorderBrush="Black"
-                BorderThickness="1" CornerRadius="5" ui:ThemeManager.RequestedTheme="Light"
+        <Border Name="BorderSettings" Background="{DynamicResource SettingsPageBackground}" BorderBrush="{DynamicResource SettingsPageBorderBrush}"
+                BorderThickness="1" CornerRadius="5"
                 Width="440" HorizontalAlignment="Center" Margin="0,150,0,350" Visibility="Visible">
             <Grid>
                 <ui:ScrollViewerEx Margin="0,60,0,50" VerticalScrollBarVisibility="Auto"
-                                   PanningMode="VerticalOnly" ui:ThemeManager.RequestedTheme="Light"
+                                   PanningMode="VerticalOnly"
                                    ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback">
                     <StackPanel Margin="20,20,20,20">
-
-                        <Border Margin="0,0,0,10" Height="100" CornerRadius="5" BorderBrush="Black" BorderThickness="1">
+                        <Border Margin="0,0,0,10" Height="100" CornerRadius="5" BorderBrush="{DynamicResource SettingsPageBorderBrush}" BorderThickness="1">
                             <ikw:SimpleStackPanel VerticalAlignment="Center">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"
+                                           Foreground="{DynamicResource SettingsPageForeground}"
                                            Margin="0,0,0,10" Text="设置更改将自动保存，部分设置需要重启软件后生效" />
                                 <ikw:SimpleStackPanel Spacing="5">
                                     <ikw:SimpleStackPanel Spacing="5" Orientation="Horizontal"
@@ -1546,10 +1546,9 @@
                                         <Button Width="116" Height="45" Click="BtnRestart_Click">
                                             <ikw:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center"
                                                                  HorizontalAlignment="Center" Spacing="0">
-                                                <Image
-                                                    Source="/Resources/Icons-png/ic_fluent_arrow_clockwise_24_regular.png"
-                                                    RenderOptions.BitmapScalingMode="HighQuality" Height="20"
-                                                    Width="26" />
+                                                <ui:FontIcon FontSize="16" Margin="0 1 4 0"
+                                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe72c;"
+                                                             Foreground="{DynamicResource SettingsPageForeground}" />
                                                 <Label FontSize="16" VerticalAlignment="Center" FontWeight="Bold">重启软件</Label>
                                             </ikw:SimpleStackPanel>
                                         </Button>
@@ -1557,10 +1556,9 @@
                                                 Click="BtnResetToSuggestion_Click">
                                             <ikw:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center"
                                                                  HorizontalAlignment="Center" Spacing="0">
-                                                <Image
-                                                    Source="/Resources/Icons-png/ic_fluent_calendar_sync_24_regular.png"
-                                                    RenderOptions.BitmapScalingMode="HighQuality" Height="20"
-                                                    Width="26" />
+                                                <ui:FontIcon FontSize="18" Margin="0 0 4 0"
+                                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe8f7;"
+                                                             Foreground="{DynamicResource SettingsPageForeground}" />
                                                 <Label Margin="2,0,0,0" FontSize="16" VerticalAlignment="Center"
                                                        FontWeight="Bold">
                                                     重置设置
@@ -1570,9 +1568,9 @@
                                         <Button Width="116" Height="45" Click="BtnExit_Click">
                                             <ikw:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center"
                                                                  HorizontalAlignment="Center" Spacing="0">
-                                                <Image Source="/Resources/Icons-png/ic_fluent_power_24_regular.png"
-                                                       RenderOptions.BitmapScalingMode="HighQuality" Height="20"
-                                                       Width="26" />
+                                                <ui:FontIcon FontSize="18" Margin="0 0 4 0"
+                                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe7e8;"
+                                                             Foreground="{DynamicResource SettingsPageForeground}" />
                                                 <Label FontSize="16" VerticalAlignment="Center" FontWeight="Bold">关闭软件</Label>
                                             </ikw:SimpleStackPanel>
                                         </Button>
@@ -1582,28 +1580,29 @@
                         </Border>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="启动选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="启动选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <TextBlock Text="自动检查更新" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="自动检查更新" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdate" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchIsAutoUpdate_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="12">
+                                <Border BorderBrush="{DynamicResource SettingsPageBorderBrush}" BorderThickness="1" CornerRadius="5" Padding="12">
                                     <ikw:SimpleStackPanel Spacing="12">
-                                        <TextBlock
+                                        <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}"
                                             Text="# 开启 自动检查更新 后，将在软件启动时检查版本号，若版本号落后则会尝试从 Github 下载最新版安装包，安装新版本后会自动删除安装包。更新代理设置文本框放空即为直接裸连 Github。"
-                                            TextWrapping="Wrap" Foreground="#666666" />
+                                            TextWrapping="Wrap"/>
                                         <ikw:SimpleStackPanel Orientation="Horizontal">
                                             <TextBlock Text="代理设置" VerticalAlignment="Center" FontSize="14"
-                                                       Margin="0,0,14,0" />
+                                                       Margin="0,0,14,0"
+                                                       Foreground="{DynamicResource SettingsPageForeground}"/>
                                             <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithProxy" OnContent="开"
                                                              OffContent="关"
                                                              Toggled="ToggleSwitchIsAutoUpdateWithProxy_Toggled" />
                                         </ikw:SimpleStackPanel>
                                         <TextBlock x:Name="AutoUpdateWithProxy_Title" Text="更新代理设置" FontSize="15"
-                                                   FontWeight="Bold" TextWrapping="Wrap" Foreground="Black" />
+                                                   FontWeight="Bold" TextWrapping="Wrap" Foreground="{DynamicResource SettingsPageForeground}" />
                                         <TextBox x:Name="AutoUpdateProxyTextBox"
                                                  Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}"
                                                  Text="https://mirror.ghproxy.com/" TextWrapping="Wrap"
@@ -1627,34 +1626,37 @@
                                         <TextBlock
                                             Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}"
                                             Text='# 正确的代理返回数据应为三位版本号，例如 "4.0.0"。' TextWrapping="Wrap"
-                                            Foreground="#666666" />
+                                            Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                         <TextBlock
                                             Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}"
                                             Text='# 检查代理返回数据具有一定延迟，弹窗内容为空即无返回数据。' TextWrapping="Wrap"
-                                            Foreground="#666666" />
+                                            Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                     </ikw:SimpleStackPanel>
                                 </Border>
                                 <ikw:SimpleStackPanel x:Name="IsAutoUpdateWithSilenceBlock" Orientation="Horizontal">
-                                    <TextBlock Text="静默更新" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="静默更新" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" 
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithSilence" OnContent="开"
                                                      OffContent="关"
                                                      Toggled="ToggleSwitchIsAutoUpdateWithSilence_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="12"
+                                <Border BorderBrush="{DynamicResource SettingsPageBorderBrush}" BorderThickness="1" CornerRadius="5" Padding="12"
                                         Visibility="{Binding ElementName=IsAutoUpdateWithSilenceBlock, Path=Visibility}">
                                     <ikw:SimpleStackPanel Spacing="12">
                                         <TextBlock
                                             Text="# 关闭静默更新后，已完成安装包的下载后将会弹窗询问是否进行更新，开启静默更新后将会在安装包下载完成后每隔十分钟进行如下检测：①处于静默更新时间段内 ②未处于书写模式 ③未处于画板内。若以上检测通过即会关闭软件进行自动更新。"
-                                            TextWrapping="Wrap" Foreground="#666666" />
+                                            TextWrapping="Wrap"
+                                            Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
                                         <ikw:SimpleStackPanel x:Name="AutoUpdateTimePeriodBlock" Spacing="12">
                                             <ikw:SimpleStackPanel Spacing="12">
                                                 <TextBlock Text="静默更新时间段" FontSize="15" FontWeight="Bold"
-                                                           TextWrapping="Wrap" Foreground="Black" />
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{DynamicResource SettingsPageForeground}"/>
                                                 <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="12">
                                                     <ikw:SimpleStackPanel Orientation="Horizontal">
                                                         <TextBlock Margin="0,0,10,0" VerticalAlignment="Center"
                                                                    Text="起始时间" FontSize="14" TextWrapping="Wrap"
-                                                                   Foreground="Black" />
+                                                                   Foreground="{DynamicResource SettingsPageForeground}" />
                                                         <ComboBox x:Name="AutoUpdateWithSilenceStartTimeComboBox"
                                                                   Width="90"
                                                                   SelectionChanged="AutoUpdateWithSilenceStartTimeComboBox_SelectionChanged" />
@@ -1662,7 +1664,7 @@
                                                     <ikw:SimpleStackPanel Orientation="Horizontal">
                                                         <TextBlock Margin="0,0,10,0" VerticalAlignment="Center"
                                                                    Text="终止时间" FontSize="14" TextWrapping="Wrap"
-                                                                   Foreground="Black" />
+                                                                   Foreground="{DynamicResource SettingsPageForeground}" />
                                                         <ComboBox x:Name="AutoUpdateWithSilenceEndTimeComboBox"
                                                                   Width="90"
                                                                   SelectionChanged="AutoUpdateWithSilenceEndTimeComboBox_SelectionChanged" />
@@ -1670,18 +1672,21 @@
                                                 </ikw:SimpleStackPanel>
                                                 <TextBlock Width="340"
                                                            Text="# 若终止时间小于起始时间，即将终止时间视为第二天的时间。# 若起始时间与终止时间相同，即视为全天候时间。"
-                                                           TextWrapping="Wrap" Foreground="#666666" />
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
                                             </ikw:SimpleStackPanel>
                                         </ikw:SimpleStackPanel>
                                     </ikw:SimpleStackPanel>
                                 </Border>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <TextBlock Text="开机时运行" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="开机时运行" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchRunAtStartup" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchRunAtStartup_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="开机运行后收纳到侧边栏" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchFoldAtStartup" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchFoldAtStartup_Toggled" />
@@ -1690,76 +1695,89 @@
                         </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="画板选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="画板选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <TextBlock Text="显示画笔光标" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="显示画笔光标" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchShowCursor" IsOn="False" OnContent="开"
                                                      OffContent="关" Toggled="ToggleSwitchShowCursor_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <TextBlock Text="橡皮大小" FontSize="14" />
-                                <ComboBox Name="ComboBoxEraserSize" SelectedIndex="2"
-                                          SelectionChanged="ComboBoxEraserSize_SelectionChanged">
-                                    <ComboBoxItem Content="小" />
-                                    <ComboBoxItem Content="较小" />
-                                    <ComboBoxItem Content="中（默认）" />
-                                    <ComboBoxItem Content="较大" />
-                                    <ComboBoxItem Content="大" />
-                                </ComboBox>
+                                <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <TextBlock Text="橡皮大小：" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource SettingsPageForeground}"/>
+                                    <ComboBox Name="ComboBoxEraserSize" SelectedIndex="2"
+                                              Margin="5 0 0 0"
+                                              SelectionChanged="ComboBoxEraserSize_SelectionChanged">
+                                        <ComboBoxItem Content="小" />
+                                        <ComboBoxItem Content="较小" />
+                                        <ComboBoxItem Content="中（默认）" />
+                                        <ComboBoxItem Content="较大" />
+                                        <ComboBoxItem Content="大" />
+                                    </ComboBox>
+                                </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="退出画板模式后隐藏墨迹" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchHideStrokeWhenSelecting" IsOn="False"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchHideStrokeWhenSelecting_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Text="# 开启 退出画板模式后隐藏墨迹 选项后，进入 PPT 模式时未处于批注模式时不会显示墨迹。" TextWrapping="Wrap"
-                                           Foreground="#666666" />
-                                <TextBlock Text="保留双曲线渐近线" FontSize="14" />
-                                <ComboBox Name="ComboBoxHyperbolaAsymptoteOption" SelectedIndex="0"
-                                          SelectionChanged="ComboBoxHyperbolaAsymptoteOption_SelectionChanged">
-                                    <ComboBoxItem Content="是" />
-                                    <ComboBoxItem Content="否" />
-                                    <ComboBoxItem Content="每次询问" />
-                                </ComboBox>
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
+                                <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <TextBlock Text="保留双曲线渐近线：  " VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
+                                    <ComboBox Name="ComboBoxHyperbolaAsymptoteOption" SelectedIndex="0"
+                                              SelectionChanged="ComboBoxHyperbolaAsymptoteOption_SelectionChanged">
+                                        <ComboBoxItem Content="是" />
+                                        <ComboBoxItem Content="否" />
+                                        <ComboBoxItem Content="每次询问" />
+                                    </ComboBox>
+                                </ikw:SimpleStackPanel>
                                 <TextBlock Text="# 请注意，若不保留双曲线渐近线可能会有遇到撤回相关的 BUG 影响用。" TextWrapping="Wrap"
-                                           Foreground="#666666" />
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                             </ikw:SimpleStackPanel>
                         </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="手势选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="手势选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="自动开关两指缩放功能" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoSwitchTwoFingerGesture" IsOn="True"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoSwitchTwoFingerGesture_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Text="# 开启 自动开关两指缩放功能 后退出画板模式时自动关闭双指移动手势，进入画板模式时自动开启双指移动手势"
-                                           TextWrapping="Wrap" Foreground="#666666" />
+                                           TextWrapping="Wrap"
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="允许双指旋转选中的墨迹" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableTwoFingerRotationOnSelection"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Text="# 允许选中墨迹后对墨迹进行双指或多指缩放操作（此设置不受“允许双指旋转”设置的影响）" TextWrapping="Wrap"
-                                           Foreground="#666666" />
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                             </ikw:SimpleStackPanel>
                         </GroupBox>
                         <GroupBox Name="GroupBoxInkRecognition">
                             <GroupBox.Header>
-                                <TextBlock Text="墨迹识别选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="墨迹识别选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
-                                <TextBlock Text="# 可实现智能识别圆、三角形、矩形，并自动转换为规范图形。" Foreground="#666666" />
+                                <TextBlock Text="# 可实现智能识别圆、三角形、矩形，并自动转换为规范图形。" 
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <TextBlock Text="启用墨迹识别" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="启用墨迹识别" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableInkToShape" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchEnableInkToShape_Toggled" IsOn="True" />
                                 </ikw:SimpleStackPanel>
@@ -1767,18 +1785,22 @@
                         </GroupBox>
                         <GroupBox Name="GroupBoxAppearanceNewUI">
                             <GroupBox.Header>
-                                <TextBlock Text="外观选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="外观选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
-                                <TextBlock Text="颜色主题" FontSize="14" />
-                                <ComboBox Name="ComboBoxTheme" SelectedIndex="0"
-                                          SelectionChanged="ComboBoxTheme_SelectionChanged">
-                                    <ComboBoxItem Content="浅色（默认）" />
-                                    <ComboBoxItem Content="深色" />
-                                    <ComboBoxItem Content="跟随系统" />
-                                </ComboBox>
+                                <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <TextBlock Text="颜色主题：  " VerticalAlignment="Center" FontSize="14" 
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
+                                    <ComboBox Name="ComboBoxTheme" SelectedIndex="0"
+                                              SelectionChanged="ComboBoxTheme_SelectionChanged">
+                                        <ComboBoxItem Content="浅色（默认）" />
+                                        <ComboBoxItem Content="深色" />
+                                        <ComboBoxItem Content="跟随系统" />
+                                    </ComboBox>
+                                </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="在调色盘窗口中显示 笔尖模式 按钮" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableDisPlayNibModeToggle" IsOn="False"
                                                      OnContent="开" OffContent="关"
@@ -1786,6 +1808,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="浮动工具栏背景色" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchColorfulViewboxFloatingBar" IsOn="False"
                                                      OnContent="开" OffContent="关"
@@ -1793,6 +1816,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="浮动工具栏 UI 90% 缩放" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableViewboxFloatingBarScaleTransform"
                                                      IsOn="True" OnContent="开" OffContent="关"
@@ -1800,6 +1824,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="画板 UI 80% 缩放" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableViewboxBlackBoardScaleTransform"
                                                      IsOn="False" OnContent="开" OffContent="关"
@@ -1809,12 +1834,14 @@
                         </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="PPT 选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="PPT 选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
-                                <TextBlock Text="# 此部分的设置项将会在幻灯片播放时使用，优先级高于其他设置项" Foreground="#666666" />
+                                <TextBlock Text="# 此部分的设置项将会在幻灯片播放时使用，优先级高于其他设置项"
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="显示 PPT 下方翻页箭头按钮" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchShowPPTNavigationPanelBottom" IsOn="False"
                                                      OnContent="开" OffContent="关"
@@ -1822,6 +1849,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="显示 PPT 下方页码按钮" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchShowButtonPPTNavigationBottom" IsOn="True"
                                                      OnContent="开" OffContent="关"
@@ -1829,6 +1857,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="显示 PPT 侧边翻页箭头按钮" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchShowPPTNavigationPanelSide" IsOn="True"
                                                      OnContent="开" OffContent="关"
@@ -1836,33 +1865,38 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="显示 PPT 侧边页码按钮" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchShowButtonPPTNavigationSides" IsOn="True"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchShowButtonPPTNavigationSides_OnToggled" />
                                 </ikw:SimpleStackPanel>
-                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="#3f3f46"
+                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="{DynamicResource SettingsPageBorderBrush}"
                                       StrokeThickness="1" Margin="0,4,0,4" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="Microsoft PowerPoint 支持" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchSupportPowerPoint" IsOn="True" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchSupportPowerPoint_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <TextBlock Text="WPS 支持" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="WPS 支持" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchSupportWPS" IsOn="True" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchSupportWPS_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock
                                     Text="# 不推荐使用 WPS Office，鉴于其对于触摸设备的较差支持及其自身的兼容性问题，对 WPS Office 支持时会导致 WPS Office 关闭时卡顿。"
-                                    TextWrapping="Wrap" Foreground="#666666" />
-                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="#3f3f46"
+                                    TextWrapping="Wrap"
+                                    Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
+                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="{DynamicResource SettingsPageBorderBrush}"
                                       StrokeThickness="1" Margin="0,4,0,4" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="进入 PPT 放映时自动进入批注模式" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchShowCanvasAtNewSlideShow" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -1870,6 +1904,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="允许幻灯片模式下的双指手势" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableTwoFingerGestureInPresentationMode"
                                                      IsOn="False" FontWeight="Bold" OnContent="开" OffContent="关"
@@ -1877,6 +1912,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="允许使用手指手势进行幻灯片翻页" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEnableFingerGestureSlideShowControl"
                                                      IsOn="False" FontWeight="Bold" OnContent="开" OffContent="关"
@@ -1884,27 +1920,32 @@
                                 </ikw:SimpleStackPanel>
                                 <TextBlock
                                     Text="# 允许开启画板时使用手指手势进行幻灯片翻页（启用后，在幻灯片放映模式下，当画板无墨迹时，使用手指（笔尖或手掌无法识别）左右滑动即可控制幻灯片翻页。）"
-                                    TextWrapping="Wrap" Foreground="#666666" />
+                                    TextWrapping="Wrap" 
+                                    Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="自动幻灯片截屏" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoSaveScreenShotInPowerPoint" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoSaveScreenShotInPowerPoint_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Text="#开启 自动幻灯片截屏 后将会在幻灯片有墨迹时翻页自动截屏" TextWrapping="Wrap"
-                                           Foreground="#666666" />
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="自动保存幻灯片墨迹" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoSaveStrokesInPowerPoint" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoSaveStrokesInPowerPoint_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Text="#开启 自动保存幻灯片墨迹 后将在结束幻灯片放映时自动将保存已有墨迹，并在下次打开时自动加载（文件名和幻灯片页数都要相同）"
-                                           TextWrapping="Wrap" Foreground="#666666" />
+                                           TextWrapping="Wrap"
+                                           Foreground="{DynamicResource SettingsPageAnnotationForeground}"/>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="记忆并提示上次播放位置" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchNotifyPreviousPage" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -1912,6 +1953,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="提示隐藏幻灯片" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchNotifyHiddenPage" IsOn="False" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
@@ -1919,6 +1961,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock Text="提示是否已启用自动播放" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchNotifyAutoPlayPresentation" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -1929,12 +1972,13 @@
                         </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="高级选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="高级选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
-                                <TextBlock Text="#可在手指触摸画板时显示圆形橡皮或手掌触摸画板时显示的橡皮比&#x000A;手掌大很多时调整" Foreground="#666666" />
+                                <TextBlock Text="#可在手指触摸画板时显示圆形橡皮或手掌触摸画板时显示的橡皮比&#x000A;手掌大很多时调整" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="特殊屏幕模式" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="特殊屏幕模式" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" 
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchIsSpecialScreen" IsOn="True" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchIsSpecialScreen_OnToggled" />
@@ -1956,22 +2000,25 @@
                                 </StackPanel>
                                 <ikw:SimpleStackPanel Spacing="8" Margin="0,4,0,4"
                                                      Visibility="{Binding Visibility,ElementName=TouchMultiplierSlider}">
-                                    <TextBlock FontSize="14" Text="在下方区域内用笔尖点击以估计触摸大小倍数" />
-                                    <TextBlock Text="# 数值仅供参考" Foreground="#666666" />
-                                    <Border Margin="0,0,20,0" CornerRadius="4" Height="48" Background="White"
-                                            BorderBrush="Black" BorderThickness="2"
+                                    <TextBlock FontSize="14" Text="在下方区域内用笔尖点击以估计触摸大小倍数"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
+                                    <TextBlock Text="# 数值仅供参考" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
+                                    <Border Margin="0,0,20,0" CornerRadius="4" Height="48" Background="{DynamicResource SettingsPageBackground}"
+                                            BorderBrush="{DynamicResource SettingsPageBorderBrush}" BorderThickness="2"
                                             TouchDown="BorderCalculateMultiplier_TouchDown" />
-                                    <TextBlock Name="TextBlockShowCalculatedMultiplier" FontSize="14" />
+                                    <TextBlock Name="TextBlockShowCalculatedMultiplier" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="橡皮擦绑定触摸大小倍数" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchEraserBindTouchMultiplier" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchEraserBindTouchMultiplier_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Text="# BoundsWidth 参数作为接触面积区分界限，用来区分橡皮和书写模式。笔尖模式参数值应较小。"
-                                           TextWrapping="Wrap" Foreground="#666666" />
+                                           TextWrapping="Wrap" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <StackPanel Orientation="Horizontal"
                                             Visibility="{Binding Visibility,ElementName=TouchMultiplierSlider}">
                                     <Slider x:Name="NibModeBoundsWidthSlider" Minimum="1" Maximum="50" Width="340"
@@ -1994,22 +2041,25 @@
                                         VerticalAlignment="Bottom" Margin="10,0,0,8" FontSize="14" Width="30" />
                                 </StackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="四边红外模式" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="四边红外模式" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchIsQuadIR" IsOn="False" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchIsQuadIR_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="#3f3f46"
+                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="{DynamicResource SettingsPageBorderBrush}"
                                       StrokeThickness="1" Margin="0,4,0,4" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="记录日志" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0" />
+                                    <TextBlock Text="记录日志" VerticalAlignment="Center" FontSize="14" Margin="0,0,14,0"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ui:ToggleSwitch Name="ToggleSwitchIsLogEnabled" IsOn="True" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchIsLogEnabled_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <TextBlock Text="# 日志文件超过 512 KB 时会自动删除。" TextWrapping="Wrap" Foreground="#666666" />
+                                <TextBlock Text="# 日志文件超过 512 KB 时会自动删除。" TextWrapping="Wrap" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="关闭软件时二次弹窗确认" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchIsSecondConfimeWhenShutdownApp" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2017,6 +2067,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="阻止 Win 10/11 的边缘手势"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                VerticalAlignment="Center"
                                                FontSize="14" Margin="0,0,6,0" />
                                     <ui:ToggleSwitch OnContent="" OffContent=""
@@ -2028,11 +2079,12 @@
                         </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="自动选项" FontWeight="Bold" Foreground="#18181b" FontSize="26" />
+                                <TextBlock Text="自动选项" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="0">
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“希沃白板”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInEasiNote" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2040,6 +2092,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="自动收纳忽略桌面EN批注窗口" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInEasiNoteIgnoreDesktopAnno" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2047,6 +2100,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“希沃视频展台”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInEasiCamera" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2054,6 +2108,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“希沃轻白板”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInEasiNote3C" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2061,6 +2116,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“希沃品课”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInSeewoPincoTeacher" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2068,6 +2124,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“鸿合白板”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInHiteTouchPro" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2075,6 +2132,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“鸿合视频展台”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInHiteCamera" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2082,6 +2140,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“文香白板”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInWxBoardMain" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2089,6 +2148,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“中原旧白板”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInOldZyBoard" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2096,6 +2156,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入“微软 Whiteboard”时自动收纳" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInMSWhiteboard" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2103,15 +2164,17 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="进入PPT 放映时自动收纳至侧边栏" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoFoldInPPTSlideShow" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoFoldInPPTSlideShow_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="#3f3f46"
+                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="{DynamicResource SettingsPageBorderBrush}"
                                       StrokeThickness="1" Margin="0,4,0,4" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="自动查杀希沃“PPT 小工具”" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoKillPptService" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2119,18 +2182,20 @@
                                 </ikw:SimpleStackPanel>
                                 <TextBlock
                                     Text="# 请注意，查杀 PPT 小工具会导致希沃课堂授课助手无法使用，直接进入希沃课堂授课助手安装目录删除 Office.dll 文件即可进入 PPT 放映时不会启动希沃的 PPT 工具栏。"
-                                    TextWrapping="Wrap" Foreground="#666666" />
+                                    TextWrapping="Wrap" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="自动查杀 希沃白板5" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoKillEasiNote" IsOn="False" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoKillEasiNote_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="#3f3f46"
+                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="{DynamicResource SettingsPageBorderBrush}"
                                       StrokeThickness="1" Margin="0,4,0,4" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="清屏时自动截图" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoSaveStrokesAtClear" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2138,6 +2203,7 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="截图分日期文件夹保存" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchSaveScreenshotsInDateFolders" IsOn="False"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
@@ -2145,12 +2211,13 @@
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="截图时自动保存墨迹" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoSaveStrokesAtScreenshot" IsOn="True"
                                                      FontWeight="Bold" OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoSaveStrokesAtScreenshot_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="#3f3f46"
+                                <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="400" Y2="0" Stroke="{DynamicResource SettingsPageBorderBrush}"
                                       StrokeThickness="1" Margin="0,4,0,4" />
                                 <!--
                                 <ui:ToggleSwitch Name="ToggleSwitchClearExitingWritingMode" Header="切换到鼠标模式后自动清屏" IsOn="False" OnContent="开" OffContent="关" Toggled="ToggleSwitchExitingWritingMode_Toggled"/>
@@ -2169,7 +2236,7 @@
                                         VerticalAlignment="Bottom" Margin="10,0,0,8"
                                         FontSize="14" Width="25" HorizontalAlignment="Center" />
                                 </StackPanel>
-                                <TextBlock FontSize="15">墨迹、截图自动保存位置:</TextBlock>
+                                <TextBlock FontSize="15" Foreground="{DynamicResource SettingsPageForeground}" Text="墨迹、截图自动保存位置：" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="10">
                                     <TextBox Width="320" x:Name="AutoSavedStrokesLocation" Text="D:\Ink Canvas"
                                              TextWrapping="Wrap"
@@ -2177,7 +2244,7 @@
                                     <Button Name="AutoSavedStrokesLocationButton" Grid.Row="1" Content="浏览"
                                             Click="AutoSavedStrokesLocationButton_Click" />
                                 </ikw:SimpleStackPanel>
-                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="12">
+                                <ikw:SimpleStackPanel Margin="0 5 0 0" Orientation="Horizontal" Spacing="12">
                                     <Button Name="SetAutoSavedStrokesLocationToDiskDButton" Grid.Row="1"
                                             Content="设置保存到 D:\Ink Canvas"
                                             Click="SetAutoSavedStrokesLocationToDiskDButton_Click" />
@@ -2185,56 +2252,65 @@
                                             Content="设置保存到 文档"
                                             Click="SetAutoSavedStrokesLocationToDocumentFolderButton_Click" />
                                 </ikw:SimpleStackPanel>
-                                <TextBlock Text="* 请注意检查保存文件夹是否有写入权限" TextWrapping="Wrap" Foreground="#666666" />
+                                <TextBlock Text="* 请注意检查保存文件夹是否有写入权限" TextWrapping="Wrap" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="定期自动删除超过保存时间的墨迹、截图文件" VerticalAlignment="Center" FontSize="14"
+                                               Foreground="{DynamicResource SettingsPageForeground}"
                                                Margin="0,0,14,0" />
                                     <ui:ToggleSwitch Name="ToggleSwitchAutoDelSavedFiles" IsOn="True" FontWeight="Bold"
                                                      OnContent="开" OffContent="关"
                                                      Toggled="ToggleSwitchAutoDelSavedFiles_Toggled" />
                                 </ikw:SimpleStackPanel>
-                                <TextBlock Text="！请注意自动删除功能将会删除自动保存目录下所有后缀名为 .icstk 和 .png 的文件！" TextWrapping="Wrap"
-                                           Foreground="Black" />
-                                <TextBlock FontSize="15">保存时间设置（Days）:</TextBlock>
-                                <ComboBox Name="ComboBoxAutoDelSavedFilesDaysThreshold" SelectedIndex="4"
-                                          SelectionChanged="ComboBoxAutoDelSavedFilesDaysThreshold_SelectionChanged">
-                                    <ComboBoxItem Content="1" />
-                                    <ComboBoxItem Content="3" />
-                                    <ComboBoxItem Content="5" />
-                                    <ComboBoxItem Content="7" />
-                                    <ComboBoxItem Content="15" />
-                                    <ComboBoxItem Content="30" />
-                                    <ComboBoxItem Content="60" />
-                                    <ComboBoxItem Content="100" />
-                                    <ComboBoxItem Content="365" />
-                                </ComboBox>
+                                <TextBlock Text="请注意将会删除自动保存目录下所有后缀名为 .icstk 和 .png 的文件！" TextWrapping="Wrap"
+                                           Foreground="{DynamicResource RedBrush}" FontWeight="Bold"/>
+                                <ikw:SimpleStackPanel Margin="0 5 0 0" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock FontSize="15" VerticalAlignment="Center" Text="保存时间设置（Days）：  "
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
+                                    <ComboBox Name="ComboBoxAutoDelSavedFilesDaysThreshold" SelectedIndex="4"
+                                              SelectionChanged="ComboBoxAutoDelSavedFilesDaysThreshold_SelectionChanged">
+                                        <ComboBoxItem Content="1" />
+                                        <ComboBoxItem Content="3" />
+                                        <ComboBoxItem Content="5" />
+                                        <ComboBoxItem Content="7" />
+                                        <ComboBoxItem Content="15" />
+                                        <ComboBoxItem Content="30" />
+                                        <ComboBoxItem Content="60" />
+                                        <ComboBoxItem Content="100" />
+                                        <ComboBoxItem Content="365" />
+                                    </ComboBox>
+                                </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
                         <GroupBox>
                             <GroupBox.Header>
-                                <TextBlock Text="关于 Ink Canvas Artistry" FontWeight="Bold" Foreground="#18181b"
+                                <TextBlock Text="关于 Ink Canvas Artistry" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}"
                                            FontSize="26" />
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="18" FontWeight="Bold" Text="当前版本：" />
+                                    <TextBlock FontSize="18" FontWeight="Bold" Text="当前版本："
+                                               Foreground="{DynamicResource SettingsPageForeground}" />
                                     <TextBlock x:Name="AppVersionTextBlock" FontSize="18" FontWeight="Bold"
-                                               Text="4.X.X.X" />
+                                               Text="4.X.X.X"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                 </ikw:SimpleStackPanel>
                                 <TextBlock
                                     Text="* 使用和分发本软件前，请您应当且务必知晓相关开源协议，且您应当知晓本软件基于 https://github.com/WXRIW/Ink-Canvas 修改而成。"
-                                    TextWrapping="Wrap" Foreground="#666666" />
-                                <Border BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="5" Padding="0,5">
+                                    TextWrapping="Wrap" Foreground="{DynamicResource SettingsPageAnnotationForeground}" />
+                                <Border BorderBrush="{DynamicResource PurpleBrush}" BorderThickness="2" CornerRadius="5" Padding="0,5">
                                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"
                                                Orientation="Horizontal">
-                                        <TextBlock Text="开源协议: " FontSize="15" FontWeight="Bold" />
-                                        <Image Source="/Resources/Icons-png/ic_fluent_scales_24_regular.png"
-                                               RenderOptions.BitmapScalingMode="HighQuality" Margin="3,0" Width="20"
-                                               Height="20" />
-                                        <TextBlock Text="GNU General Public License v3.0" FontSize="15" />
+                                        <TextBlock Text="开源协议: " FontSize="15" FontWeight="Bold"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
+                                        <ui:FontIcon FontSize="16" Margin="0 0 4 0"
+                                                             FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xeb95;"
+                                                             Foreground="{DynamicResource SettingsPageForeground}" />
+                                        <TextBlock Text="GNU General Public License v3.0" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </WrapPanel>
                                 </Border>
-                                <TextBlock FontSize="15">
+                                <TextBlock FontSize="15"
+                                           Foreground="{DynamicResource SettingsPageForeground}">
                                     <Bold>本项目仓库源:</Bold>
                                     <Hyperlink Click="HyperlinkSourceToPresentRepository_Click">
                                         <TextBlock Margin="2,0" Width="250"
@@ -2242,23 +2318,26 @@
                                     </Hyperlink>
                                 </TextBlock>
                                 <WrapPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock Text="本项目开发者: " FontSize="15" FontWeight="Bold" />
+                                    <TextBlock Text="本项目开发者: " FontSize="15" FontWeight="Bold"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <Image Source="/Resources/DeveloperAvatars/ChangSakura.png"
                                            RenderOptions.BitmapScalingMode="HighQuality" Width="20" Height="20" />
-                                    <TextBlock Text="CJ Wu (ChangSakura)" FontSize="15" />
+                                    <TextBlock Text="CJ Wu (ChangSakura)" FontSize="15"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                 </WrapPanel>
 
                                 <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="350" Y2="0" Stroke="Black"
                                       StrokeThickness="2" />
 
-                                <TextBlock FontSize="15">
+                                <TextBlock FontSize="15" Foreground="{DynamicResource SettingsPageForeground}">
                                     <Bold>原项目仓库源:</Bold>
                                     <Hyperlink Click="HyperlinkSourceToOringinalRepository_Click">
-                                        <TextBlock Margin="2,0" Text="https://github.com/WXRIW/Ink-Canvas"></TextBlock>
+                                        <TextBlock Margin="2,0" Text="https://github.com/WXRIW/Ink-Canvas" />
                                     </Hyperlink>
                                 </TextBlock>
                                 <WrapPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock Text="原项目开发者: " FontSize="15" FontWeight="Bold" />
+                                    <TextBlock Text="原项目开发者: " FontSize="15" FontWeight="Bold"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <Image Source="/Resources/DeveloperAvatars/WXRIW.png"
                                            RenderOptions.BitmapScalingMode="HighQuality" Margin="3,0" Width="20"
                                            Height="20">
@@ -2266,10 +2345,12 @@
                                             <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                         </Image.Clip>
                                     </Image>
-                                    <TextBlock Text="XY Wang (WXRIW)" FontSize="15" />
+                                    <TextBlock Text="XY Wang (WXRIW)" FontSize="15"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                 </WrapPanel>
                                 <WrapPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock Text="原项目贡献者: " FontSize="15" FontWeight="Bold" Margin="0,0,0,5" />
+                                    <TextBlock Text="原项目贡献者: " FontSize="15" FontWeight="Bold" Margin="0,0,0,5"
+                                               Foreground="{DynamicResource SettingsPageForeground}"/>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/Kengwang.png"
                                                RenderOptions.BitmapScalingMode="HighQuality" Margin="3,0" Width="20"
@@ -2278,7 +2359,8 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="Kengwang" FontSize="15" />
+                                        <TextBlock Text="Kengwang" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/Raspberry-Monster.jpg"
@@ -2288,7 +2370,8 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="Raspberry Kan " FontSize="15" />
+                                        <TextBlock Text="Raspberry Kan " FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/jiajiaxd.jpg"
@@ -2298,7 +2381,8 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="jiajiaxd" FontSize="15" />
+                                        <TextBlock Text="jiajiaxd" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/CN-Ironegg.jpg"
@@ -2308,7 +2392,8 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="CN-Ironegg" FontSize="15" />
+                                        <TextBlock Text="CN-Ironegg" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/clover-yan.png"
@@ -2318,7 +2403,8 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="Clover Yan" FontSize="15" />
+                                        <TextBlock Text="Clover Yan" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/STBBRD.png"
@@ -2328,7 +2414,8 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="STBBRD" FontSize="15" />
+                                        <TextBlock Text="STBBRD" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                     <ikw:SimpleStackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                         <Image Source="/Resources/DeveloperAvatars/ChangSakura.png"
@@ -2338,19 +2425,21 @@
                                                 <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
                                             </Image.Clip>
                                         </Image>
-                                        <TextBlock Text="ChangSakura" FontSize="15" />
+                                        <TextBlock Text="ChangSakura" FontSize="15"
+                                                   Foreground="{DynamicResource SettingsPageForeground}"/>
                                     </ikw:SimpleStackPanel>
                                 </WrapPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
                     </StackPanel>
                 </ui:ScrollViewerEx>
-                <Grid Background="White" Margin="20" Height="40" VerticalAlignment="Top">
+                <Grid Background="Transparent" Margin="20" Height="40" VerticalAlignment="Top">
                     <ikw:SimpleStackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <ui:FontIcon Height="28" Width="28" FontSize="26"
                                      FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe713;"
-                                     Foreground="Black" />
-                        <TextBlock Margin="10,-2,0,0" Text="详细设置" FontWeight="Bold" FontSize="26" />
+                                     Foreground="{DynamicResource SettingsPageForeground}" />
+                        <TextBlock Foreground="{DynamicResource SettingsPageForeground}"
+                                   Margin="10,-2,0,0" Text="详细设置" FontWeight="Bold" FontSize="26" />
                     </ikw:SimpleStackPanel>
                 </Grid>
                 <Grid VerticalAlignment="Bottom" Height="50">
@@ -3345,7 +3434,7 @@
                                                TextAlignment="Center" />
                                 </ikw:SimpleStackPanel>
                             </Button>
-                            
+
                         </ikw:SimpleStackPanel>
                         <ikw:SimpleStackPanel Orientation="{Binding ElementName=StackPanelFloatingBar, Path=Orientation}">
                             <Border Margin="0,2" BorderBrush="{DynamicResource FloatBarForeground}"
