@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iNKORE.UI.WPF.Modern;
+using System;
 using System.Windows;
 
 namespace Ink_Canvas
@@ -14,6 +15,18 @@ namespace Ink_Canvas
             _noAction = noAction;
             InitializeComponent();
             Label.Text = text;
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                if (mainWindow.GetMainWindowTheme() == "Light")
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Light);
+                }
+                else
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Dark);
+                }
+            }
         }
 
         private void ButtonYes_Click(object sender, RoutedEventArgs e)

@@ -27,6 +27,7 @@ namespace Ink_Canvas
 
             await Dispatcher.InvokeAsync(() =>
             {
+                HideSubPanelsImmediately();
                 isFloatingBarChangingHideMode = true;
                 isFloatingBarFolded = true;
                 if (currentMode != 0) ImageBlackboard_Click(null, null);

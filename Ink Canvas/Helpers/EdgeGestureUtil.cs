@@ -8,7 +8,7 @@ namespace Ink_Canvas.Helpers
     /// <para>用於實現修改系統屬性<c>System.EdgeGesture.DisableTouchWhenFullscreen</c>達到暫時停用邊緣手勢的效果</para>
     /// <para>僅支持Windows10和Windows11，具體請查閱微軟官方MSDN：<see href="https://learn.microsoft.com/en-us/windows/win32/properties/props-system-edgegesture-disabletouchwhenfullscreen"/></para>
     /// <para><c>========================</c></para>
-    /// <para>該代碼來自ICA的Fork項目：InkCanvasForClass</para>
+    /// <para>該代碼來自 Ink Canvas Artistry 的Fork項目：InkCanvasForClass</para>
     /// <para>
     ///     ICC開源地址(Gitea)：<see href="https://gitea.bliemhax.com/kriastans/InkCanvasForClass"/><br/>
     ///     ICC開源地址(Github)：<see href="https://github.com/kriastans/InkCanvasForClass"/><br/>

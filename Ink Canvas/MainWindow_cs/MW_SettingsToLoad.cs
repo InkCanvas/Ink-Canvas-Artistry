@@ -111,16 +111,55 @@ namespace Ink_Canvas
             {
                 ComboBoxTheme.SelectedIndex = Settings.Appearance.Theme;
 
-                if (!Settings.Appearance.IsEnableDisPlayNibModeToggler)
+                if (Settings.Appearance.IsEnableDisPlayFloatBarText)
                 {
-                    NibModeSimpleStackPanel.Visibility = Visibility.Collapsed;
-                    BoardNibModeSimpleStackPanel.Visibility = Visibility.Collapsed;
+                    FloatBarSelectIconTextBlock.Visibility = Visibility.Visible;
+                    Icon_Pen.Height = 22;
+                    Icon_Eraser1.Height = 22;
+                    Icon_Eraser2.Height = 22;
+                    Icon_Eraser2.Margin = new Thickness(5, -22, 0, -8);
+                    Icon_EraserByStrokes1.Height = 22;
+                    Icon_EraserByStrokes2.Height = 22;
+                    Icon_EraserByStrokes2.Margin = new Thickness(12, -22, 0, -8);
+                    Icon_Select1.Height = 22;
+                    Icon_Select2.Height = 22;
+                    Icon_Select2.Margin = new Thickness(6, -18, 0, -8);
+                    Icon_Undo.Margin = new Thickness(0,1.5,0,-1.5);
+                    Icon_Redo.Margin = new Thickness(0, 1.5, 0, -1.5);
+                    ToggleSwitchEnableDisPlayFloatBarText.IsOn = true;
                 }
                 else
                 {
+                    FloatBarSelectIconTextBlock.Visibility = Visibility.Collapsed;
+                    Icon_Pen.Height = 32;
+                    Icon_Eraser1.Height = 32;
+                    Icon_Eraser2.Height = 32;
+                    Icon_Eraser2.Margin = new Thickness(5, -32, 0, -8);
+                    Icon_EraserByStrokes1.Height = 32;
+                    Icon_EraserByStrokes2.Height = 32;
+                    Icon_EraserByStrokes2.Margin = new Thickness(12, -32, 0, -8);
+                    Icon_Select1.Height = 32;
+                    Icon_Select2.Height = 32;
+                    Icon_Select2.Margin = new Thickness(6, -28, 0, -8);
+                    Icon_Undo.Margin = new Thickness(0);
+                    Icon_Redo.Margin = new Thickness(0);
+                    ToggleSwitchEnableDisPlayFloatBarText.IsOn = false;
+                }
+                if (Settings.Appearance.IsEnableDisPlayNibModeToggler)
+                {
                     NibModeSimpleStackPanel.Visibility = Visibility.Visible;
                     BoardNibModeSimpleStackPanel.Visibility = Visibility.Visible;
+                    ToggleSwitchEnableDisPlayNibModeToggle.IsOn = true;
                 }
+                else
+                {
+                    NibModeSimpleStackPanel.Visibility = Visibility.Collapsed;
+                    BoardNibModeSimpleStackPanel.Visibility = Visibility.Collapsed;
+                    ToggleSwitchEnableDisPlayNibModeToggle.IsOn = false;
+                }
+
+                SystemEvents_UserPreferenceChanged(null, null);
+
                 if (Settings.Appearance.IsColorfulViewboxFloatingBar) // 浮动工具栏背景色
                 {
                     LinearGradientBrush gradientBrush = new LinearGradientBrush();
@@ -134,16 +173,10 @@ namespace Ink_Canvas
                     BorderFloatingBarMainControls.Background = gradientBrush;
                     BorderFloatingBarMoveControls.Background = gradientBrush;
                     BorderFloatingBarExitPPTBtn.Background = gradientBrush;
-
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = true;
                 }
                 else
-                {/*
-                    EnableTwoFingerGestureBorder.Background = (Brush)FindResource("FloatBarBackground");
-                    BorderFloatingBarMainControls.Background = (Brush)FindResource("FloatBarBackground");
-                    BorderFloatingBarMoveControls.Background = (Brush)FindResource("FloatBarBackground");
-                    BorderFloatingBarExitPPTBtn.Background = (Brush)FindResource("FloatBarBackground");*/
-
+                {
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = false;
                 }
                 if (Settings.Appearance.EnableViewboxFloatingBarScaleTransform) // 浮动工具栏 UI 缩放 90%
@@ -199,7 +232,6 @@ namespace Ink_Canvas
                         BtnExit.Background = new SolidColorBrush(StringToColor("#FF555555"));
                     }
                 }
-                SystemEvents_UserPreferenceChanged(null, null);
             }
             else
             {

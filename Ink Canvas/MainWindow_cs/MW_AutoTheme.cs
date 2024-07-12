@@ -10,6 +10,11 @@ namespace Ink_Canvas
 {
     public partial class MainWindow : Window
     {
+        public string GetMainWindowTheme()
+        {
+            return (IsSystemThemeLight()) ? "Light" : "Dark";
+        }
+
         private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!isLoaded) return;
@@ -84,6 +89,14 @@ namespace Ink_Canvas
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Dark);
                 FloatBarForegroundColor = (Color)Application.Current.FindResource("FloatBarForegroundColor");
                 BoardBarForegroundColor = (Color)Application.Current.FindResource("BoardBarForegroundColor");
+            }
+
+            if (!Settings.Appearance.IsColorfulViewboxFloatingBar) // 还原浮动工具栏背景色
+            {
+                EnableTwoFingerGestureBorder.Background = BorderDrawShape.Background;
+                BorderFloatingBarMainControls.Background = BorderDrawShape.Background;
+                BorderFloatingBarMoveControls.Background = BorderDrawShape.Background;
+                BorderFloatingBarExitPPTBtn.Background = BorderDrawShape.Background;
             }
         }
 

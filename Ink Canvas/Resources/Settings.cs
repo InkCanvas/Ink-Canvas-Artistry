@@ -103,6 +103,8 @@ namespace Ink_Canvas
 
     public class Appearance
     {
+        [JsonProperty("isEnableDisPlayFloatBarText")]
+        public bool IsEnableDisPlayFloatBarText { get; set; } = false;
         [JsonProperty("isEnableDisPlayNibModeToggler")]
         public bool IsEnableDisPlayNibModeToggler { get; set; } = true;
         [JsonProperty("isColorfulViewboxFloatingBar")]

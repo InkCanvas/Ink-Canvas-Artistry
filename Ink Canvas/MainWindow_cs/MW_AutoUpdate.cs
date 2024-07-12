@@ -20,7 +20,7 @@ namespace Ink_Canvas
                 {
                     if (!Settings.Startup.IsAutoUpdateWithSilence)
                     {
-                        if (MessageBox.Show("ICA 新版本安装包已下载完成，是否立即更新？", "Ink Canvas Artistry New Version Available", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        if (MessageBox.Show("Ink Canvas Artistry 新版本安装包已下载完成，是否立即更新？", "Ink Canvas Artistry New Version Available", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                         {
                             AutoUpdateHelper.InstallNewVersionApp(AvailableLatestVersion, false);
                         }

@@ -150,6 +150,13 @@ namespace Ink_Canvas
         #endregion
 
         #region Appearance
+        private void ToggleSwitchEnableDisPlayFloatBarText_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (!isLoaded) return;
+            Settings.Appearance.IsEnableDisPlayFloatBarText = ToggleSwitchEnableDisPlayFloatBarText.IsOn;
+            SaveSettingsToFile();
+            LoadSettings();
+        }
 
         private void ToggleSwitchEnableDisPlayNibModeToggle_Toggled(object sender, RoutedEventArgs e)
         {
@@ -628,6 +635,7 @@ namespace Ink_Canvas
             Settings.Advanced.IsSecondConfimeWhenShutdownApp = false;
             Settings.Advanced.IsEnableEdgeGestureUtil = false;
 
+            Settings.Appearance.IsEnableDisPlayFloatBarText = false;
             Settings.Appearance.IsEnableDisPlayNibModeToggler = false;
             Settings.Appearance.IsColorfulViewboxFloatingBar = false;
             Settings.Appearance.EnableViewboxFloatingBarScaleTransform = true;
@@ -716,6 +724,7 @@ namespace Ink_Canvas
                 isLoaded = true;
 
                 ToggleSwitchRunAtStartup.IsOn = true;
+                Settings.Appearance.IsEnableDisPlayFloatBarText = true;
             }
             catch { }
             ShowNotificationAsync("设置已重置为默认推荐设置~");
