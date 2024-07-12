@@ -637,7 +637,7 @@ namespace Ink_Canvas
 
                 ThicknessAnimation marginAnimation = new ThicknessAnimation
                 {
-                    Duration = TimeSpan.FromSeconds(0.25),
+                    Duration = TimeSpan.FromSeconds(0.5),
                     From = ViewboxFloatingBar.Margin,
                     To = new Thickness(pos.X, pos.Y, -2000, -200),
                     EasingFunction = new CircleEase()

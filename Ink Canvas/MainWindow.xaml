@@ -2155,7 +2155,9 @@
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdate" OffContent="关" OnContent="开" Toggled="ToggleSwitchIsAutoUpdate_Toggled" />
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdate" OffContent="关" OnContent="开" Toggled="ToggleSwitchIsAutoUpdate_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
@@ -2167,13 +2169,15 @@
                                     <ikw:SimpleStackPanel Spacing="12">
                                         <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 开启 自动检查更新 后，将在软件启动时检查版本号，若版本号落后则会尝试从 Github 下载最新版安装包，安装新版本后会自动删除安装包。更新代理设置文本框放空即为直接裸连 Github。" TextWrapping="Wrap" />
                                         <ikw:SimpleStackPanel Orientation="Horizontal">
+                                            <ikw:SimpleStackPanel Width="50">
+                                                <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithProxy" OffContent="关" OnContent="开" Toggled="ToggleSwitchIsAutoUpdateWithProxy_Toggled" />
+                                            </ikw:SimpleStackPanel>
                                             <TextBlock
                                                 Margin="0,0,14,0"
                                                 VerticalAlignment="Center"
                                                 FontSize="14"
                                                 Foreground="{DynamicResource SettingsPageForeground}"
                                                 Text="代理设置" />
-                                            <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithProxy" OffContent="关" OnContent="开" Toggled="ToggleSwitchIsAutoUpdateWithProxy_Toggled" />
                                         </ikw:SimpleStackPanel>
                                         <TextBlock x:Name="AutoUpdateWithProxy_Title"
                                             FontSize="15"
@@ -2203,13 +2207,15 @@
                                     </ikw:SimpleStackPanel>
                                 </Border>
                                 <ikw:SimpleStackPanel x:Name="IsAutoUpdateWithSilenceBlock" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithSilence" OffContent="关" OnContent="开" Toggled="ToggleSwitchIsAutoUpdateWithSilence_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="静默更新" />
-                                    <ui:ToggleSwitch Name="ToggleSwitchIsAutoUpdateWithSilence" OffContent="关" OnContent="开" Toggled="ToggleSwitchIsAutoUpdateWithSilence_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <Border
                                     Padding="12"
@@ -2255,22 +2261,26 @@
                                     </ikw:SimpleStackPanel>
                                 </Border>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch Name="ToggleSwitchRunAtStartup" OffContent="关" OnContent="开" Toggled="ToggleSwitchRunAtStartup_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="开机时运行" />
-                                    <ui:ToggleSwitch Name="ToggleSwitchRunAtStartup" OffContent="关" OnContent="开" Toggled="ToggleSwitchRunAtStartup_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch Name="ToggleSwitchFoldAtStartup" OffContent="关" OnContent="开" Toggled="ToggleSwitchFoldAtStartup_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="开机运行后收纳到侧边栏" />
-                                    <ui:ToggleSwitch Name="ToggleSwitchFoldAtStartup" OffContent="关" OnContent="开" Toggled="ToggleSwitchFoldAtStartup_Toggled" />
                                 </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
@@ -2280,18 +2290,20 @@
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchShowCursor"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchShowCursor_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="显示画笔光标" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchShowCursor"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchShowCursor_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource SettingsPageForeground}" Text="橡皮大小：" />
@@ -2304,18 +2316,20 @@
                                     </ComboBox>
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchHideStrokeWhenSelecting"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchHideStrokeWhenSelecting_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="退出画板模式后隐藏墨迹" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchHideStrokeWhenSelecting"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchHideStrokeWhenSelecting_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 开启 退出画板模式后隐藏墨迹 选项后，进入 PPT 模式时未处于批注模式时不会显示墨迹。" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
@@ -2335,28 +2349,32 @@
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoSwitchTwoFingerGesture"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoSwitchTwoFingerGesture_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动开关两指缩放功能" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoSwitchTwoFingerGesture"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoSwitchTwoFingerGesture_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 开启 自动开关两指缩放功能 后退出画板模式时自动关闭双指移动手势，进入画板模式时自动开启双指移动手势" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch Name="ToggleSwitchEnableTwoFingerRotationOnSelection" OffContent="关" OnContent="开" Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="允许双指旋转选中的墨迹" />
-                                    <ui:ToggleSwitch Name="ToggleSwitchEnableTwoFingerRotationOnSelection" OffContent="关" OnContent="开" Toggled="ToggleSwitchEnableTwoFingerRotation_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 允许选中墨迹后对墨迹进行双指或多指缩放操作（此设置不受“允许双指旋转”设置的影响）" TextWrapping="Wrap" />
                             </ikw:SimpleStackPanel>
@@ -2368,18 +2386,20 @@
                             <ikw:SimpleStackPanel Spacing="5">
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 可实现智能识别圆、三角形、矩形，并自动转换为规范图形。" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEnableInkToShape"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEnableInkToShape_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="启用墨迹识别" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEnableInkToShape"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEnableInkToShape_Toggled" />
                                 </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
@@ -2397,60 +2417,68 @@
                                     </ComboBox>
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEnableDisPlayNibModeToggle"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEnableDisPlayNibModeToggle_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="在调色盘窗口中显示 笔尖模式 按钮" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEnableDisPlayNibModeToggle"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEnableDisPlayNibModeToggle_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchColorfulViewboxFloatingBar"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchIsColorfulViewboxFloatingBar_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="浮动工具栏背景色" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchColorfulViewboxFloatingBar"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchIsColorfulViewboxFloatingBar_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEnableViewboxFloatingBarScaleTransform"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEnableViewboxFloatingBarScaleTransform_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="浮动工具栏 UI 90% 缩放" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEnableViewboxFloatingBarScaleTransform"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEnableViewboxFloatingBarScaleTransform_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEnableViewboxBlackBoardScaleTransform"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEnableViewboxBlackBoardScaleTransform_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="画板 UI 80% 缩放" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEnableViewboxBlackBoardScaleTransform"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEnableViewboxBlackBoardScaleTransform_Toggled" />
                                 </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
@@ -2461,60 +2489,68 @@
                             <ikw:SimpleStackPanel Spacing="5">
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 此部分的设置项将会在幻灯片播放时使用，优先级高于其他设置项" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchShowPPTNavigationPanelBottom"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchShowPPTNavigationPanelBottom_OnToggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="显示 PPT 下方翻页箭头按钮" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchShowPPTNavigationPanelBottom"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchShowPPTNavigationPanelBottom_OnToggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchShowButtonPPTNavigationBottom"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchShowButtonPPTNavigationBottom_OnToggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="显示 PPT 下方页码按钮" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchShowButtonPPTNavigationBottom"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchShowButtonPPTNavigationBottom_OnToggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchShowPPTNavigationPanelSide"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchShowPPTNavigationPanelSide_OnToggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="显示 PPT 侧边翻页箭头按钮" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchShowPPTNavigationPanelSide"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchShowPPTNavigationPanelSide_OnToggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchShowButtonPPTNavigationSides"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchShowButtonPPTNavigationSides_OnToggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="显示 PPT 侧边页码按钮" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchShowButtonPPTNavigationSides"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchShowButtonPPTNavigationSides_OnToggled" />
                                 </ikw:SimpleStackPanel>
                                 <Line
                                     Margin="0,4,0,4"
@@ -2526,34 +2562,38 @@
                                     Y1="0"
                                     Y2="0" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchSupportPowerPoint"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchSupportPowerPoint_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="Microsoft PowerPoint 支持" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchSupportPowerPoint"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchSupportPowerPoint_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchSupportWPS"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchSupportWPS_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="WPS 支持" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchSupportWPS"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchSupportWPS_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 不推荐使用 WPS Office，鉴于其对于触摸设备的较差支持及其自身的兼容性问题，对 WPS Office 支持时会导致 WPS Office 关闭时卡顿。" TextWrapping="Wrap" />
                                 <Line
@@ -2566,127 +2606,143 @@
                                     Y1="0"
                                     Y2="0" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchShowCanvasAtNewSlideShow"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchShowCanvasAtNewSlideShow_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入 PPT 放映时自动进入批注模式" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchShowCanvasAtNewSlideShow"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchShowCanvasAtNewSlideShow_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEnableTwoFingerGestureInPresentationMode"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEnableTwoFingerGestureInPresentationMode_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="允许幻灯片模式下的双指手势" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEnableTwoFingerGestureInPresentationMode"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEnableTwoFingerGestureInPresentationMode_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEnableFingerGestureSlideShowControl"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEnableFingerGestureSlideShowControl_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="允许使用手指手势进行幻灯片翻页" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEnableFingerGestureSlideShowControl"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEnableFingerGestureSlideShowControl_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 允许开启画板时使用手指手势进行幻灯片翻页（启用后，在幻灯片放映模式下，当画板无墨迹时，使用手指（笔尖或手掌无法识别）左右滑动即可控制幻灯片翻页。）" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoSaveScreenShotInPowerPoint"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoSaveScreenShotInPowerPoint_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动幻灯片截屏" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoSaveScreenShotInPowerPoint"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoSaveScreenShotInPowerPoint_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="#开启 自动幻灯片截屏 后将会在幻灯片有墨迹时翻页自动截屏" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoSaveStrokesInPowerPoint"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoSaveStrokesInPowerPoint_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动保存幻灯片墨迹" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoSaveStrokesInPowerPoint"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoSaveStrokesInPowerPoint_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="#开启 自动保存幻灯片墨迹 后将在结束幻灯片放映时自动将保存已有墨迹，并在下次打开时自动加载（文件名和幻灯片页数都要相同）" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchNotifyPreviousPage"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchNotifyPreviousPage_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="记忆并提示上次播放位置" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchNotifyPreviousPage"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchNotifyPreviousPage_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchNotifyHiddenPage"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchNotifyHiddenPage_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="提示隐藏幻灯片" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchNotifyHiddenPage"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchNotifyHiddenPage_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchNotifyAutoPlayPresentation"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchNotifyAutoPlayPresentation_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="提示是否已启用自动播放" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchNotifyAutoPlayPresentation"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchNotifyAutoPlayPresentation_Toggled" />
                                 </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
 
@@ -2698,19 +2754,21 @@
                             <ikw:SimpleStackPanel Spacing="5">
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="#可在手指触摸画板时显示圆形橡皮或手掌触摸画板时显示的橡皮比&#x000A;手掌大很多时调整" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchIsSpecialScreen"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchIsSpecialScreen_OnToggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="特殊屏幕模式" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchIsSpecialScreen"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchIsSpecialScreen_OnToggled" />
                                 </ikw:SimpleStackPanel>
                                 <StackPanel Orientation="Horizontal" Visibility="{Binding Visibility, ElementName=TouchMultiplierSlider}">
                                     <Slider x:Name="TouchMultiplierSlider"
@@ -2746,19 +2804,21 @@
                                     <TextBlock Name="TextBlockShowCalculatedMultiplier" FontSize="14" Foreground="{DynamicResource SettingsPageForeground}" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchEraserBindTouchMultiplier"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchEraserBindTouchMultiplier_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="橡皮擦绑定触摸大小倍数" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchEraserBindTouchMultiplier"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchEraserBindTouchMultiplier_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# BoundsWidth 参数作为接触面积区分界限，用来区分橡皮和书写模式。笔尖模式参数值应较小。" TextWrapping="Wrap" />
                                 <StackPanel Orientation="Horizontal" Visibility="{Binding Visibility, ElementName=TouchMultiplierSlider}">
@@ -2800,19 +2860,21 @@
                                         Text="{Binding Value, ElementName=FingerModeBoundsWidthSlider, Mode=OneWay}" />
                                 </StackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchIsQuadIR"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchIsQuadIR_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="四边红外模式" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchIsQuadIR"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchIsQuadIR_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <Line
                                     Margin="0,4,0,4"
@@ -2824,51 +2886,57 @@
                                     Y1="0"
                                     Y2="0" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchIsLogEnabled"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchIsLogEnabled_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="记录日志" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchIsLogEnabled"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchIsLogEnabled_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 日志文件超过 512 KB 时会自动删除。" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchIsSecondConfimeWhenShutdownApp"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchIsSecondConfimeWhenShutdownApp_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="关闭软件时二次弹窗确认" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchIsSecondConfimeWhenShutdownApp"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchIsSecondConfimeWhenShutdownApp_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchIsEnableEdgeGestureUtil"
+                                            FontFamily="Microsoft YaHei UI"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent=""
+                                            OnContent=""
+                                            Toggled="ToggleSwitchIsEnableEdgeGestureUtil_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,6,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="阻止 Win 10/11 的边缘手势" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchIsEnableEdgeGestureUtil"
-                                        FontFamily="Microsoft YaHei UI"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent=""
-                                        OnContent=""
-                                        Toggled="ToggleSwitchIsEnableEdgeGestureUtil_Toggled" />
                                 </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
@@ -2878,169 +2946,191 @@
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="0">
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInEasiNote"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInEasiNote_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“希沃白板”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInEasiNote"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInEasiNote_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInEasiNoteIgnoreDesktopAnno"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInEasiNoteIgnoreDesktopAnno_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动收纳忽略桌面EN批注窗口" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInEasiNoteIgnoreDesktopAnno"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInEasiNoteIgnoreDesktopAnno_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInEasiCamera"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInEasiCamera_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“希沃视频展台”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInEasiCamera"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInEasiCamera_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInEasiNote3C"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInEasiNote3C_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“希沃轻白板”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInEasiNote3C"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInEasiNote3C_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInSeewoPincoTeacher"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInSeewoPincoTeacher_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“希沃品课”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInSeewoPincoTeacher"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInSeewoPincoTeacher_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInHiteTouchPro"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInHiteTouchPro_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“鸿合白板”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInHiteTouchPro"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInHiteTouchPro_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInHiteCamera"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInHiteCamera_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“鸿合视频展台”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInHiteCamera"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInHiteCamera_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInWxBoardMain"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInWxBoardMain_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“文香白板”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInWxBoardMain"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInWxBoardMain_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInOldZyBoard"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInOldZyBoard_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“中原旧白板”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInOldZyBoard"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInOldZyBoard_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInMSWhiteboard"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInMSWhiteboard_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入“微软 Whiteboard”时自动收纳" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInMSWhiteboard"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInMSWhiteboard_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoFoldInPPTSlideShow"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoFoldInPPTSlideShow_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="进入PPT 放映时自动收纳至侧边栏" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoFoldInPPTSlideShow"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoFoldInPPTSlideShow_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <Line
                                     Margin="0,4,0,4"
@@ -3052,35 +3142,39 @@
                                     Y1="0"
                                     Y2="0" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoKillPptService"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoKillPptService_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动查杀希沃“PPT 小工具”" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoKillPptService"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoKillPptService_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="# 请注意，查杀 PPT 小工具会导致希沃课堂授课助手无法使用，直接进入希沃课堂授课助手安装目录删除 Office.dll 文件即可进入 PPT 放映时不会启动希沃的 PPT 工具栏。" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoKillEasiNote"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoKillEasiNote_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动查杀 希沃白板5" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoKillEasiNote"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoKillEasiNote_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <Line
                                     Margin="0,4,0,4"
@@ -3092,49 +3186,55 @@
                                     Y1="0"
                                     Y2="0" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoSaveStrokesAtClear"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoSaveStrokesAtClear_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="清屏时自动截图" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoSaveStrokesAtClear"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoSaveStrokesAtClear_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchSaveScreenshotsInDateFolders"
+                                            FontWeight="Bold"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchSaveScreenshotsInDateFolders_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="截图分日期文件夹保存" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchSaveScreenshotsInDateFolders"
-                                        FontWeight="Bold"
-                                        IsOn="False"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchSaveScreenshotsInDateFolders_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoSaveStrokesAtScreenshot"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoSaveStrokesAtScreenshot_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="截图时自动保存墨迹" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoSaveStrokesAtScreenshot"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoSaveStrokesAtScreenshot_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <Line
                                     Margin="0,4,0,4"
@@ -3183,19 +3283,21 @@
                                 </ikw:SimpleStackPanel>
                                 <TextBlock Foreground="{DynamicResource SettingsPageAnnotationForeground}" Text="* 请注意检查保存文件夹是否有写入权限" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
+                                            Name="ToggleSwitchAutoDelSavedFiles"
+                                            FontWeight="Bold"
+                                            IsOn="True"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchAutoDelSavedFiles_Toggled" />
+                                    </ikw:SimpleStackPanel>
                                     <TextBlock
                                         Margin="0,0,14,0"
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="定期自动删除超过保存时间的墨迹、截图文件" />
-                                    <ui:ToggleSwitch
-                                        Name="ToggleSwitchAutoDelSavedFiles"
-                                        FontWeight="Bold"
-                                        IsOn="True"
-                                        OffContent="关"
-                                        OnContent="开"
-                                        Toggled="ToggleSwitchAutoDelSavedFiles_Toggled" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock FontWeight="Bold" Foreground="{DynamicResource RedBrush}" Text="请注意将会删除自动保存目录下所有后缀名为 .icstk 和 .png 的文件！" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Margin="0,5,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
