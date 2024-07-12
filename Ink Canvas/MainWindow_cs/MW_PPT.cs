@@ -526,25 +526,7 @@ namespace Ink_Canvas
 
                 if (currentMode != 0)
                 {
-                    currentMode = 0;
-                    GridBackgroundCover.Visibility = Visibility.Collapsed;
-                    AnimationsHelper.HideWithSlideAndFade(BlackboardLeftSide);
-                    AnimationsHelper.HideWithSlideAndFade(BlackboardCenterSide);
-                    AnimationsHelper.HideWithSlideAndFade(BlackboardRightSide);
-
-                    //SaveStrokes();
-                    ClearStrokes(true);
-                    //RestoreStrokes(true);
-
-                    if (BtnSwitchTheme.Content.ToString() == "浅色")
-                    {
-                        BtnSwitch.Content = "黑板";
-                    }
-                    else
-                    {
-                        BtnSwitch.Content = "白板";
-                    }
-                    StackPanelPPTButtons.Visibility = Visibility.Visible;
+                    ImageBlackboard_Click(null, null);
                 }
 
                 ClearStrokes(true);

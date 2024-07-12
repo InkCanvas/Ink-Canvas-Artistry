@@ -14,7 +14,6 @@ namespace Ink_Canvas
     {
         private void LoadSettings(bool isStartup = false)
         {
-            AppVersionTextBlock.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             try
             {
                 if (File.Exists(App.RootPath + settingsFileName))

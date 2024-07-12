@@ -3,6 +3,7 @@ using iNKORE.UI.WPF.Modern;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
@@ -97,33 +98,19 @@ namespace Ink_Canvas
             }
 
             CheckColorTheme(true);
-
-            // 删除旧版本快捷方式
-            string shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Ink Canvas Annotation.lnk");
-            if (File.Exists(shortcutPath))
-            {
-                try
-                {
-                    File.Delete(shortcutPath);
-                }
-                catch { }
-            }
         }
 
         #endregion
 
         #region Ink Canvas Functions
 
-        Color Ink_DefaultColor = Colors.Red;
-
         DrawingAttributes drawingAttributes;
         private void loadPenCanvas()
         {
             try
             {
-                //drawingAttributes = new DrawingAttributes();
                 drawingAttributes = inkCanvas.DefaultDrawingAttributes;
-                drawingAttributes.Color = Ink_DefaultColor;
+                drawingAttributes.Color = Colors.Red;
 
                 drawingAttributes.Height = 2.5;
                 drawingAttributes.Width = 2.5;
@@ -133,8 +120,7 @@ namespace Ink_Canvas
             }
             catch { }
         }
-        //ApplicationGesture lastApplicationGesture = ApplicationGesture.AllGestures;
-        DateTime lastGestureTime = DateTime.Now;
+
         private void InkCanvas_Gesture(object sender, InkCanvasGestureEventArgs e)
         {
             ReadOnlyCollection<GestureRecognitionResult> gestures = e.GetGestureRecognitionResults();
@@ -142,7 +128,6 @@ namespace Ink_Canvas
             {
                 foreach (GestureRecognitionResult gest in gestures)
                 {
-                    //Trace.WriteLine(string.Format("Gesture: {0}, Confidence: {1}", gest.ApplicationGesture, gest.RecognitionConfidence));
                     if (StackPanelPPTControls.Visibility == Visibility.Visible)
                     {
                         if (gest.ApplicationGesture == ApplicationGesture.Left)
@@ -181,7 +166,7 @@ namespace Ink_Canvas
             if (inkCanvas1.EditingMode == InkCanvasEditingMode.Ink) forcePointEraser = !forcePointEraser;
         }
 
-        #endregion Ink Canvas
+        #endregion Ink Canvas Functions
 
         #region Definations and Loading
 
@@ -202,7 +187,7 @@ namespace Ink_Canvas
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
             SystemEvents_UserPreferenceChanged(null, null);
 
-            //TextBlockVersion.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            AppVersionTextBlock.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             LogHelper.WriteLogToFile("Ink Canvas Loaded", LogHelper.LogType.Event);
             isLoaded = true;
         }
@@ -233,38 +218,6 @@ namespace Ink_Canvas
         private void Window_Closed(object sender, EventArgs e)
         {
             LogHelper.WriteLogToFile("Ink Canvas closed", LogHelper.LogType.Event);
-        }
-
-        private async void AutoUpdate()
-        {
-            if (Settings.Startup.IsAutoUpdateWithProxy) AvailableLatestVersion = await AutoUpdateHelper.CheckForUpdates(Settings.Startup.AutoUpdateProxy);
-            else AvailableLatestVersion = await AutoUpdateHelper.CheckForUpdates();
-
-            if (AvailableLatestVersion != null)
-            {
-                bool IsDownloadSuccessful = false;
-                if (Settings.Startup.IsAutoUpdateWithProxy) IsDownloadSuccessful = await AutoUpdateHelper.DownloadSetupFileAndSaveStatus(AvailableLatestVersion, Settings.Startup.AutoUpdateProxy);
-                else IsDownloadSuccessful = await AutoUpdateHelper.DownloadSetupFileAndSaveStatus(AvailableLatestVersion);
-
-                if (IsDownloadSuccessful)
-                {
-                    if (!Settings.Startup.IsAutoUpdateWithSilence)
-                    {
-                        if (MessageBox.Show("ICA 新版本安装包已下载完成，是否立即更新？", "Ink Canvas Artistry New Version Available", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                        {
-                            AutoUpdateHelper.InstallNewVersionApp(AvailableLatestVersion, false);
-                        }
-                    }
-                    else
-                    {
-                        timerCheckAutoUpdateWithSilence.Start();
-                    }
-                }
-            }
-            else
-            {
-                AutoUpdateHelper.DeleteUpdatesFolder();
-            }
         }
 
         #endregion Definations and Loading
