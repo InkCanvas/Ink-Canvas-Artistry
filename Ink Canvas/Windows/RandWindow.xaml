@@ -1,90 +1,197 @@
-﻿<Window x:Class="Ink_Canvas.RandWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-        xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
-        xmlns:local="clr-namespace:Ink_Canvas"
-        ui:ThemeManager.RequestedTheme="Light" Topmost="True" Background="Transparent"
-        mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded"
-        WindowStartupLocation="CenterScreen"
-        Title="Ink Canvas 抽奖" Height="500" Width="900">
-    <Border Background="#F0F3F9" CornerRadius="10" BorderThickness="1" BorderBrush="#0066BF">
+﻿<Window
+    x:Class="Ink_Canvas.RandWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:local="clr-namespace:Ink_Canvas"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="Ink Canvas 抽奖"
+    Width="900"
+    Height="500"
+    ui:ThemeManager.RequestedTheme="Light"
+    AllowsTransparency="True"
+    Background="Transparent"
+    Loaded="Window_Loaded"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border Background="#F0F3F9" BorderBrush="#0066BF" BorderThickness="1" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.8*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.8*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Viewbox HorizontalAlignment="Center" Margin="20,0">
-                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="50" MinHeight="470">
-                    <Label Name="LabelOutput" FontSize="70" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Name="LabelOutput2" FontSize="70" Visibility="Collapsed" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Name="LabelOutput3" FontSize="70" Visibility="Collapsed" Content="" Block.TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Viewbox Margin="20,0" HorizontalAlignment="Center">
+                <ikw:SimpleStackPanel MinHeight="470" Orientation="Horizontal" Spacing="50">
+                    <Label
+                        Name="LabelOutput"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Block.TextAlignment="Center"
+                        Content=""
+                        FontSize="70" />
+                    <Label
+                        Name="LabelOutput2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Block.TextAlignment="Center"
+                        Content=""
+                        FontSize="70"
+                        Visibility="Collapsed" />
+                    <Label
+                        Name="LabelOutput3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Block.TextAlignment="Center"
+                        Content=""
+                        FontSize="70"
+                        Visibility="Collapsed" />
                 </ikw:SimpleStackPanel>
             </Viewbox>
-            <ikw:SimpleStackPanel Spacing="40" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ikw:SimpleStackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Spacing="40">
                 <StackPanel Orientation="Horizontal">
-                    <Border x:Name="BorderBtnMinus" MouseUp="BorderBtnMinus_MouseUp" Background="#FBFBFD" Height="70" Width="70" CornerRadius="100">
+                    <Border x:Name="BorderBtnMinus"
+                        Width="70"
+                        Height="70"
+                        Background="#FBFBFD"
+                        CornerRadius="100"
+                        MouseUp="BorderBtnMinus_MouseUp">
                         <Border.Effect>
-                            <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
+                            <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.15" ShadowDepth="0" />
                         </Border.Effect>
                         <Viewbox>
-                            <ui:FontIcon Height="80" Width="80" FontSize="36" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xecc9;" Foreground="Black"/>
+                            <ui:FontIcon
+                                Width="80"
+                                Height="80"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                FontSize="36"
+                                Foreground="Black"
+                                Glyph="&#xecc9;" />
                         </Viewbox>
                     </Border>
-                    <TextBlock Width="80" Name="LabelNumberCount" Text="1" TextAlignment="Center" FontSize="55" Margin="30"/>
-                    <Border x:Name="BorderBtnAdd" MouseUp="BorderBtnAdd_MouseUp" Background="#FBFBFD" Height="70" Width="70" CornerRadius="100">
+                    <TextBlock
+                        Name="LabelNumberCount"
+                        Width="80"
+                        Margin="30"
+                        FontSize="55"
+                        Text="1"
+                        TextAlignment="Center" />
+                    <Border x:Name="BorderBtnAdd"
+                        Width="70"
+                        Height="70"
+                        Background="#FBFBFD"
+                        CornerRadius="100"
+                        MouseUp="BorderBtnAdd_MouseUp">
                         <Border.Effect>
-                            <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
+                            <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.15" ShadowDepth="0" />
                         </Border.Effect>
                         <Viewbox>
-                            <ui:FontIcon Height="80" Width="80" FontSize="36" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xecc8;" Foreground="Black"/>
+                            <ui:FontIcon
+                                Width="80"
+                                Height="80"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                FontSize="36"
+                                Foreground="Black"
+                                Glyph="&#xecc8;" />
                         </Viewbox>
                     </Border>
                 </StackPanel>
                 <Grid>
-                    <Border x:Name="BorderBtnRand" MouseUp="BorderBtnRand_MouseUp" Background="#0066BF"
-                        Height="70" Width="200" CornerRadius="10">
-                        <ikw:SimpleStackPanel Margin="3,0" Spacing="10" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <ui:FontIcon Height="40" Width="40" FontSize="30" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe77b;" Foreground="White"/>
-                            <TextBlock Text="抽奖" Foreground="White" FontSize="35" Margin="-1,-1,4,0" VerticalAlignment="Center"/>
+                    <Border x:Name="BorderBtnRand"
+                        Width="200"
+                        Height="70"
+                        Background="#0066BF"
+                        CornerRadius="10"
+                        MouseUp="BorderBtnRand_MouseUp">
+                        <ikw:SimpleStackPanel Margin="3,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
+                            <ui:FontIcon
+                                Width="40"
+                                Height="40"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                FontSize="30"
+                                Foreground="White"
+                                Glyph="&#xe77b;" />
+                            <TextBlock
+                                Margin="-1,-1,4,0"
+                                VerticalAlignment="Center"
+                                FontSize="35"
+                                Foreground="White"
+                                Text="抽奖" />
                         </ikw:SimpleStackPanel>
                     </Border>
-                    <Border x:Name="BorderBtnRandCover" Background="#BFBFBF" Visibility="Collapsed"
-                        Height="70" Width="200" CornerRadius="10">
-                        <ikw:SimpleStackPanel Margin="3,0" Spacing="20" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Border x:Name="BorderBtnRandCover"
+                        Width="200"
+                        Height="70"
+                        Background="#BFBFBF"
+                        CornerRadius="10"
+                        Visibility="Collapsed">
+                        <ikw:SimpleStackPanel Margin="3,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">
                             <Viewbox Margin="0,20">
-                                <ui:SymbolIcon Symbol="{Binding ElementName=SymbolIconStart, Path=Symbol}" Foreground="White"/>
+                                <ui:SymbolIcon Foreground="White" Symbol="{Binding ElementName=SymbolIconStart, Path=Symbol}" />
                             </Viewbox>
-                            <TextBlock Text="抽奖" Foreground="White" FontSize="35" Margin="-1,-1,4,0" VerticalAlignment="Center"/>
+                            <TextBlock
+                                Margin="-1,-1,4,0"
+                                VerticalAlignment="Center"
+                                FontSize="35"
+                                Foreground="White"
+                                Text="抽奖" />
                         </ikw:SimpleStackPanel>
                     </Border>
                 </Grid>
             </ikw:SimpleStackPanel>
-            <Border x:Name="BorderBtnHelp" MouseUp="BorderBtnHelp_MouseUp"
-                    Background="#FBFBFD" Grid.Column="1"
-                    Margin="10,10,60,10" Height="40"
-                    VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="20">
+            <Border x:Name="BorderBtnHelp" Grid.Column="1"
+                Height="40"
+                Margin="10,10,60,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="#FBFBFD"
+                CornerRadius="20"
+                MouseUp="BorderBtnHelp_MouseUp">
                 <Border.Effect>
-                    <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.15" BlurRadius="3"/>
+                    <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.15" ShadowDepth="0" />
                 </Border.Effect>
-                <ikw:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ikw:SimpleStackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Viewbox Margin="15,10,10,10">
-                        <ui:FontIcon Height="20" Width="20" FontSize="18" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xe716;" Foreground="Black"/>
+                        <ui:FontIcon
+                            Width="20"
+                            Height="20"
+                            FontFamily="{StaticResource FluentIconFontFamily}"
+                            FontSize="18"
+                            Foreground="Black"
+                            Glyph="&#xe716;" />
                     </Viewbox>
-                    <TextBlock Margin="-5,12,15,12" Name="TextBlockPeopleCount" Text="点击此处以导入名单" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock
+                        Name="TextBlockPeopleCount"
+                        Margin="-5,12,15,12"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="点击此处以导入名单" />
                 </ikw:SimpleStackPanel>
             </Border>
-            <Border x:Name="BtnClose" MouseUp="BtnClose_MouseUp"
-                    HorizontalAlignment="Right" VerticalAlignment="{Binding ElementName=BorderBtnHelp, Path=VerticalAlignment}"
-                    Margin="10" Grid.Column="1"
-                    Background="#E32A34" Height="40" Width="40" CornerRadius="100">
+            <Border x:Name="BtnClose" Grid.Column="1"
+                Width="40"
+                Height="40"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="{Binding ElementName=BorderBtnHelp, Path=VerticalAlignment}"
+                Background="#E32A34"
+                CornerRadius="100"
+                MouseUp="BtnClose_MouseUp">
                 <Border.Effect>
-                    <DropShadowEffect Direction="0" ShadowDepth="0" Opacity="0.1" BlurRadius="3"/>
+                    <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                 </Border.Effect>
                 <Viewbox>
-                    <ui:FontIcon Height="80" Width="80" FontSize="36" FontFamily="{StaticResource FluentIconFontFamily}" Glyph="&#xf78a;" Foreground="White"/>
+                    <ui:FontIcon
+                        Width="80"
+                        Height="80"
+                        FontFamily="{StaticResource FluentIconFontFamily}"
+                        FontSize="36"
+                        Foreground="White"
+                        Glyph="&#xf78a;" />
                 </Viewbox>
             </Border>
         </Grid>
