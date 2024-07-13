@@ -19,7 +19,7 @@ namespace Ink_Canvas.Helpers
             {
                 string localVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 string remoteAddress = proxy;
-                remoteAddress += "https://raw.githubusercontent.com/ChangSakura/Ink-Canvas/master/AutomaticUpdateVersionControl.txt";
+                remoteAddress += "https://raw.githubusercontent.com/InkCanvas/Ink-Canvas-Artistry/master/AutomaticUpdateVersionControl.txt";
                 string remoteVersion = await GetRemoteVersion(remoteAddress);
 
                 if (remoteVersion != null)
@@ -85,7 +85,7 @@ namespace Ink_Canvas.Helpers
                     return true;
                 }
 
-                string downloadUrl = $"{proxy}https://github.com/ChangSakura/Ink-Canvas/releases/download/v{version}/Ink.Canvas.Artistry.V{version}.Setup.exe";
+                string downloadUrl = $"{proxy}https://github.com/InkCanvas/Ink-Canvas-Artistry/releases/download/v{version}/Ink.Canvas.Artistry.V{version}.Setup.exe";
 
                 SaveDownloadStatus(false);
                 await DownloadFile(downloadUrl, $"{updatesFolderPath}\\Ink.Canvas.Artistry.V{version}.Setup.exe");

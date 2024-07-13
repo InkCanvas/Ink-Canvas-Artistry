@@ -53,7 +53,7 @@ namespace Ink_Canvas
 
         private async void BtnCheckAutoUpdateProxyReturnedData_Click(object sender, RoutedEventArgs e)
         {
-            string ProxyReturnedData = await AutoUpdateHelper.GetRemoteVersion(Settings.Startup.AutoUpdateProxy + "https://raw.githubusercontent.com/ChangSakura/Ink-Canvas/master/AutomaticUpdateVersionControl.txt");
+            string ProxyReturnedData = await AutoUpdateHelper.GetRemoteVersion(Settings.Startup.AutoUpdateProxy + "https://raw.githubusercontent.com/InkCanvas/Ink-Canvas-Artistry/master/AutomaticUpdateVersionControl.txt");
             ShowNotificationAsync(ProxyReturnedData);
         }
 
@@ -876,7 +876,7 @@ namespace Ink_Canvas
 
         private void HyperlinkSourceToPresentRepository_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/ChangSakura/Ink-Canvas");
+            Process.Start("https://github.com/InkCanvas/Ink-Canvas-Artistry");
             HideSubPanels();
         }
 
