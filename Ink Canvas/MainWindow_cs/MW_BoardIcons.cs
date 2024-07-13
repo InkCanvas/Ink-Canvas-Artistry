@@ -11,7 +11,7 @@ namespace Ink_Canvas
 {
     public partial class MainWindow : Window
     {
-        private void BoardChangeBackgroundColorBtn_MouseUp(object sender, RoutedEventArgs e)
+        private void BoardChangeBackgroundColorBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!isLoaded) return;
             Settings.Canvas.UsingWhiteboard = !Settings.Canvas.UsingWhiteboard;
@@ -103,19 +103,19 @@ namespace Ink_Canvas
             }
         }
 
-        private void BoardSymbolIconDelete_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BoardSymbolIconDelete_Click(object sender, RoutedEventArgs e)
         {
             PenIcon_Click(null, null);
             SymbolIconDelete_MouseUp(sender, e);
         }
 
-        private void BoardLaunchEasiCamera_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BoardLaunchEasiCamera_Click(object sender, RoutedEventArgs e)
         {
             ImageBlackboard_Click(null, null);
             SoftwareLauncher.LaunchEasiCamera("希沃视频展台");
         }
 
-        private void BoardLaunchDesmos_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BoardLaunchDesmos_Click(object sender, RoutedEventArgs e)
         {
             HideSubPanelsImmediately();
             ImageBlackboard_Click(null, null);

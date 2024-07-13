@@ -559,7 +559,7 @@
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="TwoFingerGestureBorder_MouseUp">
+                            Click="TwoFingerGestureBorder_Click">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -729,7 +729,7 @@
                             Margin="0,0,5,0"
                             Padding="0"
                             BorderThickness="0"
-                            Click="BoardChangeBackgroundColorBtn_MouseUp">
+                            Click="BoardChangeBackgroundColorBtn_Click">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -1324,30 +1324,32 @@
                                 </Grid>
                             </Border>
                         </Button>
-                        <Border Width="0" MouseDown="Border_MouseDown" MouseUp="BoardSymbolIconDelete_MouseUp">
+                        <Border Width="0">
                             <Border x:Name="BoardDeleteIcon"
-                                Margin="-61,-55,-61,55"
+                                Margin="-61,-50,-61,55"
                                 Background="{DynamicResource BoardBarBackground}"
                                 BorderBrush="{DynamicResource BoardBarBorderBrush}"
                                 BorderThickness="1,1,1,0"
                                 CornerRadius="5,5,0,0">
-                                <Grid>
-                                    <ikw:SimpleStackPanel Margin="5" HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <ui:FontIcon
-                                            Width="28"
-                                            Height="22"
-                                            FontFamily="{StaticResource FluentIconFontFamily}"
-                                            FontSize="22"
-                                            Foreground="{DynamicResource BoardBarForeground}"
-                                            Glyph="&#xe74d;" />
-                                        <TextBlock
-                                            Margin="5,0,0,0"
-                                            VerticalAlignment="Center"
-                                            FontSize="14"
-                                            Foreground="{DynamicResource BoardBarForeground}"
-                                            Text="点击清屏" />
-                                    </ikw:SimpleStackPanel>
-                                </Grid>
+                                <Button Padding="0" BorderThickness="0" Click="BoardSymbolIconDelete_Click">
+                                    <Grid>
+                                        <ikw:SimpleStackPanel Margin="5" HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <ui:FontIcon
+                                                Width="28"
+                                                Height="22"
+                                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                                FontSize="22"
+                                                Foreground="{DynamicResource BoardBarForeground}"
+                                                Glyph="&#xe74d;" />
+                                            <TextBlock
+                                                Margin="5,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="14"
+                                                Foreground="{DynamicResource BoardBarForeground}"
+                                                Text="点击清屏" />
+                                        </ikw:SimpleStackPanel>
+                                    </Grid>
+                                </Button>
                             </Border>
                         </Border>
                         <Button
@@ -1872,13 +1874,11 @@
                                             BorderThickness="1.5"
                                             CornerRadius="5">
                                             <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                                                <Button BorderThickness="0" Click="ImageCountdownTimer_Click">
+                                                <Button BorderThickness="0" Click="BoardLaunchEasiCamera_Click">
                                                     <ikw:SimpleStackPanel
                                                         Height="35"
                                                         Margin="10,0"
                                                         HorizontalAlignment="Center"
-                                                        MouseDown="Border_MouseDown"
-                                                        MouseUp="BoardLaunchEasiCamera_MouseUp"
                                                         Orientation="Horizontal"
                                                         Spacing="5">
                                                         <Image Width="22" Height="22" RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/Icons-png/EasiCamera.png" />
@@ -1894,13 +1894,11 @@
                                                     X2="0"
                                                     Y1="0"
                                                     Y2="25" />
-                                                <Button BorderThickness="0" Click="ImageCountdownTimer_Click">
+                                                <Button BorderThickness="0" Click="BoardLaunchDesmos_Click">
                                                     <ikw:SimpleStackPanel
                                                         Height="35"
                                                         Margin="10,0"
                                                         HorizontalAlignment="Center"
-                                                        MouseDown="Border_MouseDown"
-                                                        MouseUp="BoardLaunchDesmos_MouseUp"
                                                         Orientation="Horizontal"
                                                         Spacing="5">
                                                         <Image Width="22" Height="22" RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/Icons-png/Desmos.png">
@@ -5462,7 +5460,7 @@
                         Height="34"
                         Padding="0"
                         BorderThickness="0"
-                        Click="TwoFingerGestureBorder_MouseUp">
+                        Click="TwoFingerGestureBorder_Click">
                         <ikw:SimpleStackPanel>
                             <ui:FontIcon x:Name="EnableTwoFingerGestureBtn"
                                 Width="34"

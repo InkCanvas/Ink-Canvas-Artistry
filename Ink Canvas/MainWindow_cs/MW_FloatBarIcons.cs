@@ -22,7 +22,7 @@ namespace Ink_Canvas
     {
         #region TwoFingZoomBtn
 
-        private void TwoFingerGestureBorder_MouseUp(object sender, RoutedEventArgs e)
+        private void TwoFingerGestureBorder_Click(object sender, RoutedEventArgs e)
         {
             if (TwoFingerGestureBorder.Visibility == Visibility.Visible)
             {
