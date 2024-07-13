@@ -301,7 +301,7 @@ namespace Ink_Canvas
             HideSubPanels("select");
         }
 
-        private async void SymbolIconScreenshot_MouseUp(object sender, MouseButtonEventArgs e)
+        private async void SymbolIconScreenshot_Click(object sender, RoutedEventArgs e)
         {
             HideSubPanelsImmediately();
             await Task.Delay(50);
@@ -435,28 +435,28 @@ namespace Ink_Canvas
             CheckColorTheme(true);
         }
 
-        private void ImageCountdownTimer_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ImageCountdownTimer_Click(object sender, RoutedEventArgs e)
         {
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
             new CountdownTimerWindow().Show();
         }
 
-        private void OperatingGuideWindowIcon_MouseUp(object sender, MouseButtonEventArgs e)
+        private void OperatingGuideWindowIcon_Click(object sender, RoutedEventArgs e)
         {
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
             new OperatingGuideWindow().Show();
         }
 
-        private void SymbolIconRand_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconRand_Click(object sender, RoutedEventArgs e)
         {
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
             new RandWindow().Show();
         }
 
-        private void SymbolIconRandOne_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconRandOne_Click(object sender, RoutedEventArgs e)
         {
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
@@ -464,7 +464,7 @@ namespace Ink_Canvas
             new RandWindow(true).ShowDialog();
         }
 
-        private void GridInkReplayButton_MouseUp(object sender, MouseButtonEventArgs e)
+        private void GridInkReplayButton_Click(object sender, RoutedEventArgs e)
         {
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);

@@ -5,4 +5,8 @@
     <SolidColorBrush x:Key="BoardBarBorderBrush" Opacity="0.8" Color="Black" />
     <SolidColorBrush x:Key="BoardBarForeground" Color="Black" />
     <Color x:Key="BoardBarForegroundColor">#FF666666</Color>
+
+    <Color x:Key="BoardBarButtonBackgroundKey">Transparent</Color>
+    <Color x:Key="BoardBarButtonBackgroundPointerOverKey">#2200CDCD</Color>
+    <Color x:Key="BoardBarButtonButtonBackgroundPressedKey">#4400CDCD</Color>
 </ResourceDictionary>

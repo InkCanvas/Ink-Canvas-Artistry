@@ -11,7 +11,7 @@ namespace Ink_Canvas
 {
     public partial class MainWindow : Window
     {
-        private void SymbolIconSaveStrokes_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconSaveStrokes_Click(object sender, RoutedEventArgs e)
         {
             if (lastBorderMouseDownObject != sender || inkCanvas.Visibility != Visibility.Visible) return;
 
@@ -58,7 +58,7 @@ namespace Ink_Canvas
             }
         }
 
-        private void SymbolIconOpenStrokes_MouseUp(object sender, MouseButtonEventArgs e)
+        private void SymbolIconOpenStrokes_Click(object sender, RoutedEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
