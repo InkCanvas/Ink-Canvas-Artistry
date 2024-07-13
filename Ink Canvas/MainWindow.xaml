@@ -4312,15 +4312,14 @@
                     Visibility="Visible">
                     <ikw:SimpleStackPanel Name="StackPanelFloatingBar" Margin="2,0" Orientation="Horizontal">
                         <Button
-                            Width="32"
+                            Width="30"
                             Height="32"
-                            Margin="-4,0,0,0"
+                            Margin="-2,0,-2,0"
                             Padding="0"
                             BorderThickness="0"
                             Click="CursorIcon_Click">
                             <ikw:SimpleStackPanel
                                 Width="28"
-                                Margin="4,0,0,0"
                                 HorizontalAlignment="Center"
                                 Background="Transparent"
                                 Orientation="Vertical">
@@ -5175,17 +5174,17 @@
                                 BorderThickness="0"
                                 Click="ImageBlackboard_Click">
                                 <Border Margin="0,2" BorderBrush="{DynamicResource FloatBarForeground}" BorderThickness="1,0,0,0">
-                                    <ikw:SimpleStackPanel Margin="3,-2,0,-2" HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
+                                    <ikw:SimpleStackPanel Margin="0,-2,0,-2" HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                         <ui:FontIcon
                                             Width="30"
                                             Height="22"
-                                            Margin="-1,1,1,-1"
+                                            Margin="0,0,0,-2"
                                             FontFamily="{StaticResource FluentIconFontFamily}"
                                             FontSize="16"
                                             Foreground="{DynamicResource FloatBarForeground}"
                                             Glyph="&#xe929;" />
                                         <TextBlock
-                                            Margin="2,-1,0,0"
+                                            Margin="0,0,0,-2"
                                             FontSize="8"
                                             Foreground="{DynamicResource FloatBarForeground}"
                                             Text="画板"
@@ -5218,14 +5217,13 @@
                                 </ikw:SimpleStackPanel>
                             </Button>
                             <Button
-                                Width="34"
+                                Width="30"
                                 Height="32"
-                                Margin="-4,0,-4,0"
+                                Margin="-2,0,-2,0"
                                 Padding="0"
                                 BorderThickness="0"
                                 Click="FoldFloatingBar_Click">
                                 <ikw:SimpleStackPanel x:Name="Fold_Icon"
-                                    Margin="-4,0,0,0"
                                     HorizontalAlignment="Center"
                                     Background="Transparent"
                                     Orientation="Vertical">

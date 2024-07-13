@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern">
     <ui:ElementTheme x:Key="BoardTheme">Dark</ui:ElementTheme>
     <SolidColorBrush x:Key="BoardBarBackground" Opacity="0.75" Color="Black" />
-    <SolidColorBrush x:Key="BoardBarTitleBackground" Opacity="0.75" Color="#2156c9" />
+    <SolidColorBrush x:Key="BoardBarTitleBackground" Opacity="0.5" Color="#2156c9" />
     <SolidColorBrush x:Key="BoardBarBorderBrush" Opacity="0.6" Color="White" />
     <SolidColorBrush x:Key="BoardBarForeground" Color="White" />
     <Color x:Key="BoardBarForegroundColor">#FFcccccc</Color>
