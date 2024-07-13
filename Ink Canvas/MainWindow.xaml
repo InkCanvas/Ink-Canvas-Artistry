@@ -1558,8 +1558,7 @@
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="SymbolIconUndo_Click"
-                            IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}">
+                            Click="SymbolIconUndo_Click">
                             <Border x:Name="BoardUndo"
                                 Width="60"
                                 Height="55"
@@ -1598,8 +1597,7 @@
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="SymbolIconRedo_Click"
-                            IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}">
+                            Click="SymbolIconRedo_Click">
                             <Border x:Name="BoardRedo"
                                 Width="60"
                                 Height="55"
@@ -5084,8 +5082,10 @@
                                 Height="32"
                                 Padding="0"
                                 BorderThickness="0"
-                                Click="SymbolIconUndo_Click"
-                                IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}">
+                                Click="SymbolIconUndo_Click">
+                                <!--
+                                    IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}"
+                                -->
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                     <ui:FontIcon x:Name="Icon_Undo"
                                         Width="30"
@@ -5110,8 +5110,10 @@
                                 Height="32"
                                 Padding="0"
                                 BorderThickness="0"
-                                Click="SymbolIconRedo_Click"
-                                IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}">
+                                Click="SymbolIconRedo_Click">
+                                <!--
+                                    IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}"
+                                -->
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                     <ui:FontIcon x:Name="Icon_Redo"
                                         Width="30"
