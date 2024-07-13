@@ -22,8 +22,8 @@
     mc:Ignorable="d">
     <Border
         Margin="60"
-        Background="#F0F3F9"
-        BorderBrush="#0066BF"
+        Background="{DynamicResource PopupWindowBackground}"
+        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
         BorderThickness="1"
         CornerRadius="10">
         <Grid>
@@ -32,6 +32,7 @@
                 VerticalAlignment="Center"
                 FontSize="56"
                 FontWeight="Black"
+                Foreground="{DynamicResource PopupWindowForeground}"
                 MouseDown="BtnMinimal_OnMouseUp"
                 Visibility="Collapsed" />
             <Border
@@ -58,7 +59,8 @@
                             Name="TextBlockHour"
                             FontFamily="Segeo UI"
                             FontSize="26"
-                            Foreground="#5B5D5F"
+                            Foreground="{DynamicResource PopupWindowForeground}"
+                            Opacity="0.9"
                             Text="00"
                             Visibility="Collapsed" />
                         <ItemsControl Name="TextControlHour" ItemsSource="{Binding ElementName=TextBlockHour, Path=Text}">
@@ -89,6 +91,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="+5" />
                                 </Button>
                                 <Button Width="{Binding ElementName=GridAdjustHour, Path=ActualWidth}" Height="13" Click="Button_Click">
@@ -97,6 +100,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="+1" />
                                 </Button>
                             </ikw:SimpleStackPanel>
@@ -107,6 +111,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="-1" />
                                 </Button>
                                 <Button Width="{Binding ElementName=GridAdjustHour, Path=ActualWidth}" Height="13" Click="Button_Click_3">
@@ -115,6 +120,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="-5" />
                                 </Button>
                             </ikw:SimpleStackPanel>
@@ -163,6 +169,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="+5" />
                                 </Button>
                                 <Button Width="{Binding ElementName=GridAdjustHour, Path=ActualWidth}" Height="13" Click="Button_Click_4">
@@ -171,6 +178,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="+1" />
                                 </Button>
                             </ikw:SimpleStackPanel>
@@ -181,6 +189,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="-1" />
                                 </Button>
                                 <Button Width="{Binding ElementName=GridAdjustHour, Path=ActualWidth}" Height="13" Click="Button_Click_7">
@@ -189,6 +198,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="-5" />
                                 </Button>
                             </ikw:SimpleStackPanel>
@@ -204,7 +214,14 @@
                                     <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                                 </Border.Effect>
                                 <Viewbox Margin="5.5">
-                                    <ui:SymbolIcon Foreground="White" Symbol="Save" />
+                                    <ui:FontIcon
+                                        Width="10"
+                                        Height="10"
+                                        Margin="0,1,1,0"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="10"
+                                        Foreground="White"
+                                        Glyph="&#xe74e;" />
                                 </Viewbox>
                             </Border>
                         </Grid>
@@ -271,6 +288,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="-1" />
                                 </Button>
                                 <Button Width="{Binding ElementName=GridAdjustHour, Path=ActualWidth}" Height="13" Click="Button_Click_11">
@@ -279,6 +297,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="8"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
                                         Text="-5" />
                                 </Button>
                             </ikw:SimpleStackPanel>
@@ -289,16 +308,25 @@
                         Margin="0,23,0,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Background="#E8EAF0"
+                        Background="{DynamicResource PopupWindowBackground}"
+                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                        BorderThickness="0.5"
                         CornerRadius="9">
                         <ikw:SimpleStackPanel Margin="6,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="0">
-                            <Image
+                            <ui:FontIcon
                                 Width="10"
                                 Height="10"
-                                Margin="0,0,2,0"
-                                RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="/Resources/Icons-png/ic_fluent_clock_24_regular.png" />
-                            <TextBlock Name="TextBlockStopTime" VerticalAlignment="Center" FontSize="9" Text="12:30 PM" />
+                                Margin="0,1,1,0"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                FontSize="10"
+                                Foreground="{DynamicResource PopupWindowForeground}"
+                                Glyph="&#xedac;" />
+                            <TextBlock
+                                Name="TextBlockStopTime"
+                                VerticalAlignment="Center"
+                                FontSize="9"
+                                Foreground="{DynamicResource PopupWindowForeground}"
+                                Text="12:30 PM" />
                         </ikw:SimpleStackPanel>
                     </Border>
                     <ikw:SimpleStackPanel
@@ -334,23 +362,27 @@
                             <Border x:Name="BtnReset"
                                 Width="20"
                                 Height="20"
-                                Background="#FBFBFD"
+                                Background="{DynamicResource PopupWindowBackground}"
+                                BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                                BorderThickness="0.5"
                                 CornerRadius="100"
                                 MouseUp="BtnReset_MouseUp">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.15" ShadowDepth="0" />
                                 </Border.Effect>
                                 <Viewbox Margin="5.5">
-                                    <ui:SymbolIcon Foreground="Black" Symbol="Refresh" />
+                                    <ui:SymbolIcon Foreground="{DynamicResource PopupWindowForeground}" Symbol="Refresh" />
                                 </Viewbox>
                             </Border>
                             <Border x:Name="BtnResetCover"
                                 Width="20"
                                 Height="20"
-                                Background="#F3F5F9"
+                                Background="{DynamicResource PopupWindowBackground}"
+                                BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                                BorderThickness="0.5"
                                 CornerRadius="100">
                                 <Viewbox Margin="5.5">
-                                    <ui:SymbolIcon Foreground="#9D9D9E" Symbol="Refresh" />
+                                    <ui:SymbolIcon Foreground="{DynamicResource PopupWindowForeground}" Symbol="Refresh" />
                                 </Viewbox>
                             </Border>
                         </Grid>
@@ -365,7 +397,9 @@
                         Margin="5"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Background="#FBFBFD"
+                        Background="{DynamicResource PopupWindowBackground}"
+                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                        BorderThickness="0.5"
                         CornerRadius="100"
                         MouseUp="BtnMinimal_OnMouseUp"
                         Visibility="{Binding ElementName=BorderStopTime, Path=Visibility}">
@@ -373,7 +407,7 @@
                             <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                         </Border.Effect>
                         <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Name="SymbolIconMinimal" Foreground="Black" Symbol="HideBcc" />
+                            <ui:SymbolIcon Name="SymbolIconMinimal" Foreground="{DynamicResource PopupWindowForeground}" Symbol="HideBcc" />
                         </Viewbox>
                     </Border>
                     <Border x:Name="BtnFullscreen"
@@ -382,14 +416,16 @@
                         Margin="5"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Background="#FBFBFD"
+                        Background="{DynamicResource PopupWindowBackground}"
+                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                        BorderThickness="0.5"
                         CornerRadius="100"
                         MouseUp="BtnFullscreen_MouseUp">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                         </Border.Effect>
                         <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Name="SymbolIconFullscreen" Foreground="Black" Symbol="FullScreen" />
+                            <ui:SymbolIcon Name="SymbolIconFullscreen" Foreground="{DynamicResource PopupWindowForeground}" Symbol="FullScreen" />
                         </Viewbox>
                     </Border>
                     <Border x:Name="BtnClose"

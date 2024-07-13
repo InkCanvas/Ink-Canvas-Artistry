@@ -9,7 +9,6 @@
     Title="Ink Canvas 抽奖 - 名单导入"
     Width="400"
     Height="500"
-    ui:ThemeManager.RequestedTheme="Light"
     ui:WindowHelper.UseModernWindowStyle="True"
     Closing="Window_Closing"
     Loaded="Window_Loaded"
@@ -17,8 +16,13 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <Label Margin="10" Content="请在下方输入名单，每行一人（建议直接粘贴表格姓名列）" />
-        <TextBox Name="TextBoxNames" Margin="10,40,10,50" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+        <Label Margin="10" Content="请在下方输入名单，每行一人（建议直接粘贴表格姓名列）" Foreground="{DynamicResource PopupWindowForeground}" />
+        <TextBox
+            Name="TextBoxNames"
+            Margin="10,40,10,50"
+            AcceptsReturn="True"
+            Foreground="{DynamicResource PopupWindowForeground}"
+            VerticalScrollBarVisibility="Auto" />
         <Button
             Width="100"
             Margin="10"

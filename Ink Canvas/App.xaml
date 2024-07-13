@@ -26,6 +26,7 @@
                 <ResourceDictionary Source="Resources/IconImageDictionary.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Light.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Light-Board.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Light-PopupWindow.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

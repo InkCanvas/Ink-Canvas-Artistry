@@ -1,6 +1,5 @@
 ﻿using Ink_Canvas.Helpers;
 using Microsoft.VisualBasic;
-using iNKORE.UI.WPF.Modern.Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +7,8 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using iNKORE.UI.WPF.Modern;
+using System.Windows.Media;
 
 namespace Ink_Canvas {
     /// <summary>
@@ -17,6 +18,22 @@ namespace Ink_Canvas {
         public RandWindow() {
             InitializeComponent();
             AnimationsHelper.ShowWithSlideFromBottomAndFade(this, 0.25);
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                if (mainWindow.GetMainWindowTheme() == "Light")
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Light);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+                else
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Dark);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+            }
         }
 
         public RandWindow(bool IsAutoClose) {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iNKORE.UI.WPF.Modern;
+using System;
 using System.Reflection;
 using System.Windows;
 
@@ -12,6 +13,22 @@ namespace Ink_Canvas
         public ChangeLogWindow()
         {
             InitializeComponent();
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                if (mainWindow.GetMainWindowTheme() == "Light")
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Light);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+                else
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Dark);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

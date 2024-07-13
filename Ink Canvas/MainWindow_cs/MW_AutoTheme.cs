@@ -12,7 +12,14 @@ namespace Ink_Canvas
     {
         public string GetMainWindowTheme()
         {
-            return (IsSystemThemeLight()) ? "Light" : "Dark";
+            if (currentMode != 0)
+            {
+                return Settings.Canvas.UsingWhiteboard ? "Light" : "Dark";
+            }
+            else
+            {
+                return (IsSystemThemeLight()) ? "Light" : "Dark";
+            }
         }
 
         private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)

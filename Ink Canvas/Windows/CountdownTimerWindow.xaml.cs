@@ -1,4 +1,5 @@
 ﻿using Ink_Canvas.Helpers;
+using iNKORE.UI.WPF.Modern;
 using System;
 using System.Media;
 using System.Timers;
@@ -18,6 +19,22 @@ namespace Ink_Canvas
         {
             InitializeComponent();
             AnimationsHelper.ShowWithSlideFromBottomAndFade(this, 0.25);
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                if (mainWindow.GetMainWindowTheme() == "Light")
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Light);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+                else
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Dark);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+            }
 
             timer.Elapsed += Timer_Elapsed;
             timer.Interval = 50;
@@ -53,7 +70,6 @@ namespace Ink_Canvas
                     isTimerRunning = false;
                     SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Play;
                     BtnStartCover.Visibility = Visibility.Visible;
-                    TextBlockHour.Foreground = new SolidColorBrush(StringToColor("#FF5B5D5F"));
                     BorderStopTime.Visibility = Visibility.Collapsed;
                 }
             });
@@ -90,13 +106,11 @@ namespace Ink_Canvas
             {
                 ProcessBarTime.Visibility = Visibility.Collapsed;
                 GridAdjustHour.Visibility = Visibility.Visible;
-                TextBlockHour.Foreground = Brushes.Black;
             }
             else
             {
                 ProcessBarTime.Visibility = Visibility.Visible;
                 GridAdjustHour.Visibility = Visibility.Collapsed;
-                TextBlockHour.Foreground = new SolidColorBrush(StringToColor("#FF5B5D5F"));
 
                 if (hour == 0 && minute == 0 && second == 0)
                 {
@@ -221,7 +235,6 @@ namespace Ink_Canvas
                 BtnResetCover.Visibility = Visibility.Visible;
                 BtnStartCover.Visibility = Visibility.Collapsed;
                 BorderStopTime.Visibility = Visibility.Collapsed;
-                TextBlockHour.Foreground = new SolidColorBrush(StringToColor("#FF5B5D5F"));
                 return;
             }
             else if (isTimerRunning && isPaused)
@@ -232,7 +245,6 @@ namespace Ink_Canvas
                 BtnResetCover.Visibility = Visibility.Visible;
                 BtnStartCover.Visibility = Visibility.Collapsed;
                 BorderStopTime.Visibility = Visibility.Collapsed;
-                TextBlockHour.Foreground = new SolidColorBrush(StringToColor("#FF5B5D5F"));
                 SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Play;
                 isTimerRunning = false;
                 timer.Stop();
@@ -254,27 +266,6 @@ namespace Ink_Canvas
             TextBlockStopTime.Text = (startTime + totalTimeSpan).ToString("t");
         }
 
-        private Color StringToColor(string colorStr)
-        {
-            Byte[] argb = new Byte[4];
-            for (int i = 0; i < 4; i++)
-            {
-                char[] charArray = colorStr.Substring(i * 2 + 1, 2).ToCharArray();
-                //string str = "11";
-                Byte b1 = toByte(charArray[0]);
-                Byte b2 = toByte(charArray[1]);
-                argb[i] = (Byte)(b2 | (b1 << 4));
-            }
-
-            return Color.FromArgb(argb[0], argb[1], argb[2], argb[3]); //#FFFFFFFF
-        }
-
-        private static byte toByte(char c)
-        {
-            byte b = (byte)"0123456789ABCDEF".IndexOf(c);
-            return b;
-        }
-
         private void BtnStart_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (isPaused && isTimerRunning)
@@ -282,7 +273,6 @@ namespace Ink_Canvas
                 //继续
                 startTime += DateTime.Now - pauseTime;
                 ProcessBarTime.IsPaused = false;
-                TextBlockHour.Foreground = Brushes.Black;
                 SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Pause;
                 isPaused = false;
                 timer.Start();
@@ -294,7 +284,6 @@ namespace Ink_Canvas
                 //暂停
                 pauseTime = DateTime.Now;
                 ProcessBarTime.IsPaused = true;
-                TextBlockHour.Foreground = new SolidColorBrush(StringToColor("#FF5B5D5F"));
                 SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Play;
                 BorderStopTime.Visibility = Visibility.Collapsed;
                 isPaused = true;
@@ -306,7 +295,6 @@ namespace Ink_Canvas
                 startTime = DateTime.Now;
                 totalSeconds = ((hour * 60) + minute) * 60 + second;
                 ProcessBarTime.IsPaused = false;
-                TextBlockHour.Foreground = Brushes.Black;
                 SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Pause;
                 BtnResetCover.Visibility = Visibility.Collapsed;
 
@@ -359,7 +347,8 @@ namespace Ink_Canvas
                 // Set to center
                 double dpiScaleX = 1, dpiScaleY = 1;
                 PresentationSource source = PresentationSource.FromVisual(this);
-                if (source != null) {
+                if (source != null)
+                {
                     dpiScaleX = source.CompositionTarget.TransformToDevice.M11;
                     dpiScaleY = source.CompositionTarget.TransformToDevice.M22;
                 }
@@ -373,7 +362,11 @@ namespace Ink_Canvas
             }
             else
             {
-                if (WindowState == WindowState.Maximized) WindowState = WindowState.Normal;
+                if (WindowState == WindowState.Maximized)
+                {
+                    WindowState = WindowState.Normal;
+                    SymbolIconFullscreen.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.FullScreen;
+                }
                 Width = 400;
                 Height = 250;
                 BigViewController.Visibility = Visibility.Collapsed;

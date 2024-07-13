@@ -10,7 +10,6 @@
     Title="Ink Canvas 抽奖"
     Width="900"
     Height="500"
-    ui:ThemeManager.RequestedTheme="Light"
     AllowsTransparency="True"
     Background="Transparent"
     Loaded="Window_Loaded"
@@ -18,7 +17,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border Background="#F0F3F9" BorderBrush="#0066BF" BorderThickness="1" CornerRadius="10">
+    <Border Background="{DynamicResource PopupWindowBackground}" BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.8*" />
@@ -32,7 +31,8 @@
                         VerticalAlignment="Center"
                         Block.TextAlignment="Center"
                         Content=""
-                        FontSize="70" />
+                        FontSize="70"
+                        Foreground="{DynamicResource PopupWindowForeground}" />
                     <Label
                         Name="LabelOutput2"
                         HorizontalAlignment="Center"
@@ -40,6 +40,7 @@
                         Block.TextAlignment="Center"
                         Content=""
                         FontSize="70"
+                        Foreground="{DynamicResource PopupWindowForeground}"
                         Visibility="Collapsed" />
                     <Label
                         Name="LabelOutput3"
@@ -48,6 +49,7 @@
                         Block.TextAlignment="Center"
                         Content=""
                         FontSize="70"
+                        Foreground="{DynamicResource PopupWindowForeground}"
                         Visibility="Collapsed" />
                 </ikw:SimpleStackPanel>
             </Viewbox>
@@ -56,7 +58,9 @@
                     <Border x:Name="BorderBtnMinus"
                         Width="70"
                         Height="70"
-                        Background="#FBFBFD"
+                        Background="{DynamicResource PopupWindowBackground}"
+                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                        BorderThickness="1"
                         CornerRadius="100"
                         MouseUp="BorderBtnMinus_MouseUp">
                         <Border.Effect>
@@ -68,7 +72,7 @@
                                 Height="80"
                                 FontFamily="{StaticResource FluentIconFontFamily}"
                                 FontSize="36"
-                                Foreground="Black"
+                                Foreground="{DynamicResource PopupWindowForeground}"
                                 Glyph="&#xecc9;" />
                         </Viewbox>
                     </Border>
@@ -77,12 +81,15 @@
                         Width="80"
                         Margin="30"
                         FontSize="55"
+                        Foreground="{DynamicResource PopupWindowForeground}"
                         Text="1"
                         TextAlignment="Center" />
                     <Border x:Name="BorderBtnAdd"
                         Width="70"
                         Height="70"
-                        Background="#FBFBFD"
+                        Background="{DynamicResource PopupWindowBackground}"
+                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                        BorderThickness="1"
                         CornerRadius="100"
                         MouseUp="BorderBtnAdd_MouseUp">
                         <Border.Effect>
@@ -94,7 +101,7 @@
                                 Height="80"
                                 FontFamily="{StaticResource FluentIconFontFamily}"
                                 FontSize="36"
-                                Foreground="Black"
+                                Foreground="{DynamicResource PopupWindowForeground}"
                                 Glyph="&#xecc8;" />
                         </Viewbox>
                     </Border>
@@ -147,7 +154,9 @@
                 Margin="10,10,60,10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Background="#FBFBFD"
+                Background="{DynamicResource PopupWindowBackground}"
+                BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                BorderThickness="1"
                 CornerRadius="20"
                 MouseUp="BorderBtnHelp_MouseUp">
                 <Border.Effect>
@@ -160,7 +169,7 @@
                             Height="20"
                             FontFamily="{StaticResource FluentIconFontFamily}"
                             FontSize="18"
-                            Foreground="Black"
+                            Foreground="{DynamicResource PopupWindowForeground}"
                             Glyph="&#xe716;" />
                     </Viewbox>
                     <TextBlock
@@ -169,6 +178,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="16"
+                        Foreground="{DynamicResource PopupWindowForeground}"
                         Text="点击此处以导入名单" />
                 </ikw:SimpleStackPanel>
             </Border>
