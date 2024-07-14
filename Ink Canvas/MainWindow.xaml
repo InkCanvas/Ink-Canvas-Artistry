@@ -86,7 +86,6 @@
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_Hide}" Executed="KeyHide" />
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_DrawLine}" Executed="KeyDrawLine" />
     </Window.CommandBindings>
-
     <Grid x:Name="Main_Grid" Background="#01FFFFFF">
         <!--  // 画板幕布 //  -->
         <Grid Name="GridBackgroundCoverHolder">
@@ -282,55 +281,6 @@
                 </Viewbox>
             </Border>
         </Grid>
-
-        <Grid Visibility="Collapsed">
-            <Grid Visibility="{Binding ElementName=GridBackgroundCoverHolder, Path=Visibility}">
-                <Viewbox Height="50" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="5">
-                        <Border
-                            Width="36"
-                            Height="36"
-                            Background="{DynamicResource FloatBarBackground}"
-                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                            <Grid Margin="6" MouseUp="GridPPTControlPrevious_MouseUp">
-                                <Image Source="{DynamicResource ResourceKey=SeewoImageSource.HorizontalPreviousSlideNormal}" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Width="36"
-                            Height="36"
-                            Background="{DynamicResource FloatBarBackground}"
-                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="5"
-                            Visibility="{Binding ElementName=PptNavigationBottomBtn, Path=Visibility}">
-                            <Grid MouseUp="PPTNavigationBtn_Click">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="{Binding ElementName=PptNavigationTextBlockBottom, Path=FontSize}"
-                                    Foreground="{Binding ElementName=PptNavigationTextBlockBottom, Path=Foreground}"
-                                    Text="{Binding ElementName=PptNavigationTextBlockBottom, Path=Text}" />
-                            </Grid>
-                        </Border>
-                        <Border
-                            Width="36"
-                            Height="36"
-                            Background="{DynamicResource FloatBarBackground}"
-                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                            <Grid Margin="6" MouseUp="GridPPTControlNext_MouseUp">
-                                <Image Source="{DynamicResource ResourceKey=SeewoImageSource.HorizontalNextSlideNormal}" />
-                            </Grid>
-                        </Border>
-                    </ikw:SimpleStackPanel>
-                </Viewbox>
-            </Grid>
-        </Grid>
-
         <!--  // 画板界面 //  -->
         <Grid Visibility="{Binding ElementName=GridBackgroundCoverHolder, Path=Visibility}">
             <!--  左下角  -->
@@ -2229,7 +2179,6 @@
                 </Button>
             </ikw:SimpleStackPanel>
         </Grid>
-
         <!--  // 设置界面 //  -->
         <Border
             Name="BorderSettings"
@@ -3683,7 +3632,6 @@
                 </Grid>
             </Grid>
         </Border>
-
         <!--  // 通知弹窗 //  -->
         <Grid
             Name="GridNotifications"
@@ -3707,7 +3655,6 @@
                     Text="测试文本" />
             </Border>
         </Grid>
-
         <!--  // Old UI //  -->
         <Viewbox
             Name="ViewBoxStackPanelMain"
@@ -3743,16 +3690,7 @@
                         Background="{Binding ElementName=BtnExit, Path=Background}"
                         Content="深色"
                         Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                    <!--  Click="BtnSwitchTheme_Click"  -->
 
-                    <Button
-                        Name="BtnSwitch"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="{Binding ElementName=BtnExit, Path=Background}"
-                        Click="BtnSwitch_Click"
-                        Content="背景"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
                     <Button x:Name="BtnHideInkCanvas"
                         Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
                         Margin="0,10,0,0"
@@ -3895,7 +3833,6 @@
                 <Grid Name="GridForLeftSideReservedSpace" Height="{Binding ElementName=StackPanelInfo, Path=ActualHeight}" />
             </StackPanel>
         </Viewbox>
-
         <!--  // PPT 翻页按钮 //  -->
         <Viewbox x:Name="PPTNavigationBottomLeft"
             Height="40"
@@ -4229,7 +4166,6 @@
                 </ikw:SimpleStackPanel>
             </Border>
         </Viewbox>
-
         <!--  // 浮动批注主窗口 //  -->
         <Viewbox
             Name="ViewboxFloatingBar"
@@ -5610,7 +5546,6 @@
                 </Border>
             </ikw:SimpleStackPanel>
         </Viewbox>
-
         <!--  // 笑脸拖动 //  -->
         <Grid
             Name="GridForFloatingBarDraging"
@@ -5618,7 +5553,6 @@
             MouseMove="SymbolIconEmoji_MouseMove"
             MouseUp="SymbolIconEmoji_MouseUp"
             Visibility="Collapsed" />
-
         <!--  // 墨迹播放 //  -->
         <InkCanvas
             Name="InkCanvasForInkReplay"
@@ -5626,7 +5560,6 @@
             EditingMode="None"
             MouseDown="InkCanvasForInkReplay_MouseDown"
             Visibility="Collapsed" />
-
         <!--  // 侧边栏 //  -->
         <Viewbox x:Name="LeftSidePanel"
             Width="30"

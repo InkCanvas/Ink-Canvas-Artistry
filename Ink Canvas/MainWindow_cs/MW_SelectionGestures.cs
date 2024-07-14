@@ -105,21 +105,29 @@ namespace Ink_Canvas
             }
         }
 
-        private void ImageFlipHorizontal_MouseUp(object sender, MouseButtonEventArgs e)
+        private void MatrixTransform(int type)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             Matrix m = new Matrix();
-
             // Find center of element and then transform to get current location of center
-            FrameworkElement fe = e.Source as FrameworkElement;
-            Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-            center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
+            Point center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
                 inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
             center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
 
-            // Update matrix to reflect translation/rotation
-            m.ScaleAt(-1, 1, center.X, center.Y);  // 缩放
+            switch (type)
+            {
+                case 1: // FlipHorizontal
+                    m.ScaleAt(-1, 1, center.X, center.Y);
+                    break;
+                case 2: // FlipVertical
+                    m.ScaleAt(1, -1, center.X, center.Y);
+                    break;
+                case 3: // Rotate45
+                    m.RotateAt(45, center.X, center.Y);
+                    break;
+                case 4: // Rotate90
+                    m.RotateAt(90, center.X, center.Y);
+                    break;
+            }
 
             StrokeCollection targetStrokes = inkCanvas.GetSelectedStrokes();
             foreach (Stroke stroke in targetStrokes)
@@ -128,11 +136,6 @@ namespace Ink_Canvas
             }
             if (DrawingAttributesHistory.Count > 0)
             {
-                var collecion = new StrokeCollection();
-                foreach (var item in DrawingAttributesHistory)
-                {
-                    collecion.Add(item.Key);
-                }
                 timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
                 DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
                 foreach (var item in DrawingAttributesHistoryFlag)
@@ -140,107 +143,30 @@ namespace Ink_Canvas
                     item.Value.Clear();
                 }
             }
+        }
+
+        private void ImageFlipHorizontal_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (lastBorderMouseDownObject != sender) return;
+            MatrixTransform(1);
         }
 
         private void ImageFlipVertical_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;
-
-            Matrix m = new Matrix();
-
-            // Find center of element and then transform to get current location of center
-            FrameworkElement fe = e.Source as FrameworkElement;
-            Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-            center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
-                inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
-            center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
-
-            // Update matrix to reflect translation/rotation
-            m.ScaleAt(1, -1, center.X, center.Y);  // 缩放
-
-            StrokeCollection targetStrokes = inkCanvas.GetSelectedStrokes();
-            foreach (Stroke stroke in targetStrokes)
-            {
-                stroke.Transform(m, false);
-            }
-            if (DrawingAttributesHistory.Count > 0)
-            {
-                timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
-                DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
-                foreach (var item in DrawingAttributesHistoryFlag)
-                {
-                    item.Value.Clear();
-                }
-            }
+            MatrixTransform(2);
         }
 
         private void ImageRotate45_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;
-
-            Matrix m = new Matrix();
-
-            // Find center of element and then transform to get current location of center
-            FrameworkElement fe = e.Source as FrameworkElement;
-            Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-            center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
-                inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
-            center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
-
-            // Update matrix to reflect translation/rotation
-            m.RotateAt(45, center.X, center.Y);  // 旋转
-
-            StrokeCollection targetStrokes = inkCanvas.GetSelectedStrokes();
-            foreach (Stroke stroke in targetStrokes)
-            {
-                stroke.Transform(m, false);
-            }
-            if (DrawingAttributesHistory.Count > 0)
-            {
-                timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
-                DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
-                foreach (var item in DrawingAttributesHistoryFlag)
-                {
-                    item.Value.Clear();
-                }
-            }
+            MatrixTransform(3);
         }
 
         private void ImageRotate90_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;
-
-            Matrix m = new Matrix();
-
-            // Find center of element and then transform to get current location of center
-            FrameworkElement fe = e.Source as FrameworkElement;
-            Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-            center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
-                inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
-            center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
-
-            // Update matrix to reflect translation/rotation
-            m.RotateAt(90, center.X, center.Y);  // 旋转
-
-            StrokeCollection targetStrokes = inkCanvas.GetSelectedStrokes();
-            foreach (Stroke stroke in targetStrokes)
-            {
-                stroke.Transform(m, false);
-            }
-            if (DrawingAttributesHistory.Count > 0)
-            {
-                var collecion = new StrokeCollection();
-                foreach (var item in DrawingAttributesHistory)
-                {
-                    collecion.Add(item.Key);
-                }
-                timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
-                DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
-                foreach (var item in DrawingAttributesHistoryFlag)
-                {
-                    item.Value.Clear();
-                }
-            }
+            MatrixTransform(4);
         }
 
         #endregion

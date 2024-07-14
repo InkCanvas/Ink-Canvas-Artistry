@@ -410,14 +410,6 @@ namespace Ink_Canvas
                         //SaveStrokes();
                         ClearStrokes(true);
 
-                        if (BtnSwitchTheme.Content.ToString() == "浅色")
-                        {
-                            BtnSwitch.Content = "黑板";
-                        }
-                        else
-                        {
-                            BtnSwitch.Content = "白板";
-                        }
                         StackPanelPPTButtons.Visibility = Visibility.Visible;
                     }
                     BtnHideInkCanvas_Click(BtnHideInkCanvas, null);

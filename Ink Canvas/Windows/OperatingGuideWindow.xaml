@@ -7,8 +7,8 @@
     xmlns:local="clr-namespace:Ink_Canvas"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    Title="使用指南 - Ink Canvas Artistry"
-    Width="550"
+    Title="Ink Canvas Artistry 使用指南"
+    Width="500"
     Height="550"
     ui:ThemeManager.RequestedTheme="Light"
     ui:WindowHelper.SystemBackdropType="Mica"
@@ -18,6 +18,7 @@
     mc:Ignorable="d">
     <Border
         Margin="10"
+        Padding="20,20,0,0"
         Background="{DynamicResource PopupWindowBackground}"
         BorderBrush="{DynamicResource PopupWindowBorderBrush}"
         BorderThickness="1"
@@ -36,12 +37,12 @@
                 CornerRadius="8"
                 MouseMove="WindowDragMove"
                 Visibility="Visible" />
-            <Viewbox HorizontalAlignment="Left">
+            <Grid>
                 <ScrollViewer
                     Margin="0,0,0,30"
                     ui:ThemeManager.RequestedTheme="Light"
                     ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback"
-                    PanningMode="VerticalOnly"
+                    PanningMode="VerticalFirst"
                     VerticalScrollBarVisibility="Auto">
                     <ikw:SimpleStackPanel>
                         <ikw:SimpleStackPanel Margin="20,20,20,0" HorizontalAlignment="Left" Orientation="Horizontal">
@@ -52,7 +53,7 @@
                                 FontFamily="{StaticResource FluentIconFontFamily}"
                                 FontSize="24"
                                 Foreground="{DynamicResource PopupWindowForeground}"
-                                Glyph="&#xeda7;" />
+                                Glyph="&#xEDA7;" />
                             <TextBlock
                                 VerticalAlignment="Center"
                                 FontSize="22"
@@ -60,8 +61,7 @@
                                 Text="软件快捷键"
                                 TextWrapping="Wrap" />
                         </ikw:SimpleStackPanel>
-
-                        <Viewbox Height="360" HorizontalAlignment="Left">
+                        <Viewbox Width="400" HorizontalAlignment="Left">
                             <ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
                                     <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
@@ -271,8 +271,8 @@
                         </Viewbox>
                     </ikw:SimpleStackPanel>
                 </ScrollViewer>
-            </Viewbox>
-            <Viewbox Margin="20,20,20,20" HorizontalAlignment="Right" Visibility="{Binding ElementName=BigViewController, Path=Visibility}">
+            </Grid>
+            <Viewbox Margin="20,20,20,20" HorizontalAlignment="Right" Visibility="{Binding Visibility, ElementName=BigViewController}">
                 <ikw:SimpleStackPanel Height="180" Orientation="Horizontal">
                     <Border x:Name="BtnFullscreen"
                         Width="20"
@@ -289,7 +289,7 @@
                             <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                         </Border.Effect>
                         <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Name="SymbolIconFullscreen" Foreground="{DynamicResource PopupWindowForeground}" Symbol="FullScreen" />
+                            <ui:SymbolIcon x:Name="SymbolIconFullscreen" Foreground="{DynamicResource PopupWindowForeground}" Symbol="FullScreen" />
                         </Viewbox>
                     </Border>
                     <Border x:Name="BtnClose"

@@ -64,7 +64,7 @@ namespace Ink_Canvas
 
                     if (arg.Contains("EasiNote"))
                     {
-                        BtnSwitch_Click(BtnSwitch, null);
+                        BtnSwitch_Click(null, null);
                         MessageBox.Show("“希沃白板 5”已自动关闭");
                     }
                 }

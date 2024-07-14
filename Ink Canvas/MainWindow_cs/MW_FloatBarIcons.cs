@@ -325,15 +325,7 @@ namespace Ink_Canvas
                 PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
-                /*
-                if (Not_Enter_Blackboard_fir_Mouse_Click) {// BUG-Fixed_tmp：程序启动后直接进入白板会导致后续撤销功能、退出白板无法恢复墨迹
-                    BtnColorRed_Click(BorderPenColorRed, null);
-                    await Task.Delay(200);
-                    SimulateMouseClick.SimulateMouseClickAtTopLeft();
-                    await Task.Delay(10);
-                    Not_Enter_Blackboard_fir_Mouse_Click = false;
-                }
-                */
+
                 new Thread(new ThreadStart(() =>
                 {
                     Thread.Sleep(100);
@@ -413,14 +405,13 @@ namespace Ink_Canvas
                 }
             }
 
-            BtnSwitch_Click(BtnSwitch, null);
+            BtnSwitch_Click(null, null);
 
             if (currentMode == 0 && inkCanvas.Strokes.Count == 0 && BtnPPTSlideShowEnd.Visibility != Visibility.Visible)
             {
                 CursorIcon_Click(null, null);
             }
 
-            BtnExit.Foreground = Brushes.White;
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
 
             new Thread(new ThreadStart(() =>
@@ -706,15 +697,6 @@ namespace Ink_Canvas
                 RestoreStrokes(true);
             }
 
-            if (BtnSwitchTheme.Content.ToString() == "浅色")
-            {
-                BtnSwitch.Content = "黑板";
-            }
-            else
-            {
-                BtnSwitch.Content = "白板";
-            }
-
             StackPanelPPTButtons.Visibility = Visibility.Visible;
             BtnHideInkCanvas.Content = "显示\n画板";
             CheckEnableTwoFingerGestureBtnVisibility(false);
@@ -752,24 +734,12 @@ namespace Ink_Canvas
                 GridBackgroundCoverHolder.Visibility = Visibility.Visible;
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
 
-                /*if (forceEraser && currentMode == 0)
-                    BtnColorRed_Click(sender, null);*/
-
                 if (GridBackgroundCover.Visibility == Visibility.Collapsed)
                 {
-                    if (BtnSwitchTheme.Content.ToString() == "浅色")
-                    {
-                        BtnSwitch.Content = "黑板";
-                    }
-                    else
-                    {
-                        BtnSwitch.Content = "白板";
-                    }
                     StackPanelPPTButtons.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    BtnSwitch.Content = "屏幕";
                     StackPanelPPTButtons.Visibility = Visibility.Collapsed;
                 }
 
@@ -1089,27 +1059,6 @@ namespace Ink_Canvas
                     ClearStrokes(true);
                     RestoreStrokes();
 
-                    if (BtnSwitchTheme.Content.ToString() == "浅色")
-                    {
-                        BtnSwitch.Content = "黑板";
-                        BtnExit.Foreground = Brushes.White;
-                    }
-                    else
-                    {
-                        BtnSwitch.Content = "白板";
-                        if (isPresentationHaveBlackSpace)
-                        {
-                            BtnExit.Foreground = Brushes.White;
-                            //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-                        }
-                        else
-                        {
-                            BtnExit.Foreground = Brushes.Black;
-                            //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-                        }
-                    }
                     StackPanelPPTButtons.Visibility = Visibility.Visible;
                 }
                 Topmost = true;
@@ -1130,30 +1079,6 @@ namespace Ink_Canvas
                         ClearStrokes(true);
                         RestoreStrokes(true);
 
-                        if (BtnSwitchTheme.Content.ToString() == "浅色")
-                        {
-                            BtnSwitch.Content = "黑板";
-                            BtnExit.Foreground = Brushes.White;
-                            //SymbolIconBtnColorBlackContent.Foreground = Brushes.Black;
-                            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-                        }
-                        else
-                        {
-                            BtnSwitch.Content = "白板";
-                            if (isPresentationHaveBlackSpace)
-                            {
-                                BtnExit.Foreground = Brushes.White;
-                                //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-                            }
-                            else
-                            {
-                                BtnExit.Foreground = Brushes.Black;
-                                //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-                            }
-                        }
-
                         StackPanelPPTButtons.Visibility = Visibility.Visible;
                         Topmost = true;
                         break;
@@ -1167,20 +1092,6 @@ namespace Ink_Canvas
                         SaveStrokes(true);
                         ClearStrokes(true);
                         RestoreStrokes();
-
-                        BtnSwitch.Content = "屏幕";
-                        if (BtnSwitchTheme.Content.ToString() == "浅色")
-                        {
-                            BtnExit.Foreground = Brushes.White;
-                            //SymbolIconBtnColorBlackContent.Foreground = Brushes.Black;
-                            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-                        }
-                        else
-                        {
-                            BtnExit.Foreground = Brushes.Black;
-                            //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-                        }
 
                         StackPanelPPTButtons.Visibility = Visibility.Collapsed;
                         Topmost = false;
@@ -1205,19 +1116,10 @@ namespace Ink_Canvas
 
                 if (GridBackgroundCover.Visibility == Visibility.Collapsed)
                 {
-                    if (BtnSwitchTheme.Content.ToString() == "浅色")
-                    {
-                        BtnSwitch.Content = "黑板";
-                    }
-                    else
-                    {
-                        BtnSwitch.Content = "白板";
-                    }
                     StackPanelPPTButtons.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    BtnSwitch.Content = "屏幕";
                     StackPanelPPTButtons.Visibility = Visibility.Collapsed;
                 }
 
@@ -1281,15 +1183,6 @@ namespace Ink_Canvas
                 {
                     SaveStrokes();
                     RestoreStrokes(true);
-                }
-
-                if (BtnSwitchTheme.Content.ToString() == "浅色")
-                {
-                    BtnSwitch.Content = "黑板";
-                }
-                else
-                {
-                    BtnSwitch.Content = "白板";
                 }
 
                 StackPanelPPTButtons.Visibility = Visibility.Visible;
