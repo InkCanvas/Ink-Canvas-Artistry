@@ -92,11 +92,7 @@
         <Grid Name="GridBackgroundCoverHolder">
             <Grid Name="GridBackgroundCover" Background="#1F1F1F" Visibility="Collapsed" />
         </Grid>
-
-        <Canvas Name="Canvas" />
-
-        <Label Name="Label" Content="0" Foreground="Gray" Visibility="Collapsed" />
-
+        <!--  // 画板 //  -->
         <InkCanvas x:Name="inkCanvas"
             Background="Transparent"
             Cursor="Pen"
@@ -117,7 +113,7 @@
             TouchDown="Main_Grid_TouchDown"
             TouchMove="inkCanvas_TouchMove"
             TouchUp="Main_Grid_TouchUp" />
-
+        <!--  // 选择选项窗口 //  -->
         <Grid Visibility="{Binding ElementName=inkCanvas, Path=Visibility}">
             <Grid
                 Name="GridInkCanvasSelectionCover"
@@ -4318,11 +4314,7 @@
                             Padding="0"
                             BorderThickness="0"
                             Click="CursorIcon_Click">
-                            <ikw:SimpleStackPanel
-                                Width="28"
-                                HorizontalAlignment="Center"
-                                Background="Transparent"
-                                Orientation="Vertical">
+                            <ikw:SimpleStackPanel Width="28" HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                 <ui:FontIcon
                                     Width="30"
                                     Height="22"
@@ -5223,10 +5215,7 @@
                                 Padding="0"
                                 BorderThickness="0"
                                 Click="FoldFloatingBar_Click">
-                                <ikw:SimpleStackPanel x:Name="Fold_Icon"
-                                    HorizontalAlignment="Center"
-                                    Background="Transparent"
-                                    Orientation="Vertical">
+                                <ikw:SimpleStackPanel x:Name="Fold_Icon" HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                     <ui:FontIcon
                                         Width="30"
                                         Height="22"

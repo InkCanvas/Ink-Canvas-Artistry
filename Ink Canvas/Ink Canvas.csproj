@@ -30,6 +30,7 @@
 		<Platforms>AnyCPU;x86;x64;ARM64</Platforms>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<PlatformTarget>AnyCPU</PlatformTarget>
+		<UserSecretsId>f49ced3b-26c5-4244-91af-88faafb1a4e5</UserSecretsId>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <Prefer32Bit>True</Prefer32Bit>

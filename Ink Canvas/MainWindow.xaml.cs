@@ -28,6 +28,7 @@ namespace Ink_Canvas
             BlackboardLeftSide.Visibility = Visibility.Collapsed;
             BlackboardCenterSide.Visibility = Visibility.Collapsed;
             BlackboardRightSide.Visibility = Visibility.Collapsed;
+
             BorderTools.Visibility = Visibility.Collapsed;
             BorderSettings.Visibility = Visibility.Collapsed;
 
@@ -37,26 +38,20 @@ namespace Ink_Canvas
             PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
 
             BorderSettings.Margin = new Thickness(0, 150, 0, 150);
+
             TwoFingerGestureBorder.Visibility = Visibility.Collapsed;
             BoardTwoFingerGestureBorder.Visibility = Visibility.Collapsed;
             BorderDrawShape.Visibility = Visibility.Collapsed;
             BoardBorderDrawShape.Visibility = Visibility.Collapsed;
-            GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
 
+            GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
 
             ViewBoxStackPanelMain.Visibility = Visibility.Collapsed;
             ViewBoxStackPanelShapes.Visibility = Visibility.Collapsed;
+
             ViewboxFloatingBar.Margin = new Thickness((SystemParameters.WorkArea.Width - 284) / 2, SystemParameters.WorkArea.Height - 60, -2000, -200);
             ViewboxFloatingBarMarginAnimation(100);
 
-            try
-            {
-                if (File.Exists("debug.ini")) Label.Visibility = Visibility.Visible;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
-            }
             try
             {
                 if (File.Exists("Log.txt"))

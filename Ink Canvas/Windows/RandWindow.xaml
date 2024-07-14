@@ -7,17 +7,22 @@
     xmlns:local="clr-namespace:Ink_Canvas"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    Title="Ink Canvas 抽奖"
+    Title="抽奖 - Ink Canvas Artistry"
     Width="900"
     Height="500"
-    AllowsTransparency="True"
-    Background="Transparent"
+    ui:ThemeManager.RequestedTheme="Light"
+    ui:WindowHelper.SystemBackdropType="Mica"
+    ui:WindowHelper.UseModernWindowStyle="True"
     Loaded="Window_Loaded"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
     mc:Ignorable="d">
-    <Border Background="{DynamicResource PopupWindowBackground}" BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="10">
+    <Border
+        Margin="10"
+        Background="{DynamicResource PopupWindowBackground}"
+        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+        BorderThickness="1"
+        CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.8*" />

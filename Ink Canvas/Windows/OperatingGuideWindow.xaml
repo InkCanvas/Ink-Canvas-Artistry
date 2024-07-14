@@ -7,22 +7,22 @@
     xmlns:local="clr-namespace:Ink_Canvas"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    Title="Ink Canvas Artistry 使用指南"
-    Width="500"
+    Title="使用指南 - Ink Canvas Artistry"
+    Width="550"
     Height="550"
     ui:ThemeManager.RequestedTheme="Light"
-    AllowsTransparency="True"
-    Background="Transparent"
+    ui:WindowHelper.SystemBackdropType="Mica"
+    ui:WindowHelper.UseModernWindowStyle="True"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
     mc:Ignorable="d">
     <Border
-        Padding="20,20,0,0"
+        Margin="10"
         Background="{DynamicResource PopupWindowBackground}"
         BorderBrush="{DynamicResource PopupWindowBorderBrush}"
         BorderThickness="1"
         CornerRadius="10">
+
         <Grid>
             <Border
                 Width="64"
@@ -36,240 +36,242 @@
                 CornerRadius="8"
                 MouseMove="WindowDragMove"
                 Visibility="Visible" />
-            <ScrollViewer
-                Margin="0,0,0,30"
-                ui:ThemeManager.RequestedTheme="Light"
-                ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback"
-                PanningMode="VerticalOnly"
-                VerticalScrollBarVisibility="Auto">
-                <ikw:SimpleStackPanel>
-                    <ikw:SimpleStackPanel Margin="20,20,20,0" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <ui:FontIcon
-                            Width="40"
-                            Height="40"
-                            Margin="6,0"
-                            FontFamily="{StaticResource FluentIconFontFamily}"
-                            FontSize="24"
-                            Foreground="{DynamicResource PopupWindowForeground}"
-                            Glyph="&#xeda7;" />
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            FontSize="22"
-                            Foreground="{DynamicResource PopupWindowForeground}"
-                            Text="软件快捷键"
-                            TextWrapping="Wrap" />
-                    </ikw:SimpleStackPanel>
-
-                    <Viewbox Height="360" HorizontalAlignment="Left">
-                        <ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="4,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Ctrl"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + Z  ——  撤销"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="4,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Ctrl"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + Y  ——  重做"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="4,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Ctrl"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + E  ——  清屏"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + V  ——  显示/隐藏笑脸右侧工具栏（Visibility）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + C  ——  截屏（Capture）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + S  ——  切换至选择模式（Select）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + D  ——  切换至批注模式 / 墨迹颜色选择器（Draw）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + Q  ——  退出批注模式（Quit）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + B  ——  切换/退出画板模式（Board）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + E  ——  切换至面积擦/墨迹擦功能（Eraser）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="6,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Alt"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + L  ——  切换至单次直线绘制功能（Line）"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
-                            <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
-                                    <TextBlock
-                                        Margin="2,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="10"
-                                        Foreground="{DynamicResource PopupWindowForeground}"
-                                        Text="Shift"
-                                        TextWrapping="Wrap" />
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="10"
-                                    Foreground="{DynamicResource PopupWindowForeground}"
-                                    Text=" + Esc  ——  退出 PPT 放映"
-                                    TextWrapping="Wrap" />
-                            </ikw:SimpleStackPanel>
+            <Viewbox HorizontalAlignment="Left">
+                <ScrollViewer
+                    Margin="0,0,0,30"
+                    ui:ThemeManager.RequestedTheme="Light"
+                    ManipulationBoundaryFeedback="SCManipulationBoundaryFeedback"
+                    PanningMode="VerticalOnly"
+                    VerticalScrollBarVisibility="Auto">
+                    <ikw:SimpleStackPanel>
+                        <ikw:SimpleStackPanel Margin="20,20,20,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                            <ui:FontIcon
+                                Width="40"
+                                Height="40"
+                                Margin="6,0"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                FontSize="24"
+                                Foreground="{DynamicResource PopupWindowForeground}"
+                                Glyph="&#xeda7;" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="22"
+                                Foreground="{DynamicResource PopupWindowForeground}"
+                                Text="软件快捷键"
+                                TextWrapping="Wrap" />
                         </ikw:SimpleStackPanel>
-                    </Viewbox>
-                </ikw:SimpleStackPanel>
-            </ScrollViewer>
+
+                        <Viewbox Height="360" HorizontalAlignment="Left">
+                            <ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="4,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Ctrl"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + Z  ——  撤销"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="4,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Ctrl"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + Y  ——  重做"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="4,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Ctrl"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + E  ——  清屏"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + V  ——  显示/隐藏笑脸右侧工具栏（Visibility）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + C  ——  截屏（Capture）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + S  ——  切换至选择模式（Select）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + D  ——  切换至批注模式 / 墨迹颜色选择器（Draw）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + Q  ——  退出批注模式（Quit）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + B  ——  切换/退出画板模式（Board）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + E  ——  切换至面积擦/墨迹擦功能（Eraser）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="6,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Alt"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + L  ——  切换至单次直线绘制功能（Line）"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Height="20" Margin="20,2" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Border BorderBrush="{DynamicResource PopupWindowBorderBrush}" BorderThickness="1" CornerRadius="3">
+                                        <TextBlock
+                                            Margin="2,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="{DynamicResource PopupWindowForeground}"
+                                            Text="Shift"
+                                            TextWrapping="Wrap" />
+                                    </Border>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="10"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Text=" + Esc  ——  退出 PPT 放映"
+                                        TextWrapping="Wrap" />
+                                </ikw:SimpleStackPanel>
+                            </ikw:SimpleStackPanel>
+                        </Viewbox>
+                    </ikw:SimpleStackPanel>
+                </ScrollViewer>
+            </Viewbox>
             <Viewbox Margin="20,20,20,20" HorizontalAlignment="Right" Visibility="{Binding ElementName=BigViewController, Path=Visibility}">
                 <ikw:SimpleStackPanel Height="180" Orientation="Horizontal">
                     <Border x:Name="BtnFullscreen"

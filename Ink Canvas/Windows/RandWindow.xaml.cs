@@ -38,6 +38,22 @@ namespace Ink_Canvas {
 
         public RandWindow(bool IsAutoClose) {
             InitializeComponent();
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                if (mainWindow.GetMainWindowTheme() == "Light")
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Light);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+                else
+                {
+                    ThemeManager.SetRequestedTheme(this, ElementTheme.Dark);
+                    ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-PopupWindow.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
+                }
+            }
             isAutoClose = IsAutoClose;
 
             new Thread(new ThreadStart(() => {

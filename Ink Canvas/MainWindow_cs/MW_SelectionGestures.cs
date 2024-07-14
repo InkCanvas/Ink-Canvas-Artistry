@@ -21,6 +21,7 @@ namespace Ink_Canvas
         }
 
         bool isStrokeSelectionCloneOn = false;
+
         private void BorderStrokeSelectionClone_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;

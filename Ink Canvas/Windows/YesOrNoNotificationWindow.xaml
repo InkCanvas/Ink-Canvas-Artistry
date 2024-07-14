@@ -10,6 +10,8 @@
     Title="演示文档设置 - Ink Canvas Artistry"
     Width="450"
     Height="160"
+    ui:ThemeManager.RequestedTheme="Light"
+    ui:WindowHelper.SystemBackdropType="Mica"
     ui:WindowHelper.UseModernWindowStyle="True"
     Closed="Window_Closed"
     ResizeMode="NoResize"

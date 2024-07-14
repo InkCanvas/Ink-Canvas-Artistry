@@ -120,7 +120,7 @@ namespace Ink_Canvas
             }
             catch (Exception ex)
             {
-                Label.Content = ex.ToString();
+                LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
             }
             try
             {
