@@ -27,6 +27,7 @@ namespace Ink_Canvas
         public static Microsoft.Office.Interop.PowerPoint.Slide slide = null;
         public static int slidescount = 0;
 
+        /*
         private void BtnCheckPPT_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -61,12 +62,12 @@ namespace Ink_Canvas
 
                 if (pptApplication == null) throw new Exception();
                 //BtnCheckPPT.Visibility = Visibility.Collapsed;
-                StackPanelPPTControls.Visibility = Visibility.Visible;
+                BtnPPTSlideShowEnd.Visibility = Visibility.Visible;
             }
             catch
             {
                 //BtnCheckPPT.Visibility = Visibility.Visible;
-                StackPanelPPTControls.Visibility = Visibility.Collapsed;
+                BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
@@ -74,6 +75,7 @@ namespace Ink_Canvas
                 MessageBox.Show("未找到幻灯片");
             }
         }
+        */
 
         private void ToggleSwitchSupportWPS_Toggled(object sender, RoutedEventArgs e)
         {
@@ -137,7 +139,6 @@ namespace Ink_Canvas
                 }
 
                 if (pptApplication == null) return;
-                //BtnCheckPPT.Visibility = Visibility.Collapsed;
 
                 // 跳转到上次播放页
                 if (Settings.PowerPointSettings.IsNotifyPreviousPage)
@@ -205,7 +206,7 @@ namespace Ink_Canvas
                                 }).ShowDialog();
                         }
 
-                        BtnPPTSlideShow.Visibility = Visibility.Visible;
+                        // BtnPPTSlideShow.Visibility = Visibility.Visible;
                     }));
                 }
 
@@ -245,11 +246,12 @@ namespace Ink_Canvas
             }
             catch
             {
-                //StackPanelPPTControls.Visibility = Visibility.Collapsed;
+                /*
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     BtnPPTSlideShow.Visibility = Visibility.Collapsed;
                 });
+                */
                 timerCheckPPT.Start();
             }
         }
@@ -262,11 +264,13 @@ namespace Ink_Canvas
             pptApplication.SlideShowEnd -= PptApplication_SlideShowEnd;
             pptApplication = null;
             timerCheckPPT.Start();
+            
             Application.Current.Dispatcher.Invoke(() =>
             {
-                BtnPPTSlideShow.Visibility = Visibility.Collapsed;
+                //BtnPPTSlideShow.Visibility = Visibility.Collapsed;
                 BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
             });
+            
         }
 
         bool isPresentationHaveBlackSpace = false;
@@ -299,21 +303,6 @@ namespace Ink_Canvas
                     if (Wn.Presentation.PageSetup.SlideWidth / Wn.Presentation.PageSetup.SlideHeight < 1.65)
                     {
                         isPresentationHaveBlackSpace = true;
-                        //isButtonBackgroundTransparent = ToggleSwitchTransparentButtonBackground.IsOn;
-
-                        if (BtnSwitchTheme.Content.ToString() == "深色")
-                        {
-                            //Light
-                            BtnExit.Foreground = Brushes.White;
-                            //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-                            //BtnExit.Background = new SolidColorBrush(StringToColor("#AACCCCCC"));
-                        }
-                        else
-                        {
-                            //Dark
-                            //BtnExit.Background = new SolidColorBrush(StringToColor("#AA555555"));
-                        }
                     }
                 }
                 else if (screenRatio == -256 / 135)
@@ -361,7 +350,7 @@ namespace Ink_Canvas
                     }
                 }
 
-                StackPanelPPTControls.Visibility = Visibility.Visible;
+                BtnPPTSlideShowEnd.Visibility = Visibility.Visible;
 
                 if (Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel)
                 {
@@ -384,9 +373,8 @@ namespace Ink_Canvas
                     PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
                 }
 
-                BtnPPTSlideShow.Visibility = Visibility.Collapsed;
+                //BtnPPTSlideShow.Visibility = Visibility.Collapsed;
                 BtnPPTSlideShowEnd.Visibility = Visibility.Visible;
-                ViewBoxStackPanelMain.Margin = new Thickness(10, 10, 10, 10);
 
                 if (Settings.Appearance.IsColorfulViewboxFloatingBar)
                 {
@@ -409,10 +397,8 @@ namespace Ink_Canvas
 
                         //SaveStrokes();
                         ClearStrokes(true);
-
-                        StackPanelPPTButtons.Visibility = Visibility.Visible;
                     }
-                    BtnHideInkCanvas_Click(BtnHideInkCanvas, null);
+                    BtnHideInkCanvas_Click(null, null);
                 }
 
                 ClearStrokes(true);
@@ -494,27 +480,13 @@ namespace Ink_Canvas
             {
                 isPresentationHaveBlackSpace = false;
 
-                if (BtnSwitchTheme.Content.ToString() == "深色")
-                {
-                    //Light
-                    BtnExit.Foreground = Brushes.Black;
-                    //SymbolIconBtnColorBlackContent.Foreground = Brushes.White;
-                    ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-                }
-                else
-                {
-                    //Dark
-                }
-
-                BtnPPTSlideShow.Visibility = Visibility.Visible;
+                //BtnPPTSlideShow.Visibility = Visibility.Visible;
                 BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
-                StackPanelPPTControls.Visibility = Visibility.Collapsed;
+                BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
-
-                ViewBoxStackPanelMain.Margin = new Thickness(10, 10, 10, 55);
 
                 if (currentMode != 0)
                 {
@@ -525,7 +497,7 @@ namespace Ink_Canvas
 
                 if (Main_Grid.Background != Brushes.Transparent)
                 {
-                    BtnHideInkCanvas_Click(BtnHideInkCanvas, null);
+                    BtnHideInkCanvas_Click(null, null);
                 }
 
                 if (Settings.Appearance.IsColorfulViewboxFloatingBar)
@@ -617,7 +589,7 @@ namespace Ink_Canvas
             }
             catch
             {
-                StackPanelPPTControls.Visibility = Visibility.Collapsed;
+                BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
@@ -657,7 +629,7 @@ namespace Ink_Canvas
             }
             catch
             {
-                StackPanelPPTControls.Visibility = Visibility.Collapsed;
+                BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
                 PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
                 PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
@@ -684,6 +656,7 @@ namespace Ink_Canvas
             }
         }
 
+        /*
         private void BtnPPTSlideShow_Click(object sender, RoutedEventArgs e)
         {
             new Thread(new ThreadStart(() =>
@@ -695,6 +668,7 @@ namespace Ink_Canvas
                 catch { }
             })).Start();
         }
+        */
 
         private async void BtnPPTSlideShowEnd_Click(object sender, RoutedEventArgs e)
         {
@@ -727,13 +701,13 @@ namespace Ink_Canvas
         private void GridPPTControlPrevious_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;
-            BtnPPTSlidesUp_Click(BtnPPTSlidesUp, null);
+            BtnPPTSlidesUp_Click(null, null);
         }
 
         private void GridPPTControlNext_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (lastBorderMouseDownObject != sender) return;
-            BtnPPTSlidesDown_Click(BtnPPTSlidesDown, null);
+            BtnPPTSlidesDown_Click(null, null);
         }
 
         private void ImagePPTControlEnd_MouseUp(object sender, MouseButtonEventArgs e)

@@ -32,6 +32,7 @@ namespace Ink_Canvas
             BorderTools.Visibility = Visibility.Collapsed;
             BorderSettings.Visibility = Visibility.Collapsed;
 
+            BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
             PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
             PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
             PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
@@ -45,9 +46,6 @@ namespace Ink_Canvas
             BoardBorderDrawShape.Visibility = Visibility.Collapsed;
 
             GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
-
-            ViewBoxStackPanelMain.Visibility = Visibility.Collapsed;
-            ViewBoxStackPanelShapes.Visibility = Visibility.Collapsed;
 
             ViewboxFloatingBar.Margin = new Thickness((SystemParameters.WorkArea.Width - 284) / 2, SystemParameters.WorkArea.Height - 60, -2000, -200);
             ViewboxFloatingBarMarginAnimation(100);
@@ -123,15 +121,15 @@ namespace Ink_Canvas
             {
                 foreach (GestureRecognitionResult gest in gestures)
                 {
-                    if (StackPanelPPTControls.Visibility == Visibility.Visible)
+                    if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
                     {
                         if (gest.ApplicationGesture == ApplicationGesture.Left)
                         {
-                            BtnPPTSlidesDown_Click(BtnPPTSlidesDown, null);
+                            BtnPPTSlidesDown_Click(null, null);
                         }
                         if (gest.ApplicationGesture == ApplicationGesture.Right)
                         {
-                            BtnPPTSlidesUp_Click(BtnPPTSlidesUp, null);
+                            BtnPPTSlidesUp_Click(null, null);
                         }
                     }
                 }

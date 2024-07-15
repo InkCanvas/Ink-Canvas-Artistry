@@ -327,12 +327,13 @@
                         </Style>
                     </Grid.Resources>
                     <ikw:SimpleStackPanel Orientation="Horizontal">
-                        <Button
+                        <Button x:Name="BtnWhiteBoardSwitchPrevious"
                             Width="60"
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="BtnWhiteBoardSwitchPrevious_Click">
+                            Click="BtnWhiteBoardSwitchPrevious_Click"
+                            IsEnabledChanged="Element_IsEnabledChanged">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -367,12 +368,13 @@
                             <Grid Margin="0,5">
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock
+                                        Name="TextBlockWhiteBoardIndexInfo"
                                         Margin="0,4,0,2"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="15"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Text="{Binding ElementName=TextBlockWhiteBoardIndexInfo, Path=Text}" />
+                                        Text="1 / 1" />
                                     <TextBlock
                                         Margin="0,3,0,0"
                                         HorizontalAlignment="Center"
@@ -384,11 +386,13 @@
                             </Grid>
                         </Border>
                         <Button
+                            Name="BtnWhiteBoardAdd"
                             Width="60"
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="BtnWhiteBoardSwitchNext_Click">
+                            Click="BtnWhiteBoardSwitchNext_Click"
+                            IsEnabledChanged="Element_IsEnabledChanged">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -1526,14 +1530,14 @@
                                             FontSize="22"
                                             Foreground="{DynamicResource BoardBarForeground}"
                                             Glyph="&#xe7a7;"
-                                            Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
+                                            Opacity="{Binding ElementName=Icon_Undo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
                                     </ikw:SimpleStackPanel>
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         FontSize="12"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"
+                                        Opacity="{Binding ElementName=Icon_Undo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"
                                         Text="撤销" />
                                 </Grid>
                             </Border>
@@ -1566,14 +1570,14 @@
                                             FontSize="22"
                                             Foreground="{DynamicResource BoardBarForeground}"
                                             Glyph="&#xe7a6;"
-                                            Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
+                                            Opacity="{Binding ElementName=Icon_Redo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
                                     </ikw:SimpleStackPanel>
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         FontSize="12"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"
+                                        Opacity="{Binding ElementName=Icon_Redo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"
                                         Text="重做" />
                                 </Grid>
                             </Border>
@@ -1976,7 +1980,9 @@
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="BtnWhiteBoardSwitchPrevious_Click">
+                            Click="BtnWhiteBoardSwitchPrevious_Click"
+                            IsEnabled="{Binding ElementName=BtnWhiteBoardSwitchPrevious, Path=IsEnabled}"
+                            Opacity="{Binding ElementName=BtnWhiteBoardSwitchPrevious, Path=Opacity}">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -2033,7 +2039,9 @@
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="BtnWhiteBoardSwitchNext_Click">
+                            Click="BtnWhiteBoardSwitchNext_Click"
+                            IsEnabled="{Binding ElementName=BtnWhiteBoardAdd, Path=IsEnabled}"
+                            Opacity="{Binding ElementName=BtnWhiteBoardAdd, Path=Opacity}">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -2070,114 +2078,6 @@
                     </ikw:SimpleStackPanel>
                 </Grid>
             </Viewbox>
-
-            <ikw:SimpleStackPanel
-                Height="50"
-                Margin="10"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Orientation="Horizontal"
-                Spacing="10"
-                Visibility="Collapsed">
-                <Button
-                    Name="BtnWhiteBoardAdd"
-                    Width="50"
-                    Height="48"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnWhiteBoardAdd_Click"
-                    FontSize="26"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}">
-                    <ui:SymbolIcon Symbol="Add" />
-                </Button>
-                <Button
-                    Name="BtnWhiteBoardSwitchPrevious"
-                    Width="50"
-                    Height="48"
-                    VerticalContentAlignment="Center"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnWhiteBoardSwitchPrevious_Click"
-                    FontFamily="Symbol"
-                    FontSize="25"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    IsEnabled="False"
-                    IsEnabledChanged="Btn_IsEnabledChanged">
-                    <Image Opacity="0.25" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform />
-                                <SkewTransform />
-                                <RotateTransform Angle="-90" />
-                                <TranslateTransform />
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                        <Image.Source>
-                            <DrawingImage>
-                                <DrawingImage.Drawing>
-                                    <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
-                                        <DrawingGroup Opacity="1">
-                                            <GeometryDrawing Brush="{Binding ElementName=BtnExit, Path=Foreground}" Geometry="F1 M64,64z M0,0z M32,26.41L16.566,41.844 14.439,39.717 32,22.156 49.561,39.717 47.434,41.844 32,26.41z" />
-                                        </DrawingGroup>
-                                    </DrawingGroup>
-                                </DrawingImage.Drawing>
-                            </DrawingImage>
-                        </Image.Source>
-                    </Image>
-                </Button>
-                <Border Height="48" Margin="3,0" CornerRadius="2">
-                    <TextBlock
-                        Name="TextBlockWhiteBoardIndexInfo"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="18"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                        Text="1 / 1" />
-                </Border>
-                <Button
-                    Name="BtnWhiteBoardSwitchNext"
-                    Width="50"
-                    Height="48"
-                    VerticalContentAlignment="Center"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnWhiteBoardSwitchNext_Click"
-                    FontFamily="Symbol"
-                    FontSize="25"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    IsEnabled="False"
-                    IsEnabledChanged="Btn_IsEnabledChanged">
-                    <Image Opacity="0.25" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform />
-                                <SkewTransform />
-                                <RotateTransform Angle="90" />
-                                <TranslateTransform />
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                        <Image.Source>
-                            <DrawingImage>
-                                <DrawingImage.Drawing>
-                                    <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
-                                        <DrawingGroup Opacity="1">
-                                            <GeometryDrawing Brush="{Binding ElementName=BtnExit, Path=Foreground}" Geometry="F1 M64,64z M0,0z M32,26.41L16.566,41.844 14.439,39.717 32,22.156 49.561,39.717 47.434,41.844 32,26.41z" />
-                                        </DrawingGroup>
-                                    </DrawingGroup>
-                                </DrawingImage.Drawing>
-                            </DrawingImage>
-                        </Image.Source>
-                    </Image>
-                </Button>
-                <Button
-                    Name="BtnWhiteBoardDelete"
-                    Width="50"
-                    Height="48"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnWhiteBoardDelete_Click"
-                    FontSize="26"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    IsEnabled="False">
-                    <ui:SymbolIcon Symbol="Delete" />
-                </Button>
-            </ikw:SimpleStackPanel>
         </Grid>
         <!--  // 设置界面 //  -->
         <Border
@@ -3655,184 +3555,6 @@
                     Text="测试文本" />
             </Border>
         </Grid>
-        <!--  // Old UI //  -->
-        <Viewbox
-            Name="ViewBoxStackPanelMain"
-            Width="46"
-            Margin="10,10,10,55"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Visibility="Visible">
-            <StackPanel Name="StackPanelMain" Width="46">
-                <StackPanel Name="StackPanelControl">
-                    <Button
-                        Name="BtnExit"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="#7F909090"
-                        Click="BtnExit_Click"
-                        Content="退出" />
-
-                    <Button
-                        Name="BtnThickness"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="{Binding ElementName=BtnExit, Path=Background}"
-                        Click="BtnThickness_Click"
-                        Content="粗细"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                        Visibility="Collapsed" />
-
-                    <Button
-                        Name="BtnSwitchTheme"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="{Binding ElementName=BtnExit, Path=Background}"
-                        Content="深色"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-
-                    <Button x:Name="BtnHideInkCanvas"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="{Binding ElementName=BtnExit, Path=Background}"
-                        Click="BtnHideInkCanvas_Click"
-                        Content="隐藏&#x000A;画板"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                    <Button x:Name="BtnCheckPPT"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="{Binding ElementName=BtnExit, Path=Background}"
-                        Click="BtnCheckPPT_Click"
-                        Content="检查"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                        Visibility="Collapsed" />
-                    <StackPanel Name="StackPanelPPTButtons">
-                        <Button x:Name="BtnPPTSlideShow"
-                            Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                            Margin="0,10,0,0"
-                            Background="{Binding ElementName=BtnExit, Path=Background}"
-                            Click="BtnPPTSlideShow_Click"
-                            Content="从头&#x000A;放映"
-                            Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                            Visibility="Collapsed" />
-                        <Button x:Name="BtnPPTSlideShowEnd"
-                            Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                            Margin="0,10,0,0"
-                            Background="{Binding ElementName=BtnExit, Path=Background}"
-                            Click="BtnPPTSlideShowEnd_Click"
-                            Content="结束&#x000A;放映"
-                            Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                            Visibility="Collapsed" />
-                        <StackPanel Name="StackPanelPPTControls" Visibility="Collapsed">
-                            <Button x:Name="BtnPPTSlidesUp"
-                                Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                                Margin="0,10,0,0"
-                                Background="{Binding ElementName=BtnExit, Path=Background}"
-                                Click="BtnPPTSlidesUp_Click"
-                                Content="↑"
-                                Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                            <Button x:Name="BtnPPTSlidesDown"
-                                Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                                Margin="0,10,0,0"
-                                Background="{Binding ElementName=BtnExit, Path=Background}"
-                                Click="BtnPPTSlidesDown_Click"
-                                Content="↓"
-                                Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                        </StackPanel>
-                    </StackPanel>
-                    <Button x:Name="BtnSwitchSide"
-                        Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                        Margin="0,10,0,0"
-                        Background="{Binding ElementName=BtnExit, Path=Background}"
-                        Click="BtnSwitchSide_Click"
-                        Content="⇆"
-                        Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                </StackPanel>
-                <Button x:Name="BtnHideControl"
-                    Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                    Margin="0,10,0,0"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnHideControl_Click"
-                    Content="⇅"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-            </StackPanel>
-        </Viewbox>
-        <Viewbox
-            Name="ViewBoxStackPanelShapes"
-            Width="46"
-            Margin="{Binding ElementName=ViewBoxStackPanelMain, Path=Margin}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Visibility="Visible">
-            <StackPanel Name="StackPanelShapes" Width="46">
-                <Button
-                    Name="BtnFingerDragMode"
-                    Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                    Margin="0,25,0,0"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnFingerDragMode_Click"
-                    Content="单指&#x000A;拖动"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    Visibility="Visible" />
-                <StackPanel IsVisibleChanged="StackPanel_IsVisibleChanged" Visibility="{Binding ElementName=StackPanelPPTButtons, Path=Visibility}">
-                    <StackPanel Visibility="{Binding ElementName=StackPanelPPTControls, Path=Visibility}">
-                        <Button
-                            Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                            Margin="0,10,0,0"
-                            Background="{Binding ElementName=BtnExit, Path=Background}"
-                            Click="BtnPPTSlidesUp_Click"
-                            Content="↑"
-                            Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                        <Button
-                            Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                            Margin="0,10,0,15"
-                            Background="{Binding ElementName=BtnExit, Path=Background}"
-                            Click="BtnPPTSlidesDown_Click"
-                            Content="↓"
-                            Foreground="{Binding ElementName=BtnExit, Path=Foreground}" />
-                    </StackPanel>
-                </StackPanel>
-                <Button x:Name="BtnUndo"
-                    Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                    Margin="0,10,0,0"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnUndo_Click"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    IsEnabled="False"
-                    IsEnabledChanged="Btn_IsEnabledChanged"
-                    Visibility="Collapsed">
-                    <StackPanel Opacity="0.2">
-                        <ui:SymbolIcon Symbol="Undo" />
-                        <TextBlock Margin="0,4,0,0" Text="撤销" />
-                    </StackPanel>
-                </Button>
-                <Button x:Name="BtnRedo"
-                    Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                    Margin="0,10,0,0"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Click="BtnRedo_Click"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    IsEnabled="False"
-                    IsEnabledChanged="Btn_IsEnabledChanged"
-                    Visibility="Collapsed">
-                    <StackPanel Opacity="0.2">
-                        <ui:SymbolIcon Symbol="Redo" />
-                        <TextBlock Margin="0,4,0,0" Text="恢复" />
-                    </StackPanel>
-                </Button>
-                <Button
-                    Name="BtnClearAndHideCanvas"
-                    Width="{Binding ElementName=StackPanelMain, Path=ActualWidth}"
-                    Margin="0,10,0,0"
-                    Background="{Binding ElementName=BtnExit, Path=Background}"
-                    Block.TextAlignment="Center"
-                    Click="BtnSelect_Click"
-                    Content="清屏&#x000A;&amp;&#x000A;隐藏"
-                    Foreground="{Binding ElementName=BtnExit, Path=Foreground}"
-                    Visibility="Collapsed" />
-                <Grid Name="GridForLeftSideReservedSpace" Height="{Binding ElementName=StackPanelInfo, Path=ActualHeight}" />
-            </StackPanel>
-        </Viewbox>
         <!--  // PPT 翻页按钮 //  -->
         <Viewbox x:Name="PPTNavigationBottomLeft"
             Height="40"
@@ -5010,9 +4732,6 @@
                                 Padding="0"
                                 BorderThickness="0"
                                 Click="SymbolIconUndo_Click">
-                                <!--
-                                    IsEnabled="{Binding ElementName=BtnUndo, Path=IsEnabled}"
-                                -->
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                     <ui:FontIcon x:Name="Icon_Undo"
                                         Width="30"
@@ -5022,11 +4741,14 @@
                                         FontSize="16"
                                         Foreground="{DynamicResource FloatBarForeground}"
                                         Glyph="&#xe7a7;"
-                                        Opacity="{Binding ElementName=BtnUndo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
+                                        IsEnabled="False"
+                                        IsEnabledChanged="Element_IsEnabledChanged"
+                                        Opacity="0.35" />
                                     <TextBlock
                                         Margin="1,-1,0,0"
                                         FontSize="8"
                                         Foreground="{DynamicResource FloatBarForeground}"
+                                        Opacity="{Binding ElementName=Icon_Undo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"
                                         Text="撤销"
                                         TextAlignment="Center"
                                         Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" />
@@ -5038,9 +4760,6 @@
                                 Padding="0"
                                 BorderThickness="0"
                                 Click="SymbolIconRedo_Click">
-                                <!--
-                                    IsEnabled="{Binding ElementName=BtnRedo, Path=IsEnabled}"
-                                -->
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                     <ui:FontIcon x:Name="Icon_Redo"
                                         Width="30"
@@ -5050,11 +4769,14 @@
                                         FontSize="16"
                                         Foreground="{DynamicResource FloatBarForeground}"
                                         Glyph="&#xe7a6;"
-                                        Opacity="{Binding ElementName=BtnRedo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}" />
+                                        IsEnabled="False"
+                                        IsEnabledChanged="Element_IsEnabledChanged"
+                                        Opacity="0.35" />
                                     <TextBlock
                                         Margin="1,-1,0,0"
                                         FontSize="8"
                                         Foreground="{DynamicResource FloatBarForeground}"
+                                        Opacity="{Binding ElementName=Icon_Redo, Path=IsEnabled, Converter={StaticResource IsEnabledToOpacityConverter}}"
                                         Text="重做"
                                         TextAlignment="Center"
                                         Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" />
@@ -5529,7 +5251,7 @@
                     </Border>
                 </Grid>
 
-                <Border x:Name="BorderFloatingBarExitPPTBtn"
+                <Border x:Name="BtnPPTSlideShowEnd"
                     Width="34"
                     Height="36"
                     Margin="2,0,0,0"
@@ -5538,10 +5260,9 @@
                     BorderThickness="1"
                     CornerRadius="4"
                     MouseDown="Border_MouseDown"
-                    MouseUp="ImagePPTControlEnd_MouseUp"
-                    Visibility="{Binding ElementName=BtnPPTSlideShowEnd, Path=Visibility}">
+                    MouseUp="ImagePPTControlEnd_MouseUp">
                     <Grid>
-                        <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=SeewoImageSource.PPTExitNormal}" Visibility="{Binding ElementName=BtnPPTSlideShowEnd, Path=Visibility}" />
+                        <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=SeewoImageSource.PPTExitNormal}" />
                     </Grid>
                 </Border>
             </ikw:SimpleStackPanel>

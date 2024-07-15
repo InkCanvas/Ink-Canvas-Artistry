@@ -172,7 +172,7 @@ namespace Ink_Canvas
                     EnableTwoFingerGestureBorder.Background = gradientBrush;
                     BorderFloatingBarMainControls.Background = gradientBrush;
                     BorderFloatingBarMoveControls.Background = gradientBrush;
-                    BorderFloatingBarExitPPTBtn.Background = gradientBrush;
+                    BtnPPTSlideShowEnd.Background = gradientBrush;
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = true;
                 }
                 else
@@ -214,23 +214,6 @@ namespace Ink_Canvas
                     ViewboxBlackboardRightSideScaleTransform.ScaleY = 1;
 
                     ToggleSwitchEnableViewboxBlackBoardScaleTransform.IsOn = false;
-                }
-                if (Settings.Appearance.IsTransparentButtonBackground)
-                {
-                    BtnExit.Background = new SolidColorBrush(StringToColor("#7F909090"));
-                }
-                else
-                {
-                    if (BtnSwitchTheme.Content.ToString() == "深色")
-                    {
-                        //Light
-                        BtnExit.Background = new SolidColorBrush(StringToColor("#FFCCCCCC"));
-                    }
-                    else
-                    {
-                        //Dark
-                        BtnExit.Background = new SolidColorBrush(StringToColor("#FF555555"));
-                    }
                 }
             }
             else

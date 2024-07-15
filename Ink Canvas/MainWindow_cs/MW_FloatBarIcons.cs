@@ -15,6 +15,7 @@ using System.Threading;
 using Application = System.Windows.Application;
 using Point = System.Windows.Point;
 using System.Diagnostics;
+using iNKORE.UI.WPF.Modern.Controls;
 
 namespace Ink_Canvas
 {
@@ -239,15 +240,15 @@ namespace Ink_Canvas
 
         private void SymbolIconUndo_Click(object sender, RoutedEventArgs e)
         {
-            if (!BtnUndo.IsEnabled) return;
-            BtnUndo_Click(BtnUndo, null);
+            if (!Icon_Undo.IsEnabled) return;
+            BtnUndo_Click(null, null);
             HideSubPanels();
         }
 
         private void SymbolIconRedo_Click(object sender, RoutedEventArgs e)
         {
-            if (!BtnRedo.IsEnabled) return;
-            BtnRedo_Click(BtnRedo, null);
+            if (!Icon_Redo.IsEnabled) return;
+            BtnRedo_Click(null, null);
             HideSubPanels();
         }
 
@@ -259,7 +260,7 @@ namespace Ink_Canvas
             }
             else
             {
-                BtnHideInkCanvas_Click(BtnHideInkCanvas, null);
+                BtnHideInkCanvas_Click(null, null);
 
                 if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
                 {
@@ -352,7 +353,7 @@ namespace Ink_Canvas
                 //退出画板
                 HideSubPanelsImmediately();
 
-                if (StackPanelPPTControls.Visibility == Visibility.Visible)
+                if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
                 {
                     if (Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel)
                     {
@@ -697,8 +698,6 @@ namespace Ink_Canvas
                 RestoreStrokes(true);
             }
 
-            StackPanelPPTButtons.Visibility = Visibility.Visible;
-            BtnHideInkCanvas.Content = "显示\n画板";
             CheckEnableTwoFingerGestureBtnVisibility(false);
 
 
@@ -734,19 +733,8 @@ namespace Ink_Canvas
                 GridBackgroundCoverHolder.Visibility = Visibility.Visible;
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
 
-                if (GridBackgroundCover.Visibility == Visibility.Collapsed)
-                {
-                    StackPanelPPTButtons.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    StackPanelPPTButtons.Visibility = Visibility.Collapsed;
-                }
-
-                BtnHideInkCanvas.Content = "隐藏\n画板";
-
                 StackPanelCanvasControls.Visibility = Visibility.Visible;
-                //AnimationsHelper.ShowWithSlideFromLeftAndFade(StackPanelCanvasControls);
+
                 CheckEnableTwoFingerGestureBtnVisibility(true);
                 inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
                 ColorSwitchCheck();
@@ -888,12 +876,12 @@ namespace Ink_Canvas
             if (isSingleFingerDragMode)
             {
                 isSingleFingerDragMode = false;
-                BtnFingerDragMode.Content = "单指\n拖动";
+                //BtnFingerDragMode.Content = "单指\n拖动";
             }
             else
             {
                 isSingleFingerDragMode = true;
-                BtnFingerDragMode.Content = "多指\n拖动";
+                //BtnFingerDragMode.Content = "多指\n拖动";
             }
         }
 
@@ -919,18 +907,32 @@ namespace Ink_Canvas
             ApplyHistoryToCanvas(item);
         }
 
-        private void Btn_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void Element_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (!isLoaded) return;
             try
             {
-                if (((Button)sender).IsEnabled)
+                if (sender is Button button)
                 {
-                    ((UIElement)((Button)sender).Content).Opacity = 1;
+                    if (((Button)sender).IsEnabled)
+                    {
+                        ((UIElement)((Button)sender).Content).Opacity = 1;
+                    }
+                    else
+                    {
+                        ((UIElement)((Button)sender).Content).Opacity = 0.35;
+                    }
                 }
-                else
+                else if (sender is FontIcon fontIcon)
                 {
-                    ((UIElement)((Button)sender).Content).Opacity = 0.25;
+                    if (((FontIcon)sender).IsEnabled)
+                    {
+                        ((FontIcon)sender).Opacity = 1;
+                    }
+                    else
+                    {
+                        ((FontIcon)sender).Opacity = 0.35;
+                    }
                 }
             }
             catch { }
@@ -965,11 +967,6 @@ namespace Ink_Canvas
             {
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(BorderSettings, 0.5);
             }
-        }
-
-        private void BtnThickness_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         bool forceEraser = false;
@@ -1025,21 +1022,9 @@ namespace Ink_Canvas
 
             if (isSingleFingerDragMode)
             {
-                BtnFingerDragMode_Click(BtnFingerDragMode, null);
+                BtnFingerDragMode_Click(null, null);
             }
             isLongPressSelected = false;
-        }
-
-        private void BtnHideControl_Click(object sender, RoutedEventArgs e)
-        {
-            if (StackPanelControl.Visibility == Visibility.Visible)
-            {
-                StackPanelControl.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                StackPanelControl.Visibility = Visibility.Visible;
-            }
         }
 
         int currentMode = 0;
@@ -1058,11 +1043,9 @@ namespace Ink_Canvas
                     SaveStrokes(true);
                     ClearStrokes(true);
                     RestoreStrokes();
-
-                    StackPanelPPTButtons.Visibility = Visibility.Visible;
                 }
                 Topmost = true;
-                BtnHideInkCanvas_Click(BtnHideInkCanvas, e);
+                BtnHideInkCanvas_Click(null, e);
             }
             else
             {
@@ -1078,8 +1061,6 @@ namespace Ink_Canvas
                         SaveStrokes();
                         ClearStrokes(true);
                         RestoreStrokes(true);
-
-                        StackPanelPPTButtons.Visibility = Visibility.Visible;
                         Topmost = true;
                         break;
                     case 1: //黑板或白板模式
@@ -1093,7 +1074,6 @@ namespace Ink_Canvas
                         ClearStrokes(true);
                         RestoreStrokes();
 
-                        StackPanelPPTButtons.Visibility = Visibility.Collapsed;
                         Topmost = false;
                         break;
                 }
@@ -1113,17 +1093,6 @@ namespace Ink_Canvas
                 GridBackgroundCoverHolder.Visibility = Visibility.Visible;
 
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
-
-                if (GridBackgroundCover.Visibility == Visibility.Collapsed)
-                {
-                    StackPanelPPTButtons.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    StackPanelPPTButtons.Visibility = Visibility.Collapsed;
-                }
-
-                BtnHideInkCanvas.Content = "隐藏\n画板";
             }
             else
             {
@@ -1184,9 +1153,6 @@ namespace Ink_Canvas
                     SaveStrokes();
                     RestoreStrokes(true);
                 }
-
-                StackPanelPPTButtons.Visibility = Visibility.Visible;
-                BtnHideInkCanvas.Content = "显示\n画板";
             }
 
             if (Main_Grid.Background == Brushes.Transparent)
@@ -1201,33 +1167,6 @@ namespace Ink_Canvas
                 CheckEnableTwoFingerGestureBtnVisibility(true);
             }
         }
-
-        private void BtnSwitchSide_Click(object sender, RoutedEventArgs e)
-        {
-            if (ViewBoxStackPanelMain.HorizontalAlignment == HorizontalAlignment.Right)
-            {
-                ViewBoxStackPanelMain.HorizontalAlignment = HorizontalAlignment.Left;
-                ViewBoxStackPanelShapes.HorizontalAlignment = HorizontalAlignment.Right;
-            }
-            else
-            {
-                ViewBoxStackPanelMain.HorizontalAlignment = HorizontalAlignment.Right;
-                ViewBoxStackPanelShapes.HorizontalAlignment = HorizontalAlignment.Left;
-            }
-        }
-
-        private void StackPanel_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (((StackPanel)sender).Visibility == Visibility.Visible)
-            {
-                GridForLeftSideReservedSpace.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                GridForLeftSideReservedSpace.Visibility = Visibility.Visible;
-            }
-        }
-
         #endregion
     }
 }

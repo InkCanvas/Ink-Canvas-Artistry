@@ -95,7 +95,7 @@ namespace Ink_Canvas
                 isLongPressSelected = true;
                 if (isSingleFingerDragMode)
                 {
-                    BtnFingerDragMode_Click(BtnFingerDragMode, null);
+                    BtnFingerDragMode_Click(null, null);
                 }
             }
         }

@@ -18,7 +18,7 @@ namespace Ink_Canvas
             }
             else
             {
-                return (IsSystemThemeLight()) ? "Light" : "Dark";
+                return (ThemeManager.GetRequestedTheme(window).ToString() == "Light") ? "Light" : "Dark";
             }
         }
 
@@ -62,6 +62,7 @@ namespace Ink_Canvas
                 Application.Current.Resources.MergedDictionaries.Add(rd6);
 
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Light);
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
                 FloatBarForegroundColor = (Color)Application.Current.FindResource("FloatBarForegroundColor");
                 BoardBarForegroundColor = (Color)Application.Current.FindResource("BoardBarForegroundColor");
             }
@@ -94,6 +95,7 @@ namespace Ink_Canvas
                 Application.Current.Resources.MergedDictionaries.Add(rd6);
 
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Dark);
+                ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
                 FloatBarForegroundColor = (Color)Application.Current.FindResource("FloatBarForegroundColor");
                 BoardBarForegroundColor = (Color)Application.Current.FindResource("BoardBarForegroundColor");
             }
@@ -103,7 +105,7 @@ namespace Ink_Canvas
                 EnableTwoFingerGestureBorder.Background = BorderDrawShape.Background;
                 BorderFloatingBarMainControls.Background = BorderDrawShape.Background;
                 BorderFloatingBarMoveControls.Background = BorderDrawShape.Background;
-                BorderFloatingBarExitPPTBtn.Background = BorderDrawShape.Background;
+                BtnPPTSlideShowEnd.Background = BorderDrawShape.Background;
             }
         }
 

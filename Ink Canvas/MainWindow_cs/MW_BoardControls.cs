@@ -125,8 +125,6 @@ namespace Ink_Canvas
             }
 
             UpdateIndexInfoDisplay();
-
-            if (WhiteboardTotalCount >= 99) BtnWhiteBoardAdd.IsEnabled = false;
         }
 
         private void BtnWhiteBoardDelete_Click(object sender, RoutedEventArgs e)
@@ -150,8 +148,6 @@ namespace Ink_Canvas
             RestoreStrokes();
 
             UpdateIndexInfoDisplay();
-
-            if (WhiteboardTotalCount < 99) BtnWhiteBoardAdd.IsEnabled = true;
         }
 
         private void UpdateIndexInfoDisplay()
@@ -180,23 +176,21 @@ namespace Ink_Canvas
                 BtnWhiteBoardSwitchPrevious.IsEnabled = true;
             }
 
-            if (CurrentWhiteboardIndex == WhiteboardTotalCount)
+            if (CurrentWhiteboardIndex == 99)
             {
-                BtnWhiteBoardSwitchNext.IsEnabled = false;
-            }
-            else
-            {
-                BtnWhiteBoardSwitchNext.IsEnabled = true;
+                BtnWhiteBoardAdd.IsEnabled = false;
             }
 
+            /*
             if (WhiteboardTotalCount == 1)
             {
-                BtnWhiteBoardDelete.IsEnabled = false;
+                //BtnWhiteBoardDelete.IsEnabled = false;
             }
             else
             {
-                BtnWhiteBoardDelete.IsEnabled = true;
+                //BtnWhiteBoardDelete.IsEnabled = true;
             }
+            */
         }
     }
 }

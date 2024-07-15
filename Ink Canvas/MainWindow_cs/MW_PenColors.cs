@@ -46,7 +46,7 @@ namespace Ink_Canvas
                     AnimationsHelper.HideWithSlideAndFade(BlackboardCenterSide);
                     AnimationsHelper.HideWithSlideAndFade(BlackboardRightSide);
                 }
-                BtnHideInkCanvas_Click(BtnHideInkCanvas, null);
+                BtnHideInkCanvas_Click(null, null);
             }
 
             StrokeCollection strokes = inkCanvas.GetSelectedStrokes();

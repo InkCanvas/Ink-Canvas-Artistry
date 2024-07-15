@@ -59,7 +59,7 @@ namespace Ink_Canvas
 
         private async void UnFoldFloatingBar_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (sender == null || StackPanelPPTControls.Visibility == Visibility.Visible)
+            if (sender == null || BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
             {
                 unfoldFloatingBarByUser = false;
             }
@@ -81,7 +81,7 @@ namespace Ink_Canvas
 
             await Dispatcher.InvokeAsync(() =>
             {
-                if (StackPanelPPTControls.Visibility == Visibility.Visible)
+                if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
                 {
                     if (Settings.PowerPointSettings.IsShowBottomPPTNavigationPanel)
                     {
