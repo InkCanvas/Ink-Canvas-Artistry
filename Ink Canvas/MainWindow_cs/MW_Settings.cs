@@ -722,9 +722,7 @@ namespace Ink_Canvas
                 SaveSettingsToFile();
                 LoadSettings();
                 isLoaded = true;
-
                 ToggleSwitchRunAtStartup.IsOn = true;
-                Settings.Appearance.IsEnableDisPlayFloatBarText = true;
             }
             catch { }
             ShowNotificationAsync("设置已重置为默认推荐设置~");
@@ -739,6 +737,7 @@ namespace Ink_Canvas
                 SetSettingsToRecommendation();
                 Settings.Automation.AutoDelSavedFiles = true;
                 Settings.Automation.AutoDelSavedFilesDaysThreshold = 15;
+                Settings.Appearance.IsEnableDisPlayFloatBarText = true;
                 SetAutoSavedStrokesLocationToDiskDButton_Click(null, null);
                 SaveSettingsToFile();
                 LoadSettings();
