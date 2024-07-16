@@ -709,10 +709,5 @@ namespace Ink_Canvas
             if (lastBorderMouseDownObject != sender) return;
             BtnPPTSlidesDown_Click(null, null);
         }
-
-        private void ImagePPTControlEnd_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            BtnPPTSlideShowEnd_Click(BtnPPTSlideShowEnd, null);
-        }
     }
 }

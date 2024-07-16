@@ -178,9 +178,21 @@ namespace Ink_Canvas
 
             if (CurrentWhiteboardIndex == 99)
             {
-                BtnWhiteBoardAdd.IsEnabled = false;
+                BoardLeftPannelNextPage1.IsEnabled = false;
+            }
+            else
+            {
+                BoardLeftPannelNextPage1.IsEnabled = true;
             }
 
+            if (WhiteboardTotalCount == 99)
+            {
+                BtnBoardAddPage.IsEnabled = false;
+            }
+            else
+            {
+                BtnBoardAddPage.IsEnabled = true;
+            }
             /*
             if (WhiteboardTotalCount == 1)
             {

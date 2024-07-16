@@ -59,6 +59,7 @@ namespace Ink_Canvas
                 {
                     callback();
                 }
+                handled = true;
             }
             return IntPtr.Zero;
         }
@@ -77,7 +78,6 @@ namespace Ink_Canvas
             }
         }
 
-
         const int WM_HOTKEY = 0x312;
         static int keyid = 10;
         static Dictionary<int, HotKeyCallBackHanlder> keymap = new Dictionary<int, HotKeyCallBackHanlder>();
@@ -92,5 +92,4 @@ namespace Ink_Canvas
         MOD_SHIFT = 0x4,
         MOD_WIN = 0x8
     }
-
 }

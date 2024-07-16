@@ -920,7 +920,7 @@ namespace Ink_Canvas
                     }
                     else
                     {
-                        ((UIElement)((Button)sender).Content).Opacity = 0.35;
+                        ((UIElement)((Button)sender).Content).Opacity = 0.5;
                     }
                 }
                 else if (sender is FontIcon fontIcon)
@@ -931,7 +931,7 @@ namespace Ink_Canvas
                     }
                     else
                     {
-                        ((FontIcon)sender).Opacity = 0.35;
+                        ((FontIcon)sender).Opacity = 0.5;
                     }
                 }
             }

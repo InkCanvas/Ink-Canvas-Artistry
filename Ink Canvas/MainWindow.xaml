@@ -30,17 +30,10 @@
     mc:Ignorable="d">
     <!--  资源中添加命令  -->
     <Window.Resources>
-        <RoutedUICommand x:Key="KeyExit" Text=" " />
         <RoutedUICommand x:Key="HotKey_Command_Undo" Text=" " />
         <RoutedUICommand x:Key="HotKey_Command_Redo" Text=" " />
-        <RoutedUICommand x:Key="HotKey_Command_Clear" Text=" " />
-        <RoutedUICommand x:Key="HotKey_Capture" Text=" " />
-        <RoutedUICommand x:Key="HotKey_Hide" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToDrawTool" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToQuitDrawTool" Text=" " />
         <RoutedUICommand x:Key="HotKey_ChangeToSelect" Text=" " />
         <RoutedUICommand x:Key="HotKey_ChangeToEraser" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToBoard" Text=" " />
         <RoutedUICommand x:Key="HotKey_ChangeToPen1" Text=" " />
         <RoutedUICommand x:Key="HotKey_ChangeToPen2" Text=" " />
         <RoutedUICommand x:Key="HotKey_ChangeToPen3" Text=" " />
@@ -50,17 +43,10 @@
     </Window.Resources>
     <!--  输入命令绑定  -->
     <Window.InputBindings>
-        <KeyBinding Command="{StaticResource KeyExit}" Gesture="Shift+Esc" />
         <KeyBinding Key="Z" Command="{StaticResource HotKey_Command_Undo}" Modifiers="Control" />
         <KeyBinding Key="Y" Command="{StaticResource HotKey_Command_Redo}" Modifiers="Control" />
-        <KeyBinding Key="E" Command="{StaticResource HotKey_Command_Clear}" Modifiers="Control" />
-        <KeyBinding Key="C" Command="{StaticResource HotKey_Capture}" Modifiers="Alt" />
-        <KeyBinding Key="V" Command="{StaticResource HotKey_Hide}" Modifiers="Alt" />
         <KeyBinding Key="S" Command="{StaticResource HotKey_ChangeToSelect}" Modifiers="Alt" />
-        <KeyBinding Key="D" Command="{StaticResource HotKey_ChangeToDrawTool}" Modifiers="Alt" />
-        <KeyBinding Key="Q" Command="{StaticResource HotKey_ChangeToQuitDrawTool}" Modifiers="Alt" />
         <KeyBinding Key="E" Command="{StaticResource HotKey_ChangeToEraser}" Modifiers="Alt" />
-        <KeyBinding Key="B" Command="{StaticResource HotKey_ChangeToBoard}" Modifiers="Alt" />
         <KeyBinding Key="D1" Command="{StaticResource HotKey_ChangeToPen1}" Modifiers="Alt" />
         <KeyBinding Key="D2" Command="{StaticResource HotKey_ChangeToPen2}" Modifiers="Alt" />
         <KeyBinding Key="D3" Command="{StaticResource HotKey_ChangeToPen3}" Modifiers="Alt" />
@@ -70,17 +56,10 @@
     </Window.InputBindings>
     <!--  命令执行方法绑定  -->
     <Window.CommandBindings>
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource KeyExit}" Executed="KeyExit" />
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_Command_Undo}" Executed="HotKey_Undo" />
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_Command_Redo}" Executed="HotKey_Redo" />
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_Command_Clear}" Executed="HotKey_Clear" />
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_ChangeToDrawTool}" Executed="KeyChangeToDrawTool" />
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_ChangeToQuitDrawTool}" Executed="KeyChangeToQuitDrawTool" />
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_ChangeToSelect}" Executed="KeyChangeToSelect" />
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_ChangeToEraser}" Executed="KeyChangeToEraser" />
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_ChangeToBoard}" Executed="KeyChangeToBoard" />
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_Capture}" Executed="KeyCapture" />
-        <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_Hide}" Executed="KeyHide" />
         <CommandBinding CanExecute="CommandBinding_CanExecute" Command="{StaticResource HotKey_DrawLine}" Executed="KeyDrawLine" />
     </Window.CommandBindings>
     <Grid x:Name="Main_Grid" Background="#01FFFFFF">
@@ -383,7 +362,6 @@
                             </Grid>
                         </Border>
                         <Button
-                            Name="BtnWhiteBoardAdd"
                             Width="60"
                             Height="55"
                             Padding="0"
@@ -405,7 +383,9 @@
                                         FontFamily="{StaticResource FluentIconFontFamily}"
                                         FontSize="24"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Glyph="&#xecc8;" />
+                                        Glyph="&#xecc8;"
+                                        IsEnabled="True"
+                                        IsEnabledChanged="Element_IsEnabledChanged" />
                                     <ui:FontIcon x:Name="BoardLeftPannelNextPage2"
                                         Width="0"
                                         Height="26"
@@ -413,12 +393,14 @@
                                         FontFamily="{StaticResource FluentIconFontFamily}"
                                         FontSize="24"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Glyph="&#xe761;" />
+                                        Glyph="&#xe761;"
+                                        Opacity="{Binding ElementName=BoardLeftPannelNextPage1, Path=Opacity}" />
                                     <TextBlock x:Name="BoardLeftPannelNextPageTextBlock"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         FontSize="12"
                                         Foreground="{DynamicResource BoardBarForeground}"
+                                        Opacity="{Binding ElementName=BoardLeftPannelNextPage1, Path=Opacity}"
                                         Text="加页" />
                                 </Grid>
                             </Border>
@@ -1938,14 +1920,13 @@
                         </Style>
                     </Grid.Resources>
                     <ikw:SimpleStackPanel Orientation="Horizontal">
-
                         <Button
                             Width="55"
                             Height="55"
                             Margin="0,0,5,0"
                             Padding="0"
                             BorderThickness="0"
-                            Click="ImageBlackboard_Click">
+                            Click="BtnWhiteBoardAdd_Click">
                             <Border
                                 Width="55"
                                 Height="55"
@@ -1954,19 +1935,22 @@
                                 BorderThickness="1"
                                 CornerRadius="3">
                                 <Grid Margin="5">
-                                    <ui:FontIcon
+                                    <ui:FontIcon x:Name="BtnBoardAddPage"
                                         Width="26"
                                         Height="26"
                                         VerticalAlignment="Top"
                                         FontFamily="{StaticResource FluentIconFontFamily}"
                                         FontSize="24"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Glyph="&#xecc8;" />
+                                        Glyph="&#xecc8;"
+                                        IsEnabled="True"
+                                        IsEnabledChanged="Element_IsEnabledChanged" />
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         FontSize="12"
                                         Foreground="{DynamicResource BoardBarForeground}"
+                                        Opacity="{Binding ElementName=BtnBoardAddPage, Path=Opacity}"
                                         Text="加页" />
                                 </Grid>
                             </Border>
@@ -2036,9 +2020,7 @@
                             Height="55"
                             Padding="0"
                             BorderThickness="0"
-                            Click="BtnWhiteBoardSwitchNext_Click"
-                            IsEnabled="{Binding ElementName=BtnWhiteBoardAdd, Path=IsEnabled}"
-                            Opacity="{Binding ElementName=BtnWhiteBoardAdd, Path=Opacity}">
+                            Click="BtnWhiteBoardSwitchNext_Click">
                             <Border
                                 Width="60"
                                 Height="55"
@@ -2054,7 +2036,8 @@
                                         FontFamily="{StaticResource FluentIconFontFamily}"
                                         FontSize="24"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Glyph="&#xecc8;" />
+                                        Glyph="&#xecc8;"
+                                        Opacity="{Binding ElementName=BoardLeftPannelNextPage1, Path=Opacity}" />
                                     <ui:FontIcon
                                         Width="{Binding ElementName=BoardLeftPannelNextPage2, Path=Width}"
                                         Height="26"
@@ -2062,12 +2045,14 @@
                                         FontFamily="{StaticResource FluentIconFontFamily}"
                                         FontSize="24"
                                         Foreground="{DynamicResource BoardBarForeground}"
-                                        Glyph="&#xe761;" />
+                                        Glyph="&#xe761;"
+                                        Opacity="{Binding ElementName=BoardLeftPannelNextPage1, Path=Opacity}" />
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         FontSize="12"
                                         Foreground="{DynamicResource BoardBarForeground}"
+                                        Opacity="{Binding ElementName=BoardLeftPannelNextPage1, Path=Opacity}"
                                         Text="{Binding ElementName=BoardLeftPannelNextPageTextBlock, Path=Text}" />
                                 </Grid>
                             </Border>
@@ -5257,7 +5242,7 @@
                     BorderThickness="1"
                     CornerRadius="4"
                     MouseDown="Border_MouseDown"
-                    MouseUp="ImagePPTControlEnd_MouseUp">
+                    MouseUp="BtnPPTSlideShowEnd_Click">
                     <Grid>
                         <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=SeewoImageSource.PPTExitNormal}" />
                     </Grid>
