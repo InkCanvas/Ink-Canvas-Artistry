@@ -423,10 +423,12 @@ namespace Ink_Canvas
                 if (Settings.Canvas.UsingWhiteboard)
                 {
                     GridBackgroundCover.Background = new SolidColorBrush(StringToColor("#FFF2F2F2"));
+                    lastBoardInkColor = 0;
                 }
                 else
                 {
                     GridBackgroundCover.Background = new SolidColorBrush(StringToColor("#FF1F1F1F"));
+                    lastBoardInkColor = 5;
                 }
 
                 if (Settings.Canvas.IsShowCursor)
