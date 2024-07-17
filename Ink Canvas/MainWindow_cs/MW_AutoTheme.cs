@@ -35,31 +35,19 @@ namespace Ink_Canvas
         {
             if (theme == "Light")
             {
-                ResourceDictionary rd1 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd1);
-
-                ResourceDictionary rd2 = new ResourceDictionary() { Source = new Uri("Resources/DrawShapeImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd2);
-
-                ResourceDictionary rd3 = new ResourceDictionary() { Source = new Uri("Resources/SeewoImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd3);
-
-                ResourceDictionary rd4 = new ResourceDictionary() { Source = new Uri("Resources/IconImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd4);
+                ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light.xaml", UriKind.Relative) };
+                Application.Current.Resources.MergedDictionaries.Add(rd);
 
                 if (Settings.Canvas.UsingWhiteboard)
                 {
-                    ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd5);
+                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
                 }
                 else
                 {
-                    ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd5);
+                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
                 }
-
-                ResourceDictionary rd6 = new ResourceDictionary() { Source = new Uri("Resources/BoardDrawShapeImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd6);
 
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Light);
                 ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
@@ -68,31 +56,19 @@ namespace Ink_Canvas
             }
             else if (theme == "Dark")
             {
-                ResourceDictionary rd1 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd1);
-
-                ResourceDictionary rd2 = new ResourceDictionary() { Source = new Uri("Resources/DrawShapeImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd2);
-
-                ResourceDictionary rd3 = new ResourceDictionary() { Source = new Uri("Resources/SeewoImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd3);
-
-                ResourceDictionary rd4 = new ResourceDictionary() { Source = new Uri("Resources/IconImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd4);
+                ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark.xaml", UriKind.Relative) };
+                Application.Current.Resources.MergedDictionaries.Add(rd);
 
                 if (Settings.Canvas.UsingWhiteboard)
                 {
-                    ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd5);
+                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
                 }
                 else
                 {
-                    ResourceDictionary rd5 = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd5);
+                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
+                    Application.Current.Resources.MergedDictionaries.Add(rd);
                 }
-
-                ResourceDictionary rd6 = new ResourceDictionary() { Source = new Uri("Resources/BoardDrawShapeImageDictionary.xaml", UriKind.Relative) };
-                Application.Current.Resources.MergedDictionaries.Add(rd6);
 
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Dark);
                 ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;

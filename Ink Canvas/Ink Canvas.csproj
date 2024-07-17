@@ -145,12 +145,6 @@
 		<Resource Include="Resources\Icons-png\checked-white.png" />
 		<Resource Include="Resources\Icons-png\Desmos.png" />
 		<Resource Include="Resources\Icons-png\EasiCamera.png" />
-		<Resource Include="Resources\Icons-png\ic_fluent_arrow_clockwise_24_regular.png" />
-		<Resource Include="Resources\Icons-png\ic_fluent_calendar_sync_24_regular.png" />
-		<Resource Include="Resources\Icons-png\ic_fluent_clock_24_regular.png" />
-		<Resource Include="Resources\Icons-png\ic_fluent_control_button_24_regular.png" />
-		<Resource Include="Resources\Icons-png\ic_fluent_power_24_regular.png" />
-		<Resource Include="Resources\Icons-png\ic_fluent_scales_24_regular.png" />
 		<Resource Include="Resources\Icons-png\penUpright.png" />
 	</ItemGroup>
 	<ItemGroup>

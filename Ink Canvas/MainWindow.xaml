@@ -30,16 +30,23 @@
     mc:Ignorable="d">
     <!--  资源中添加命令  -->
     <Window.Resources>
-        <RoutedUICommand x:Key="HotKey_Command_Undo" Text=" " />
-        <RoutedUICommand x:Key="HotKey_Command_Redo" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToSelect" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToEraser" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToPen1" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToPen2" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToPen3" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToPen4" Text=" " />
-        <RoutedUICommand x:Key="HotKey_ChangeToPen5" Text=" " />
-        <RoutedUICommand x:Key="HotKey_DrawLine" Text=" " />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/BoardDrawShapeImageDictionary.xaml" />
+                <ResourceDictionary Source="/Resources/DrawShapeImageDictionary.xaml" />
+				<ResourceDictionary Source="/Resources/IconImageDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <RoutedUICommand x:Key="HotKey_Command_Undo" Text=" " />
+            <RoutedUICommand x:Key="HotKey_Command_Redo" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToSelect" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToEraser" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToPen1" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToPen2" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToPen3" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToPen4" Text=" " />
+            <RoutedUICommand x:Key="HotKey_ChangeToPen5" Text=" " />
+            <RoutedUICommand x:Key="HotKey_DrawLine" Text=" " />
+        </ResourceDictionary>
     </Window.Resources>
     <!--  输入命令绑定  -->
     <Window.InputBindings>
@@ -109,7 +116,7 @@
             <Border
                 Name="BorderStrokeSelectionControl"
                 Height="80"
-                Margin="0,900,0,0"
+                Margin="0,100,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="{DynamicResource FloatBarBackground}"
@@ -5244,7 +5251,7 @@
                     MouseDown="Border_MouseDown"
                     MouseUp="BtnPPTSlideShowEnd_Click">
                     <Grid>
-                        <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=SeewoImageSource.PPTExitNormal}" />
+                        <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=PPTExitNormal}" />
                     </Grid>
                 </Border>
             </ikw:SimpleStackPanel>
