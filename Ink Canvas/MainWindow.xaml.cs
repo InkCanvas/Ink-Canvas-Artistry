@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
+using System.Windows.Navigation;
+
 
 namespace Ink_Canvas
 {
