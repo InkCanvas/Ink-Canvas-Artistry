@@ -3352,10 +3352,10 @@
                                 </Border>
                                 <TextBlock FontSize="15" Foreground="{DynamicResource SettingsPageForeground}">
                                     <Bold>本项目仓库源:</Bold>
-                                    <Hyperlink Click="HyperlinkSourceToPresentRepository_Click">
-                                        <TextBlock Width="250" Margin="2,0" Text="https://github.com/InkCanvas/Ink-Canvas-Artistry" TextWrapping="Wrap" />
-                                    </Hyperlink>
-                                </TextBlock>
+    				    <Hyperlink NavigateUri="https://github.com/InkCanvas/Ink-Canvas-Artistry" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
+        				<TextBlock Width="250" Margin="2,0" Text="Ink-Canvas-Artistry" TextWrapping="Wrap" />
+    				    </Hyperlink>
+				</TextBlock>
                                 <WrapPanel VerticalAlignment="Center" Orientation="Horizontal">
                                     <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" Text="本项目开发者: " />
                                     <Image Width="20" Height="20" RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/DeveloperAvatars/ChangSakura.png" />
@@ -3373,9 +3373,10 @@
 
                                 <TextBlock FontSize="15" Foreground="{DynamicResource SettingsPageForeground}">
                                     <Bold>原项目仓库源:</Bold>
-                                    <Hyperlink Click="HyperlinkSourceToOringinalRepository_Click">
-                                        <TextBlock Margin="2,0" Text="https://github.com/WXRIW/Ink-Canvas" />
-                                    </Hyperlink>
+    				    <Hyperlink NavigateUri="https://github.com/WXRIW/Ink-Canvas" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
+        				<TextBlock Margin="2,0" Text="Ink-Canvas" />
+    				    </Hyperlink>
+				</TextBlock>
                                 </TextBlock>
                                 <WrapPanel VerticalAlignment="Center" Orientation="Horizontal">
                                     <TextBlock FontSize="15" FontWeight="Bold" Foreground="{DynamicResource SettingsPageForeground}" Text="原项目开发者: " />
