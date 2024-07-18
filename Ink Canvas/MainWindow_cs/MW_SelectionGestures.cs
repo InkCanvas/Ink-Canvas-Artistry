@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ink_Canvas.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -108,10 +109,8 @@ namespace Ink_Canvas
         private void MatrixTransform(int type)
         {
             Matrix m = new Matrix();
-            // Find center of element and then transform to get current location of center
             Point center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
                 inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
-            center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
 
             switch (type)
             {
@@ -134,6 +133,13 @@ namespace Ink_Canvas
             {
                 stroke.Transform(m, false);
             }
+
+            List<Image> selectedImages = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
+            foreach (Image image in selectedImages)
+            {
+                ApplyImageMatrixTransform(image, m, center);
+            }
+
             if (DrawingAttributesHistory.Count > 0)
             {
                 timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
@@ -143,6 +149,33 @@ namespace Ink_Canvas
                     item.Value.Clear();
                 }
             }
+        }
+
+        private void ApplyImageMatrixTransform(Image image, Matrix matrix, Point center)
+        {
+            TransformGroup transformGroup = GetOrCreateTransformGroup(image);
+            MatrixTransform matrixTransform = new MatrixTransform(matrix);
+            TransformGroup centeredTransformGroup = new TransformGroup();
+            // 先将图形移动到新的中心点
+            double dx = center.X - image.ActualWidth / 2;
+            double dy = center.Y - image.ActualHeight / 2;
+            centeredTransformGroup.Children.Add(new TranslateTransform(dx, dy));
+            // 变换
+            centeredTransformGroup.Children.Add(matrixTransform);
+            // 将图形移回原位
+            centeredTransformGroup.Children.Add(new TranslateTransform(-dx, -dy));
+            transformGroup.Children.Add(centeredTransformGroup);
+        }
+
+        private TransformGroup GetOrCreateTransformGroup(Image image)
+        {
+            TransformGroup transformGroup = image.RenderTransform as TransformGroup;
+            if (transformGroup == null)
+            {
+                transformGroup = new TransformGroup();
+                image.RenderTransform = transformGroup;
+            }
+            return transformGroup;
         }
 
         private void ImageFlipHorizontal_MouseUp(object sender, MouseButtonEventArgs e)
@@ -226,7 +259,7 @@ namespace Ink_Canvas
         private void inkCanvas_SelectionChanged(object sender, EventArgs e)
         {
             if (isProgramChangeStrokeSelection) return;
-            if (inkCanvas.GetSelectedStrokes().Count == 0)
+            if (inkCanvas.GetSelectedStrokes().Count == 0 && InkCanvasImageHelper.GetSelectedImageCount(inkCanvas) == 0)
             {
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
             }

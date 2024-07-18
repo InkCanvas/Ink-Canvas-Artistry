@@ -19,7 +19,8 @@ namespace Ink_Canvas
             ShapeDrawing,
             ShapeRecognition,
             ClearingCanvas,
-            Manipulation
+            Manipulation,
+            ImageInsert
         }
 
         private CommitReason _currentCommitType = CommitReason.UserInput;
@@ -179,6 +180,17 @@ namespace Ink_Canvas
                     }
                 }
             }
+            else if (item.CommitType == TimeMachineHistoryType.ImageInsert)
+            {
+                if (!item.StrokeHasBeenCleared)
+                {
+                    inkCanvas.Children.Add(item.ImageElement);
+                }
+                else
+                {
+                    inkCanvas.Children.Remove(item.ImageElement);
+                }
+            }
             _currentCommitType = CommitReason.UserInput;
         }
 
@@ -272,7 +284,6 @@ namespace Ink_Canvas
             if (e.PropertyGuid == DrawingAttributeIds.IsHighlighter && needUpdateValue)
             {
                 previousValue.IsHighlighter = (bool)e.PreviousValue;
-
             }
             if (e.PropertyGuid == DrawingAttributeIds.StylusHeight && needUpdateValue)
             {

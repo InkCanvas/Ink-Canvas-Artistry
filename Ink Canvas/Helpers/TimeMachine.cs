@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Ink_Canvas.Helpers
 {
@@ -56,6 +58,7 @@ namespace Ink_Canvas.Helpers
             _currentIndex = _currentStrokeHistory.Count - 1;
             NotifyUndoRedoState();
         }
+
         public void CommitStrokeDrawingAttributesHistory(Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> drawingAttributes)
         {
             if (_currentIndex + 1 < _currentStrokeHistory.Count)
@@ -80,6 +83,17 @@ namespace Ink_Canvas.Helpers
             NotifyUndoRedoState();
         }
 
+        public void CommitImageInsertHistory(UIElement image)
+        {
+            if (_currentIndex + 1 < _currentStrokeHistory.Count)
+            {
+                _currentStrokeHistory.RemoveRange(_currentIndex + 1, (_currentStrokeHistory.Count - 1) - _currentIndex);
+            }
+            _currentStrokeHistory.Add(new TimeMachineHistory(image, TimeMachineHistoryType.ImageInsert, false));
+            _currentIndex = _currentStrokeHistory.Count - 1;
+            NotifyUndoRedoState();
+        }
+
         public void ClearStrokeHistory()
         {
             _currentStrokeHistory.Clear();
@@ -92,8 +106,7 @@ namespace Ink_Canvas.Helpers
             var item = _currentStrokeHistory[_currentIndex];
             item.StrokeHasBeenCleared = !item.StrokeHasBeenCleared;
             _currentIndex--;
-            OnUndoStateChanged?.Invoke(_currentIndex > -1);
-            OnRedoStateChanged?.Invoke(_currentStrokeHistory.Count - _currentIndex - 1 > 0);
+            NotifyUndoRedoState();
             return item;
         }
 
@@ -122,10 +135,11 @@ namespace Ink_Canvas.Helpers
             NotifyUndoRedoState();
             return true;
         }
+
         private void NotifyUndoRedoState()
         {
             OnUndoStateChanged?.Invoke(_currentIndex > -1);
-            OnRedoStateChanged?.Invoke(_currentStrokeHistory.Count - _currentIndex - 1 > 0);
+            OnRedoStateChanged?.Invoke(_currentIndex < _currentStrokeHistory.Count - 1);
         }
     }
 
@@ -135,9 +149,12 @@ namespace Ink_Canvas.Helpers
         public bool StrokeHasBeenCleared = false;
         public StrokeCollection CurrentStroke;
         public StrokeCollection ReplacedStroke;
+        public UIElement ImageElement;
+        public Transform ImageTransform;
         //这里说一下 Tuple 的 Value1 是初始值 ; Value 2 是改变值
         public Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> StylusPointDictionary;
         public Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> DrawingAttributes;
+        // UserInput
         public TimeMachineHistory(StrokeCollection currentStroke, TimeMachineHistoryType commitType, bool strokeHasBeenCleared)
         {
             CommitType = commitType;
@@ -145,6 +162,7 @@ namespace Ink_Canvas.Helpers
             StrokeHasBeenCleared = strokeHasBeenCleared;
             ReplacedStroke = null;
         }
+        // Clear
         public TimeMachineHistory(StrokeCollection currentStroke, TimeMachineHistoryType commitType, bool strokeHasBeenCleared, StrokeCollection replacedStroke)
         {
             CommitType = commitType;
@@ -152,15 +170,24 @@ namespace Ink_Canvas.Helpers
             StrokeHasBeenCleared = strokeHasBeenCleared;
             ReplacedStroke = replacedStroke;
         }
+        // StrokeManipulation
         public TimeMachineHistory(Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> stylusPointDictionary, TimeMachineHistoryType commitType)
         {
             CommitType = commitType;
             StylusPointDictionary = stylusPointDictionary;
         }
+        // trokeDrawingAttributes
         public TimeMachineHistory(Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> drawingAttributes, TimeMachineHistoryType commitType)
         {
             CommitType = commitType;
             DrawingAttributes = drawingAttributes;
+        }
+        // Insert Image
+        public TimeMachineHistory(UIElement imageElement, TimeMachineHistoryType commitType, bool strokeHasBeenCleared)
+        {
+            CommitType = commitType;
+            ImageElement = imageElement;
+            StrokeHasBeenCleared = strokeHasBeenCleared;
         }
     }
 
@@ -170,6 +197,7 @@ namespace Ink_Canvas.Helpers
         ShapeRecognition,
         Clear,
         Manipulation,
-        DrawingAttributes
+        DrawingAttributes,
+        ImageInsert
     }
 }

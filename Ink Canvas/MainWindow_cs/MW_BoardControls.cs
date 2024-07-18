@@ -2,18 +2,15 @@
 using System;
 using System.Windows;
 using System.Windows.Ink;
-using System.Windows.Media.Imaging;
 
 namespace Ink_Canvas
 {
     public partial class MainWindow : Window
     {
         StrokeCollection[] strokeCollections = new StrokeCollection[101];
-        bool[] whiteboadLastModeIsRedo = new bool[101];
         StrokeCollection lastTouchDownStrokeCollection = new StrokeCollection();
 
-        int CurrentWhiteboardIndex = 1;
-        int WhiteboardTotalCount = 1;
+        int CurrentWhiteboardIndex = 1, WhiteboardTotalCount = 1;
         TimeMachineHistory[][] TimeMachineHistories = new TimeMachineHistory[101][]; //最多99页，0用来存储非白板时的墨迹以便还原
 
         private void SaveStrokes(bool isBackupMain = false)
@@ -70,14 +67,10 @@ namespace Ink_Canvas
         private void BtnWhiteBoardSwitchPrevious_Click(object sender, EventArgs e)
         {
             if (CurrentWhiteboardIndex <= 1) return;
-
             SaveStrokes();
-
             ClearStrokes(true);
             CurrentWhiteboardIndex--;
-
             RestoreStrokes();
-
             UpdateIndexInfoDisplay();
         }
 
@@ -93,13 +86,9 @@ namespace Ink_Canvas
                 return;
             }
             SaveStrokes();
-
-
             ClearStrokes(true);
             CurrentWhiteboardIndex++;
-
             RestoreStrokes();
-
             UpdateIndexInfoDisplay();
         }
 
@@ -112,10 +101,8 @@ namespace Ink_Canvas
             }
             SaveStrokes();
             ClearStrokes(true);
-
             WhiteboardTotalCount++;
             CurrentWhiteboardIndex++;
-
             if (CurrentWhiteboardIndex != WhiteboardTotalCount)
             {
                 for (int i = WhiteboardTotalCount; i > CurrentWhiteboardIndex; i--)
@@ -123,14 +110,12 @@ namespace Ink_Canvas
                     TimeMachineHistories[i] = TimeMachineHistories[i - 1];
                 }
             }
-
             UpdateIndexInfoDisplay();
         }
 
         private void BtnWhiteBoardDelete_Click(object sender, RoutedEventArgs e)
         {
             ClearStrokes(true);
-
             if (CurrentWhiteboardIndex != WhiteboardTotalCount)
             {
                 for (int i = CurrentWhiteboardIndex; i <= WhiteboardTotalCount; i++)
@@ -142,11 +127,8 @@ namespace Ink_Canvas
             {
                 CurrentWhiteboardIndex--;
             }
-
             WhiteboardTotalCount--;
-
             RestoreStrokes();
-
             UpdateIndexInfoDisplay();
         }
 
