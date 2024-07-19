@@ -13,7 +13,7 @@ namespace Ink_Canvas
     {
         private void SymbolIconSaveStrokes_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender || inkCanvas.Visibility != Visibility.Visible) return;
+            if (inkCanvas.Visibility != Visibility.Visible) return;
 
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
@@ -60,7 +60,6 @@ namespace Ink_Canvas
 
         private void SymbolIconOpenStrokes_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
 

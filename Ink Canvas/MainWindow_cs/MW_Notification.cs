@@ -1,5 +1,6 @@
 ﻿using Ink_Canvas.Helpers;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,14 +16,25 @@ namespace Ink_Canvas
             (Application.Current?.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow)?.ShowNotificationAsync(notice, isShowImmediately);
         }
 
-        public async Task ShowNotificationAsync(string notice, bool isShowImmediately = true)
+        private CancellationTokenSource ShowNotificationCancellationTokenSource = new CancellationTokenSource();
+
+        public async void ShowNotificationAsync(string notice, bool isShowImmediately = true)
         {
             try
             {
+                ShowNotificationCancellationTokenSource.Cancel();
+                ShowNotificationCancellationTokenSource = new CancellationTokenSource();
+                var token = ShowNotificationCancellationTokenSource.Token;
+
                 TextBlockNotice.Text = notice;
                 AnimationsHelper.ShowWithSlideFromBottomAndFade(GridNotifications);
-                await Task.Delay(2000);
-                AnimationsHelper.HideWithSlideAndFade(GridNotifications);
+
+                try
+                {
+                    await Task.Delay(2000, token);
+                    AnimationsHelper.HideWithSlideAndFade(GridNotifications);
+                }
+                catch (TaskCanceledException) { }
             }
             catch { }
         }
