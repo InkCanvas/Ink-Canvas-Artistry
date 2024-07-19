@@ -214,11 +214,9 @@
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                                 </Border.Effect>
-                                <Viewbox Margin="5.5">
+                                <Viewbox>
                                     <ui:FontIcon
-                                        Width="10"
-                                        Height="10"
-                                        Margin="0,1,1,0"
+                                        Margin="5"
                                         FontFamily="{StaticResource FluentIconFontFamily}"
                                         FontSize="10"
                                         Foreground="White"
@@ -344,8 +342,13 @@
                                 Background="#0066BF"
                                 CornerRadius="100"
                                 MouseUp="BtnStart_MouseUp">
-                                <Viewbox Margin="5">
-                                    <ui:SymbolIcon Name="SymbolIconStart" Foreground="White" Symbol="Play" />
+                                <Viewbox>
+                                    <ui:FontIcon x:Name="SymbolIconStart"
+                                        Margin="5"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        Foreground="White"
+                                        Glyph="&#xedb5;" />
                                 </Viewbox>
                             </Border>
                             <Border x:Name="BtnStartCover"
@@ -354,8 +357,13 @@
                                 Background="#BFBFBF"
                                 CornerRadius="100"
                                 Visibility="Collapsed">
-                                <Viewbox Margin="5">
-                                    <ui:SymbolIcon Foreground="White" Symbol="{Binding ElementName=SymbolIconStart, Path=Symbol}" />
+                                <Viewbox>
+                                    <ui:FontIcon x:Name="SymbolIconStartCover"
+                                        Margin="5"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        Foreground="White"
+                                        Glyph="&#xedb5;" />
                                 </Viewbox>
                             </Border>
                         </Grid>
@@ -371,8 +379,13 @@
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.15" ShadowDepth="0" />
                                 </Border.Effect>
-                                <Viewbox Margin="5.5">
-                                    <ui:SymbolIcon Foreground="{DynamicResource PopupWindowForeground}" Symbol="Refresh" />
+                                <Viewbox>
+                                    <ui:FontIcon
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Glyph="&#xe72c;" />
                                 </Viewbox>
                             </Border>
                             <Border x:Name="BtnResetCover"
@@ -382,8 +395,13 @@
                                 BorderBrush="{DynamicResource PopupWindowBorderBrush}"
                                 BorderThickness="0.5"
                                 CornerRadius="100">
-                                <Viewbox Margin="5.5">
-                                    <ui:SymbolIcon Foreground="{DynamicResource PopupWindowForeground}" Symbol="Refresh" />
+                                <Viewbox>
+                                    <ui:FontIcon
+                                        Margin="10"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        Foreground="{DynamicResource PopupWindowForeground}"
+                                        Glyph="&#xe72c;" />
                                 </Viewbox>
                             </Border>
                         </Grid>
@@ -407,8 +425,13 @@
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                         </Border.Effect>
-                        <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Name="SymbolIconMinimal" Foreground="{DynamicResource PopupWindowForeground}" Symbol="HideBcc" />
+                        <Viewbox>
+                            <ui:FontIcon
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                Foreground="{DynamicResource PopupWindowForeground}"
+                                Glyph="&#xe8c5;" />
                         </Viewbox>
                     </Border>
                     <Border x:Name="BtnFullscreen"
@@ -425,8 +448,13 @@
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                         </Border.Effect>
-                        <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Name="SymbolIconFullscreen" Foreground="{DynamicResource PopupWindowForeground}" Symbol="FullScreen" />
+                        <Viewbox>
+                            <ui:FontIcon x:Name="SymbolIconFullscreen"
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                Foreground="{DynamicResource PopupWindowForeground}"
+                                Glyph="&#xe740;" />
                         </Viewbox>
                     </Border>
                     <Border x:Name="BtnClose"
@@ -441,8 +469,13 @@
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
                         </Border.Effect>
-                        <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Foreground="White" Symbol="Clear" />
+                        <Viewbox>
+                            <ui:FontIcon
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                Foreground="White"
+                                Glyph="&#xe711;" />
                         </Viewbox>
                     </Border>
                 </ikw:SimpleStackPanel>

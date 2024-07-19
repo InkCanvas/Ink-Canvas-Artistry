@@ -123,20 +123,21 @@
                 BorderThickness="1"
                 CornerRadius="5"
                 Visibility="{Binding ElementName=GridInkCanvasSelectionCover, Path=Visibility}">
-                <Viewbox Margin="0,-2.5">
-                    <ikw:SimpleStackPanel Height="60" Orientation="Horizontal" Spacing="10">
+                <Viewbox>
+                    <ikw:SimpleStackPanel Height="55" Orientation="Horizontal" Spacing="6">
                         <Border
                             Name="BorderStrokeSelectionClone"
-                            Width="40"
-                            Margin="0,2,-9,2"
+                            Width="35"
+                            Height="55"
+                            Margin="0,0,-5,0"
                             Background="Transparent"
                             CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
                             MouseDown="Border_MouseDown"
                             MouseUp="BorderStrokeSelectionClone_MouseUp">
                             <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <ui:FontIcon
-                                    Width="25"
-                                    Height="25"
+                                    Width="20"
+                                    Height="20"
                                     FontFamily="{StaticResource FluentIconFontFamily}"
                                     Foreground="{DynamicResource FloatBarForeground}"
                                     Glyph="&#xe8c8;" />
@@ -145,8 +146,8 @@
                         </Border>
                         <Border
                             Name="BorderStrokeSelectionCloneToNewBoard"
-                            Width="40"
-                            Margin="0,2,-9,2"
+                            Width="30"
+                            Height="55"
                             Background="Transparent"
                             CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
                             MouseDown="Border_MouseDown"
@@ -164,29 +165,39 @@
                                 <TextBlock HorizontalAlignment="Center" FontSize="8" Foreground="{DynamicResource FloatBarForeground}" Text="克隆至新页" />
                             </ikw:SimpleStackPanel>
                         </Border>
-                        <Border Width="1" Height="45" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border Height="40" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
+                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
+                        <Border Height="55" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
                             <ikw:SimpleStackPanel Margin="0,-10" VerticalAlignment="Center" Spacing="2">
-                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="10">
-                                    <Image Height="22" MouseDown="Border_MouseDown" MouseUp="ImageRotate45_MouseUp" Source="{DynamicResource Rotate45DrawingImage}" />
-                                    <Image Height="22" MouseDown="Border_MouseDown" MouseUp="ImageRotate90_MouseUp" Source="{DynamicResource Rotate90DrawingImage}" />
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="5">
+                                    <Image
+                                        Width="22"
+                                        Height="22"
+                                        MouseDown="Border_MouseDown"
+                                        MouseUp="ImageRotate45_MouseUp"
+                                        Source="{DynamicResource Rotate45DrawingImage}" />
+                                    <Image
+                                        Width="22"
+                                        Height="22"
+                                        MouseDown="Border_MouseDown"
+                                        MouseUp="ImageRotate90_MouseUp"
+                                        Source="{DynamicResource Rotate90DrawingImage}" />
                                 </ikw:SimpleStackPanel>
                                 <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="旋转" />
                             </ikw:SimpleStackPanel>
                         </Border>
-                        <Border Width="1" Height="45" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border Height="40" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
+                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
+                        <Border Height="55" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
                             <ikw:SimpleStackPanel Margin="0,-10" VerticalAlignment="Center">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <Image
-                                        Width="25"
-                                        Height="25"
+                                        Width="22"
+                                        Height="22"
                                         MouseDown="Border_MouseDown"
                                         MouseUp="ImageFlipHorizontal_MouseUp"
                                         Source="{DynamicResource FlipDrawingImage}" />
                                     <Image
-                                        Width="25"
-                                        Height="25"
+                                        Width="22"
+                                        Height="22"
                                         Margin="5,0,0,0"
                                         MouseDown="Border_MouseDown"
                                         MouseUp="ImageFlipVertical_MouseUp"
@@ -205,14 +216,19 @@
                                 <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="翻转" />
                             </ikw:SimpleStackPanel>
                         </Border>
-                        <Border Width="1" Height="45" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border Height="40" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
-                            <ikw:SimpleStackPanel Margin="0,-10" VerticalAlignment="Center" Spacing="5">
-                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="13">
+                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
+                        <Border Height="55" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
+                            <ikw:SimpleStackPanel VerticalAlignment="Center">
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="4">
                                     <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthDecrease_MouseUp">
-                                        <ui:SymbolIcon Foreground="{DynamicResource FloatBarForeground}" Symbol="Edit" />
+                                        <ui:FontIcon
+                                            Width="25"
+                                            Height="25"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe70f;" />
                                         <TextBlock
-                                            Margin="0,0,-2,-7"
+                                            Margin="-2,0,0,-5"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Bottom"
                                             FontSize="15"
@@ -220,9 +236,14 @@
                                             Text="-" />
                                     </Grid>
                                     <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthIncrease_MouseUp">
-                                        <ui:SymbolIcon Foreground="{DynamicResource FloatBarForeground}" Symbol="Edit" />
+                                        <ui:FontIcon
+                                            Width="25"
+                                            Height="25"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe70f;" />
                                         <TextBlock
-                                            Margin="0,0,-3,-4"
+                                            Margin="-2,0,0,-2"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Bottom"
                                             FontSize="11"
@@ -230,10 +251,15 @@
                                             Text="+" />
                                     </Grid>
                                     <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthRestore_MouseUp">
-                                        <ui:SymbolIcon Foreground="{DynamicResource FloatBarForeground}" Symbol="Edit" />
+                                        <ui:FontIcon
+                                            Width="25"
+                                            Height="25"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe70f;" />
                                         <Image
                                             Width="8"
-                                            Margin="0,0,-2,-2"
+                                            Margin="-2,0,0,0"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Bottom"
                                             Source="{DynamicResource AndroidRefreshDrawingImage}" />
@@ -242,14 +268,15 @@
                                 <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="画笔粗细" />
                             </ikw:SimpleStackPanel>
                         </Border>
-                        <Border Width="1" Height="45" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
+                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
                         <Border
-                            Width="40"
-                            Margin="-8,0,0,0"
+                            Width="35"
+                            Height="55"
+                            Margin="-5,0,0,0"
                             CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
                             MouseDown="Border_MouseDown"
                             MouseUp="BorderStrokeSelectionDelete_MouseUp">
-                            <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ikw:SimpleStackPanel VerticalAlignment="Center">
                                 <ui:FontIcon
                                     Width="25"
                                     Height="25"
@@ -895,26 +922,19 @@
                                                                             MouseDown="Border_MouseDown"
                                                                             MouseUp="ColorThemeSwitch_MouseUp">
                                                                             <Grid Margin="5">
-                                                                                <ui:FontIcon x:Name="BoardColorThemeSwitchIcon1"
+                                                                                <ui:FontIcon x:Name="BoardColorThemeSwitchIcon"
                                                                                     Width="26"
                                                                                     Height="26"
                                                                                     VerticalAlignment="Top"
                                                                                     FontFamily="{StaticResource FluentIconFontFamily}"
                                                                                     Foreground="{DynamicResource BoardBarForeground}"
                                                                                     Glyph="&#xe706;" />
-                                                                                <ui:FontIcon x:Name="BoardColorThemeSwitchIcon2"
-                                                                                    Width="0"
-                                                                                    Height="0"
-                                                                                    VerticalAlignment="Top"
-                                                                                    FontFamily="{StaticResource FluentIconFontFamily}"
-                                                                                    Foreground="{DynamicResource BoardBarForeground}"
-                                                                                    Glyph="&#xe708;" />
-                                                                                <TextBlock x:Name="BoardColorThemeSwitchTextBlock"
+                                                                                <TextBlock
                                                                                     HorizontalAlignment="Center"
                                                                                     VerticalAlignment="Bottom"
                                                                                     FontSize="13"
                                                                                     Foreground="{DynamicResource BoardBarForeground}"
-                                                                                    Text="亮系" />
+                                                                                    Text="{Binding ElementName=ColorThemeSwitchTextBlock, Path=Text}" />
                                                                             </Grid>
                                                                         </Border>
                                                                         <Border x:Name="BoardBorderPenColorBlack"
@@ -1387,14 +1407,17 @@
                                         CornerRadius="5,5,0,0">
                                         <ikw:SimpleStackPanel Orientation="Horizontal">
                                             <TextBlock FontSize="14" FontWeight="Bold" Foreground="{DynamicResource BoardBarForeground}" Text="图形(第一行支持长按保持选中)" />
-                                            <ui:SymbolIcon
-                                                Margin="10,0,0,0"
-                                                HorizontalAlignment="Right"
-                                                FontSize="16"
+                                            <ui:FontIcon x:Name="BoardBorderDrawShapePin"
+                                                Width="18"
+                                                Height="18"
+                                                Margin="16,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                                FontSize="18"
                                                 Foreground="{DynamicResource BoardBarForeground}"
+                                                Glyph="&#xe718;"
                                                 MouseDown="Border_MouseDown"
-                                                MouseUp="SymbolIconPinBorderDrawShape_MouseUp"
-                                                Symbol="Pin" />
+                                                MouseUp="SymbolIconPinBorderDrawShape_MouseUp" />
                                         </ikw:SimpleStackPanel>
                                     </Border>
                                     <Viewbox Width="240" Margin="0,10,0,0">
@@ -4144,20 +4167,13 @@
                                                                             MouseDown="Border_MouseDown"
                                                                             MouseUp="ColorThemeSwitch_MouseUp">
                                                                             <Grid Margin="5">
-                                                                                <ui:FontIcon x:Name="ColorThemeSwitchIcon1"
+                                                                                <ui:FontIcon x:Name="ColorThemeSwitchIcon"
                                                                                     Width="26"
                                                                                     Height="26"
                                                                                     VerticalAlignment="Top"
                                                                                     FontFamily="{StaticResource FluentIconFontFamily}"
                                                                                     Foreground="{DynamicResource FloatBarForeground}"
                                                                                     Glyph="&#xe706;" />
-                                                                                <ui:FontIcon x:Name="ColorThemeSwitchIcon2"
-                                                                                    Width="0"
-                                                                                    Height="0"
-                                                                                    VerticalAlignment="Top"
-                                                                                    FontFamily="{StaticResource FluentIconFontFamily}"
-                                                                                    Foreground="{DynamicResource FloatBarForeground}"
-                                                                                    Glyph="&#xe708;" />
                                                                                 <TextBlock x:Name="ColorThemeSwitchTextBlock"
                                                                                     HorizontalAlignment="Center"
                                                                                     VerticalAlignment="Bottom"
@@ -4594,14 +4610,17 @@
                                             CornerRadius="5,5,0,0">
                                             <ikw:SimpleStackPanel Orientation="Horizontal">
                                                 <TextBlock FontSize="10" FontWeight="Bold" Foreground="{DynamicResource FloatBarForeground}" Text="图形(第一行支持长按保持选中)" />
-                                                <ui:SymbolIcon
-                                                    Margin="25,0,0,0"
-                                                    HorizontalAlignment="Right"
-                                                    FontSize="12"
+                                                <ui:FontIcon x:Name="BorderDrawShapePin"
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="22,-1,0,-1"
+                                                    VerticalAlignment="Center"
+                                                    FontFamily="{StaticResource FluentIconFontFamily}"
+                                                    FontSize="16"
                                                     Foreground="{DynamicResource FloatBarForeground}"
+                                                    Glyph="&#xe718;"
                                                     MouseDown="Border_MouseDown"
-                                                    MouseUp="SymbolIconPinBorderDrawShape_MouseUp"
-                                                    Symbol="Pin" />
+                                                    MouseUp="SymbolIconPinBorderDrawShape_MouseUp" />
                                             </ikw:SimpleStackPanel>
                                         </Border>
                                         <ikw:SimpleStackPanel Margin="20,5,0,0" Orientation="Horizontal" Visibility="Collapsed">

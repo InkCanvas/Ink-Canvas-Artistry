@@ -413,46 +413,31 @@
                     </ikw:SimpleStackPanel>
                 </ScrollViewer>
             </Grid>
-            <Viewbox Margin="20,20,20,20" HorizontalAlignment="Right" Visibility="{Binding Visibility, ElementName=BigViewController}">
-                <ikw:SimpleStackPanel Height="180" Orientation="Horizontal">
-                    <Border x:Name="BtnFullscreen"
-                        Width="20"
-                        Height="20"
-                        Margin="5"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Background="{DynamicResource PopupWindowBackground}"
-                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
-                        BorderThickness="0.5"
-                        CornerRadius="100"
-                        MouseUp="BtnFullscreen_MouseUp">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
-                        </Border.Effect>
-                        <Viewbox Margin="5.5">
-                            <ui:SymbolIcon x:Name="SymbolIconFullscreen" Foreground="{DynamicResource PopupWindowForeground}" Symbol="FullScreen" />
-                        </Viewbox>
-                    </Border>
-                    <Border x:Name="BtnClose"
-                        Width="20"
-                        Height="20"
-                        Margin="5"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Background="#E32A34"
-                        BorderBrush="{DynamicResource PopupWindowBorderBrush}"
-                        BorderThickness="0.5"
-                        CornerRadius="100"
-                        MouseUp="BtnClose_MouseUp">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
-                        </Border.Effect>
-                        <Viewbox Margin="5.5">
-                            <ui:SymbolIcon Foreground="White" Symbol="Clear" />
-                        </Viewbox>
-                    </Border>
-                </ikw:SimpleStackPanel>
-            </Viewbox>
+            <ikw:SimpleStackPanel Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Border x:Name="BtnClose"
+                    Width="50"
+                    Height="50"
+                    Margin="5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Background="#E32A34"
+                    BorderBrush="{DynamicResource PopupWindowBorderBrush}"
+                    BorderThickness="0.5"
+                    CornerRadius="100"
+                    MouseUp="BtnClose_MouseUp">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="0" Opacity="0.1" ShadowDepth="0" />
+                    </Border.Effect>
+                    <Viewbox>
+                        <ui:FontIcon
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource FluentIconFontFamily}"
+                            Foreground="White"
+                            Glyph="&#xe711;" />
+                    </Viewbox>
+                </Border>
+            </ikw:SimpleStackPanel>
         </Grid>
     </Border>
 </Window>

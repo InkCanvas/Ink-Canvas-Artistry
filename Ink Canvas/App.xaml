@@ -14,9 +14,6 @@
             <Style TargetType="ui:FontIcon">
                 <Setter Property="FontSize" Value="20" />
             </Style>
-            <Style TargetType="ui:SymbolIcon">
-                <Setter Property="FontSize" Value="20" />
-            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources RequestedTheme="Light" />
                 <ui:XamlControlsResources />

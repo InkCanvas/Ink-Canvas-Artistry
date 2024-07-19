@@ -67,12 +67,6 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.Column="1" Margin="20">
-                <ui:SymbolIcon Foreground="#0865B5" Symbol="Emoji2" />
-            </Viewbox>
-            <Viewbox Grid.Column="2" Margin="20">
-                <ui:SymbolIcon Foreground="#169141" Symbol="Emoji" />
-            </Viewbox>
         </Grid>
         <ikw:SimpleStackPanel Grid.Row="2" Margin="50,0" VerticalAlignment="Bottom">
             <TextBlock Margin="0,10,0,0" FontSize="18" FontWeight="Bold" Text="更新日志" />

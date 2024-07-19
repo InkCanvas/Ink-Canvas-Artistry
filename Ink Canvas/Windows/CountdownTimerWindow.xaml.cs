@@ -67,7 +67,8 @@ namespace Ink_Canvas
                     TextBlockSecond.Text = "00";
                     timer.Stop();
                     isTimerRunning = false;
-                    SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Play;
+                    SymbolIconStart.Glyph = "\uEdb5";
+                    SymbolIconStartCover.Glyph = "\uEdb5";
                     BtnStartCover.Visibility = Visibility.Visible;
                     BorderStopTime.Visibility = Visibility.Collapsed;
                 }
@@ -215,12 +216,12 @@ namespace Ink_Canvas
             if (WindowState == WindowState.Normal)
             {
                 WindowState = WindowState.Maximized;
-                SymbolIconFullscreen.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.BackToWindow;
+                SymbolIconFullscreen.Glyph = "\uE73f";
             }
             else
             {
                 WindowState = WindowState.Normal;
-                SymbolIconFullscreen.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.FullScreen;
+                SymbolIconFullscreen.Glyph = "\uE740";
             }
         }
 
@@ -244,7 +245,8 @@ namespace Ink_Canvas
                 BtnResetCover.Visibility = Visibility.Visible;
                 BtnStartCover.Visibility = Visibility.Collapsed;
                 BorderStopTime.Visibility = Visibility.Collapsed;
-                SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Play;
+                SymbolIconStart.Glyph = "\uEdb5";
+                SymbolIconStartCover.Glyph = "\uEdb5";
                 isTimerRunning = false;
                 timer.Stop();
                 isPaused = false;
@@ -272,7 +274,8 @@ namespace Ink_Canvas
                 //继续
                 startTime += DateTime.Now - pauseTime;
                 ProcessBarTime.IsPaused = false;
-                SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Pause;
+                SymbolIconStart.Glyph = "\uEdb4";
+                SymbolIconStartCover.Glyph = "\uEdb4";
                 isPaused = false;
                 timer.Start();
                 UpdateStopTime();
@@ -283,7 +286,8 @@ namespace Ink_Canvas
                 //暂停
                 pauseTime = DateTime.Now;
                 ProcessBarTime.IsPaused = true;
-                SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Play;
+                SymbolIconStart.Glyph = "\uEdb5";
+                SymbolIconStartCover.Glyph = "\uEdb5";
                 BorderStopTime.Visibility = Visibility.Collapsed;
                 isPaused = true;
                 timer.Stop();
@@ -294,7 +298,8 @@ namespace Ink_Canvas
                 startTime = DateTime.Now;
                 totalSeconds = ((hour * 60) + minute) * 60 + second;
                 ProcessBarTime.IsPaused = false;
-                SymbolIconStart.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Pause;
+                SymbolIconStart.Glyph = "\uEdb4";
+                SymbolIconStartCover.Glyph = "\uEdb4";
                 BtnResetCover.Visibility = Visibility.Collapsed;
 
                 if (totalSeconds <= 10)
@@ -364,7 +369,7 @@ namespace Ink_Canvas
                 if (WindowState == WindowState.Maximized)
                 {
                     WindowState = WindowState.Normal;
-                    SymbolIconFullscreen.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.FullScreen;
+                    SymbolIconFullscreen.Glyph = "\uE740";
                 }
                 Width = 400;
                 Height = 250;

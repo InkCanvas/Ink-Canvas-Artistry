@@ -140,10 +140,14 @@
                         Background="#BFBFBF"
                         CornerRadius="10"
                         Visibility="Collapsed">
-                        <ikw:SimpleStackPanel Margin="3,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">
-                            <Viewbox Margin="0,20">
-                                <ui:SymbolIcon Foreground="White" Symbol="{Binding ElementName=SymbolIconStart, Path=Symbol}" />
-                            </Viewbox>
+                        <ikw:SimpleStackPanel Margin="3,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
+                            <ui:FontIcon
+                                Width="40"
+                                Height="40"
+                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                FontSize="30"
+                                Foreground="White"
+                                Glyph="&#xe77b;" />
                             <TextBlock
                                 Margin="-1,-1,4,0"
                                 VerticalAlignment="Center"

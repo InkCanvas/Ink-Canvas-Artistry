@@ -233,12 +233,9 @@ namespace Ink_Canvas
                 BorderPenColorOrange.Background = new SolidColorBrush(Color.FromRgb(249, 115, 22));
                 BoardBorderPenColorOrange.Background = new SolidColorBrush(Color.FromRgb(249, 115, 22));
 
-                ColorThemeSwitchIcon1.Width = 0;
-                ColorThemeSwitchIcon1.Height = 0;
-                ColorThemeSwitchIcon2.Width = 26;
-                ColorThemeSwitchIcon2.Height = 26;
+                ColorThemeSwitchIcon.Glyph = "\uE708";
+                BoardColorThemeSwitchIcon.Glyph = "\uE708";
                 ColorThemeSwitchTextBlock.Text = "暗系";
-                BoardColorThemeSwitchTextBlock.Text = "暗系";
             }
             else
             { // 暗系
@@ -264,12 +261,10 @@ namespace Ink_Canvas
                 BorderPenColorOrange.Background = new SolidColorBrush(Color.FromRgb(234, 88, 12));
                 BoardBorderPenColorOrange.Background = new SolidColorBrush(Color.FromRgb(234, 88, 12));
 
-                ColorThemeSwitchIcon1.Width = 26;
-                ColorThemeSwitchIcon1.Height = 26;
-                ColorThemeSwitchIcon2.Width = 0;
-                ColorThemeSwitchIcon2.Height = 0;
+
+                ColorThemeSwitchIcon.Glyph = "\uE706";
+                BoardColorThemeSwitchIcon.Glyph = "\uE706";
                 ColorThemeSwitchTextBlock.Text = "亮系";
-                BoardColorThemeSwitchTextBlock.Text = "亮系";
             }
             if (drawingAttributes != null && isLoaded)
             {

@@ -43,16 +43,6 @@ namespace Ink_Canvas
             if (e.LeftButton == MouseButtonState.Pressed) DragMove();
         }
 
-        private void BtnFullscreen_MouseUp(object sender, MouseButtonEventArgs e) {
-            if (WindowState == WindowState.Normal) {
-                WindowState = WindowState.Maximized;
-                SymbolIconFullscreen.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.BackToWindow;
-            } else {
-                WindowState = WindowState.Normal;
-                SymbolIconFullscreen.Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.FullScreen;
-            }
-        }
-
         private void SCManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e) {
             e.Handled = true;
         }

@@ -1,4 +1,5 @@
 ﻿using Ink_Canvas.Helpers;
+using iNKORE.UI.WPF.Modern.Controls;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -39,17 +40,17 @@ namespace Ink_Canvas
 
         private void SymbolIconPinBorderDrawShape_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             ToggleSwitchDrawShapeBorderAutoHide.IsOn = !ToggleSwitchDrawShapeBorderAutoHide.IsOn;
 
             if (ToggleSwitchDrawShapeBorderAutoHide.IsOn)
             {
-                ((iNKORE.UI.WPF.Modern.Controls.SymbolIcon)sender).Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.Pin;
+                BorderDrawShapePin.Glyph = "\uE718";
+                BoardBorderDrawShapePin.Glyph = "\uE718";
             }
             else
             {
-                ((iNKORE.UI.WPF.Modern.Controls.SymbolIcon)sender).Symbol = iNKORE.UI.WPF.Modern.Controls.Symbol.UnPin;
+                BorderDrawShapePin.Glyph = "\uE77a";
+                BoardBorderDrawShapePin.Glyph = "\uE77a";
             }
         }
 

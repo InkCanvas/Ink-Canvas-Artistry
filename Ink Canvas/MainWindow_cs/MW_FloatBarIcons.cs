@@ -309,7 +309,6 @@ namespace Ink_Canvas
             SaveScreenShotToDesktop();
         }
 
-        bool Not_Enter_Blackboard_fir_Mouse_Click = true;
         bool isDisplayingOrHidingBlackboard = false;
         private void ImageBlackboard_Click(object sender, RoutedEventArgs e)
         {
