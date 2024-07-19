@@ -63,17 +63,17 @@ jobs:
     - name: Upload to artifact
       uses: actions/upload-artifact@main
       with:
-        name: Ink Canvas Annotation
-        path: Ink-Canvas-For-Annotation/bin/Release
+        name: Ink Canvas Artistry
+        path: Ink Canvas/bin/Release
         
     - name: Upload to artifact (x64)
       uses: actions/upload-artifact@main
       with:
-        name: Ink Canvas Annotation-x64
-        path: Ink-Canvas-For-Annotation/bin/x64/Release
+        name: Ink Canvas Artistry (x64)
+        path: Ink Canvas/bin/x64/Release
         
     - name: Upload to artifact (ARM64)
       uses: actions/upload-artifact@main
       with:
-        name: Ink Canvas Annotation-ARM64
-        path: Ink-Canvas-For-Annotation/bin/ARM64/Release
+        name: Ink Canvas Artistry (ARM64)
+        path: Ink Canvas/bin/ARM64/Release
