@@ -30,21 +30,17 @@ namespace Ink_Canvas
             if (isStrokeSelectionCloneOn)
             {
                 BorderStrokeSelectionClone.Background = Brushes.Transparent;
-
                 isStrokeSelectionCloneOn = false;
             }
             else
             {
                 BorderStrokeSelectionClone.Background = new SolidColorBrush(StringToColor("#FF1ED760"));
-
                 isStrokeSelectionCloneOn = true;
             }
         }
 
         private void BorderStrokeSelectionCloneToNewBoard_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             var strokes = inkCanvas.GetSelectedStrokes();
             inkCanvas.Select(new StrokeCollection());
             strokes = strokes.Clone();
@@ -54,23 +50,20 @@ namespace Ink_Canvas
 
         private void BorderStrokeSelectionDelete_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             SymbolIconDelete_MouseUp(sender, e);
         }
 
         private void GridPenWidthDecrease_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-            ChangeStrokeThickness(0.8);
+            ChangeSelectedStrokeThickness(0.8);
         }
 
         private void GridPenWidthIncrease_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-            ChangeStrokeThickness(1.25);
+            ChangeSelectedStrokeThickness(1.25);
         }
 
-        private void ChangeStrokeThickness(double multipler)
+        private void ChangeSelectedStrokeThickness(double multipler)
         {
             foreach (Stroke stroke in inkCanvas.GetSelectedStrokes())
             {
@@ -85,7 +78,6 @@ namespace Ink_Canvas
             }
             if (DrawingAttributesHistory.Count > 0)
             {
-
                 timeMachine.CommitStrokeDrawingAttributesHistory(DrawingAttributesHistory);
                 DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
                 foreach (var item in DrawingAttributesHistoryFlag)
@@ -97,8 +89,6 @@ namespace Ink_Canvas
 
         private void GridPenWidthRestore_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             foreach (Stroke stroke in inkCanvas.GetSelectedStrokes())
             {
                 stroke.DrawingAttributes.Width = inkCanvas.DefaultDrawingAttributes.Width;
@@ -151,18 +141,21 @@ namespace Ink_Canvas
             }
         }
 
-        private void ApplyImageMatrixTransform(Image image, Matrix matrix, Point center)
+        private void ApplyImageMatrixTransform(Image image, Matrix matrix, Point center, double transX = 0, double transY = 0)
         {
+            // handle Translate:
+            InkCanvas.SetLeft(image, InkCanvas.GetLeft(image) + transX);
+            InkCanvas.SetTop(image, InkCanvas.GetTop(image) + transY);
+            // handle Rotate and Scale:
             TransformGroup transformGroup = GetOrCreateTransformGroup(image);
-            MatrixTransform matrixTransform = new MatrixTransform(matrix);
             TransformGroup centeredTransformGroup = new TransformGroup();
-            // 先将图形移动到新的中心点
+            // move to the center point
             double dx = center.X - image.ActualWidth / 2;
             double dy = center.Y - image.ActualHeight / 2;
             centeredTransformGroup.Children.Add(new TranslateTransform(dx, dy));
-            // 变换
-            centeredTransformGroup.Children.Add(matrixTransform);
-            // 将图形移回原位
+            // tranform
+            centeredTransformGroup.Children.Add(new MatrixTransform(matrix));
+            // move back
             centeredTransformGroup.Children.Add(new TranslateTransform(-dx, -dy));
             transformGroup.Children.Add(centeredTransformGroup);
         }
@@ -180,32 +173,27 @@ namespace Ink_Canvas
 
         private void ImageFlipHorizontal_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             MatrixTransform(1);
         }
 
         private void ImageFlipVertical_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             MatrixTransform(2);
         }
 
         private void ImageRotate45_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             MatrixTransform(3);
         }
 
         private void ImageRotate90_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
             MatrixTransform(4);
         }
 
         #endregion
 
         bool isGridInkCanvasSelectionCoverMouseDown = false;
-        StrokeCollection StrokesSelectionClone = new StrokeCollection();
 
         private void GridInkCanvasSelectionCover_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -243,7 +231,15 @@ namespace Ink_Canvas
                             selectedStrokes.Add(stroke);
                         }
                     }
-                    inkCanvas.Select(selectedStrokes);
+                    List<UIElement> selectedElements = new List<UIElement>();
+                    foreach (UIElement element in inkCanvas.Children)
+                    {
+                        if (element is Image)
+                        {
+                            selectedElements.Add(element);
+                        }
+                    }
+                    inkCanvas.Select(selectedStrokes, selectedElements);
                 }
             }
             else
@@ -259,7 +255,7 @@ namespace Ink_Canvas
         private void inkCanvas_SelectionChanged(object sender, EventArgs e)
         {
             if (isProgramChangeStrokeSelection) return;
-            if (inkCanvas.GetSelectedStrokes().Count == 0 && InkCanvasImageHelper.GetSelectedImageCount(inkCanvas) == 0)
+            if (inkCanvas.GetSelectedStrokes().Count == 0 && InkCanvasImageHelper.GetSelectedImages(inkCanvas).Count == 0)
             {
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
             }
@@ -312,6 +308,9 @@ namespace Ink_Canvas
             }
         }
 
+        StrokeCollection StrokesSelectionClone = new StrokeCollection();
+        List<Image> ImagesSelectionClone = new List<Image>();
+
         private void GridInkCanvasSelectionCover_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
             try
@@ -319,23 +318,14 @@ namespace Ink_Canvas
                 if (dec.Count >= 1)
                 {
                     ManipulationDelta md = e.DeltaManipulation;
-                    Vector trans = md.Translation;  // 获得位移矢量
-                    double rotate = md.Rotation;  // 获得旋转角度
-                    Vector scale = md.Scale;  // 获得缩放倍数
-
+                    Vector trans = md.Translation;
+                    double rotate = md.Rotation;
+                    Vector scale = md.Scale;
+                    Rect bounds = inkCanvas.GetSelectionBounds();
+                    Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
                     Matrix m = new Matrix();
-
-                    // Find center of element and then transform to get current location of center
-                    FrameworkElement fe = e.Source as FrameworkElement;
-                    Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-                    center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
-                        inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
-                    center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
-
-                    // Update matrix to reflect translation/rotation
-                    m.Translate(trans.X, trans.Y);  // 移动
-                    m.ScaleAt(scale.X, scale.Y, center.X, center.Y);  // 缩放
-
+                    // add Scale
+                    m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
                     StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
                     if (StrokesSelectionClone.Count != 0)
                     {
@@ -343,12 +333,29 @@ namespace Ink_Canvas
                     }
                     else if (Settings.Gesture.IsEnableTwoFingerRotationOnSelection)
                     {
-                        m.RotateAt(rotate, center.X, center.Y);  // 旋转
+                        // add Rotate
+                        m.RotateAt(rotate, center.X, center.Y);
                     }
+                    List<Image> images = new List<Image>();
+                    if (ImagesSelectionClone.Count != 0)
+                    {
+                        images = ImagesSelectionClone;
+                    }
+                    else
+                    {
+                        images = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
+                    }
+                    // handle images
+                    foreach (Image image in images)
+                    {
+                        ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
+                    }
+                    // add Translate
+                    m.Translate(trans.X, trans.Y);
+                    // handle strokes
                     foreach (Stroke stroke in strokes)
                     {
                         stroke.Transform(m, false);
-
                         try
                         {
                             stroke.DrawingAttributes.Width *= md.Scale.X;
@@ -360,14 +367,6 @@ namespace Ink_Canvas
                 }
             }
             catch { }
-        }
-
-        private void GridInkCanvasSelectionCover_TouchDown(object sender, TouchEventArgs e)
-        {
-        }
-
-        private void GridInkCanvasSelectionCover_TouchUp(object sender, TouchEventArgs e)
-        {
         }
 
         Point lastTouchPointOnGridInkCanvasCover = new Point(0, 0);
@@ -384,12 +383,14 @@ namespace Ink_Canvas
                 if (isStrokeSelectionCloneOn)
                 {
                     StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+                    List<Image> imageList = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
                     isProgramChangeStrokeSelection = true;
+                    ImagesSelectionClone = InkCanvasImageHelper.CloneSelectedImages(inkCanvas);
                     inkCanvas.Select(new StrokeCollection());
                     StrokesSelectionClone = strokes.Clone();
-                    inkCanvas.Select(strokes);
-                    isProgramChangeStrokeSelection = false;
                     inkCanvas.Strokes.Add(StrokesSelectionClone);
+                    inkCanvas.Select(strokes, imageList);
+                    isProgramChangeStrokeSelection = false;
                 }
             }
         }

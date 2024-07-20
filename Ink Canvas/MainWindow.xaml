@@ -109,8 +109,6 @@
                 Opacity="0.01"
                 PreviewTouchDown="GridInkCanvasSelectionCover_PreviewTouchDown"
                 PreviewTouchUp="GridInkCanvasSelectionCover_PreviewTouchUp"
-                TouchDown="GridInkCanvasSelectionCover_TouchDown"
-                TouchUp="GridInkCanvasSelectionCover_TouchUp"
                 Visibility="Visible" />
             <Border
                 Name="BorderStrokeSelectionControl"
@@ -5272,7 +5270,7 @@
                         <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=PPTExitNormal}" />
                     </Grid>
                 </Border>
-                <!-- 202407
+                <!--  202407
                 <Button
                     Width="62"
                     Height="30"
@@ -5285,8 +5283,7 @@
                     <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock FontSize="12">插入图片</TextBlock>
                     </ikw:SimpleStackPanel>
-                </Button>
-                -->
+                </Button>-->
             </ikw:SimpleStackPanel>
         </Viewbox>
         <!--  // 笑脸拖动 //  -->

@@ -21,17 +21,35 @@ namespace Ink_Canvas.Helpers
             return selectedImages;
         }
 
-        public static int GetSelectedImageCount(InkCanvas inkCanvas)
+        private static Image CloneImage(Image originalImage)
         {
-            int count = 0;
+            Image clonedImage = new Image
+            {
+                Source = originalImage.Source,
+                Width = originalImage.Width,
+                Height = originalImage.Height,
+                Stretch = originalImage.Stretch,
+                Opacity = originalImage.Opacity,
+                RenderTransform = originalImage.RenderTransform.Clone()
+            };
+            return clonedImage;
+        }
+
+        public static List<Image> CloneSelectedImages(InkCanvas inkCanvas)
+        {
+            List<Image> clonedImages = new List<Image>();
             foreach (UIElement element in inkCanvas.GetSelectedElements())
             {
-                if (element is Image selectedImage)
+                if (element is Image originalImage)
                 {
-                    count++;
+                    Image clonedImage = CloneImage(originalImage);
+                    InkCanvas.SetLeft(clonedImage, InkCanvas.GetLeft(originalImage));
+                    InkCanvas.SetTop(clonedImage, InkCanvas.GetTop(originalImage));
+                    inkCanvas.Children.Add(clonedImage);
+                    clonedImages.Add(clonedImage);
                 }
             }
-            return count;
+            return clonedImages;
         }
     }
 }
