@@ -40,7 +40,7 @@ namespace Ink_Canvas
             }
         }
 
-        private void BorderStrokeSelectionCloneToNewBoard_Click(object sender, RoutedEventArgs e)
+        private void BorderStrokeSelectionCloneToBoardOrNewPage_Click(object sender, RoutedEventArgs e)
         {
             if (currentMode == 0)
             {
@@ -268,18 +268,96 @@ namespace Ink_Canvas
         #endregion
 
         bool isGridInkCanvasSelectionCoverMouseDown = false;
+        private Point lastMousePoint;
 
         private void GridInkCanvasSelectionCover_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            lastMousePoint = e.GetPosition(inkCanvas);
             isGridInkCanvasSelectionCoverMouseDown = true;
+            if (isStrokeSelectionCloneOn)
+            {
+                StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+                List<Image> imageList = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
+                isProgramChangeStrokeSelection = true;
+                ImagesSelectionClone = InkCanvasImageHelper.CloneSelectedImages(inkCanvas);
+                inkCanvas.Select(new StrokeCollection());
+                StrokesSelectionClone = strokes.Clone();
+                inkCanvas.Strokes.Add(StrokesSelectionClone);
+                inkCanvas.Select(strokes, imageList);
+                isProgramChangeStrokeSelection = false;
+            }
+            else if (lastMousePoint.X < inkCanvas.GetSelectionBounds().Left ||
+            lastMousePoint.Y < inkCanvas.GetSelectionBounds().Top ||
+            lastMousePoint.X > inkCanvas.GetSelectionBounds().Right ||
+            lastMousePoint.Y > inkCanvas.GetSelectionBounds().Bottom)
+            {
+                isGridInkCanvasSelectionCoverMouseDown = false;
+                inkCanvas.Select(new StrokeCollection());
+                StrokesSelectionClone = new StrokeCollection();
+                ImagesSelectionClone = new List<Image>();
+            }
+        }
+
+        private void GridInkCanvasSelectionCover_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isGridInkCanvasSelectionCoverMouseDown == false) return;
+            Point mousePoint = e.GetPosition(inkCanvas);
+            Vector trans = new Vector(mousePoint.X - lastMousePoint.X, mousePoint.Y - lastMousePoint.Y);
+            lastMousePoint = mousePoint;
+            Rect bounds = inkCanvas.GetSelectionBounds();
+            Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+            Matrix m = new Matrix();
+            // handle images
+            List<Image> images = new List<Image>();
+            if (ImagesSelectionClone.Count != 0)
+            {
+                images = ImagesSelectionClone;
+            }
+            else
+            {
+                images = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
+            }
+            foreach (Image image in images)
+            {
+                ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
+            }
+            // add Translate
+            m.Translate(trans.X, trans.Y);
+            // handle strokes
+            StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+            if (StrokesSelectionClone.Count != 0)
+            {
+                strokes = StrokesSelectionClone;
+            }
+            foreach (Stroke stroke in strokes)
+            {
+                stroke.Transform(m, false);
+            }
+            updateBorderStrokeSelectionControlLocation();
         }
 
         private void GridInkCanvasSelectionCover_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (isGridInkCanvasSelectionCoverMouseDown)
+            isGridInkCanvasSelectionCoverMouseDown = false;
+            if (InkCanvasImageHelper.IsNotCanvasElementSelected(inkCanvas))
             {
-                isGridInkCanvasSelectionCoverMouseDown = false;
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
+                StrokesSelectionClone = new StrokeCollection();
+                ImagesSelectionClone = new List<Image>();
+            }
+            else
+            {
+                if (currentMode == 0)
+                {
+                    TextSelectionCloneToNewBoard.Text = "衍至画板";
+                }
+                else
+                {
+                    TextSelectionCloneToNewBoard.Text = "衍至新页";
+                }
+                GridInkCanvasSelectionCover.Visibility = Visibility.Visible;
+                StrokesSelectionClone = new StrokeCollection();
+                ImagesSelectionClone = new List<Image>();
             }
         }
 
@@ -329,7 +407,7 @@ namespace Ink_Canvas
         private void inkCanvas_SelectionChanged(object sender, EventArgs e)
         {
             if (isProgramChangeStrokeSelection) return;
-            if (inkCanvas.GetSelectedStrokes().Count == 0 && InkCanvasImageHelper.GetSelectedImages(inkCanvas).Count == 0)
+            if (InkCanvasImageHelper.IsNotCanvasElementSelected(inkCanvas))
             {
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
             }
@@ -492,12 +570,14 @@ namespace Ink_Canvas
                 {
                     inkCanvas.Select(new StrokeCollection());
                     StrokesSelectionClone = new StrokeCollection();
+                    ImagesSelectionClone = new List<Image>();
                 }
             }
-            else if (inkCanvas.GetSelectedStrokes().Count == 0)
+            else if (InkCanvasImageHelper.IsNotCanvasElementSelected(inkCanvas))
             {
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
                 StrokesSelectionClone = new StrokeCollection();
+                ImagesSelectionClone = new List<Image>();
             }
             else
             {
@@ -511,6 +591,7 @@ namespace Ink_Canvas
                 }
                 GridInkCanvasSelectionCover.Visibility = Visibility.Visible;
                 StrokesSelectionClone = new StrokeCollection();
+                ImagesSelectionClone = new List<Image>();
             }
         }
     }

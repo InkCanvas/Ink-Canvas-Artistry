@@ -105,6 +105,7 @@
                 ManipulationDelta="GridInkCanvasSelectionCover_ManipulationDelta"
                 ManipulationStarting="GridInkCanvasSelectionCover_ManipulationStarting"
                 MouseDown="GridInkCanvasSelectionCover_MouseDown"
+                MouseMove="GridInkCanvasSelectionCover_MouseMove"
                 MouseUp="GridInkCanvasSelectionCover_MouseUp"
                 Opacity="0.01"
                 PreviewTouchDown="GridInkCanvasSelectionCover_PreviewTouchDown"
@@ -149,7 +150,7 @@
                                 Height="35"
                                 Padding="0"
                                 Background="{DynamicResource FloatBarBackground}"
-                                Click="BorderStrokeSelectionCloneToNewBoard_Click">
+                                Click="BorderStrokeSelectionCloneToBoardOrNewPage_Click">
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
                                     <ui:FontIcon
                                         Width="18"
@@ -523,20 +524,6 @@
                                         Height="30"
                                         Padding="0"
                                         Background="{DynamicResource FloatBarBackground}"
-                                        Click="BtnColorPink_Click">
-                                        <Border
-                                            Width="16"
-                                            Height="16"
-                                            Background="#c72ec7"
-                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
-                                            BorderThickness="1.5"
-                                            CornerRadius="100" />
-                                    </Button>
-                                    <Button
-                                        Width="30"
-                                        Height="30"
-                                        Padding="0"
-                                        Background="{DynamicResource FloatBarBackground}"
                                         Click="BtnColorOrange_Click">
                                         <Border
                                             Width="16"
@@ -598,6 +585,20 @@
                                             Width="16"
                                             Height="16"
                                             Background="#2563eb"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorPink_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#c72ec7"
                                             BorderBrush="{DynamicResource FloatBarBorderBrush}"
                                             BorderThickness="1.5"
                                             CornerRadius="100" />
@@ -5593,8 +5594,8 @@
                 </Border>
                 <!--  202407
                 <Button
-                    Width="62"
-                    Height="30"
+                    Width="70"
+                    Height="36"
                     Margin="2,0,0,0"
                     Padding="0"
                     Background="{DynamicResource FloatBarBackground}"

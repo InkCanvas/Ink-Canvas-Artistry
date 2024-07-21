@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -107,16 +106,17 @@ namespace Ink_Canvas
             try
             {
                 if (e.StylusDevice.TabletDevice.Type == TabletDeviceType.Stylus)
-                { // 数位板 TabletDeviceType.Stylus
+                {
+                    // 数位板 TabletDeviceType.Stylus
                 }
                 else
-                { // 触摸屏 TabletDeviceType.Touch 
+                {
+                    // 触摸屏 TabletDeviceType.Touch 
                     inkCanvas.Strokes.Add(GetStrokeVisual(e.StylusDevice.Id).Stroke);
+                    await Task.Delay(5); // 避免渲染墨迹完成前预览墨迹被删除导致墨迹闪烁
+                    inkCanvas.Children.Remove(GetVisualCanvas(e.StylusDevice.Id));
+                    inkCanvas_StrokeCollected(inkCanvas, new InkCanvasStrokeCollectedEventArgs(GetStrokeVisual(e.StylusDevice.Id).Stroke));
                 }
-                await Task.Delay(5); // 避免渲染墨迹完成前预览墨迹被删除导致墨迹闪烁
-                inkCanvas.Children.Remove(GetVisualCanvas(e.StylusDevice.Id));
-
-                inkCanvas_StrokeCollected(inkCanvas, new InkCanvasStrokeCollectedEventArgs(GetStrokeVisual(e.StylusDevice.Id).Stroke));
             }
             catch (Exception ex)
             {

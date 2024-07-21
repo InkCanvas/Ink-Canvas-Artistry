@@ -1,6 +1,5 @@
 ﻿using Ink_Canvas.Helpers;
 using Microsoft.Office.Interop.PowerPoint;
-using iNKORE.UI.WPF.Modern;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -14,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Application = System.Windows.Application;
 using File = System.IO.File;
-using MessageBox = System.Windows.MessageBox;
 using Microsoft.Office.Core;
 
 namespace Ink_Canvas
@@ -264,13 +262,13 @@ namespace Ink_Canvas
             pptApplication.SlideShowEnd -= PptApplication_SlideShowEnd;
             pptApplication = null;
             timerCheckPPT.Start();
-            
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 //BtnPPTSlideShow.Visibility = Visibility.Collapsed;
                 BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
             });
-            
+
         }
 
         bool isPresentationHaveBlackSpace = false;
@@ -587,14 +585,7 @@ namespace Ink_Canvas
                     catch { } // Without this catch{}, app will crash when click the pre-page button in the fir page in some special env.
                 })).Start();
             }
-            catch
-            {
-                BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
-                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
-                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
-                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
-                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
-            }
+            catch { }
         }
 
         private void BtnPPTSlidesDown_Click(object sender, RoutedEventArgs e)
@@ -627,14 +618,7 @@ namespace Ink_Canvas
                     catch { }
                 })).Start();
             }
-            catch
-            {
-                BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
-                PPTNavigationBottomLeft.Visibility = Visibility.Collapsed;
-                PPTNavigationBottomRight.Visibility = Visibility.Collapsed;
-                PPTNavigationSidesLeft.Visibility = Visibility.Collapsed;
-                PPTNavigationSidesRight.Visibility = Visibility.Collapsed;
-            }
+            catch { }
         }
 
 

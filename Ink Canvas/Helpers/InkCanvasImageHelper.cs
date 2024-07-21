@@ -8,6 +8,19 @@ namespace Ink_Canvas.Helpers
 {
     public static class InkCanvasImageHelper
     {
+        public static bool IsNotCanvasElementSelected(InkCanvas inkCanvas)
+        {
+            if (inkCanvas.GetSelectedStrokes().Count > 0) return false;
+            foreach (UIElement element in inkCanvas.GetSelectedElements())
+            {
+                if (element is Image selectedImage)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static List<Image> GetSelectedImages(InkCanvas inkCanvas)
         {
             List<Image> selectedImages = new List<Image>();
