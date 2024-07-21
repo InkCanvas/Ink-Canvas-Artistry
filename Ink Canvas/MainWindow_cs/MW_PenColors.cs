@@ -1,7 +1,6 @@
 ﻿using Ink_Canvas.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
@@ -85,6 +84,30 @@ namespace Ink_Canvas
 
         bool isUselightThemeColor = false, isDesktopUselightThemeColor = false;
         int lastDesktopInkColor = 1, lastBoardInkColor = 5;
+        Dictionary<int, Color> inkColorLightThemeMapping = new Dictionary<int, Color>
+        {
+            { 0, Colors.Black }, // Black
+            { 1, Color.FromRgb(239, 68, 68) }, // Red
+            { 2, Color.FromRgb(34, 197, 94) }, // Green
+            { 3, Color.FromRgb(59, 130, 246) }, // Blue
+            { 4, Color.FromRgb(250, 204, 21) }, // Yellow
+            { 5, Colors.White }, // White
+            { 6, Color.FromRgb(236, 72, 153) }, // Pink
+            { 7, Color.FromRgb(20, 184, 166) }, // Teal
+            { 8, Color.FromRgb(249, 115, 22) }, // Orange
+        };
+        Dictionary<int, Color> inkColorDarkThemeMapping = new Dictionary<int, Color>
+        {
+            { 0, Colors.Black }, // Black
+            { 1, Color.FromRgb(220, 38, 38) }, // Red
+            { 2, Color.FromRgb(22, 163, 74) }, // Green
+            { 3, Color.FromRgb(37, 99, 235) }, // Blue
+            { 4, Color.FromRgb(234, 179, 8) }, // Yellow
+            { 5, Colors.White }, // White
+            { 6, Color.FromRgb(147, 51, 234) }, // Pink (Purple)
+            { 7, Color.FromRgb(13, 148, 136) }, // Teal
+            { 8, Color.FromRgb(234, 88, 12) }  // Orange
+        };
 
         private void CheckColorTheme(bool changeColorTheme = false)
         {
@@ -139,75 +162,13 @@ namespace Ink_Canvas
             { // Highlighter Purple
                 inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(147, 51, 234);
             }
-            else if (inkColor == 0)
-            { // Black
-                inkCanvas.DefaultDrawingAttributes.Color = Colors.Black;
-            }
-            else if (inkColor == 5)
-            { // White
-                inkCanvas.DefaultDrawingAttributes.Color = Colors.White;
-            }
             else if (isUselightThemeColor)
             {
-                if (inkColor == 1)
-                { // Red
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(239, 68, 68);
-                }
-                else if (inkColor == 2)
-                { // Green
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(34, 197, 94);
-                }
-                else if (inkColor == 3)
-                { // Blue
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(59, 130, 246);
-                }
-                else if (inkColor == 4)
-                { // Yellow
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(250, 204, 21);
-                }
-                else if (inkColor == 6)
-                { // Pink
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(236, 72, 153);
-                }
-                else if (inkColor == 7)
-                { // Teal
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(20, 184, 166);
-                }
-                else if (inkColor == 8)
-                { // Orange
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(249, 115, 22);
-                }
+                inkCanvas.DefaultDrawingAttributes.Color = inkColorLightThemeMapping[inkColor];
             }
             else
             {
-                if (inkColor == 1)
-                { // Red
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(220, 38, 38);
-                }
-                else if (inkColor == 2)
-                { // Green
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(22, 163, 74);
-                }
-                else if (inkColor == 3)
-                { // Blue
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(37, 99, 235);
-                }
-                else if (inkColor == 4)
-                { // Yellow
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(234, 179, 8);
-                }
-                else if (inkColor == 6)
-                { // Pink ( Purple )
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(147, 51, 234);
-                }
-                else if (inkColor == 7)
-                { // Teal
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(13, 148, 136);
-                }
-                else if (inkColor == 8)
-                { // Orange
-                    inkCanvas.DefaultDrawingAttributes.Color = Color.FromRgb(234, 88, 12);
-                }
+                inkCanvas.DefaultDrawingAttributes.Color = inkColorDarkThemeMapping[inkColor];
             }
             if (isUselightThemeColor)
             { // 亮系
@@ -385,68 +346,76 @@ namespace Ink_Canvas
 
         private void CheckLastColor(int inkColor)
         {
-            if (currentMode == 0)
+            StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+            if (strokes.Count > 0)
             {
-                lastDesktopInkColor = inkColor;
+                Color targetedColor = inkColorLightThemeMapping[inkColor];
+                if (!isUselightThemeColor)
+                {
+                    inkCanvas.DefaultDrawingAttributes.Color = inkColorDarkThemeMapping[inkColor];
+                }
+                foreach (Stroke stroke in strokes)
+                {
+                    stroke.DrawingAttributes.Color = targetedColor;
+                }
             }
             else
             {
-                lastBoardInkColor = inkColor;
+                if (currentMode == 0)
+                {
+                    lastDesktopInkColor = inkColor;
+                }
+                else
+                {
+                    lastBoardInkColor = inkColor;
+                }
+                ColorSwitchCheck();
             }
         }
 
         private void BtnColorBlack_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(0);
-            ColorSwitchCheck();
         }
 
         private void BtnColorRed_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(1);
-            ColorSwitchCheck();
         }
 
         private void BtnColorGreen_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(2);
-            ColorSwitchCheck();
         }
 
         private void BtnColorBlue_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(3);
-            ColorSwitchCheck();
         }
 
         private void BtnColorYellow_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(4);
-            ColorSwitchCheck();
         }
 
         private void BtnColorWhite_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(5);
-            ColorSwitchCheck();
         }
 
         private void BtnColorPink_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(6);
-            ColorSwitchCheck();
         }
 
         private void BtnColorTeal_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(7);
-            ColorSwitchCheck();
         }
 
         private void BtnColorOrange_Click(object sender, RoutedEventArgs e)
         {
             CheckLastColor(8);
-            ColorSwitchCheck();
         }
 
         private Color StringToColor(string colorStr)

@@ -1,11 +1,14 @@
 ﻿using Ink_Canvas.Helpers;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Point = System.Windows.Point;
 
 namespace Ink_Canvas
@@ -23,44 +26,107 @@ namespace Ink_Canvas
 
         bool isStrokeSelectionCloneOn = false;
 
-        private void BorderStrokeSelectionClone_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BorderStrokeSelectionClone_Click(object sender, RoutedEventArgs e)
         {
-            if (lastBorderMouseDownObject != sender) return;
-
             if (isStrokeSelectionCloneOn)
             {
-                BorderStrokeSelectionClone.Background = Brushes.Transparent;
+                IconStrokeSelectionClone.SetResourceReference(TextBlock.ForegroundProperty, "FloatBarForeground");
                 isStrokeSelectionCloneOn = false;
             }
             else
             {
-                BorderStrokeSelectionClone.Background = new SolidColorBrush(StringToColor("#FF1ED760"));
+                IconStrokeSelectionClone.SetResourceReference(TextBlock.ForegroundProperty, "FloatBarBackground");
                 isStrokeSelectionCloneOn = true;
             }
         }
 
-        private void BorderStrokeSelectionCloneToNewBoard_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BorderStrokeSelectionCloneToNewBoard_Click(object sender, RoutedEventArgs e)
         {
-            var strokes = inkCanvas.GetSelectedStrokes();
-            inkCanvas.Select(new StrokeCollection());
-            strokes = strokes.Clone();
-            BtnWhiteBoardAdd_Click(null, null);
-            inkCanvas.Strokes.Add(strokes);
+            if (currentMode == 0)
+            {
+                var strokes = inkCanvas.GetSelectedStrokes();
+                inkCanvas.Select(new StrokeCollection());
+                strokes = strokes.Clone();
+                ImageBlackboard_Click(null, null);
+                inkCanvas.Strokes.Add(strokes);
+            }
+            else
+            {
+                var strokes = inkCanvas.GetSelectedStrokes();
+                inkCanvas.Select(new StrokeCollection());
+                strokes = strokes.Clone();
+                BtnWhiteBoardAdd_Click(null, null);
+                inkCanvas.Strokes.Add(strokes);
+            }
         }
 
-        private void BorderStrokeSelectionDelete_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            SymbolIconDelete_MouseUp(sender, e);
-        }
-
-        private void GridPenWidthDecrease_MouseUp(object sender, MouseButtonEventArgs e)
+        private void GridPenWidthDecrease_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectedStrokeThickness(0.8);
         }
 
-        private void GridPenWidthIncrease_MouseUp(object sender, MouseButtonEventArgs e)
+        private void GridPenWidthIncrease_Click(object sender, RoutedEventArgs e)
         {
             ChangeSelectedStrokeThickness(1.25);
+        }
+
+        private void GridPenWidthRestore_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Stroke stroke in inkCanvas.GetSelectedStrokes())
+            {
+                stroke.DrawingAttributes.Width = inkCanvas.DefaultDrawingAttributes.Width;
+                stroke.DrawingAttributes.Height = inkCanvas.DefaultDrawingAttributes.Height;
+            }
+        }
+
+        private void BorderStrokeSelectionDelete_Click(object sender, RoutedEventArgs e)
+        {
+            SymbolIconDelete_MouseUp(sender, e);
+        }
+
+        private void BtnStrokeSelectionSaveToImage_Click(object sender, RoutedEventArgs e)
+        {
+            StrokeCollection selectedStrokes = inkCanvas.GetSelectedStrokes();
+
+            if (selectedStrokes.Count > 0)
+            {
+                Rect bounds = selectedStrokes.GetBounds();
+
+                double width = bounds.Width + 10;
+                double height = bounds.Height + 10;
+                RenderTargetBitmap renderTarget = new RenderTargetBitmap(
+                    (int)Math.Ceiling(width), (int)Math.Ceiling(height),
+                    96, 96, PixelFormats.Pbgra32);
+
+                DrawingVisual drawingVisual = new DrawingVisual();
+                using (DrawingContext drawingContext = drawingVisual.RenderOpen())
+                {
+                    drawingContext.PushTransform(new TranslateTransform(-bounds.X, -bounds.Y));
+
+                    foreach (Stroke stroke in selectedStrokes)
+                    {
+                        stroke.Draw(drawingContext);
+                    }
+                }
+
+                renderTarget.Render(drawingVisual);
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PNG Images|*.png";
+                saveFileDialog.Title = "Save Selected Ink as PNG";
+                saveFileDialog.FileName = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss-fff");
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    PngBitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(renderTarget));
+
+                    using (FileStream fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        encoder.Save(fileStream);
+                    }
+                }
+            }
         }
 
         private void ChangeSelectedStrokeThickness(double multipler)
@@ -87,15 +153,6 @@ namespace Ink_Canvas
             }
         }
 
-        private void GridPenWidthRestore_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            foreach (Stroke stroke in inkCanvas.GetSelectedStrokes())
-            {
-                stroke.DrawingAttributes.Width = inkCanvas.DefaultDrawingAttributes.Width;
-                stroke.DrawingAttributes.Height = inkCanvas.DefaultDrawingAttributes.Height;
-            }
-        }
-
         private void MatrixTransform(int type)
         {
             Matrix m = new Matrix();
@@ -104,17 +161,14 @@ namespace Ink_Canvas
 
             switch (type)
             {
-                case 1: // FlipHorizontal
+                case 1: // Flip Horizontal
                     m.ScaleAt(-1, 1, center.X, center.Y);
                     break;
-                case 2: // FlipVertical
+                case 2: // Flip Vertical
                     m.ScaleAt(1, -1, center.X, center.Y);
                     break;
-                case 3: // Rotate45
-                    m.RotateAt(45, center.X, center.Y);
-                    break;
-                case 4: // Rotate90
-                    m.RotateAt(90, center.X, center.Y);
+                default: // Rotate
+                    m.RotateAt(type, center.X, center.Y);
                     break;
             }
 
@@ -171,24 +225,44 @@ namespace Ink_Canvas
             return transformGroup;
         }
 
-        private void ImageFlipHorizontal_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BtnFlipHorizontal_Click(object sender, RoutedEventArgs e)
         {
             MatrixTransform(1);
         }
 
-        private void ImageFlipVertical_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BtnFlipVertical_Click(object sender, RoutedEventArgs e)
         {
             MatrixTransform(2);
         }
 
-        private void ImageRotate45_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BtnAnticlockwiseRotate15_Click(object sender, RoutedEventArgs e)
         {
-            MatrixTransform(3);
+            MatrixTransform(-15);
         }
 
-        private void ImageRotate90_MouseUp(object sender, MouseButtonEventArgs e)
+        private void BtnAnticlockwiseRotate45_Click(object sender, RoutedEventArgs e)
         {
-            MatrixTransform(4);
+            MatrixTransform(-45);
+        }
+
+        private void BtnAnticlockwiseRotate90_Click(object sender, RoutedEventArgs e)
+        {
+            MatrixTransform(-90);
+        }
+
+        private void BtnClockwiseRotate15_Click(object sender, RoutedEventArgs e)
+        {
+            MatrixTransform(15);
+        }
+
+        private void BtnClockwiseRotate45_Click(object sender, RoutedEventArgs e)
+        {
+            MatrixTransform(45);
+        }
+
+        private void BtnClockwiseRotate90_Click(object sender, RoutedEventArgs e)
+        {
+            MatrixTransform(90);
         }
 
         #endregion
@@ -261,8 +335,17 @@ namespace Ink_Canvas
             }
             else
             {
+                if (currentMode == 0)
+                {
+                    TextSelectionCloneToNewBoard.Text = "衍至画板";
+                }
+                else
+                {
+                    TextSelectionCloneToNewBoard.Text = "衍至新页";
+                }
                 GridInkCanvasSelectionCover.Visibility = Visibility.Visible;
-                BorderStrokeSelectionClone.Background = Brushes.Transparent;
+                IconStrokeSelectionClone.SetResourceReference(TextBlock.ForegroundProperty, "FloatBarForeground");
+                ToggleButtonStrokeSelectionClone.IsChecked = false;
                 isStrokeSelectionCloneOn = false;
                 updateBorderStrokeSelectionControlLocation();
             }
@@ -418,6 +501,14 @@ namespace Ink_Canvas
             }
             else
             {
+                if (currentMode == 0)
+                {
+                    TextSelectionCloneToNewBoard.Text = "衍至画板";
+                }
+                else
+                {
+                    TextSelectionCloneToNewBoard.Text = "衍至新页";
+                }
                 GridInkCanvasSelectionCover.Visibility = Visibility.Visible;
                 StrokesSelectionClone = new StrokeCollection();
             }

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using Application = System.Windows.Application;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace Ink_Canvas
 {
@@ -22,6 +23,17 @@ namespace Ink_Canvas
             }
         }
 
+        void RemoveResourceDictionary(Uri uri)
+        {
+            var dictionaries = Application.Current.Resources.MergedDictionaries;
+            var dictionaryToRemove = dictionaries.FirstOrDefault(d => d.Source == uri);
+
+            if (dictionaryToRemove != null)
+            {
+                dictionaries.Remove(dictionaryToRemove);
+            }
+        }
+
         private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!isLoaded) return;
@@ -29,51 +41,47 @@ namespace Ink_Canvas
             SystemEvents_UserPreferenceChanged(null, null);
             SaveSettingsToFile();
         }
-        Color FloatBarForegroundColor = Color.FromRgb(102, 102, 102);
-        Color BoardBarForegroundColor = Color.FromRgb(102, 102, 102);
+
+        private void SetBoardTheme()
+        {
+            var lightBoardUri = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative);
+            var darkBoardUri = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative);
+            if (Settings.Canvas.UsingWhiteboard)
+            {
+                ResourceDictionary rd = new ResourceDictionary { Source = lightBoardUri };
+                Application.Current.Resources.MergedDictionaries.Add(rd);
+                RemoveResourceDictionary(darkBoardUri);
+            }
+            else
+            {
+                ResourceDictionary rd = new ResourceDictionary { Source = darkBoardUri };
+                Application.Current.Resources.MergedDictionaries.Add(rd);
+                RemoveResourceDictionary(lightBoardUri);
+            }
+        }
+
         private void SetTheme(string theme)
         {
+            var lightUri = new Uri("Resources/Styles/Light.xaml", UriKind.Relative);
+            var darkUri = new Uri("Resources/Styles/Dark.xaml", UriKind.Relative);
+
+            SetBoardTheme();
+
             if (theme == "Light")
             {
-                ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light.xaml", UriKind.Relative) };
+                ResourceDictionary rd = new ResourceDictionary { Source = lightUri };
                 Application.Current.Resources.MergedDictionaries.Add(rd);
-
-                if (Settings.Canvas.UsingWhiteboard)
-                {
-                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd);
-                }
-                else
-                {
-                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd);
-                }
-
+                RemoveResourceDictionary(darkUri);
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Light);
                 ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
-                FloatBarForegroundColor = (Color)Application.Current.FindResource("FloatBarForegroundColor");
-                BoardBarForegroundColor = (Color)Application.Current.FindResource("BoardBarForegroundColor");
             }
             else if (theme == "Dark")
             {
-                ResourceDictionary rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark.xaml", UriKind.Relative) };
+                ResourceDictionary rd = new ResourceDictionary { Source = darkUri };
                 Application.Current.Resources.MergedDictionaries.Add(rd);
-
-                if (Settings.Canvas.UsingWhiteboard)
-                {
-                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Light-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd);
-                }
-                else
-                {
-                    rd = new ResourceDictionary() { Source = new Uri("Resources/Styles/Dark-Board.xaml", UriKind.Relative) };
-                    Application.Current.Resources.MergedDictionaries.Add(rd);
-                }
-
+                RemoveResourceDictionary(lightUri);
                 ThemeManager.SetRequestedTheme(window, ElementTheme.Dark);
                 ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
-                FloatBarForegroundColor = (Color)Application.Current.FindResource("FloatBarForegroundColor");
-                BoardBarForegroundColor = (Color)Application.Current.FindResource("BoardBarForegroundColor");
             }
 
             if (!Settings.Appearance.IsColorfulViewboxFloatingBar) // 还原浮动工具栏背景色

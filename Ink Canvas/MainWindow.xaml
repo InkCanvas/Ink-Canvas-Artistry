@@ -110,10 +110,9 @@
                 PreviewTouchDown="GridInkCanvasSelectionCover_PreviewTouchDown"
                 PreviewTouchUp="GridInkCanvasSelectionCover_PreviewTouchUp"
                 Visibility="Visible" />
-            <Border
-                Name="BorderStrokeSelectionControl"
+            <Border x:Name="BorderStrokeSelectionControl"
                 Height="80"
-                Margin="0,100,0,0"
+                Margin="0,65,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="{DynamicResource FloatBarBackground}"
@@ -122,168 +121,490 @@
                 CornerRadius="5"
                 Visibility="{Binding ElementName=GridInkCanvasSelectionCover, Path=Visibility}">
                 <Viewbox>
-                    <ikw:SimpleStackPanel Height="55" Orientation="Horizontal" Spacing="6">
-                        <Border
-                            Name="BorderStrokeSelectionClone"
-                            Width="35"
-                            Height="55"
-                            Margin="0,0,-5,0"
-                            Background="Transparent"
-                            CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
-                            MouseDown="Border_MouseDown"
-                            MouseUp="BorderStrokeSelectionClone_MouseUp">
-                            <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <ui:FontIcon
-                                    Width="20"
-                                    Height="20"
-                                    FontFamily="{StaticResource FluentIconFontFamily}"
-                                    Foreground="{DynamicResource FloatBarForeground}"
-                                    Glyph="&#xe8c8;" />
-                                <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="克隆" />
-                            </ikw:SimpleStackPanel>
-                        </Border>
-                        <Border
-                            Name="BorderStrokeSelectionCloneToNewBoard"
-                            Width="30"
-                            Height="55"
-                            Background="Transparent"
-                            CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
-                            MouseDown="Border_MouseDown"
-                            MouseUp="BorderStrokeSelectionCloneToNewBoard_MouseUp"
-                            Visibility="{Binding Visibility, ElementName=GridBackgroundCover}">
-                            <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <ui:FontIcon
-                                    Width="25"
-                                    Height="25"
-                                    Margin="1,0,0,0"
-                                    FontFamily="{StaticResource FluentIconFontFamily}"
-                                    FontSize="18"
-                                    Foreground="{DynamicResource FloatBarForeground}"
-                                    Glyph="&#xf413;" />
-                                <TextBlock HorizontalAlignment="Center" FontSize="8" Foreground="{DynamicResource FloatBarForeground}" Text="克隆至新页" />
-                            </ikw:SimpleStackPanel>
-                        </Border>
-                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border Height="55" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
-                            <ikw:SimpleStackPanel Margin="0,-10" VerticalAlignment="Center" Spacing="2">
-                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="5">
-                                    <Image
-                                        Width="22"
-                                        Height="22"
-                                        MouseDown="Border_MouseDown"
-                                        MouseUp="ImageRotate45_MouseUp"
-                                        Source="{DynamicResource Rotate45DrawingImage}" />
-                                    <Image
-                                        Width="22"
-                                        Height="22"
-                                        MouseDown="Border_MouseDown"
-                                        MouseUp="ImageRotate90_MouseUp"
-                                        Source="{DynamicResource Rotate90DrawingImage}" />
+                    <ikw:SimpleStackPanel Height="80" Orientation="Horizontal" Spacing="6">
+                        <ikw:SimpleStackPanel Margin="4,0,0,0" VerticalAlignment="Center" Spacing="2">
+                            <Border CornerRadius="5">
+                                <ToggleButton x:Name="ToggleButtonStrokeSelectionClone"
+                                    Width="90"
+                                    Height="35"
+                                    Padding="0"
+                                    Background="{DynamicResource FloatBarBackground}"
+                                    Checked="BorderStrokeSelectionClone_Click"
+                                    IsChecked="False"
+                                    Unchecked="BorderStrokeSelectionClone_Click">
+                                    <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
+                                        <ui:FontIcon x:Name="IconStrokeSelectionClone"
+                                            Width="18"
+                                            Height="18"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe8c8;" />
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{Binding ElementName=IconStrokeSelectionClone, Path=Foreground}" Text="克隆模式" />
+                                    </ikw:SimpleStackPanel>
+                                </ToggleButton>
+                            </Border>
+                            <Button
+                                Width="90"
+                                Height="35"
+                                Padding="0"
+                                Background="{DynamicResource FloatBarBackground}"
+                                Click="BorderStrokeSelectionCloneToNewBoard_Click">
+                                <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
+                                    <ui:FontIcon
+                                        Width="18"
+                                        Height="18"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="16"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Glyph="&#xf413;" />
+                                    <TextBlock x:Name="TextSelectionCloneToNewBoard"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Text="衍至画板" />
                                 </ikw:SimpleStackPanel>
-                                <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="旋转" />
-                            </ikw:SimpleStackPanel>
-                        </Border>
-                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border Height="55" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
-                            <ikw:SimpleStackPanel Margin="0,-10" VerticalAlignment="Center">
-                                <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <Image
-                                        Width="22"
-                                        Height="22"
-                                        MouseDown="Border_MouseDown"
-                                        MouseUp="ImageFlipHorizontal_MouseUp"
-                                        Source="{DynamicResource FlipDrawingImage}" />
-                                    <Image
-                                        Width="22"
-                                        Height="22"
-                                        Margin="5,0,0,0"
-                                        MouseDown="Border_MouseDown"
-                                        MouseUp="ImageFlipVertical_MouseUp"
-                                        RenderTransformOrigin="0.5,0.5"
-                                        Source="{DynamicResource FlipDrawingImage}">
-                                        <Image.RenderTransform>
+                            </Button>
+                        </ikw:SimpleStackPanel>
+                        <ikw:SimpleStackPanel VerticalAlignment="Center" Spacing="4">
+                            <Border Height="33" Padding="5,0" Background="{DynamicResource FloatBarBackground}" CornerRadius="3">
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="1.5">
+                                    <ui:FontIcon
+                                        Width="18"
+                                        Height="18"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Glyph="&#xe7ad;">
+                                        <ui:FontIcon.RenderTransformOrigin>
+                                            <Point X="0.5" Y="0.5" />
+                                        </ui:FontIcon.RenderTransformOrigin>
+                                        <ui:FontIcon.RenderTransform>
                                             <TransformGroup>
-                                                <ScaleTransform />
-                                                <SkewTransform />
                                                 <RotateTransform Angle="90" />
-                                                <TranslateTransform />
+                                                <ScaleTransform ScaleX="1" ScaleY="-1" />
                                             </TransformGroup>
-                                        </Image.RenderTransform>
-                                    </Image>
+                                        </ui:FontIcon.RenderTransform>
+                                    </ui:FontIcon>
+                                    <TextBlock
+                                        Margin="0,0,2,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Text="逆旋" />
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnAnticlockwiseRotate15_Click">
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="15°" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnAnticlockwiseRotate45_Click">
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="45°" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnAnticlockwiseRotate90_Click">
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="90°" />
+                                    </Button>
                                 </ikw:SimpleStackPanel>
-                                <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="翻转" />
-                            </ikw:SimpleStackPanel>
-                        </Border>
-                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border Height="55" CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}">
-                            <ikw:SimpleStackPanel VerticalAlignment="Center">
-                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="4">
-                                    <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthDecrease_MouseUp">
+                            </Border>
+                            <Border Height="33" Padding="5,0" Background="{DynamicResource FloatBarBackground}" CornerRadius="3">
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="1.5">
+                                    <ui:FontIcon
+                                        Width="18"
+                                        Height="18"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Glyph="&#xe7ad;">
+                                        <ui:FontIcon.RenderTransformOrigin>
+                                            <Point X="0.5" Y="0.5" />
+                                        </ui:FontIcon.RenderTransformOrigin>
+                                        <ui:FontIcon.RenderTransform>
+                                            <RotateTransform Angle="-90" />
+                                        </ui:FontIcon.RenderTransform>
+                                    </ui:FontIcon>
+                                    <TextBlock
+                                        Margin="0,0,2,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Text="顺旋" />
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnClockwiseRotate15_Click">
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="15°" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnClockwiseRotate45_Click">
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="45°" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnClockwiseRotate90_Click">
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="90°" />
+                                    </Button>
+                                </ikw:SimpleStackPanel>
+                            </Border>
+                        </ikw:SimpleStackPanel>
+                        <ikw:SimpleStackPanel VerticalAlignment="Center" Spacing="2">
+                            <Button
+                                Width="90"
+                                Height="35"
+                                Padding="0"
+                                Background="{DynamicResource FloatBarBackground}"
+                                Click="BtnFlipHorizontal_Click">
+                                <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
+                                    <ikw:SimpleStackPanel Width="18" Height="18" Orientation="Vertical">
                                         <ui:FontIcon
-                                            Width="25"
-                                            Height="25"
+                                            Width="18"
+                                            Height="18"
                                             FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe71a;" />
+                                        <ui:FontIcon
+                                            Width="18"
+                                            Height="18"
+                                            Margin="0,-18,-1,0"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xf464;" />
+                                        <ui:FontIcon
+                                            Width="18"
+                                            Height="18"
+                                            Margin="0,-17,0,0"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="12"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe80c;">
+                                            <ui:FontIcon.RenderTransformOrigin>
+                                                <Point X="0.5" Y="0.5" />
+                                            </ui:FontIcon.RenderTransformOrigin>
+                                            <ui:FontIcon.RenderTransform>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="90" />
+                                                    <ScaleTransform ScaleX="-1" ScaleY="-1" />
+                                                </TransformGroup>
+                                            </ui:FontIcon.RenderTransform>
+                                        </ui:FontIcon>
+                                    </ikw:SimpleStackPanel>
+                                    <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="水平翻转" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button
+                                Width="90"
+                                Height="35"
+                                Padding="0"
+                                Background="{DynamicResource FloatBarBackground}"
+                                Click="BtnFlipVertical_Click">
+                                <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
+                                    <ikw:SimpleStackPanel Width="18" Height="18" Orientation="Vertical">
+                                        <ui:FontIcon
+                                            Width="18"
+                                            Height="18"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe71a;" />
+                                        <ui:FontIcon
+                                            Width="18"
+                                            Height="18"
+                                            Margin="0,-19,0,0"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xf464;">
+                                            <ui:FontIcon.RenderTransformOrigin>
+                                                <Point X="0.5" Y="0.5" />
+                                            </ui:FontIcon.RenderTransformOrigin>
+                                            <ui:FontIcon.RenderTransform>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="90" />
+                                                    <ScaleTransform ScaleX="-1" ScaleY="-1" />
+                                                </TransformGroup>
+                                            </ui:FontIcon.RenderTransform>
+                                        </ui:FontIcon>
+                                        <ui:FontIcon
+                                            Width="18"
+                                            Height="18"
+                                            Margin="0,-18,0,0"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="12"
+                                            Foreground="{DynamicResource FloatBarForeground}"
+                                            Glyph="&#xe80c;" />
+                                    </ikw:SimpleStackPanel>
+                                    <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="竖直翻转" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                        </ikw:SimpleStackPanel>
+                        <ikw:SimpleStackPanel Margin="0,0,4,0" VerticalAlignment="Center" Spacing="4">
+                            <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="4">
+                                <Border
+                                    Width="155"
+                                    Height="33"
+                                    Padding="5,0"
+                                    HorizontalAlignment="Left"
+                                    Background="{DynamicResource FloatBarBackground}"
+                                    CornerRadius="3">
+                                    <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="1.5">
+                                        <ui:FontIcon
+                                            Width="18"
+                                            Height="18"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="14"
                                             Foreground="{DynamicResource FloatBarForeground}"
                                             Glyph="&#xe70f;" />
                                         <TextBlock
-                                            Margin="-2,0,0,-5"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            FontSize="15"
+                                            Margin="0,0,2,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
                                             Foreground="{DynamicResource FloatBarForeground}"
-                                            Text="-" />
-                                    </Grid>
-                                    <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthIncrease_MouseUp">
+                                            Text="粗细" />
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Padding="0"
+                                            Background="{DynamicResource FloatBarBackground}"
+                                            Click="GridPenWidthIncrease_Click">
+                                            <ui:FontIcon
+                                                Width="18"
+                                                Height="18"
+                                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                                FontSize="12"
+                                                Foreground="{DynamicResource FloatBarForeground}"
+                                                Glyph="&#xe948;" />
+                                        </Button>
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Padding="0"
+                                            Background="{DynamicResource FloatBarBackground}"
+                                            Click="GridPenWidthDecrease_Click">
+                                            <ui:FontIcon
+                                                Width="18"
+                                                Height="18"
+                                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                                FontSize="12"
+                                                Foreground="{DynamicResource FloatBarForeground}"
+                                                Glyph="&#xe949;" />
+                                        </Button>
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Padding="0"
+                                            Background="{DynamicResource FloatBarBackground}"
+                                            Click="GridPenWidthRestore_Click">
+                                            <ui:FontIcon
+                                                Width="18"
+                                                Height="18"
+                                                FontFamily="{StaticResource FluentIconFontFamily}"
+                                                FontSize="12"
+                                                Foreground="{DynamicResource FloatBarForeground}"
+                                                Glyph="&#xe72c;" />
+                                        </Button>
+                                    </ikw:SimpleStackPanel>
+                                </Border>
+                                <Button
+                                    Width="90"
+                                    Height="35"
+                                    Padding="0"
+                                    Background="{DynamicResource FloatBarBackground}"
+                                    Click="BtnStrokeSelectionSaveToImage_Click">
+                                    <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
                                         <ui:FontIcon
-                                            Width="25"
-                                            Height="25"
+                                            Width="18"
+                                            Height="18"
                                             FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
                                             Foreground="{DynamicResource FloatBarForeground}"
-                                            Glyph="&#xe70f;" />
-                                        <TextBlock
-                                            Margin="-2,0,0,-2"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            FontSize="11"
-                                            Foreground="{DynamicResource FloatBarForeground}"
-                                            Text="+" />
-                                    </Grid>
-                                    <Grid MouseDown="Border_MouseDown" MouseUp="GridPenWidthRestore_MouseUp">
+                                            Glyph="&#xee71;" />
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="存为图片" />
+                                    </ikw:SimpleStackPanel>
+                                </Button>
+                                <Button
+                                    Width="90"
+                                    Height="35"
+                                    Padding="0"
+                                    Background="{DynamicResource FloatBarBackground}"
+                                    Click="BorderStrokeSelectionDelete_Click">
+                                    <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="2">
                                         <ui:FontIcon
-                                            Width="25"
-                                            Height="25"
+                                            Width="18"
+                                            Height="18"
                                             FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="16"
                                             Foreground="{DynamicResource FloatBarForeground}"
-                                            Glyph="&#xe70f;" />
-                                        <Image
-                                            Width="8"
-                                            Margin="-2,0,0,0"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            Source="{DynamicResource AndroidRefreshDrawingImage}" />
-                                    </Grid>
+                                            Glyph="&#xe74d;" />
+                                        <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="删除" />
+                                    </ikw:SimpleStackPanel>
+                                </Button>
+                            </ikw:SimpleStackPanel>
+                            <Border Height="33" Padding="5,0" Background="{DynamicResource FloatBarBackground}" CornerRadius="3">
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="1.5">
+                                    <ui:FontIcon
+                                        Width="18"
+                                        Height="18"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Glyph="&#xe790;" />
+                                    <TextBlock
+                                        Margin="0,0,2,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Text="颜色" />
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorBlack_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="Black"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorWhite_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="White"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorRed_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#dc2626"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorPink_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#c72ec7"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorOrange_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#ea580c"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorYellow_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#eab308"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorGreen_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#16a34a"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorTeal_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#0d9488"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
+                                    <Button
+                                        Width="30"
+                                        Height="30"
+                                        Padding="0"
+                                        Background="{DynamicResource FloatBarBackground}"
+                                        Click="BtnColorBlue_Click">
+                                        <Border
+                                            Width="16"
+                                            Height="16"
+                                            Background="#2563eb"
+                                            BorderBrush="{DynamicResource FloatBarBorderBrush}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="100" />
+                                    </Button>
                                 </ikw:SimpleStackPanel>
-                                <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="画笔粗细" />
-                            </ikw:SimpleStackPanel>
-                        </Border>
-                        <Border Width="1" Height="40" Background="{DynamicResource FloatBarForeground}" BorderBrush="{DynamicResource FloatBarForeground}" />
-                        <Border
-                            Width="35"
-                            Height="55"
-                            Margin="-5,0,0,0"
-                            CornerRadius="{Binding ElementName=BorderStrokeSelectionControl, Path=CornerRadius}"
-                            MouseDown="Border_MouseDown"
-                            MouseUp="BorderStrokeSelectionDelete_MouseUp">
-                            <ikw:SimpleStackPanel VerticalAlignment="Center">
-                                <ui:FontIcon
-                                    Width="25"
-                                    Height="25"
-                                    FontFamily="{StaticResource FluentIconFontFamily}"
-                                    Foreground="{DynamicResource FloatBarForeground}"
-                                    Glyph="&#xe74d;" />
-                                <TextBlock HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource FloatBarForeground}" Text="删除" />
-                            </ikw:SimpleStackPanel>
-                        </Border>
+                            </Border>
+                        </ikw:SimpleStackPanel>
                     </ikw:SimpleStackPanel>
                 </Viewbox>
             </Border>
@@ -5283,7 +5604,8 @@
                     <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock FontSize="12">插入图片</TextBlock>
                     </ikw:SimpleStackPanel>
-                </Button>-->
+                </Button>
+                -->
             </ikw:SimpleStackPanel>
         </Viewbox>
         <!--  // 笑脸拖动 //  -->
