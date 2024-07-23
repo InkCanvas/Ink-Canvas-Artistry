@@ -5587,7 +5587,8 @@
                     BorderThickness="1"
                     CornerRadius="4"
                     MouseDown="Border_MouseDown"
-                    MouseUp="BtnPPTSlideShowEnd_Click">
+                    MouseUp="BtnPPTSlideShowEnd_Click"
+                    Visibility="Visible">
                     <Grid>
                         <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=PPTExitNormal}" />
                     </Grid>

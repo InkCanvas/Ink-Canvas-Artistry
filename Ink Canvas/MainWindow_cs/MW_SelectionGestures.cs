@@ -399,9 +399,6 @@ namespace Ink_Canvas
                 inkCanvas.EditingMode = InkCanvasEditingMode.Select;
             }
         }
-
-        double BorderStrokeSelectionControlWidth = 490.0;
-        double BorderStrokeSelectionControlHeight = 80.0;
         bool isProgramChangeStrokeSelection = false;
 
         private void inkCanvas_SelectionChanged(object sender, EventArgs e)
@@ -428,17 +425,46 @@ namespace Ink_Canvas
                 updateBorderStrokeSelectionControlLocation();
             }
         }
+        double BorderStrokeSelectionControlWidth = 695;
+        double BorderStrokeSelectionControlHeight = 80;
 
         private void updateBorderStrokeSelectionControlLocation()
         {
-            double borderLeft = (inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Right - BorderStrokeSelectionControlWidth) / 2;
-            double borderTop = inkCanvas.GetSelectionBounds().Bottom + 15;
-            if (borderLeft < 0) borderLeft = 0;
-            if (borderTop < 0) borderTop = 0;
-            if (Width - borderLeft < BorderStrokeSelectionControlWidth || double.IsNaN(borderLeft)) borderLeft = Width - BorderStrokeSelectionControlWidth;
-            if (Height - borderTop < BorderStrokeSelectionControlHeight || double.IsNaN(borderTop)) borderTop = Height - BorderStrokeSelectionControlHeight;
+            var selectionBounds = inkCanvas.GetSelectionBounds();
+            double borderLeft = (selectionBounds.Left + selectionBounds.Right - BorderStrokeSelectionControlWidth) / 2;
+            double borderTop = selectionBounds.Bottom + 15;
 
-            if (borderTop > 60) borderTop -= 60;
+            // ensure the border is inside the window
+            borderLeft = Math.Max(0, borderLeft);
+            borderTop = Math.Max(0, borderTop);
+            borderLeft = Math.Min(Width - BorderStrokeSelectionControlWidth, borderLeft);
+            borderTop = Math.Min(Height - BorderStrokeSelectionControlHeight, borderTop);
+
+            double borderBottom = borderTop + BorderStrokeSelectionControlHeight;
+            double borderRight = borderLeft + BorderStrokeSelectionControlWidth;
+
+            double viewboxTop = ViewboxFloatingBar.Margin.Top;
+            double viewboxLeft = ViewboxFloatingBar.Margin.Left;
+            double viewboxBottom = viewboxTop + ViewboxFloatingBar.ActualHeight;
+            double viewboxRight = viewboxLeft + ViewboxFloatingBar.ActualWidth;
+
+            if (currentMode == 0)
+            {
+                bool isHorizontalOverlap = (borderLeft < viewboxRight && borderRight > viewboxLeft);
+                bool isVerticalOverlap = (borderTop < viewboxBottom && borderBottom > viewboxTop);
+                if (isHorizontalOverlap && isVerticalOverlap)
+                {
+                    double belowViewboxMargin = viewboxBottom + 5;
+                    double maxBottomPositionMargin = Height - BorderStrokeSelectionControlHeight;
+                    borderTop = belowViewboxMargin > maxBottomPositionMargin
+                        ? viewboxTop - BorderStrokeSelectionControlHeight - 5
+                        : belowViewboxMargin;
+                }
+            }
+            else
+            {
+                borderTop = Math.Min(Height - BorderStrokeSelectionControlHeight - 60, borderTop);
+            }
             BorderStrokeSelectionControl.Margin = new Thickness(borderLeft, borderTop, 0, 0);
         }
 
