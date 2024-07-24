@@ -21,6 +21,19 @@ namespace Ink_Canvas.Helpers
             return true;
         }
 
+        public static List<Image> GetAllImages(InkCanvas inkCanvas)
+        {
+            List<Image> canvasImages = new List<Image>();
+            foreach (UIElement element in inkCanvas.Children)
+            {
+                if (element is Image image)
+                {
+                    canvasImages.Add(image);
+                }
+            }
+            return canvasImages;
+        }
+
         public static List<Image> GetSelectedImages(InkCanvas inkCanvas)
         {
             List<Image> selectedImages = new List<Image>();

@@ -370,90 +370,65 @@ namespace Ink_Canvas
             if (isInMultiTouchMode || !Settings.Gesture.IsEnableTwoFingerGesture) return;
             if ((dec.Count >= 2 && (Settings.PowerPointSettings.IsEnableTwoFingerGestureInPresentationMode || BtnPPTSlideShowEnd.Visibility != Visibility.Visible)) || isSingleFingerDragMode)
             {
-                ManipulationDelta md = e.DeltaManipulation;
-                Vector trans = md.Translation;  // 获得位移矢量
-
                 Matrix m = new Matrix();
-
-                if (Settings.Gesture.IsEnableTwoFingerTranslate)
-                    m.Translate(trans.X, trans.Y);  // 移动
-
+                ManipulationDelta md = e.DeltaManipulation;
+                // Translation
+                Vector trans = md.Translation;
+                // Rotate, Scale
                 if (Settings.Gesture.IsEnableTwoFingerGestureTranslateOrRotation)
                 {
-                    double rotate = md.Rotation;  // 获得旋转角度
-                    Vector scale = md.Scale;  // 获得缩放倍数
-
-                    // Find center of element and then transform to get current location of center
-                    FrameworkElement fe = e.Source as FrameworkElement;
-                    Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-                    center = m.Transform(center);  // 转换为矩阵缩放和旋转的中心点
-
-                    if (Settings.Gesture.IsEnableTwoFingerRotation)
-                        m.RotateAt(rotate, center.X, center.Y);  // 旋转
+                    double rotate = md.Rotation;
+                    Vector scale = md.Scale;
+                    Rect bounds = InkCanvasElementHelper.GetAllElementsBounds(inkCanvas);
+                    Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
                     if (Settings.Gesture.IsEnableTwoFingerZoom)
-                        m.ScaleAt(scale.X, scale.Y, center.X, center.Y);  // 缩放
-                }
-
-                StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
-                if (strokes.Count != 0)
-                {
-                    foreach (Stroke stroke in strokes)
+                        m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
+                    if (Settings.Gesture.IsEnableTwoFingerRotation)
+                        m.RotateAt(rotate, center.X, center.Y);
+                    // handle Images
+                    List<Image> images = InkCanvasImageHelper.GetAllImages(inkCanvas);
+                    foreach (Image image in images)
                     {
-                        stroke.Transform(m, false);
-
-                        foreach (Circle circle in circles)
+                        if (Settings.Gesture.IsEnableTwoFingerTranslate)
                         {
-                            if (stroke == circle.Stroke)
-                            {
-                                circle.R = GetDistance(circle.Stroke.StylusPoints[0].ToPoint(), circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].ToPoint()) / 2;
-                                circle.Centroid = new Point((circle.Stroke.StylusPoints[0].X + circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].X) / 2,
-                                                            (circle.Stroke.StylusPoints[0].Y + circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].Y) / 2);
-                                break;
-                            }
+                            ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
                         }
-
-                        if (Settings.Gesture.IsEnableTwoFingerZoom)
+                        else
                         {
-                            try
-                            {
-                                stroke.DrawingAttributes.Width *= md.Scale.X;
-                                stroke.DrawingAttributes.Height *= md.Scale.Y;
-                            }
-                            catch { }
+                            ApplyImageMatrixTransform(image, m, center);
                         }
                     }
+                }
+                // handle strokes
+                if (Settings.Gesture.IsEnableTwoFingerTranslate)
+                    m.Translate(trans.X, trans.Y);
+                if (Settings.Gesture.IsEnableTwoFingerZoom)
+                {
+                    foreach (Stroke stroke in inkCanvas.Strokes)
+                    {
+                        stroke.Transform(m, false);
+                        try
+                        {
+                            stroke.DrawingAttributes.Width *= md.Scale.X;
+                            stroke.DrawingAttributes.Height *= md.Scale.Y;
+                        }
+                        catch { }
+                    };
                 }
                 else
                 {
-                    if (Settings.Gesture.IsEnableTwoFingerZoom)
+                    foreach (Stroke stroke in inkCanvas.Strokes)
                     {
-                        foreach (Stroke stroke in inkCanvas.Strokes)
-                        {
-                            stroke.Transform(m, false);
-                            try
-                            {
-                                stroke.DrawingAttributes.Width *= md.Scale.X;
-                                stroke.DrawingAttributes.Height *= md.Scale.Y;
-                            }
-                            catch { }
-                        };
-                    }
-                    else
-                    {
-                        foreach (Stroke stroke in inkCanvas.Strokes)
-                        {
-                            stroke.Transform(m, false);
-                        };
-                    }
-
-                    foreach (Circle circle in circles)
-                    {
-                        circle.R = GetDistance(circle.Stroke.StylusPoints[0].ToPoint(), circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].ToPoint()) / 2;
-                        circle.Centroid = new Point(
-                            (circle.Stroke.StylusPoints[0].X + circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].X) / 2,
-                            (circle.Stroke.StylusPoints[0].Y + circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].Y) / 2
-                        );
-                    }
+                        stroke.Transform(m, false);
+                    };
+                }
+                foreach (Circle circle in circles)
+                {
+                    circle.R = GetDistance(circle.Stroke.StylusPoints[0].ToPoint(), circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].ToPoint()) / 2;
+                    circle.Centroid = new Point(
+                        (circle.Stroke.StylusPoints[0].X + circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].X) / 2,
+                        (circle.Stroke.StylusPoints[0].Y + circle.Stroke.StylusPoints[circle.Stroke.StylusPoints.Count / 2].Y) / 2
+                    );
                 }
             }
         }

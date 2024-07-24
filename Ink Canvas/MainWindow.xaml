@@ -5593,7 +5593,7 @@
                         <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=PPTExitNormal}" />
                     </Grid>
                 </Border>
-                <!--  202407
+                <!--  202407  -->
                 <Button
                     Width="70"
                     Height="36"
@@ -5607,7 +5607,7 @@
                         <TextBlock FontSize="12">插入图片</TextBlock>
                     </ikw:SimpleStackPanel>
                 </Button>
-                -->
+
             </ikw:SimpleStackPanel>
         </Viewbox>
         <!--  // 笑脸拖动 //  -->
