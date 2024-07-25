@@ -1003,7 +1003,6 @@ namespace Ink_Canvas
             }
 
             ClearStrokes(false);
-            inkCanvas.Children.Clear();
 
             CancelSingleFingerDragMode();
         }

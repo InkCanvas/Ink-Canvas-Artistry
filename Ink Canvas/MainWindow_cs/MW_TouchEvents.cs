@@ -27,7 +27,6 @@ namespace Ink_Canvas
                 inkCanvas.TouchDown -= MainWindow_TouchDown;
                 inkCanvas.TouchDown += Main_Grid_TouchDown;
                 inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
-                inkCanvas.Children.Clear();
                 isInMultiTouchMode = false;
             }
             else
@@ -38,7 +37,6 @@ namespace Ink_Canvas
                 inkCanvas.TouchDown += MainWindow_TouchDown;
                 inkCanvas.TouchDown -= Main_Grid_TouchDown;
                 inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
-                inkCanvas.Children.Clear();
                 isInMultiTouchMode = true;
             }
         }
@@ -129,7 +127,6 @@ namespace Ink_Canvas
                 TouchDownPointsList.Remove(e.StylusDevice.Id);
                 if (StrokeVisualList.Count == 0 || VisualCanvasList.Count == 0 || TouchDownPointsList.Count == 0)
                 {
-                    inkCanvas.Children.Clear();
                     StrokeVisualList.Clear();
                     VisualCanvasList.Clear();
                     TouchDownPointsList.Clear();
