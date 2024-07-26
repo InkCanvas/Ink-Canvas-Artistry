@@ -272,9 +272,8 @@ namespace Ink_Canvas
         }
 
         bool isPresentationHaveBlackSpace = false;
-
-
         private string pptName = null;
+        int currentShowPosition = -1;
         private void PptApplication_SlideShowBegin(SlideShowWindow Wn)
         {
             if (Settings.Automation.IsAutoFoldInPPTSlideShow && !isFloatingBarFolded)
@@ -447,6 +446,17 @@ namespace Ink_Canvas
                     File.WriteAllText(folderPath + "/Position", previousSlideID.ToString());
                 }
                 catch { }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    try
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        inkCanvas.Strokes.Save(ms);
+                        ms.Position = 0;
+                        memoryStreams[currentShowPosition] = ms;
+                    }
+                    catch { }
+                });
                 for (int i = 1; i <= Pres.Slides.Count; i++)
                 {
                     if (memoryStreams[i] != null)
@@ -540,6 +550,7 @@ namespace Ink_Canvas
                         {
                             inkCanvas.Strokes.Add(new StrokeCollection(memoryStreams[Wn.View.CurrentShowPosition]));
                         }
+                        currentShowPosition = Wn.View.CurrentShowPosition;
                     }
                     catch { }
 
@@ -656,6 +667,7 @@ namespace Ink_Canvas
 
         private async void BtnPPTSlideShowEnd_Click(object sender, RoutedEventArgs e)
         {
+            /*
             Application.Current.Dispatcher.Invoke(() =>
             {
                 try
@@ -668,6 +680,7 @@ namespace Ink_Canvas
                 }
                 catch { }
             });
+            */
             new Thread(new ThreadStart(() =>
             {
                 try
