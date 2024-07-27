@@ -26,8 +26,8 @@ namespace Ink_Canvas
                 image.Width = bitmapImage.PixelWidth;
                 image.Height = bitmapImage.PixelHeight;
                 
-                InkCanvas.SetLeft(image, 200);
-                InkCanvas.SetTop(image, 200);
+                InkCanvas.SetLeft(image, 0);
+                InkCanvas.SetTop(image, 0);
                 inkCanvas.Children.Add(image);
 
                 timeMachine.CommitImageInsertHistory(image);

@@ -197,20 +197,9 @@ namespace Ink_Canvas
 
         private void ApplyImageMatrixTransform(Image image, Matrix matrix, Point center, double transX = 0, double transY = 0)
         {
-            // handle Translate:
-            InkCanvas.SetLeft(image, InkCanvas.GetLeft(image) + transX);
-            InkCanvas.SetTop(image, InkCanvas.GetTop(image) + transY);
-            // handle Rotate and Scale:
             TransformGroup transformGroup = GetOrCreateTransformGroup(image);
             TransformGroup centeredTransformGroup = new TransformGroup();
-            // move to the center point
-            double dx = center.X - image.ActualWidth / 2;
-            double dy = center.Y - image.ActualHeight / 2;
-            centeredTransformGroup.Children.Add(new TranslateTransform(dx, dy));
-            // tranform
             centeredTransformGroup.Children.Add(new MatrixTransform(matrix));
-            // move back
-            centeredTransformGroup.Children.Add(new TranslateTransform(-dx, -dy));
             transformGroup.Children.Add(centeredTransformGroup);
         }
 
@@ -508,8 +497,13 @@ namespace Ink_Canvas
                     Vector trans = md.Translation;
                     double rotate = md.Rotation;
                     Vector scale = md.Scale;
+                    Rect bounds = InkCanvasElementHelper.GetAllElementsBounds(inkCanvas);
+                    Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+                    /*
                     Rect bounds = inkCanvas.GetSelectionBounds();
                     Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+                    */
+                    //Point center = e.ManipulationOrigin;
                     Matrix m = new Matrix();
                     // add Scale
                     m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
@@ -523,6 +517,8 @@ namespace Ink_Canvas
                         // add Rotate
                         m.RotateAt(rotate, center.X, center.Y);
                     }
+                    // add Translate
+                    m.Translate(trans.X, trans.Y);
                     List<Image> images = new List<Image>();
                     if (ImagesSelectionClone.Count != 0)
                     {
@@ -537,8 +533,6 @@ namespace Ink_Canvas
                     {
                         ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
                     }
-                    // add Translate
-                    m.Translate(trans.X, trans.Y);
                     // handle strokes
                     foreach (Stroke stroke in strokes)
                     {

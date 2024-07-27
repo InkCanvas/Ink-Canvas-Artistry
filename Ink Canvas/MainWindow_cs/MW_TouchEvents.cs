@@ -376,12 +376,19 @@ namespace Ink_Canvas
                 {
                     double rotate = md.Rotation;
                     Vector scale = md.Scale;
+                    FrameworkElement fe = e.Source as FrameworkElement;
+                    Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
+                    /*
                     Rect bounds = InkCanvasElementHelper.GetAllElementsBounds(inkCanvas);
                     Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+                    */
+                    //Point center = e.ManipulationOrigin;
                     if (Settings.Gesture.IsEnableTwoFingerZoom)
                         m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
                     if (Settings.Gesture.IsEnableTwoFingerRotation)
                         m.RotateAt(rotate, center.X, center.Y);
+                    if (Settings.Gesture.IsEnableTwoFingerTranslate)
+                        m.Translate(trans.X, trans.Y);
                     // handle Images
                     List<Image> images = InkCanvasImageHelper.GetAllImages(inkCanvas);
                     foreach (Image image in images)
@@ -397,8 +404,6 @@ namespace Ink_Canvas
                     }
                 }
                 // handle strokes
-                if (Settings.Gesture.IsEnableTwoFingerTranslate)
-                    m.Translate(trans.X, trans.Y);
                 if (Settings.Gesture.IsEnableTwoFingerZoom)
                 {
                     foreach (Stroke stroke in inkCanvas.Strokes)
