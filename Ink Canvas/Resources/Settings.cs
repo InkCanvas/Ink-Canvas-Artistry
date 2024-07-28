@@ -73,6 +73,16 @@ namespace Ink_Canvas
         public bool IsEnableTwoFingerRotation { get; set; } = false;
         [JsonProperty("isEnableTwoFingerRotationOnSelection")]
         public bool IsEnableTwoFingerRotationOnSelection { get; set; } = false;
+
+        [JsonProperty("matrixTransformCenterPoint")]
+        public MatrixTransformCenterPointOptions MatrixTransformCenterPoint { get; set; } = MatrixTransformCenterPointOptions.CanvasCenterPoint;
+    }
+
+    public enum MatrixTransformCenterPointOptions
+    {
+        CanvasCenterPoint,
+        SelectedElementsCenterPoint,
+        GestureOperationCenterPoint
     }
 
     public class Startup

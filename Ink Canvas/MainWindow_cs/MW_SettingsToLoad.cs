@@ -322,6 +322,7 @@ namespace Ink_Canvas
             // Gesture
             if (Settings.Gesture != null)
             {
+                ComboBoxMatrixTransformCenterPoint.SelectedIndex = (int)Settings.Gesture.MatrixTransformCenterPoint;
                 if (Settings.Gesture.IsEnableMultiTouchMode)
                 {
                     ToggleSwitchEnableMultiTouchMode.IsOn = true;

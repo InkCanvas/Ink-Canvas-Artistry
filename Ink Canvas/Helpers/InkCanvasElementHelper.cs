@@ -24,5 +24,11 @@ namespace Ink_Canvas.Helpers
             }
             return totalBounds;
         }
+
+        public static Point GetAllElementsBoundsCenterPoint(InkCanvas inkCanvas)
+        {
+            Rect bounds = GetAllElementsBounds(inkCanvas);
+            return new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+        }
     }
 }

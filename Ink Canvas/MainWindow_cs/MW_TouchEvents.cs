@@ -289,7 +289,7 @@ namespace Ink_Canvas
         //记录触摸设备ID
         private List<int> dec = new List<int>();
         //中心点
-        System.Windows.Point centerPoint;
+        Point centerPoint;
         InkCanvasEditingMode lastInkCanvasEditingMode = InkCanvasEditingMode.Ink;
         bool isSingleFingerDragMode = false;
 
@@ -376,13 +376,7 @@ namespace Ink_Canvas
                 {
                     double rotate = md.Rotation;
                     Vector scale = md.Scale;
-                    FrameworkElement fe = e.Source as FrameworkElement;
-                    Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
-                    /*
-                    Rect bounds = InkCanvasElementHelper.GetAllElementsBounds(inkCanvas);
-                    Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
-                    */
-                    //Point center = e.ManipulationOrigin;
+                    Point center = GetMatrixTransformCenterPoint(e.ManipulationOrigin, e.Source as FrameworkElement);
                     if (Settings.Gesture.IsEnableTwoFingerZoom)
                         m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
                     if (Settings.Gesture.IsEnableTwoFingerRotation)
@@ -395,11 +389,11 @@ namespace Ink_Canvas
                     {
                         if (Settings.Gesture.IsEnableTwoFingerTranslate)
                         {
-                            ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
+                            ApplyImageMatrixTransform(image, m);
                         }
                         else
                         {
-                            ApplyImageMatrixTransform(image, m, center);
+                            ApplyImageMatrixTransform(image, m);
                         }
                     }
                 }

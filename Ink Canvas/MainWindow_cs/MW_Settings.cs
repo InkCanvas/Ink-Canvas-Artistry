@@ -521,6 +521,13 @@ namespace Ink_Canvas
 
         #region Gesture
 
+        private void ComboBoxMatrixTransformCenterPoint_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!isLoaded) return;
+            Settings.Gesture.MatrixTransformCenterPoint = (MatrixTransformCenterPointOptions)ComboBoxMatrixTransformCenterPoint.SelectedIndex;
+            SaveSettingsToFile();
+        }
+
         private void ToggleSwitchEnableFingerGestureSlideShowControl_Toggled(object sender, RoutedEventArgs e)
         {
             if (!isLoaded) return;
@@ -695,6 +702,7 @@ namespace Ink_Canvas
             Settings.Canvas.UsingWhiteboard = false;
             Settings.Canvas.HyperbolaAsymptoteOption = 0;
 
+            Settings.Gesture.MatrixTransformCenterPoint = MatrixTransformCenterPointOptions.CanvasCenterPoint;
             Settings.Gesture.AutoSwitchTwoFingerGesture = true;
             Settings.Gesture.IsEnableTwoFingerTranslate = true;
             Settings.Gesture.IsEnableTwoFingerZoom = false;

@@ -2683,6 +2683,19 @@
                             </GroupBox.Header>
                             <ikw:SimpleStackPanel Spacing="5">
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource SettingsPageForeground}" Text="缩放/旋转变换中心点：" />
+                                    <ComboBox
+                                        Name="ComboBoxMatrixTransformCenterPoint"
+                                        Width="180"
+                                        Margin="5,0,0,0"
+                                        SelectedIndex="0"
+                                        SelectionChanged="ComboBoxMatrixTransformCenterPoint_SelectionChanged">
+                                        <ComboBoxItem Content="画布中心点（默认）" />
+                                        <ComboBoxItem Content="选择内容中心点" />
+                                        <ComboBoxItem Content="手势操作中心点" />
+                                    </ComboBox>
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <ikw:SimpleStackPanel Width="50">
                                         <ui:ToggleSwitch
                                             Name="ToggleSwitchAutoSwitchTwoFingerGesture"

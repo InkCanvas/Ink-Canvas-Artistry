@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Ink_Canvas.Helpers
 {
@@ -13,7 +11,7 @@ namespace Ink_Canvas.Helpers
             if (inkCanvas.GetSelectedStrokes().Count > 0) return false;
             foreach (UIElement element in inkCanvas.GetSelectedElements())
             {
-                if (element is Image selectedImage)
+                if (element is Image)
                 {
                     return false;
                 }

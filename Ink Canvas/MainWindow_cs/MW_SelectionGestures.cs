@@ -156,8 +156,7 @@ namespace Ink_Canvas
         private void MatrixTransform(int type)
         {
             Matrix m = new Matrix();
-            Point center = new Point(inkCanvas.GetSelectionBounds().Left + inkCanvas.GetSelectionBounds().Width / 2,
-                inkCanvas.GetSelectionBounds().Top + inkCanvas.GetSelectionBounds().Height / 2);
+            Point center = InkCanvasElementHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
 
             switch (type)
             {
@@ -181,7 +180,7 @@ namespace Ink_Canvas
             List<Image> selectedImages = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
             foreach (Image image in selectedImages)
             {
-                ApplyImageMatrixTransform(image, m, center);
+                ApplyImageMatrixTransform(image, m);
             }
 
             if (DrawingAttributesHistory.Count > 0)
@@ -195,15 +194,7 @@ namespace Ink_Canvas
             }
         }
 
-        private void ApplyImageMatrixTransform(Image image, Matrix matrix, Point center, double transX = 0, double transY = 0)
-        {
-            TransformGroup transformGroup = GetOrCreateTransformGroup(image);
-            TransformGroup centeredTransformGroup = new TransformGroup();
-            centeredTransformGroup.Children.Add(new MatrixTransform(matrix));
-            transformGroup.Children.Add(centeredTransformGroup);
-        }
-
-        private TransformGroup GetOrCreateTransformGroup(Image image)
+        private void ApplyImageMatrixTransform(Image image, Matrix matrix)
         {
             TransformGroup transformGroup = image.RenderTransform as TransformGroup;
             if (transformGroup == null)
@@ -211,7 +202,9 @@ namespace Ink_Canvas
                 transformGroup = new TransformGroup();
                 image.RenderTransform = transformGroup;
             }
-            return transformGroup;
+            TransformGroup centeredTransformGroup = new TransformGroup();
+            centeredTransformGroup.Children.Add(new MatrixTransform(matrix));
+            transformGroup.Children.Add(centeredTransformGroup);
         }
 
         private void BtnFlipHorizontal_Click(object sender, RoutedEventArgs e)
@@ -293,9 +286,10 @@ namespace Ink_Canvas
             Point mousePoint = e.GetPosition(inkCanvas);
             Vector trans = new Vector(mousePoint.X - lastMousePoint.X, mousePoint.Y - lastMousePoint.Y);
             lastMousePoint = mousePoint;
-            Rect bounds = inkCanvas.GetSelectionBounds();
-            Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+            Point center = InkCanvasElementHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
             Matrix m = new Matrix();
+            // add Translate
+            m.Translate(trans.X, trans.Y);
             // handle images
             List<Image> images = new List<Image>();
             if (ImagesSelectionClone.Count != 0)
@@ -308,10 +302,8 @@ namespace Ink_Canvas
             }
             foreach (Image image in images)
             {
-                ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
+                ApplyImageMatrixTransform(image, m);
             }
-            // add Translate
-            m.Translate(trans.X, trans.Y);
             // handle strokes
             StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
             if (StrokesSelectionClone.Count != 0)
@@ -497,13 +489,7 @@ namespace Ink_Canvas
                     Vector trans = md.Translation;
                     double rotate = md.Rotation;
                     Vector scale = md.Scale;
-                    Rect bounds = InkCanvasElementHelper.GetAllElementsBounds(inkCanvas);
-                    Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
-                    /*
-                    Rect bounds = inkCanvas.GetSelectionBounds();
-                    Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
-                    */
-                    //Point center = e.ManipulationOrigin;
+                    Point center = GetMatrixTransformCenterPoint(e.ManipulationOrigin, e.Source as FrameworkElement);
                     Matrix m = new Matrix();
                     // add Scale
                     m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
@@ -531,7 +517,7 @@ namespace Ink_Canvas
                     // handle images
                     foreach (Image image in images)
                     {
-                        ApplyImageMatrixTransform(image, m, center, trans.X, trans.Y);
+                        ApplyImageMatrixTransform(image, m);
                     }
                     // handle strokes
                     foreach (Stroke stroke in strokes)
