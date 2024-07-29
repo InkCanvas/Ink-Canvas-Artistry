@@ -7,6 +7,7 @@ using System.Windows.Ink;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Windows.Media;
+using System.Linq;
 
 namespace Ink_Canvas
 {
@@ -29,8 +30,9 @@ namespace Ink_Canvas
         private StrokeCollection AddedStroke;
         private StrokeCollection CuboidStrokeCollection;
         private Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> StrokeManipulationHistory;
-        private Dictionary<UIElement, Tuple<TransformGroup, TransformGroup>> ElementsTransformGroup;
         private Dictionary<Stroke, StylusPointCollection> StrokeInitialHistory = new Dictionary<Stroke, StylusPointCollection>();
+        private Dictionary<string, Tuple<TransformGroup, TransformGroup>> ElementsManipulationHistory;
+        private Dictionary<string, TransformGroup> ElementsInitialHistory = new Dictionary<string, TransformGroup>();
         private Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
         private Dictionary<Guid, List<Stroke>> DrawingAttributesHistoryFlag = new Dictionary<Guid, List<Stroke>>()
         {
@@ -43,6 +45,20 @@ namespace Ink_Canvas
             { DrawingAttributeIds.StylusWidth, new List<Stroke>() }
         };
         private TimeMachine timeMachine = new TimeMachine();
+
+
+        public UIElement GetElementByTimestamp(InkCanvas inkCanvas, string timestamp)
+        {
+            foreach (UIElement child in inkCanvas.Children)
+            {
+                // 检查子元素的 Name 属性是否与目标时间戳匹配
+                if (child is FrameworkElement frameworkElement && frameworkElement.Name == timestamp)
+                {
+                    return child;
+                }
+            }
+            return null; // 未找到匹配的元素
+        }
 
         private void ApplyHistoryToCanvas(TimeMachineHistory item)
         {
@@ -107,6 +123,14 @@ namespace Ink_Canvas
                             currentStroke.Key.StylusPoints = currentStroke.Value.Item2;
                         }
                     }
+                    foreach (var currentElement in item.ElementsManipulationHistory)
+                    {
+                        UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
+                        if (element != null && inkCanvas.Children.Contains(element))
+                        {
+                            element.RenderTransform = currentElement.Value.Item2;
+                        }
+                    }
                 }
                 else
                 {
@@ -115,6 +139,14 @@ namespace Ink_Canvas
                         if (inkCanvas.Strokes.Contains(currentStroke.Key))
                         {
                             currentStroke.Key.StylusPoints = currentStroke.Value.Item1;
+                        }
+                    }
+                    foreach (var currentElement in item.ElementsManipulationHistory)
+                    {
+                        UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
+                        if (element != null && inkCanvas.Children.Contains(element))
+                        {
+                            element.RenderTransform = currentElement.Value.Item1;
                         }
                     }
                 }
@@ -316,23 +348,33 @@ namespace Ink_Canvas
 
         private void Stroke_StylusPointsChanged(object sender, EventArgs e)
         {
+            if (sender == null)
+            {
+                return;
+            }
+            var stroke = sender as Stroke;
             var selectedStrokes = inkCanvas.GetSelectedStrokes();
-            var count = selectedStrokes.Count;
-            if (count == 0) count = inkCanvas.Strokes.Count;
+            int count = selectedStrokes.Count > 0 ? selectedStrokes.Count : inkCanvas.Strokes.Count;
+
             if (StrokeManipulationHistory == null)
             {
                 StrokeManipulationHistory = new Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>>();
             }
-            StrokeManipulationHistory[sender as Stroke] =
-                new Tuple<StylusPointCollection, StylusPointCollection>(StrokeInitialHistory[sender as Stroke], (sender as Stroke).StylusPoints.Clone());
-            if ((StrokeManipulationHistory.Count == count || sender == null) && dec.Count == 0)
+            StrokeManipulationHistory[stroke] =
+                new Tuple<StylusPointCollection, StylusPointCollection>(StrokeInitialHistory[stroke], stroke.StylusPoints.Clone());
+            if (StrokeManipulationHistory.Count == count && dec.Count == 0)
             {
-                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory);
+                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
                 foreach (var item in StrokeManipulationHistory)
                 {
                     StrokeInitialHistory[item.Key] = item.Value.Item2;
                 }
+                foreach (var item in ElementsManipulationHistory)
+                {
+                    ElementsInitialHistory[item.Key] = item.Value.Item2;
+                }
                 StrokeManipulationHistory = null;
+                ElementsManipulationHistory = null;
             }
         }
     }

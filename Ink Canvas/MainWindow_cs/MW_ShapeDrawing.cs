@@ -1614,7 +1614,7 @@ namespace Ink_Canvas
             lastTempStrokeCollection = null;
             if (StrokeManipulationHistory?.Count > 0)
             {
-                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory);
+                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
                 foreach (var item in StrokeManipulationHistory)
                 {
                     StrokeInitialHistory[item.Key] = item.Value.Item2;

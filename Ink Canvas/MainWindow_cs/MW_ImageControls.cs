@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 using Microsoft.Win32;
 
 namespace Ink_Canvas
@@ -30,7 +31,10 @@ namespace Ink_Canvas
                 image.Source = bitmapImage;
                 image.Width = bitmapImage.PixelWidth;
                 image.Height = bitmapImage.PixelHeight;
-                
+
+                string timestamp = "img_" + DateTime.Now.ToString("ddHHmmssfff");
+                image.Name = timestamp;
+
                 InkCanvas.SetLeft(image, 0);
                 InkCanvas.SetTop(image, 0);
                 inkCanvas.Children.Add(image);

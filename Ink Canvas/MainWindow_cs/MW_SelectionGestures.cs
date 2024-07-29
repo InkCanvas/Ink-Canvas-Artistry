@@ -203,9 +203,22 @@ namespace Ink_Canvas
                 transformGroup = new TransformGroup();
                 image.RenderTransform = transformGroup;
             }
+
+            if (!ElementsInitialHistory.ContainsKey(image.Name))
+            {
+                ElementsInitialHistory[image.Name] = transformGroup.Clone();
+            }
+
             TransformGroup centeredTransformGroup = new TransformGroup();
             centeredTransformGroup.Children.Add(new MatrixTransform(matrix));
             transformGroup.Children.Add(centeredTransformGroup);
+
+            if (ElementsManipulationHistory == null)
+            {
+                ElementsManipulationHistory = new Dictionary<string, Tuple<TransformGroup, TransformGroup>>();
+            }
+            ElementsManipulationHistory[image.Name] =
+                new Tuple<TransformGroup, TransformGroup>(ElementsInitialHistory[image.Name], transformGroup.Clone());
         }
 
         private void BtnFlipHorizontal_Click(object sender, RoutedEventArgs e)
@@ -458,7 +471,7 @@ namespace Ink_Canvas
         {
             if (StrokeManipulationHistory?.Count > 0)
             {
-                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory);
+                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
                 foreach (var item in StrokeManipulationHistory)
                 {
                     StrokeInitialHistory[item.Key] = item.Value.Item2;
