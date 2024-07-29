@@ -332,6 +332,7 @@ namespace Ink_Canvas
 
         private void GridInkCanvasSelectionCover_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            ToCommitStrokeManipulationHistoryAfterMouseUp();
             isGridInkCanvasSelectionCoverMouseDown = false;
             if (InkCanvasImageHelper.IsNotCanvasElementSelected(inkCanvas))
             {

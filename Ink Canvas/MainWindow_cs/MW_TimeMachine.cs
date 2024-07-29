@@ -7,7 +7,6 @@ using System.Windows.Ink;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Windows.Media;
-using System.Linq;
 
 namespace Ink_Canvas
 {
@@ -115,37 +114,49 @@ namespace Ink_Canvas
             {
                 if (!item.StrokeHasBeenCleared)
                 {
-                    foreach (var currentStroke in item.StylusPointDictionary)
+                    if(item.StylusPointDictionary != null)
                     {
-                        if (inkCanvas.Strokes.Contains(currentStroke.Key))
+                        foreach (var currentStroke in item.StylusPointDictionary)
                         {
-                            currentStroke.Key.StylusPoints = currentStroke.Value.Item2;
+                            if (inkCanvas.Strokes.Contains(currentStroke.Key))
+                            {
+                                currentStroke.Key.StylusPoints = currentStroke.Value.Item2;
+                            }
                         }
                     }
-                    foreach (var currentElement in item.ElementsManipulationHistory)
+                    if(item.ElementsManipulationHistory != null)
                     {
-                        UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
-                        if (element != null && inkCanvas.Children.Contains(element))
+                        foreach (var currentElement in item.ElementsManipulationHistory)
                         {
-                            element.RenderTransform = currentElement.Value.Item2;
+                            UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
+                            if (element != null && inkCanvas.Children.Contains(element))
+                            {
+                                element.RenderTransform = currentElement.Value.Item2;
+                            }
                         }
                     }
                 }
                 else
                 {
-                    foreach (var currentStroke in item.StylusPointDictionary)
+                    if(item.StylusPointDictionary != null)
                     {
-                        if (inkCanvas.Strokes.Contains(currentStroke.Key))
+                        foreach (var currentStroke in item.StylusPointDictionary)
                         {
-                            currentStroke.Key.StylusPoints = currentStroke.Value.Item1;
+                            if (inkCanvas.Strokes.Contains(currentStroke.Key))
+                            {
+                                currentStroke.Key.StylusPoints = currentStroke.Value.Item1;
+                            }
                         }
                     }
-                    foreach (var currentElement in item.ElementsManipulationHistory)
+                    if(item.ElementsManipulationHistory != null)
                     {
-                        UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
-                        if (element != null && inkCanvas.Children.Contains(element))
+                        foreach (var currentElement in item.ElementsManipulationHistory)
                         {
-                            element.RenderTransform = currentElement.Value.Item1;
+                            UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
+                            if (element != null && inkCanvas.Children.Contains(element))
+                            {
+                                element.RenderTransform = currentElement.Value.Item1;
+                            }
                         }
                     }
                 }
@@ -361,18 +372,29 @@ namespace Ink_Canvas
             }
             StrokeManipulationHistory[stroke] =
                 new Tuple<StylusPointCollection, StylusPointCollection>(StrokeInitialHistory[stroke], stroke.StylusPoints.Clone());
-            if (StrokeManipulationHistory.Count == count && dec.Count == 0)
+            if (StrokeManipulationHistory.Count == count && dec.Count == 0 && !isGridInkCanvasSelectionCoverMouseDown)
             {
-                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
+                ToCommitStrokeManipulationHistoryAfterMouseUp();
+            }
+        }
+
+        private void ToCommitStrokeManipulationHistoryAfterMouseUp()
+        {
+            timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
+            if (StrokeManipulationHistory != null)
+            {
                 foreach (var item in StrokeManipulationHistory)
                 {
                     StrokeInitialHistory[item.Key] = item.Value.Item2;
                 }
+                StrokeManipulationHistory = null;
+            }
+            if (ElementsManipulationHistory != null)
+            {
                 foreach (var item in ElementsManipulationHistory)
                 {
                     ElementsInitialHistory[item.Key] = item.Value.Item2;
                 }
-                StrokeManipulationHistory = null;
                 ElementsManipulationHistory = null;
             }
         }
