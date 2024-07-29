@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Xml.Linq;
 using Microsoft.Win32;
 
 namespace Ink_Canvas

@@ -51,13 +51,12 @@ namespace Ink_Canvas
         {
             foreach (UIElement child in inkCanvas.Children)
             {
-                // 检查子元素的 Name 属性是否与目标时间戳匹配
                 if (child is FrameworkElement frameworkElement && frameworkElement.Name == timestamp)
                 {
                     return child;
                 }
             }
-            return null; // 未找到匹配的元素
+            return null;
         }
 
         private void ApplyHistoryToCanvas(TimeMachineHistory item)
