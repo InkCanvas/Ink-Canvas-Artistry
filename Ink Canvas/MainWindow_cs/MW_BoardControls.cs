@@ -32,10 +32,10 @@ namespace Ink_Canvas
 
         private void ClearStrokes(bool isErasedByCode)
         {
-
             _currentCommitType = CommitReason.ClearingCanvas;
             if (isErasedByCode) _currentCommitType = CommitReason.CodeInput;
             inkCanvas.Strokes.Clear();
+            inkCanvas.Children.Clear();
             _currentCommitType = CommitReason.UserInput;
         }
 

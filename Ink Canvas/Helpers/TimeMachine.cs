@@ -150,9 +150,9 @@ namespace Ink_Canvas.Helpers
         public StrokeCollection CurrentStroke;
         public StrokeCollection ReplacedStroke;
         public UIElement ImageElement;
-        public Transform ImageTransform;
         //这里说一下 Tuple 的 Value1 是初始值 ; Value 2 是改变值
         public Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> StylusPointDictionary;
+        public Dictionary<UIElement, Tuple<TransformGroup, TransformGroup>> ElementsTransformGroup;
         public Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> DrawingAttributes;
         // UserInput
         public TimeMachineHistory(StrokeCollection currentStroke, TimeMachineHistoryType commitType, bool strokeHasBeenCleared)

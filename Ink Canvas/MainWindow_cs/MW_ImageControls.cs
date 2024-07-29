@@ -16,7 +16,15 @@ namespace Ink_Canvas
             if (openFileDialog.ShowDialog() == true)
             {
                 string filePath = openFileDialog.FileName;
-                BitmapImage bitmapImage = new BitmapImage(new Uri(filePath, UriKind.Absolute));
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(filePath, UriKind.Absolute);
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                /*
+                bitmapImage.DecodePixelWidth = 200;
+                bitmapImage.DecodePixelHeight = 200;
+                */
+                bitmapImage.EndInit();
 
                 Image image = new Image();
                 image.Source = bitmapImage;
