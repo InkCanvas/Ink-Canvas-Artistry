@@ -2691,8 +2691,8 @@
                                         SelectedIndex="0"
                                         SelectionChanged="ComboBoxMatrixTransformCenterPoint_SelectionChanged">
                                         <ComboBoxItem Content="画布中心点（默认）" />
-                                        <ComboBoxItem Content="选择内容中心点" />
-                                        <ComboBoxItem Content="手势操作中心点" />
+                                        <ComboBoxItem Content="全部内容的中心点" />
+                                        <ComboBoxItem Content="手势操作的中心点" />
                                     </ComboBox>
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Orientation="Horizontal">

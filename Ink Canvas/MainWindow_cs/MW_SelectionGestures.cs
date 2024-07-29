@@ -156,7 +156,8 @@ namespace Ink_Canvas
         private void MatrixTransform(int type)
         {
             Matrix m = new Matrix();
-            Point center = InkCanvasElementHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
+            Rect bounds = inkCanvas.GetSelectionBounds();
+            Point center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
 
             switch (type)
             {
@@ -286,7 +287,6 @@ namespace Ink_Canvas
             Point mousePoint = e.GetPosition(inkCanvas);
             Vector trans = new Vector(mousePoint.X - lastMousePoint.X, mousePoint.Y - lastMousePoint.Y);
             lastMousePoint = mousePoint;
-            Point center = InkCanvasElementHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
             Matrix m = new Matrix();
             // add Translate
             m.Translate(trans.X, trans.Y);
