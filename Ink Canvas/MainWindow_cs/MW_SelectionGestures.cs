@@ -91,12 +91,7 @@ namespace Ink_Canvas
 
             if (selectedStrokes.Count > 0 || selectedElements.Count > 0)
             {
-                Rect bounds = selectedStrokes.GetBounds();
-                foreach (UIElement element in selectedElements)
-                {
-                    Rect elementBounds = element.RenderTransform.TransformBounds(new Rect(0, 0, element.RenderSize.Width, element.RenderSize.Height));
-                    bounds.Union(elementBounds);
-                }
+                Rect bounds = inkCanvas.GetSelectionBounds();
 
                 double width = bounds.Width + 10;
                 double height = bounds.Height + 10;
@@ -117,7 +112,19 @@ namespace Ink_Canvas
                     foreach (UIElement element in selectedElements)
                     {
                         VisualBrush vb = new VisualBrush(element);
-                        drawingContext.DrawRectangle(vb, null, new Rect(element.RenderSize));
+                        Rect elementBounds = new Rect(element.RenderSize);
+
+                        Transform renderTransform = element.RenderTransform;
+                        if (renderTransform != null)
+                        {
+                            drawingContext.PushTransform(renderTransform);
+                            drawingContext.DrawRectangle(vb, null, elementBounds);
+                            drawingContext.Pop();
+                        }
+                        else
+                        {
+                            drawingContext.DrawRectangle(vb, null, elementBounds);
+                        }
                     }
                 }
 
