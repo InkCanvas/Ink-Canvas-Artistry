@@ -207,6 +207,7 @@ namespace Ink_Canvas
                     item.Value.Clear();
                 }
             }
+            ToCommitStrokeManipulationHistoryAfterMouseUp();
         }
 
         private void ApplyImageMatrixTransform(Image image, Matrix matrix)
