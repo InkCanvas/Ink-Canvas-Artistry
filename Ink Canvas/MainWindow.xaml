@@ -440,7 +440,7 @@
                                             FontFamily="{StaticResource FluentIconFontFamily}"
                                             FontSize="16"
                                             Foreground="{DynamicResource FloatBarForeground}"
-                                            Glyph="&#xee71;" />
+                                            Glyph="&#xe91b;" />
                                         <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource FloatBarForeground}" Text="存为图片" />
                                     </ikw:SimpleStackPanel>
                                 </Button>
@@ -1831,6 +1831,43 @@
                                 </ikw:SimpleStackPanel>
                             </Border>
                         </Border>
+                        <Button
+                            Width="60"
+                            Height="55"
+                            Padding="0"
+                            BorderThickness="0"
+                            Click="BtnImageInsert_Click">
+                            <Border
+                                Width="60"
+                                Height="55"
+                                Background="{DynamicResource BoardBarBackground}"
+                                BorderBrush="{DynamicResource BoardBarBorderBrush}"
+                                BorderThickness="0,1,0.25,1">
+                                <Grid Margin="5">
+                                    <ikw:SimpleStackPanel
+                                        Width="28"
+                                        Height="28"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Background="Transparent"
+                                        Orientation="Horizontal">
+                                        <ui:FontIcon
+                                            Width="28"
+                                            Height="22"
+                                            FontFamily="{StaticResource FluentIconFontFamily}"
+                                            FontSize="22"
+                                            Foreground="{DynamicResource BoardBarForeground}"
+                                            Glyph="&#xee71;" />
+                                    </ikw:SimpleStackPanel>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        FontSize="12"
+                                        Foreground="{DynamicResource BoardBarForeground}"
+                                        Text="插入图片" />
+                                </Grid>
+                            </Border>
+                        </Button>
                         <Button
                             Width="60"
                             Height="55"
@@ -5071,6 +5108,29 @@
                                 Height="32"
                                 Padding="0"
                                 BorderThickness="0"
+                                Click="BtnImageInsert_Click">
+                                <ikw:SimpleStackPanel HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
+                                    <ui:FontIcon
+                                        Width="30"
+                                        Height="22"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="16"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Glyph="&#xee71;" />
+                                    <TextBlock
+                                        Margin="-0.75,-1,0,0"
+                                        FontSize="8"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Text="插入图片"
+                                        TextAlignment="Center"
+                                        Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                            <Button
+                                Width="30"
+                                Height="32"
+                                Padding="0"
+                                BorderThickness="0"
                                 Click="SymbolIconUndo_Click">
                                 <ikw:SimpleStackPanel HorizontalAlignment="Center" Background="Transparent" Orientation="Vertical">
                                     <ui:FontIcon x:Name="Icon_Undo"
@@ -5160,6 +5220,7 @@
                             <Button
                                 Width="30"
                                 Height="32"
+                                Margin="1,0,0,0"
                                 Padding="0"
                                 BorderThickness="0"
                                 Click="ImageBlackboard_Click">
@@ -5174,7 +5235,7 @@
                                             Foreground="{DynamicResource FloatBarForeground}"
                                             Glyph="&#xe929;" />
                                         <TextBlock
-                                            Margin="0,0,0,-2"
+                                            Margin="0,0,-1,-1"
                                             FontSize="8"
                                             Foreground="{DynamicResource FloatBarForeground}"
                                             Text="画板"
@@ -5606,21 +5667,6 @@
                         <Image Width="30" Height="20" Source="{DynamicResource ResourceKey=PPTExitNormal}" />
                     </Grid>
                 </Border>
-                <!--  202407  -->
-                <Button
-                    Width="70"
-                    Height="36"
-                    Margin="2,0,0,0"
-                    Padding="0"
-                    Background="{DynamicResource FloatBarBackground}"
-                    BorderBrush="{DynamicResource FloatBarBorderBrush}"
-                    BorderThickness="1"
-                    Click="BtnImageInsert_Click">
-                    <ikw:SimpleStackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock FontSize="12">插入图片</TextBlock>
-                    </ikw:SimpleStackPanel>
-                </Button>
-
             </ikw:SimpleStackPanel>
         </Viewbox>
         <!--  // 笑脸拖动 //  -->

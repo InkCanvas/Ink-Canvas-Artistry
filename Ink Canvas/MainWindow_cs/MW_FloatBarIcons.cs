@@ -16,6 +16,7 @@ using Application = System.Windows.Application;
 using Point = System.Windows.Point;
 using System.Diagnostics;
 using iNKORE.UI.WPF.Modern.Controls;
+using System.Collections.Generic;
 
 namespace Ink_Canvas
 {
@@ -272,12 +273,19 @@ namespace Ink_Canvas
 
         private void SymbolIconDelete_MouseUp(object sender, RoutedEventArgs e)
         {
-            if (inkCanvas.GetSelectedStrokes().Count > 0)
+            var selectedStrokes = inkCanvas.GetSelectedStrokes();
+            var selectedElements = new List<UIElement>(inkCanvas.GetSelectedElements());
+            if (selectedStrokes.Count > 0 || selectedElements.Count > 0)
             {
                 inkCanvas.Strokes.Remove(inkCanvas.GetSelectedStrokes());
+                foreach(UIElement element in selectedElements)
+                {
+                    inkCanvas.Children.Remove(element);
+                    timeMachine.CommitImageInsertHistory(element, true);
+                }
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
             }
-            else if (inkCanvas.Strokes.Count > 0)
+            else if (inkCanvas.Strokes.Count > 0 || inkCanvas.Children.Count > 0)
             {
                 if (Settings.Automation.IsAutoSaveStrokesAtClear && inkCanvas.Strokes.Count > Settings.Automation.MinimumAutomationStrokeNumber)
                 {

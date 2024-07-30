@@ -70,10 +70,10 @@ namespace Ink_Canvas.Helpers
             NotifyUndoRedoState();
         }
 
-        public void CommitImageInsertHistory(UIElement image)
+        public void CommitImageInsertHistory(UIElement image, bool strokeHasBeenCleared = false)
         {
             CheckHistoryIndex();
-            _currentStrokeHistory.Add(new TimeMachineHistory(image, TimeMachineHistoryType.ImageInsert, false));
+            _currentStrokeHistory.Add(new TimeMachineHistory(image, TimeMachineHistoryType.ImageInsert, strokeHasBeenCleared));
             _currentIndex = _currentStrokeHistory.Count - 1;
             NotifyUndoRedoState();
         }
