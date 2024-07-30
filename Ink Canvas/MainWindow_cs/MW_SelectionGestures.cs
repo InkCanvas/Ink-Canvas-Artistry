@@ -87,10 +87,16 @@ namespace Ink_Canvas
         private void BtnStrokeSelectionSaveToImage_Click(object sender, RoutedEventArgs e)
         {
             StrokeCollection selectedStrokes = inkCanvas.GetSelectedStrokes();
+            var selectedElements = inkCanvas.GetSelectedElements();
 
-            if (selectedStrokes.Count > 0)
+            if (selectedStrokes.Count > 0 || selectedElements.Count > 0)
             {
                 Rect bounds = selectedStrokes.GetBounds();
+                foreach (UIElement element in selectedElements)
+                {
+                    Rect elementBounds = element.RenderTransform.TransformBounds(new Rect(0, 0, element.RenderSize.Width, element.RenderSize.Height));
+                    bounds.Union(elementBounds);
+                }
 
                 double width = bounds.Width + 10;
                 double height = bounds.Height + 10;
@@ -107,14 +113,22 @@ namespace Ink_Canvas
                     {
                         stroke.Draw(drawingContext);
                     }
+
+                    foreach (UIElement element in selectedElements)
+                    {
+                        VisualBrush vb = new VisualBrush(element);
+                        drawingContext.DrawRectangle(vb, null, new Rect(element.RenderSize));
+                    }
                 }
 
                 renderTarget.Render(drawingVisual);
 
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "PNG Images|*.png";
-                saveFileDialog.Title = "Save Selected Ink as PNG";
-                saveFileDialog.FileName = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss-fff");
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "PNG Images|*.png",
+                    Title = "Save Selected Ink as PNG",
+                    FileName = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss-fff")
+                };
 
                 if (saveFileDialog.ShowDialog() == true)
                 {
