@@ -463,16 +463,30 @@ namespace Ink_Canvas
                     {
                         try
                         {
+                            string baseFilePath = folderPath + @"\" + i.ToString("0000");
+                            string icartFilePath = baseFilePath + ".icart";
+                            string icstkFilePath = baseFilePath + ".icstk";
+
                             if (memoryStreams[i].Length > 8)
                             {
-                                byte[] srcBuf = new Byte[memoryStreams[i].Length];
+                                byte[] srcBuf = new byte[memoryStreams[i].Length];
                                 int byteLength = memoryStreams[i].Read(srcBuf, 0, srcBuf.Length);
-                                File.WriteAllBytes(folderPath + @"\" + i.ToString("0000") + ".icstk", srcBuf);
-                                LogHelper.WriteLogToFile(string.Format("Saved strokes for Slide {0}, size={1}, byteLength={2}", i.ToString(), memoryStreams[i].Length, byteLength));
+
+                                if (File.Exists(icartFilePath))
+                                {
+                                    File.WriteAllBytes(icartFilePath, srcBuf);
+                                    LogHelper.WriteLogToFile(string.Format("Saved strokes for Slide {0} as .icart, size={1}, byteLength={2}", i.ToString(), memoryStreams[i].Length, byteLength));
+                                }
+                                else
+                                {
+                                    File.WriteAllBytes(icstkFilePath, srcBuf);
+                                    LogHelper.WriteLogToFile(string.Format("Saved strokes for Slide {0} as .icstk, size={1}, byteLength={2}", i.ToString(), memoryStreams[i].Length, byteLength));
+                                }
                             }
                             else
                             {
-                                File.Delete(folderPath + @"\" + i.ToString("0000") + ".icstk");
+                                File.Delete(icartFilePath);
+                                File.Delete(icstkFilePath);
                             }
                         }
                         catch (Exception ex)

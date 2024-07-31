@@ -447,7 +447,7 @@ namespace Ink_Canvas
 
         private void updateBorderStrokeSelectionControlLocation()
         {
-            var selectionBounds = inkCanvas.GetSelectionBounds();
+            Rect selectionBounds = inkCanvas.GetSelectionBounds();
             double borderLeft = (selectionBounds.Left + selectionBounds.Right - BorderStrokeSelectionControlWidth) / 2;
             double borderTop = selectionBounds.Bottom + 15;
 
@@ -482,7 +482,14 @@ namespace Ink_Canvas
             {
                 borderTop = Math.Min(Height - BorderStrokeSelectionControlHeight - 60, borderTop);
             }
-            BorderStrokeSelectionControl.Margin = new Thickness(borderLeft, borderTop, 0, 0);
+            if (!double.IsNaN(borderLeft) && !double.IsNaN(borderTop))
+            {
+                BorderStrokeSelectionControl.Margin = new Thickness(borderLeft, borderTop, 0, 0);
+            }
+            else
+            {
+                BorderStrokeSelectionControl.Margin = new Thickness(0, 0, 0, 0);
+            }
         }
 
         private void GridInkCanvasSelectionCover_ManipulationStarting(object sender, ManipulationStartingEventArgs e)

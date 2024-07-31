@@ -3699,7 +3699,7 @@
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="定期自动删除超过保存时间的墨迹、截图文件" />
                                 </ikw:SimpleStackPanel>
-                                <TextBlock FontWeight="Bold" Foreground="{DynamicResource RedBrush}" Text="请注意将会删除自动保存目录下所有后缀名为 .icstk 和 .png 的文件！" TextWrapping="Wrap" />
+                                <TextBlock FontWeight="Bold" Foreground="{DynamicResource RedBrush}" Text="请注意自动删除功能将会删除自动保存目录下所有后缀名为 .icstk / .icart 和 .png 的文件！" TextWrapping="Wrap" />
                                 <ikw:SimpleStackPanel Margin="0,5,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                     <TextBlock VerticalAlignment="Center" FontSize="15" Foreground="{DynamicResource SettingsPageForeground}" Text="保存时间设置（Days）：  " />
                                     <ComboBox Name="ComboBoxAutoDelSavedFilesDaysThreshold" SelectedIndex="4" SelectionChanged="ComboBoxAutoDelSavedFilesDaysThreshold_SelectionChanged">
