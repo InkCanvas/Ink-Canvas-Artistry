@@ -9,6 +9,7 @@ using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static System.Windows.Forms.AxHost;
 using Point = System.Windows.Point;
 
 namespace Ink_Canvas
@@ -376,6 +377,34 @@ namespace Ink_Canvas
                 StrokesSelectionClone = new StrokeCollection();
                 ImagesSelectionClone = new List<Image>();
             }
+        }
+
+        private void GridInkCanvasSelectionCover_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            double scale = e.Delta > 0 ? 1.1 : 0.9;
+            Point center = InkCanvasElementHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
+            Matrix m = new Matrix();
+            m.ScaleAt(scale, scale, center.X, center.Y);
+
+            StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+            List<Image> images = InkCanvasImageHelper.GetSelectedImages(inkCanvas);
+            // handle images
+            foreach (Image image in images)
+            {
+                ApplyImageMatrixTransform(image, m);
+            }
+            // handle strokes
+            foreach (Stroke stroke in strokes)
+            {
+                stroke.Transform(m, false);
+                try
+                {
+                    stroke.DrawingAttributes.Width *= scale;
+                    stroke.DrawingAttributes.Height *= scale;
+                }
+                catch { }
+            }
+            updateBorderStrokeSelectionControlLocation();
         }
 
         private void BtnSelect_Click(object sender, RoutedEventArgs e)
