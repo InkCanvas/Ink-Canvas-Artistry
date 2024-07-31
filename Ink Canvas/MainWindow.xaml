@@ -113,7 +113,7 @@
                 PreviewTouchUp="GridInkCanvasSelectionCover_PreviewTouchUp"
                 Visibility="Visible" />
             <Border x:Name="BorderStrokeSelectionControl"
-                Height="100"
+                Height="104"
                 Margin="0,50,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -609,8 +609,29 @@
                                 </Border>
                             </ikw:SimpleStackPanel>
                         </ikw:SimpleStackPanel>
-                        <ikw:SimpleStackPanel Height="20">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource FloatBarForeground}" Text="鼠标拖拽进行移动，鼠标滚轮进行缩放" />
+                        <ikw:SimpleStackPanel
+                            Height="20"
+                            Margin="0,0,0,4"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Opacity="0.75"
+                            Orientation="Horizontal"
+                            Spacing="6">
+                            <Border Width="200" BorderThickness="0.75" BorderBrush="{DynamicResource FloatBarBorderBrush}" CornerRadius="2">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource FloatBarForeground}"
+                                    Text="鼠标：拖拽移动，滚轮缩放" />
+                            </Border>
+                            <Border Width="200" Margin="2,0,-2,0" BorderThickness="0.75" BorderBrush="{DynamicResource FloatBarBorderBrush}" CornerRadius="2">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource FloatBarForeground}"
+                                    Text="触屏：单指移动，两指缩放/旋转" />
+                            </Border>
+
                         </ikw:SimpleStackPanel>
                     </ikw:SimpleStackPanel>
                 </Viewbox>

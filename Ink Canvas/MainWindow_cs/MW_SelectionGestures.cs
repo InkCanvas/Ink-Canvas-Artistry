@@ -472,7 +472,7 @@ namespace Ink_Canvas
             }
         }
         double BorderStrokeSelectionControlWidth = 695;
-        double BorderStrokeSelectionControlHeight = 80;
+        double BorderStrokeSelectionControlHeight = 104;
 
         private void updateBorderStrokeSelectionControlLocation()
         {
