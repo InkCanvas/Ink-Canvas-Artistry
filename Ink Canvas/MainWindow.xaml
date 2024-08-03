@@ -2690,6 +2690,22 @@
                                 <ikw:SimpleStackPanel Orientation="Horizontal">
                                     <ikw:SimpleStackPanel Width="50">
                                         <ui:ToggleSwitch
+                                            Name="ToggleSwitchCompressPicturesUploaded"
+                                            IsOn="False"
+                                            OffContent="关"
+                                            OnContent="开"
+                                            Toggled="ToggleSwitchCompressPicturesUploaded_Toggled" />
+                                    </ikw:SimpleStackPanel>
+                                    <TextBlock
+                                        Margin="0,0,14,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        Foreground="{DynamicResource SettingsPageForeground}"
+                                        Text="上传图片时将画质压缩至 1080P 及以下" />
+                                </ikw:SimpleStackPanel>
+                                <ikw:SimpleStackPanel Orientation="Horizontal">
+                                    <ikw:SimpleStackPanel Width="50">
+                                        <ui:ToggleSwitch
                                             Name="ToggleSwitchShowCursor"
                                             IsOn="False"
                                             OffContent="关"

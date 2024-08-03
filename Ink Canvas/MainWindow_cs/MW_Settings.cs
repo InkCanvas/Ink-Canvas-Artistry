@@ -230,13 +230,18 @@ namespace Ink_Canvas
             SaveSettingsToFile();
         }
 
+        private void ToggleSwitchCompressPicturesUploaded_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (!isLoaded) return;
+            Settings.Canvas.IsCompressPicturesUploaded = ToggleSwitchCompressPicturesUploaded.IsOn;
+            SaveSettingsToFile();
+        }
+
         private void ToggleSwitchShowCursor_Toggled(object sender, RoutedEventArgs e)
         {
             if (!isLoaded) return;
-
             Settings.Canvas.IsShowCursor = ToggleSwitchShowCursor.IsOn;
             inkCanvas_EditingModeChanged(inkCanvas, null);
-
             SaveSettingsToFile();
         }
 

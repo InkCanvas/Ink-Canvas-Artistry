@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -8,7 +10,7 @@ namespace Ink_Canvas
 {
     public partial class MainWindow : Window
     {
-        private void BtnImageInsert_Click(object sender, RoutedEventArgs e)
+        private async void BtnImageInsert_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg; *.jpeg; *.png; *.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
@@ -16,30 +18,66 @@ namespace Ink_Canvas
             if (openFileDialog.ShowDialog() == true)
             {
                 string filePath = openFileDialog.FileName;
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri(filePath, UriKind.Absolute);
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                /*
-                bitmapImage.DecodePixelWidth = 200;
-                bitmapImage.DecodePixelHeight = 200;
-                */
-                bitmapImage.EndInit();
 
-                Image image = new Image();
-                image.Source = bitmapImage;
-                image.Width = bitmapImage.PixelWidth;
-                image.Height = bitmapImage.PixelHeight;
+                byte[] imageBytes = await Task.Run(() => File.ReadAllBytes(filePath));
 
-                string timestamp = "img_" + DateTime.Now.ToString("ddHHmmssfff");
-                image.Name = timestamp;
+                Image image = await CreateAndCompressImageAsync(imageBytes);
 
-                InkCanvas.SetLeft(image, 0);
-                InkCanvas.SetTop(image, 0);
-                inkCanvas.Children.Add(image);
+                if (image != null)
+                {
+                    string timestamp = "img_" + DateTime.Now.ToString("ddHHmmssfff");
+                    image.Name = timestamp;
 
-                timeMachine.CommitImageInsertHistory(image);
+                    InkCanvas.SetLeft(image, 0);
+                    InkCanvas.SetTop(image, 0);
+                    inkCanvas.Children.Add(image);
+
+                    timeMachine.CommitImageInsertHistory(image);
+                }
             }
+        }
+
+        private async Task<Image> CreateAndCompressImageAsync(byte[] imageBytes)
+        {
+            return await Dispatcher.InvokeAsync(() =>
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = ms;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+                }
+
+                int width = bitmapImage.PixelWidth;
+                int height = bitmapImage.PixelHeight;
+
+                if (isLoaded && Settings.Canvas.IsCompressPicturesUploaded && (width > 1920 || height > 1080))
+                {
+                    double scaleX = 1920.0 / width;
+                    double scaleY = 1080.0 / height;
+                    double scale = Math.Min(scaleX, scaleY);
+
+                    TransformedBitmap transformedBitmap = new TransformedBitmap(bitmapImage, new System.Windows.Media.ScaleTransform(scale, scale));
+
+                    Image image = new Image();
+                    image.Source = transformedBitmap;
+                    image.Width = transformedBitmap.PixelWidth;
+                    image.Height = transformedBitmap.PixelHeight;
+
+                    return image;
+                }
+                else
+                {
+                    Image image = new Image();
+                    image.Source = bitmapImage;
+                    image.Width = width;
+                    image.Height = height;
+
+                    return image;
+                }
+            });
         }
     }
 }
