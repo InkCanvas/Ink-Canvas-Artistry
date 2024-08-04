@@ -3,7 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Ink_Canvas.Helpers;
 using Microsoft.Win32;
 
 namespace Ink_Canvas
@@ -28,6 +30,8 @@ namespace Ink_Canvas
                     string timestamp = "img_" + DateTime.Now.ToString("ddHHmmssfff");
                     image.Name = timestamp;
 
+                    CenterAndScaleImage(image);
+
                     InkCanvas.SetLeft(image, 0);
                     InkCanvas.SetTop(image, 0);
                     inkCanvas.Children.Add(image);
@@ -35,6 +39,28 @@ namespace Ink_Canvas
                     timeMachine.CommitImageInsertHistory(image);
                 }
             }
+        }
+
+        private void CenterAndScaleImage(Image image)
+        {
+            double maxWidth = SystemParameters.PrimaryScreenWidth / 2;
+            double maxHeight = SystemParameters.PrimaryScreenHeight / 2;
+            
+            double scaleX = maxWidth / image.Width;
+            double scaleY = maxHeight / image.Height;
+            double scale = Math.Min(scaleX, scaleY);
+
+            TransformGroup transformGroup = new TransformGroup();
+            transformGroup.Children.Add(new ScaleTransform(scale, scale));
+
+            double canvasWidth = inkCanvas.ActualWidth;
+            double canvasHeight = inkCanvas.ActualHeight;
+            double centerX = (canvasWidth - image.Width * scale) / 2;
+            double centerY = (canvasHeight - image.Height * scale) / 2;
+
+            transformGroup.Children.Add(new TranslateTransform(centerX, centerY));
+
+            image.RenderTransform = transformGroup;
         }
 
         private async Task<Image> CreateAndCompressImageAsync(byte[] imageBytes)
