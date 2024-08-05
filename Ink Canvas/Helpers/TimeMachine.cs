@@ -70,10 +70,10 @@ namespace Ink_Canvas.Helpers
             NotifyUndoRedoState();
         }
 
-        public void CommitImageInsertHistory(UIElement image, bool strokeHasBeenCleared = false)
+        public void CommitElementInsertHistory(UIElement element, bool strokeHasBeenCleared = false)
         {
             CheckHistoryIndex();
-            _currentStrokeHistory.Add(new TimeMachineHistory(image, TimeMachineHistoryType.ImageInsert, strokeHasBeenCleared));
+            _currentStrokeHistory.Add(new TimeMachineHistory(element, TimeMachineHistoryType.ElementInsert, strokeHasBeenCleared));
             _currentIndex = _currentStrokeHistory.Count - 1;
             NotifyUndoRedoState();
         }
@@ -130,7 +130,7 @@ namespace Ink_Canvas.Helpers
         public bool StrokeHasBeenCleared = false;
         public StrokeCollection CurrentStroke;
         public StrokeCollection ReplacedStroke;
-        public UIElement ImageElement;
+        public UIElement Element;
         //这里说一下 Tuple 的 Value1 是初始值 ; Value 2 是改变值
         public Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> StylusPointDictionary;
         public Dictionary<string, Tuple<TransformGroup, TransformGroup>> ElementsManipulationHistory;
@@ -167,11 +167,11 @@ namespace Ink_Canvas.Helpers
             CommitType = commitType;
             DrawingAttributes = drawingAttributes;
         }
-        // Insert Image
-        public TimeMachineHistory(UIElement imageElement, TimeMachineHistoryType commitType, bool strokeHasBeenCleared)
+        // Insert UIElement
+        public TimeMachineHistory(UIElement element, TimeMachineHistoryType commitType, bool strokeHasBeenCleared)
         {
             CommitType = commitType;
-            ImageElement = imageElement;
+            Element = element;
             StrokeHasBeenCleared = strokeHasBeenCleared;
         }
     }
@@ -183,6 +183,6 @@ namespace Ink_Canvas.Helpers
         Clear,
         Manipulation,
         DrawingAttributes,
-        ImageInsert
+        ElementInsert
     }
 }

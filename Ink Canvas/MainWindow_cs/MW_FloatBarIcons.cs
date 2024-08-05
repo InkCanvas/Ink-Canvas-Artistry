@@ -281,7 +281,7 @@ namespace Ink_Canvas
                 foreach(UIElement element in selectedElements)
                 {
                     inkCanvas.Children.Remove(element);
-                    timeMachine.CommitImageInsertHistory(element, true);
+                    timeMachine.CommitElementInsertHistory(element, true);
                 }
                 GridInkCanvasSelectionCover.Visibility = Visibility.Collapsed;
             }

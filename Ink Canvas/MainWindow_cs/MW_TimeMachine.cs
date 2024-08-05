@@ -223,15 +223,15 @@ namespace Ink_Canvas
                     }
                 }
             }
-            else if (item.CommitType == TimeMachineHistoryType.ImageInsert)
+            else if (item.CommitType == TimeMachineHistoryType.ElementInsert)
             {
                 if (!item.StrokeHasBeenCleared)
                 {
-                    inkCanvas.Children.Add(item.ImageElement);
+                    inkCanvas.Children.Add(item.Element);
                 }
                 else
                 {
-                    inkCanvas.Children.Remove(item.ImageElement);
+                    inkCanvas.Children.Remove(item.Element);
                 }
             }
             _currentCommitType = CommitReason.UserInput;

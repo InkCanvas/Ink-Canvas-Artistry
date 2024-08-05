@@ -36,7 +36,7 @@ namespace Ink_Canvas
                     InkCanvas.SetTop(image, 0);
                     inkCanvas.Children.Add(image);
 
-                    timeMachine.CommitImageInsertHistory(image);
+                    timeMachine.CommitElementInsertHistory(image);
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace Ink_Canvas
                     mediaElement.UnloadedBehavior = MediaState.Manual;
                     mediaElement.Play();
 
-                    //timeMachine.CommitMediaInsertHistory(mediaElement);
+                    timeMachine.CommitElementInsertHistory(mediaElement);
                 }
             }
         }
