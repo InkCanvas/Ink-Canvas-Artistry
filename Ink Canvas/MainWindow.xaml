@@ -6403,6 +6403,31 @@
                                         TextAlignment="Center"
                                         Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" />
                                 </ikw:SimpleStackPanel>
+                            </Button><Button
+                                Width="30"
+                                Height="32"
+                                Padding="0"
+                                BorderThickness="0"
+                                Click="BtnMediaInsert_Click">
+                                <ikw:SimpleStackPanel
+                                    HorizontalAlignment="Center"
+                                    Background="Transparent"
+                                    Orientation="Vertical">
+                                    <ui:FontIcon
+                                        Width="30"
+                                        Height="22"
+                                        FontFamily="{StaticResource FluentIconFontFamily}"
+                                        FontSize="16"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Glyph="&#xee71;" />
+                                    <TextBlock
+                                        Margin="-0.75,-1,0,0"
+                                        FontSize="8"
+                                        Foreground="{DynamicResource FloatBarForeground}"
+                                        Text="插入视频"
+                                        TextAlignment="Center"
+                                        Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" />
+                                </ikw:SimpleStackPanel>
                             </Button>
                             <Button
                                 Width="30"

@@ -9,7 +9,6 @@ using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static System.Windows.Forms.AxHost;
 using Point = System.Windows.Point;
 
 namespace Ink_Canvas

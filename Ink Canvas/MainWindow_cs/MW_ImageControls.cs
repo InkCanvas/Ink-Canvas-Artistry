@@ -11,6 +11,7 @@ namespace Ink_Canvas
 {
     public partial class MainWindow : Window
     {
+        #region Image
         private async void BtnImageInsert_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -29,7 +30,7 @@ namespace Ink_Canvas
                     string timestamp = "img_" + DateTime.Now.ToString("ddHHmmssfff");
                     image.Name = timestamp;
 
-                    CenterAndScaleImage(image);
+                    CenterAndScaleElement(image);
 
                     InkCanvas.SetLeft(image, 0);
                     InkCanvas.SetTop(image, 0);
@@ -38,28 +39,6 @@ namespace Ink_Canvas
                     timeMachine.CommitImageInsertHistory(image);
                 }
             }
-        }
-
-        private void CenterAndScaleImage(Image image)
-        {
-            double maxWidth = SystemParameters.PrimaryScreenWidth / 2;
-            double maxHeight = SystemParameters.PrimaryScreenHeight / 2;
-            
-            double scaleX = maxWidth / image.Width;
-            double scaleY = maxHeight / image.Height;
-            double scale = Math.Min(scaleX, scaleY);
-
-            TransformGroup transformGroup = new TransformGroup();
-            transformGroup.Children.Add(new ScaleTransform(scale, scale));
-
-            double canvasWidth = inkCanvas.ActualWidth;
-            double canvasHeight = inkCanvas.ActualHeight;
-            double centerX = (canvasWidth - image.Width * scale) / 2;
-            double centerY = (canvasHeight - image.Height * scale) / 2;
-
-            transformGroup.Children.Add(new TranslateTransform(centerX, centerY));
-
-            image.RenderTransform = transformGroup;
         }
 
         private async Task<Image> CreateAndCompressImageAsync(byte[] imageBytes)
@@ -103,6 +82,80 @@ namespace Ink_Canvas
                     return image;
                 }
             });
+        }
+        #endregion
+
+        #region Media
+        private async void BtnMediaInsert_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Media files (*.mp4; *.avi; *.wmv)|*.mp4;*.avi;*.wmv";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+
+                byte[] mediaBytes = await Task.Run(() => File.ReadAllBytes(filePath));
+
+                MediaElement mediaElement = await CreateMediaElementAsync(filePath);
+
+                if (mediaElement != null)
+                {
+                    string timestamp = "media_" + DateTime.Now.ToString("ddHHmmssfff");
+                    mediaElement.Name = timestamp;
+
+                    CenterAndScaleElement(mediaElement);
+
+                    InkCanvas.SetLeft(mediaElement, 0);
+                    InkCanvas.SetTop(mediaElement, 0);
+                    inkCanvas.Children.Add(mediaElement);
+
+                    mediaElement.LoadedBehavior = MediaState.Manual;
+                    mediaElement.UnloadedBehavior = MediaState.Manual;
+                    mediaElement.Play();
+
+                    //timeMachine.CommitMediaInsertHistory(mediaElement);
+                }
+            }
+        }
+
+        private async Task<MediaElement> CreateMediaElementAsync(string filePath)
+        {
+            return await Dispatcher.InvokeAsync(() =>
+            {
+                MediaElement mediaElement = new MediaElement();
+                mediaElement.Source = new Uri(filePath);
+                mediaElement.LoadedBehavior = MediaState.Manual;
+                mediaElement.UnloadedBehavior = MediaState.Manual;
+
+                mediaElement.Width = 256;
+                mediaElement.Height = 256;
+
+                return mediaElement;
+            });
+        }
+        #endregion
+
+        private void CenterAndScaleElement(FrameworkElement element)
+        {
+            double maxWidth = SystemParameters.PrimaryScreenWidth / 2;
+            double maxHeight = SystemParameters.PrimaryScreenHeight / 2;
+
+            double scaleX = maxWidth / element.Width;
+            double scaleY = maxHeight / element.Height;
+            double scale = Math.Min(scaleX, scaleY);
+
+            TransformGroup transformGroup = new TransformGroup();
+            transformGroup.Children.Add(new ScaleTransform(scale, scale));
+
+            double canvasWidth = inkCanvas.ActualWidth;
+            double canvasHeight = inkCanvas.ActualHeight;
+            double centerX = (canvasWidth - element.Width * scale) / 2;
+            double centerY = (canvasHeight - element.Height * scale) / 2;
+
+            transformGroup.Children.Add(new TranslateTransform(centerX, centerY));
+
+            element.RenderTransform = transformGroup;
         }
     }
 }
