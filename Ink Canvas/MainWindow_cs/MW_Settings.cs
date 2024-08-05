@@ -642,7 +642,10 @@ namespace Ink_Canvas
             Settings.Advanced.TouchMultiplier = 0.3;
             Settings.Advanced.NibModeBoundsWidth = 5;
             Settings.Advanced.FingerModeBoundsWidth = 20;
-            Settings.Advanced.EraserBindTouchMultiplier = true;
+            Settings.Advanced.NibModeBoundsWidthThresholdValue = 2.5;
+            Settings.Advanced.FingerModeBoundsWidthThresholdValue = 2.5;
+            Settings.Advanced.NibModeBoundsWidthEraserSize = 0.8;
+            Settings.Advanced.FingerModeBoundsWidthEraserSize = 0.8;
             Settings.Advanced.IsLogEnabled = true;
             Settings.Advanced.IsSecondConfimeWhenShutdownApp = false;
             Settings.Advanced.IsEnableEdgeGestureUtil = false;
@@ -795,39 +798,14 @@ namespace Ink_Canvas
             double value;
             if (!Settings.Advanced.IsQuadIR) value = args.Width;
             else value = Math.Sqrt(args.Width * args.Height); //四边红外
-
             TextBlockShowCalculatedMultiplier.Text = (5 / (value * 1.1)).ToString();
-        }
-
-        private void ToggleSwitchEraserBindTouchMultiplier_Toggled(object sender, RoutedEventArgs e)
-        {
-            if (!isLoaded) return;
-            Settings.Advanced.EraserBindTouchMultiplier = ToggleSwitchEraserBindTouchMultiplier.IsOn;
-            SaveSettingsToFile();
         }
 
         private void NibModeBoundsWidthSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!isLoaded) return;
             Settings.Advanced.NibModeBoundsWidth = (int)e.NewValue;
-
-            if (Settings.Startup.IsEnableNibMode)
-            {
-                BoundsWidth = Settings.Advanced.NibModeBoundsWidth;
-            }
-            else
-            {
-                BoundsWidth = Settings.Advanced.FingerModeBoundsWidth;
-            }
-
-            SaveSettingsToFile();
-        }
-
-        private void ToggleSwitchIsEnableEdgeGestureUtil_Toggled(object sender, RoutedEventArgs e)
-        {
-            if (!isLoaded) return;
-            Settings.Advanced.IsEnableEdgeGestureUtil = ToggleSwitchIsEnableEdgeGestureUtil.IsOn;
-            if (OSVersion.GetOperatingSystem() >= OSVersionExtension.OperatingSystem.Windows10) EdgeGestureUtil.DisableEdgeGestures(new WindowInteropHelper(this).Handle, ToggleSwitchIsEnableEdgeGestureUtil.IsOn);
+            BoundsWidth = Settings.Startup.IsEnableNibMode ? BoundsWidth = Settings.Advanced.NibModeBoundsWidth : BoundsWidth = Settings.Advanced.FingerModeBoundsWidth;
             SaveSettingsToFile();
         }
 
@@ -835,16 +813,35 @@ namespace Ink_Canvas
         {
             if (!isLoaded) return;
             Settings.Advanced.FingerModeBoundsWidth = (int)e.NewValue;
+            BoundsWidth = Settings.Startup.IsEnableNibMode ? BoundsWidth = Settings.Advanced.NibModeBoundsWidth : BoundsWidth = Settings.Advanced.FingerModeBoundsWidth;
+            SaveSettingsToFile();
+        }
 
-            if (Settings.Startup.IsEnableNibMode)
-            {
-                BoundsWidth = Settings.Advanced.NibModeBoundsWidth;
-            }
-            else
-            {
-                BoundsWidth = Settings.Advanced.FingerModeBoundsWidth;
-            }
+        private void NibModeBoundsWidthThresholdValueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!isLoaded) return;
+            Settings.Advanced.NibModeBoundsWidthThresholdValue = (double)e.NewValue;
+            SaveSettingsToFile();
+        }
 
+        private void FingerModeBoundsWidthThresholdValueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!isLoaded) return;
+            Settings.Advanced.FingerModeBoundsWidthThresholdValue = (double)e.NewValue;
+            SaveSettingsToFile();
+        }
+
+        private void NibModeBoundsWidthEraserSizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!isLoaded) return;
+            Settings.Advanced.NibModeBoundsWidthEraserSize = (double)e.NewValue;
+            SaveSettingsToFile();
+        }
+
+        private void FingerModeBoundsWidthEraserSizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!isLoaded) return;
+            Settings.Advanced.FingerModeBoundsWidthEraserSize = (double)e.NewValue;
             SaveSettingsToFile();
         }
 
@@ -866,6 +863,14 @@ namespace Ink_Canvas
         {
             if (!isLoaded) return;
             Settings.Advanced.IsSecondConfimeWhenShutdownApp = ToggleSwitchIsSecondConfimeWhenShutdownApp.IsOn;
+            SaveSettingsToFile();
+        }
+
+        private void ToggleSwitchIsEnableEdgeGestureUtil_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (!isLoaded) return;
+            Settings.Advanced.IsEnableEdgeGestureUtil = ToggleSwitchIsEnableEdgeGestureUtil.IsOn;
+            if (OSVersion.GetOperatingSystem() >= OSVersionExtension.OperatingSystem.Windows10) EdgeGestureUtil.DisableEdgeGestures(new WindowInteropHelper(this).Handle, ToggleSwitchIsEnableEdgeGestureUtil.IsOn);
             SaveSettingsToFile();
         }
 

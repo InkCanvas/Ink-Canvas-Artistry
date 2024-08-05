@@ -53,38 +53,29 @@ namespace Ink_Canvas
                 HideSubPanels(); // 书写时自动隐藏二级菜单
             }
 
-            double boundWidth = e.GetTouchPoint(null).Bounds.Width, eraserMultiplier = 1.0;
-            if (!Settings.Advanced.EraserBindTouchMultiplier && Settings.Advanced.IsSpecialScreen)
-            {
-                eraserMultiplier = 1 / Settings.Advanced.TouchMultiplier;
-            }
-
+            double boundWidth = e.GetTouchPoint(null).Bounds.Width;
             if ((Settings.Advanced.TouchMultiplier != 0 || !Settings.Advanced.IsSpecialScreen) //启用特殊屏幕且触摸倍数为 0 时禁用橡皮
-                && (boundWidth > BoundsWidth * 2.5))
+                && (boundWidth > BoundsWidth))
             {
                 if (drawingShapeMode == 0 && forceEraser) return;
-                double k = 1;
-                switch (Settings.Canvas.EraserSize)
+                double EraserThresholdValue = Settings.Startup.IsEnableNibMode ? Settings.Advanced.NibModeBoundsWidthThresholdValue : Settings.Advanced.FingerModeBoundsWidthThresholdValue;
+                if (boundWidth > BoundsWidth * EraserThresholdValue)
                 {
-                    case 0:
-                        k = 0.5;
-                        break;
-                    case 1:
-                        k = 0.8;
-                        break;
-                    case 3:
-                        k = 1.25;
-                        break;
-                    case 4:
-                        k = 1.8;
-                        break;
+                    boundWidth *= (Settings.Startup.IsEnableNibMode ? Settings.Advanced.NibModeBoundsWidthEraserSize : Settings.Advanced.FingerModeBoundsWidthEraserSize);
+                    if (Settings.Advanced.IsSpecialScreen) boundWidth *= Settings.Advanced.TouchMultiplier;
+                    inkCanvas.EraserShape = new EllipseStylusShape(boundWidth, boundWidth);
+                    TouchDownPointsList[e.TouchDevice.Id] = InkCanvasEditingMode.EraseByPoint;
+                    inkCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
                 }
-                inkCanvas.EraserShape = new EllipseStylusShape(boundWidth * k * eraserMultiplier * 0.25, boundWidth * k * eraserMultiplier * 0.25);
-                TouchDownPointsList[e.TouchDevice.Id] = InkCanvasEditingMode.EraseByPoint;
-                inkCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
+                else
+                {
+                    inkCanvas.EraserShape = new EllipseStylusShape(5, 5);
+                    inkCanvas.EditingMode = InkCanvasEditingMode.EraseByStroke;
+                }
             }
             else
             {
+                inkCanvas.EraserShape = forcePointEraser ? new EllipseStylusShape(50, 50) : new EllipseStylusShape(5, 5);
                 TouchDownPointsList[e.TouchDevice.Id] = InkCanvasEditingMode.None;
                 inkCanvas.EditingMode = InkCanvasEditingMode.None;
             }
@@ -197,8 +188,6 @@ namespace Ink_Canvas
 
         #endregion
 
-
-
         int lastTouchDownTime = 0, lastTouchUpTime = 0;
 
         Point iniP = new Point(0, 0);
@@ -222,34 +211,18 @@ namespace Ink_Canvas
                 MouseTouchMove(iniP);
             }
             inkCanvas.Opacity = 1;
-            double boundsWidth = GetTouchBoundWidth(e), eraserMultiplier = 1.0;
-            if (!Settings.Advanced.EraserBindTouchMultiplier && Settings.Advanced.IsSpecialScreen)
-            {
-                eraserMultiplier = 1 / Settings.Advanced.TouchMultiplier;
-            }
-            if (boundsWidth > BoundsWidth)
+            double boundsWidth = GetTouchBoundWidth(e);
+            if ((Settings.Advanced.TouchMultiplier != 0 || !Settings.Advanced.IsSpecialScreen) //启用特殊屏幕且触摸倍数为 0 时禁用橡皮
+                && (boundsWidth > BoundsWidth))
             {
                 isLastTouchEraser = true;
                 if (drawingShapeMode == 0 && forceEraser) return;
-                if (boundsWidth > BoundsWidth * 2.5)
+                double EraserThresholdValue = Settings.Startup.IsEnableNibMode ? Settings.Advanced.NibModeBoundsWidthThresholdValue : Settings.Advanced.FingerModeBoundsWidthThresholdValue;
+                if (boundsWidth > BoundsWidth * EraserThresholdValue)
                 {
-                    double k = 1;
-                    switch (Settings.Canvas.EraserSize)
-                    {
-                        case 0:
-                            k = 0.5;
-                            break;
-                        case 1:
-                            k = 0.8;
-                            break;
-                        case 3:
-                            k = 1.25;
-                            break;
-                        case 4:
-                            k = 1.8;
-                            break;
-                    }
-                    inkCanvas.EraserShape = new EllipseStylusShape(boundsWidth * k * eraserMultiplier, boundsWidth * k * eraserMultiplier);
+                    boundsWidth *= (Settings.Startup.IsEnableNibMode ? Settings.Advanced.NibModeBoundsWidthEraserSize : Settings.Advanced.FingerModeBoundsWidthEraserSize);
+                    if (Settings.Advanced.IsSpecialScreen) boundsWidth *= Settings.Advanced.TouchMultiplier;
+                    inkCanvas.EraserShape = new EllipseStylusShape(boundsWidth, boundsWidth);
                     inkCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
                 }
                 else
@@ -279,11 +252,8 @@ namespace Ink_Canvas
         public double GetTouchBoundWidth(TouchEventArgs e)
         {
             var args = e.GetTouchPoint(null).Bounds;
-            double value;
-            if (!Settings.Advanced.IsQuadIR) value = args.Width;
-            else value = Math.Sqrt(args.Width * args.Height); //四边红外
-            if (Settings.Advanced.IsSpecialScreen) value *= Settings.Advanced.TouchMultiplier;
-            return value;
+            if (!Settings.Advanced.IsQuadIR) return args.Width;
+            else return Math.Sqrt(args.Width * args.Height); //四边红外
         }
 
         //记录触摸设备ID

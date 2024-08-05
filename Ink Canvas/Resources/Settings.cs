@@ -276,11 +276,20 @@ namespace Ink_Canvas
         [JsonProperty("fingerModeBoundsWidth")]
         public int FingerModeBoundsWidth { get; set; } = 30;
 
+        [JsonProperty("nibModeBoundsWidthThresholdValue")]
+        public double NibModeBoundsWidthThresholdValue { get; set; } = 2.5;
+
+        [JsonProperty("fingerModeBoundsWidthThresholdValue")]
+        public double FingerModeBoundsWidthThresholdValue { get; set; } = 2.5;
+
+        [JsonProperty("nibModeBoundsWidthEraserSize")]
+        public double NibModeBoundsWidthEraserSize { get; set; } = 0.8;
+
+        [JsonProperty("fingerModeBoundsWidthEraserSize")]
+        public double FingerModeBoundsWidthEraserSize { get; set; } = 0.8;
+
         [JsonProperty("isEnableEdgeGestureUtil")]
         public bool IsEnableEdgeGestureUtil { get; set; } = false;
-
-        [JsonProperty("eraserBindTouchMultiplier")]
-        public bool EraserBindTouchMultiplier { get; set; } = false;
 
         [JsonProperty("isLogEnabled")]
         public bool IsLogEnabled { get; set; } = true;
