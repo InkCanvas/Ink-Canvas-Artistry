@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml.Linq;
 using Point = System.Windows.Point;
 
 namespace Ink_Canvas
@@ -353,17 +354,17 @@ namespace Ink_Canvas
                         m.RotateAt(rotate, center.X, center.Y);
                     if (Settings.Gesture.IsEnableTwoFingerTranslate)
                         m.Translate(trans.X, trans.Y);
-                    // handle Images
-                    List<Image> images = InkCanvasImageHelper.GetAllImages(inkCanvas);
-                    foreach (Image image in images)
+                    // handle Elements
+                    List<UIElement> elements = InkCanvasElementsHelper.GetAllElements(inkCanvas);
+                    foreach (UIElement element in elements)
                     {
                         if (Settings.Gesture.IsEnableTwoFingerTranslate)
                         {
-                            ApplyImageMatrixTransform(image, m);
+                            ApplyElementMatrixTransform(element, m);
                         }
                         else
                         {
-                            ApplyImageMatrixTransform(image, m);
+                            ApplyElementMatrixTransform(element, m);
                         }
                     }
                 }

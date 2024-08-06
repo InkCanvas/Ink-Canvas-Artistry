@@ -19,7 +19,7 @@ namespace Ink_Canvas
             }
             else if (Settings.Gesture.MatrixTransformCenterPoint == MatrixTransformCenterPointOptions.SelectedElementsCenterPoint)
             {
-                return InkCanvasElementHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
+                return InkCanvasElementsHelper.GetAllElementsBoundsCenterPoint(inkCanvas);
             }
             return canvasCenterPoint;
         }

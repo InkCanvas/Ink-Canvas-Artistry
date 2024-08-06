@@ -30,8 +30,12 @@ namespace Ink_Canvas
         private StrokeCollection CuboidStrokeCollection;
         private Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> StrokeManipulationHistory;
         private Dictionary<Stroke, StylusPointCollection> StrokeInitialHistory = new Dictionary<Stroke, StylusPointCollection>();
-        private Dictionary<string, Tuple<TransformGroup, TransformGroup>> ElementsManipulationHistory;
-        private Dictionary<string, TransformGroup> ElementsInitialHistory = new Dictionary<string, TransformGroup>();
+        private Dictionary<string, Tuple<object, TransformGroup>> ElementsManipulationHistory;
+
+
+        // object maybe TransformGroup or ElementData
+        private Dictionary<string, object> ElementsInitialHistory = new Dictionary<string, object>();
+
         private Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> DrawingAttributesHistory = new Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>>();
         private Dictionary<Guid, List<Stroke>> DrawingAttributesHistoryFlag = new Dictionary<Guid, List<Stroke>>()
         {
@@ -133,6 +137,17 @@ namespace Ink_Canvas
                             {
                                 element.RenderTransform = currentElement.Value.Item2;
                             }
+                            else
+                            {
+                                if (currentElement.Value.Item1 is InkCanvasElementsHelper.ElementData)
+                                {
+                                    InkCanvasElementsHelper.ElementData elementData = currentElement.Value.Item1 as InkCanvasElementsHelper.ElementData;
+                                    InkCanvas.SetLeft(elementData.FrameworkElement, elementData.SetLeftData);
+                                    InkCanvas.SetTop(elementData.FrameworkElement, elementData.SetTopData);
+                                    inkCanvas.Children.Add(elementData.FrameworkElement);
+                                    elementData.FrameworkElement.RenderTransform = currentElement.Value.Item2;
+                                }
+                            }
                         }
                     }
                 }
@@ -155,7 +170,14 @@ namespace Ink_Canvas
                             UIElement element = GetElementByTimestamp(inkCanvas, currentElement.Key);
                             if (element != null && inkCanvas.Children.Contains(element))
                             {
-                                element.RenderTransform = currentElement.Value.Item1;
+                                if (currentElement.Value.Item1 is TransformGroup transformGroup)
+                                {
+                                    element.RenderTransform = currentElement.Value.Item2;
+                                }
+                                else if (currentElement.Value.Item1 is InkCanvasElementsHelper.ElementData)
+                                {
+                                    inkCanvas.Children.Remove(element);
+                                }
                             }
                         }
                     }

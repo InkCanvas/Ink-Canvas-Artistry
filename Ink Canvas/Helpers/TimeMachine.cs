@@ -46,7 +46,7 @@ namespace Ink_Canvas.Helpers
 
         public void CommitStrokeManipulationHistory(
             Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> stylusPointDictionary,
-            Dictionary<string, Tuple<TransformGroup, TransformGroup>> ElementsManipulationHistory)
+            Dictionary<string, Tuple<object, TransformGroup>> ElementsManipulationHistory)
         {
             CheckHistoryIndex();
             _currentStrokeHistory.Add(new TimeMachineHistory(stylusPointDictionary, ElementsManipulationHistory, TimeMachineHistoryType.Manipulation));
@@ -133,7 +133,7 @@ namespace Ink_Canvas.Helpers
         public UIElement Element;
         //这里说一下 Tuple 的 Value1 是初始值 ; Value 2 是改变值
         public Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> StylusPointDictionary;
-        public Dictionary<string, Tuple<TransformGroup, TransformGroup>> ElementsManipulationHistory;
+        public Dictionary<string, Tuple<object, TransformGroup>> ElementsManipulationHistory;
         public Dictionary<Stroke, Tuple<DrawingAttributes, DrawingAttributes>> DrawingAttributes;
         // UserInput
         public TimeMachineHistory(StrokeCollection currentStroke, TimeMachineHistoryType commitType, bool strokeHasBeenCleared)
@@ -154,7 +154,7 @@ namespace Ink_Canvas.Helpers
         // StrokeManipulation, ElementManipulation
         public TimeMachineHistory(
             Dictionary<Stroke, Tuple<StylusPointCollection, StylusPointCollection>> stylusPointDictionary,
-            Dictionary<string, Tuple<TransformGroup, TransformGroup>> elementsManipulationHistory,
+            Dictionary<string, Tuple<object, TransformGroup>> elementsManipulationHistory,
             TimeMachineHistoryType commitType)
         {
             CommitType = commitType;
