@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -38,20 +39,6 @@ namespace Ink_Canvas.Helpers
             return selectedImages;
         }
 
-        private static Image CloneImage(Image originalImage)
-        {
-            Image clonedImage = new Image
-            {
-                Source = originalImage.Source,
-                Width = originalImage.Width,
-                Height = originalImage.Height,
-                Stretch = originalImage.Stretch,
-                Opacity = originalImage.Opacity,
-                RenderTransform = originalImage.RenderTransform.Clone()
-            };
-            return clonedImage;
-        }
-
         public class ElementData
         {
             public double SetLeftData { get; set; }
@@ -76,12 +63,13 @@ namespace Ink_Canvas.Helpers
                     InkCanvas.SetTop(frameworkElement, InkCanvas.GetTop(element));
                     inkCanvas.Children.Add(frameworkElement);
                     clonedElements.Add(frameworkElement);
-                    ElementsInitialHistory[frameworkElement.Name] = new InkCanvasElementsHelper.ElementData
+                    ElementsInitialHistory[frameworkElement.Name] = new ElementData
                     {
                         SetLeftData = InkCanvas.GetLeft(element),
                         SetTopData = InkCanvas.GetTop(element),
                         FrameworkElement = frameworkElement
                     };
+                    LogHelper.WriteObjectLogToFile(frameworkElement);
                 }
             }
             return clonedElements;
@@ -94,6 +82,11 @@ namespace Ink_Canvas.Helpers
             if (element is Image originalImage)
             {
                 return CloneImage(originalImage);
+            }
+            
+            if (element is MediaElement originalMediaElement)
+            {
+                return CloneMediaElement(originalMediaElement);
             }
 
             if (element is FrameworkElement frameworkElement)
@@ -112,6 +105,46 @@ namespace Ink_Canvas.Helpers
             }
 
             return null;
+        }
+
+        private static Image CloneImage(Image originalImage)
+        {
+            Image clonedImage = new Image
+            {
+                Source = originalImage.Source,
+                Width = originalImage.Width,
+                Height = originalImage.Height,
+                Stretch = originalImage.Stretch,
+                Opacity = originalImage.Opacity,
+                RenderTransform = originalImage.RenderTransform.Clone()
+            };
+            return clonedImage;
+        }
+
+        private static MediaElement CloneMediaElement(MediaElement originalMediaElement)
+        {
+            MediaElement clonedMediaElement = new MediaElement
+            {
+                Source = originalMediaElement.Source,
+                Width = originalMediaElement.Width,
+                Height = originalMediaElement.Height,
+                Stretch = originalMediaElement.Stretch,
+                Opacity = originalMediaElement.Opacity,
+                RenderTransform = originalMediaElement.RenderTransform.Clone(),
+                LoadedBehavior = originalMediaElement.LoadedBehavior,
+                UnloadedBehavior = originalMediaElement.UnloadedBehavior,
+                Volume = originalMediaElement.Volume,
+                Balance = originalMediaElement.Balance,
+                IsMuted = originalMediaElement.IsMuted,
+                ScrubbingEnabled = originalMediaElement.ScrubbingEnabled
+            };
+            clonedMediaElement.Loaded += async (sender, args) =>
+            {
+                clonedMediaElement.Play();
+                await Task.Delay(100);
+                clonedMediaElement.Pause();
+            };
+            return clonedMediaElement;
         }
     }
 }

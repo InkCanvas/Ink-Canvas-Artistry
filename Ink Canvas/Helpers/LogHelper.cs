@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace Ink_Canvas.Helpers
 {
@@ -42,6 +43,50 @@ namespace Ink_Canvas.Helpers
                 StreamWriter sw = new StreamWriter(file, true);
                 sw.WriteLine(string.Format("{0} [{1}] {2}", DateTime.Now.ToString("O"), strLogType, str));
                 sw.Close();
+            }
+            catch { }
+        }
+
+        public static void WriteObjectLogToFile(object obj, LogType logType = LogType.Info)
+        {
+            string strLogType = "Info";
+            switch (logType)
+            {
+                case LogType.Event:
+                    strLogType = "Event";
+                    break;
+                case LogType.Trace:
+                    strLogType = "Trace";
+                    break;
+                case LogType.Error:
+                    strLogType = "Error";
+                    break;
+            }
+            try
+            {
+                var file = App.RootPath + LogFile;
+                if (!Directory.Exists(App.RootPath))
+                {
+                    Directory.CreateDirectory(App.RootPath);
+                }
+                using (StreamWriter sw = new StreamWriter(file, true))
+                {
+                    sw.WriteLine($"{DateTime.Now:O} [{strLogType}] Object Log:");
+                    if (obj != null)
+                    {
+                        Type type = obj.GetType();
+                        PropertyInfo[] properties = type.GetProperties();
+                        foreach (PropertyInfo property in properties)
+                        {
+                            object value = property.GetValue(obj, null);
+                            sw.WriteLine($"{property.Name}: {value}");
+                        }
+                    }
+                    else
+                    {
+                        sw.WriteLine("null");
+                    }
+                }
             }
             catch { }
         }

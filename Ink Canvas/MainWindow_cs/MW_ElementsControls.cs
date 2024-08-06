@@ -27,7 +27,7 @@ namespace Ink_Canvas
 
                 if (image != null)
                 {
-                    string timestamp = "img_" + DateTime.Now.ToString("ddHHmmssfff");
+                    string timestamp = "img_" + DateTime.Now.ToString("yyyyMMdd_HH_mm_ss_fff");
                     image.Name = timestamp;
 
                     CenterAndScaleElement(image);
@@ -101,9 +101,6 @@ namespace Ink_Canvas
 
                 if (mediaElement != null)
                 {
-                    string timestamp = "media_" + DateTime.Now.ToString("ddHHmmssfff");
-                    mediaElement.Name = timestamp;
-
                     CenterAndScaleElement(mediaElement);
 
                     InkCanvas.SetLeft(mediaElement, 0);
@@ -121,15 +118,29 @@ namespace Ink_Canvas
 
         private async Task<MediaElement> CreateMediaElementAsync(string filePath)
         {
+            string savePath = Path.Combine(Settings.Automation.AutoSavedStrokesLocation, "File Dependency");
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
             return await Dispatcher.InvokeAsync(() =>
             {
                 MediaElement mediaElement = new MediaElement();
                 mediaElement.Source = new Uri(filePath);
+                string timestamp = "media_" + DateTime.Now.ToString("yyyyMMdd_HH_mm_ss_fff");
+                mediaElement.Name = timestamp;
                 mediaElement.LoadedBehavior = MediaState.Manual;
                 mediaElement.UnloadedBehavior = MediaState.Manual;
 
                 mediaElement.Width = 256;
                 mediaElement.Height = 256;
+
+                string fileExtension = Path.GetExtension(filePath);
+                string newFilePath = Path.Combine(savePath, mediaElement.Name + fileExtension);
+
+                File.Copy(filePath, newFilePath, true);
+
+                mediaElement.Source = new Uri(newFilePath);
 
                 return mediaElement;
             });
