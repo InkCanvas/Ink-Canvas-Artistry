@@ -416,7 +416,8 @@ namespace Ink_Canvas
             inkCanvas.IsManipulationEnabled = false;
             if (inkCanvas.EditingMode == InkCanvasEditingMode.Select)
             {
-                if (inkCanvas.GetSelectedStrokes().Count == inkCanvas.Strokes.Count)
+                if (inkCanvas.GetSelectedStrokes().Count == inkCanvas.Strokes.Count
+                    && inkCanvas.GetSelectedElements().Count == inkCanvas.Children.Count)
                 {
                     inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
                     inkCanvas.EditingMode = InkCanvasEditingMode.Select;
