@@ -44,19 +44,23 @@ namespace Ink_Canvas
         {
             if (currentMode == 0)
             {
-                var strokes = inkCanvas.GetSelectedStrokes();
+                StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+                List<UIElement> elements = InkCanvasElementsHelper.GetSelectedElementsCloned(inkCanvas);
                 inkCanvas.Select(new StrokeCollection());
                 strokes = strokes.Clone();
                 ImageBlackboard_Click(null, null);
                 inkCanvas.Strokes.Add(strokes);
+                InkCanvasElementsHelper.AddElements(inkCanvas, elements, timeMachine);
             }
             else
             {
-                var strokes = inkCanvas.GetSelectedStrokes();
+                StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
+                List<UIElement> elements = InkCanvasElementsHelper.GetSelectedElementsCloned(inkCanvas);
                 inkCanvas.Select(new StrokeCollection());
                 strokes = strokes.Clone();
                 BtnWhiteBoardAdd_Click(null, null);
                 inkCanvas.Strokes.Add(strokes);
+                InkCanvasElementsHelper.AddElements(inkCanvas, elements, timeMachine);
             }
         }
 
@@ -432,11 +436,7 @@ namespace Ink_Canvas
                             selectedStrokes.Add(stroke);
                         }
                     }
-                    List<UIElement> selectedElements = new List<UIElement>();
-                    foreach (UIElement element in inkCanvas.Children)
-                    {
-                        selectedElements.Add(element);
-                    }
+                    List<UIElement> selectedElements = InkCanvasElementsHelper.GetAllElements(inkCanvas);
                     inkCanvas.Select(selectedStrokes, selectedElements);
                 }
             }

@@ -292,7 +292,7 @@ namespace Ink_Canvas
                 {
                     ImageBlackboard_Click(null, null);
                 }
-
+                /*
                 //调整颜色
                 double screenRatio = SystemParameters.PrimaryScreenWidth / SystemParameters.PrimaryScreenHeight;
                 if (Math.Abs(screenRatio - 16.0 / 9) <= -0.01)
@@ -306,6 +306,7 @@ namespace Ink_Canvas
                 {
 
                 }
+                */
                 lastDesktopInkColor = 1;
 
 

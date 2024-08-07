@@ -69,10 +69,39 @@ namespace Ink_Canvas.Helpers
                         SetTopData = InkCanvas.GetTop(element),
                         FrameworkElement = frameworkElement
                     };
-                    LogHelper.WriteObjectLogToFile(frameworkElement);
                 }
             }
             return clonedElements;
+        }
+
+        public static List<UIElement> GetSelectedElementsCloned(InkCanvas inkCanvas)
+        {
+            List<UIElement> clonedElements = new List<UIElement>();
+            int key = 0;
+            foreach (UIElement element in inkCanvas.GetSelectedElements())
+            {
+                UIElement clonedElement = CloneUIElement(element);
+                if (clonedElement != null)
+                {
+                    FrameworkElement frameworkElement = clonedElement as FrameworkElement;
+                    string timestamp = "ele_" + DateTime.Now.ToString("ddHHmmssfff") + key.ToString();
+                    frameworkElement.Name = timestamp;
+                    ++key;
+                    InkCanvas.SetLeft(frameworkElement, InkCanvas.GetLeft(element));
+                    InkCanvas.SetTop(frameworkElement, InkCanvas.GetTop(element));
+                    clonedElements.Add(frameworkElement);
+                }
+            }
+            return clonedElements;
+        }
+
+        public static void AddElements(InkCanvas inkCanvas, List<UIElement> elements, TimeMachine timeMachine)
+        {
+            foreach (UIElement element in elements)
+            {
+                inkCanvas.Children.Add(element);
+                timeMachine.CommitElementInsertHistory(element);
+            }
         }
 
         private static UIElement CloneUIElement(UIElement element)
