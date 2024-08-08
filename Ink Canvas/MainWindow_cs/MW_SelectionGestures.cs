@@ -299,17 +299,15 @@ namespace Ink_Canvas
             isGridInkCanvasSelectionCoverMouseDown = true;
             if (isStrokeSelectionCloneOn)
             {
-                _currentCommitType = CommitReason.CodeInput;
                 StrokeCollection strokes = inkCanvas.GetSelectedStrokes();
-                List<UIElement> elementList = InkCanvasElementsHelper.GetSelectedElements(inkCanvas);
+                List<UIElement> elementsList = InkCanvasElementsHelper.GetSelectedElements(inkCanvas);
                 isProgramChangeStrokeSelection = true;
                 ElementsSelectionClone = InkCanvasElementsHelper.CloneSelectedElements(inkCanvas, ref ElementsInitialHistory);
                 inkCanvas.Select(new StrokeCollection());
                 StrokesSelectionClone = strokes.Clone();
                 inkCanvas.Strokes.Add(StrokesSelectionClone);
-                inkCanvas.Select(strokes, elementList);
+                inkCanvas.Select(strokes, elementsList);
                 isProgramChangeStrokeSelection = false;
-                _currentCommitType = CommitReason.UserInput;
             }
             else if (lastMousePoint.X < inkCanvas.GetSelectionBounds().Left ||
             lastMousePoint.Y < inkCanvas.GetSelectionBounds().Top ||
@@ -528,7 +526,7 @@ namespace Ink_Canvas
 
         private void GridInkCanvasSelectionCover_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            if (StrokeManipulationHistory?.Count > 0)
+            if (StrokeManipulationHistory?.Count > 0 || ElementsManipulationHistory?.Count > 0)
             {
                 timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
                 foreach (var item in StrokeManipulationHistory)
@@ -536,6 +534,11 @@ namespace Ink_Canvas
                     StrokeInitialHistory[item.Key] = item.Value.Item2;
                 }
                 StrokeManipulationHistory = null;
+                foreach (var item in ElementsManipulationHistory)
+                {
+                    ElementsInitialHistory[item.Key] = item.Value.Item2;
+                }
+                ElementsManipulationHistory = null;
             }
             if (DrawingAttributesHistory.Count > 0)
             {

@@ -32,7 +32,6 @@ namespace Ink_Canvas
         private Dictionary<Stroke, StylusPointCollection> StrokeInitialHistory = new Dictionary<Stroke, StylusPointCollection>();
         private Dictionary<string, Tuple<object, TransformGroup>> ElementsManipulationHistory;
 
-
         // object maybe TransformGroup or ElementData
         private Dictionary<string, object> ElementsInitialHistory = new Dictionary<string, object>();
 
@@ -172,7 +171,7 @@ namespace Ink_Canvas
                             {
                                 if (currentElement.Value.Item1 is TransformGroup transformGroup)
                                 {
-                                    element.RenderTransform = currentElement.Value.Item2;
+                                    element.RenderTransform = transformGroup;
                                 }
                                 else if (currentElement.Value.Item1 is InkCanvasElementsHelper.ElementData)
                                 {
@@ -314,7 +313,6 @@ namespace Ink_Canvas
                     return;
                 }
             }
-
             if (e.Removed.Count != 0)
             {
                 if (_currentCommitType == CommitReason.ShapeRecognition)

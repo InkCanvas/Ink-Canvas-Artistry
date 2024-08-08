@@ -101,11 +101,17 @@ namespace Ink_Canvas
                 }
                 else
                 {
-                    // 触摸屏 TabletDeviceType.Touch 
-                    inkCanvas.Strokes.Add(GetStrokeVisual(e.StylusDevice.Id).Stroke);
-                    await Task.Delay(5); // 避免渲染墨迹完成前预览墨迹被删除导致墨迹闪烁
-                    inkCanvas.Children.Remove(GetVisualCanvas(e.StylusDevice.Id));
-                    inkCanvas_StrokeCollected(inkCanvas, new InkCanvasStrokeCollectedEventArgs(GetStrokeVisual(e.StylusDevice.Id).Stroke));
+                    try
+                    {
+                        // 触摸屏 TabletDeviceType.Touch 
+                        inkCanvas.Strokes.Add(GetStrokeVisual(e.StylusDevice.Id).Stroke);
+                        await Task.Delay(5); // 避免渲染墨迹完成前预览墨迹被删除导致墨迹闪烁
+                        inkCanvas.Children.Remove(GetVisualCanvas(e.StylusDevice.Id));
+                        inkCanvas_StrokeCollected(inkCanvas, new InkCanvasStrokeCollectedEventArgs(GetStrokeVisual(e.StylusDevice.Id).Stroke));
+                    }
+                    catch(Exception ex) {
+                        LogHelper.WriteLogToFile(ex.ToString(), LogHelper.LogType.Error);
+                    }
                 }
             }
             catch (Exception ex)

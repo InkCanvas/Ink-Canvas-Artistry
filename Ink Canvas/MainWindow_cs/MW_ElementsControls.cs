@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Ink_Canvas.Helpers;
 using Microsoft.Win32;
 
 namespace Ink_Canvas
@@ -63,7 +64,7 @@ namespace Ink_Canvas
                     double scaleY = 1080.0 / height;
                     double scale = Math.Min(scaleX, scaleY);
 
-                    TransformedBitmap transformedBitmap = new TransformedBitmap(bitmapImage, new System.Windows.Media.ScaleTransform(scale, scale));
+                    TransformedBitmap transformedBitmap = new TransformedBitmap(bitmapImage, new ScaleTransform(scale, scale));
 
                     Image image = new Image();
                     image.Source = transformedBitmap;

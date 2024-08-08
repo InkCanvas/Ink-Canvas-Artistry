@@ -1612,7 +1612,7 @@ namespace Ink_Canvas
             }
             lastTempStroke = null;
             lastTempStrokeCollection = null;
-            if (StrokeManipulationHistory?.Count > 0)
+            if (StrokeManipulationHistory?.Count > 0 || ElementsManipulationHistory?.Count > 0)
             {
                 timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
                 foreach (var item in StrokeManipulationHistory)
@@ -1620,6 +1620,11 @@ namespace Ink_Canvas
                     StrokeInitialHistory[item.Key] = item.Value.Item2;
                 }
                 StrokeManipulationHistory = null;
+                foreach (var item in ElementsManipulationHistory)
+                {
+                    ElementsInitialHistory[item.Key] = item.Value.Item2;
+                }
+                ElementsManipulationHistory = null;
             }
             if (DrawingAttributesHistory.Count > 0)
             {
