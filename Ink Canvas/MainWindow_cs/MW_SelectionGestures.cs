@@ -197,16 +197,16 @@ namespace Ink_Canvas
                     break;
             }
 
-            StrokeCollection targetStrokes = inkCanvas.GetSelectedStrokes();
-            foreach (Stroke stroke in targetStrokes)
-            {
-                stroke.Transform(m, false);
-            }
-
             List<UIElement> selectedElements = InkCanvasElementsHelper.GetSelectedElements(inkCanvas);
             foreach (UIElement element in selectedElements)
             {
                 ApplyElementMatrixTransform(element, m);
+            }
+
+            StrokeCollection targetStrokes = inkCanvas.GetSelectedStrokes();
+            foreach (Stroke stroke in targetStrokes)
+            {
+                stroke.Transform(m, false);
             }
 
             if (DrawingAttributesHistory.Count > 0)

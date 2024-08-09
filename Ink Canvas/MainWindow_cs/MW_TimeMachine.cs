@@ -400,6 +400,10 @@ namespace Ink_Canvas
 
         private void ToCommitStrokeManipulationHistoryAfterMouseUp()
         {
+            if (StrokeManipulationHistory == null && ElementsManipulationHistory == null)
+            {
+                return;
+            }
             timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
             if (StrokeManipulationHistory != null)
             {
