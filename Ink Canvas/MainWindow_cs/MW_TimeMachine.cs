@@ -404,22 +404,25 @@ namespace Ink_Canvas
             {
                 return;
             }
-            timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
-            if (StrokeManipulationHistory != null)
+            if(StrokeManipulationHistory?.Count > 0 || ElementsManipulationHistory?.Count > 0)
             {
-                foreach (var item in StrokeManipulationHistory)
+                timeMachine.CommitStrokeManipulationHistory(StrokeManipulationHistory, ElementsManipulationHistory);
+                if (StrokeManipulationHistory != null)
                 {
-                    StrokeInitialHistory[item.Key] = item.Value.Item2;
+                    foreach (var item in StrokeManipulationHistory)
+                    {
+                        StrokeInitialHistory[item.Key] = item.Value.Item2;
+                    }
+                    StrokeManipulationHistory = null;
                 }
-                StrokeManipulationHistory = null;
-            }
-            if (ElementsManipulationHistory != null)
-            {
-                foreach (var item in ElementsManipulationHistory)
+                if (ElementsManipulationHistory != null)
                 {
-                    ElementsInitialHistory[item.Key] = item.Value.Item2;
+                    foreach (var item in ElementsManipulationHistory)
+                    {
+                        ElementsInitialHistory[item.Key] = item.Value.Item2;
+                    }
+                    ElementsManipulationHistory = null;
                 }
-                ElementsManipulationHistory = null;
             }
         }
     }
