@@ -1,6 +1,10 @@
 <div align="center">
 
+<!--
 [![LOGO](Images/Ink%20Canvas%20Artistry.png?raw=true "LOGO")](# "LOGO")
+-->
+
+<img src="./Images/Ink Canvas Artistry.png" style="width:96px;"/>
 
 # Ink Canvas Artistry
 [![UPSTREAM](https://img.shields.io/badge/UpStream-WXRIW%2FInk--Canvas-red.svg "LICENSE")](https://github.com/WXRIW/Ink-Canvas)

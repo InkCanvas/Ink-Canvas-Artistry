@@ -92,18 +92,10 @@ namespace Ink_Canvas
             if (IsShowingRestoreHiddenSlidesWindow) return;
             try
             {
-                Process[] processes = Process.GetProcessesByName("wpp");
-                if (processes.Length > 0 && !isWPSSupportOn)
+                if (!isWPSSupportOn && Process.GetProcessesByName("wpp").Length > 0)
                 {
                     return;
                 }
-
-                //使用下方提前创建 PowerPoint 实例，将导致 PowerPoint 不再有启动界面
-                //pptApplication = (Microsoft.Office.Interop.PowerPoint.Application)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("91493441-5A91-11CF-8700-00AA0060263B")));
-                //new ComAwareEventInfo(typeof(EApplication_Event), "SlideShowBegin").AddEventHandler(pptApplication, new EApplication_SlideShowBeginEventHandler(this.PptApplication_SlideShowBegin));
-                //new ComAwareEventInfo(typeof(EApplication_Event), "SlideShowEnd").AddEventHandler(pptApplication, new EApplication_SlideShowEndEventHandler(this.PptApplication_SlideShowEnd));
-                //new ComAwareEventInfo(typeof(EApplication_Event), "SlideShowNextSlide").AddEventHandler(pptApplication, new EApplication_SlideShowNextSlideEventHandler(this.PptApplication_SlideShowNextSlide));
-                //ConfigHelper.Instance.IsInitApplicationSuccessful = true;
 
                 pptApplication = (Microsoft.Office.Interop.PowerPoint.Application)Marshal.GetActiveObject("PowerPoint.Application");
 
@@ -271,7 +263,7 @@ namespace Ink_Canvas
 
         }
 
-        bool isPresentationHaveBlackSpace = false;
+        //bool isPresentationHaveBlackSpace = false;
         private string pptName = null;
         int currentShowPosition = -1;
         private void PptApplication_SlideShowBegin(SlideShowWindow Wn)
@@ -308,7 +300,6 @@ namespace Ink_Canvas
                 }
                 */
                 lastDesktopInkColor = 1;
-
 
                 slidescount = Wn.Presentation.Slides.Count;
                 previousSlideID = 0;
@@ -501,7 +492,7 @@ namespace Ink_Canvas
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                isPresentationHaveBlackSpace = false;
+                //isPresentationHaveBlackSpace = false;
 
                 //BtnPPTSlideShow.Visibility = Visibility.Visible;
                 BtnPPTSlideShowEnd.Visibility = Visibility.Collapsed;
@@ -682,20 +673,6 @@ namespace Ink_Canvas
 
         private async void BtnPPTSlideShowEnd_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                try
-                {
-                    MemoryStream ms = new MemoryStream();
-                    inkCanvas.Strokes.Save(ms);
-                    ms.Position = 0;
-                    memoryStreams[pptApplication.SlideShowWindows[1].View.CurrentShowPosition] = ms;
-                    timeMachine.ClearStrokeHistory();
-                }
-                catch { }
-            });
-            */
             new Thread(new ThreadStart(() =>
             {
                 try
