@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Ink_Canvas.Helpers;
 using Microsoft.Win32;
 
 namespace Ink_Canvas
@@ -22,9 +21,7 @@ namespace Ink_Canvas
             {
                 string filePath = openFileDialog.FileName;
 
-                byte[] imageBytes = await Task.Run(() => File.ReadAllBytes(filePath));
-
-                Image image = await CreateAndCompressImageAsync(imageBytes);
+                Image image = await CreateAndCompressImageAsync(filePath);
 
                 if (image != null)
                 {
@@ -42,22 +39,32 @@ namespace Ink_Canvas
             }
         }
 
-        private async Task<Image> CreateAndCompressImageAsync(byte[] imageBytes)
+        private async Task<Image> CreateAndCompressImageAsync(string filePath)
         {
+            string savePath = Path.Combine(Settings.Automation.AutoSavedStrokesLocation, "File Dependency");
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            string fileExtension = Path.GetExtension(filePath);
+            string timestamp = "img_" + DateTime.Now.ToString("yyyyMMdd_HH_mm_ss_fff");
+            string newFilePath = Path.Combine(savePath, timestamp + fileExtension);
+
+            await Task.Run(() => File.Copy(filePath, newFilePath, true));
+
             return await Dispatcher.InvokeAsync(() =>
             {
                 BitmapImage bitmapImage = new BitmapImage();
-                using (MemoryStream ms = new MemoryStream(imageBytes))
-                {
-                    bitmapImage.BeginInit();
-                    bitmapImage.StreamSource = ms;
-                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.EndInit();
-                }
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(newFilePath);
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
 
                 int width = bitmapImage.PixelWidth;
                 int height = bitmapImage.PixelHeight;
 
+                Image image = new Image();
                 if (isLoaded && Settings.Canvas.IsCompressPicturesUploaded && (width > 1920 || height > 1080))
                 {
                     double scaleX = 1920.0 / width;
@@ -66,22 +73,18 @@ namespace Ink_Canvas
 
                     TransformedBitmap transformedBitmap = new TransformedBitmap(bitmapImage, new ScaleTransform(scale, scale));
 
-                    Image image = new Image();
                     image.Source = transformedBitmap;
                     image.Width = transformedBitmap.PixelWidth;
                     image.Height = transformedBitmap.PixelHeight;
-
-                    return image;
                 }
                 else
                 {
-                    Image image = new Image();
                     image.Source = bitmapImage;
                     image.Width = width;
                     image.Height = height;
-
-                    return image;
                 }
+
+                return image;
             });
         }
         #endregion
@@ -110,7 +113,12 @@ namespace Ink_Canvas
 
                     mediaElement.LoadedBehavior = MediaState.Manual;
                     mediaElement.UnloadedBehavior = MediaState.Manual;
-                    mediaElement.Play();
+                    mediaElement.Loaded += async (_, args) =>
+                    {
+                        mediaElement.Play();
+                        await Task.Delay(100);
+                        mediaElement.Pause();
+                    };
 
                     timeMachine.CommitElementInsertHistory(mediaElement);
                 }

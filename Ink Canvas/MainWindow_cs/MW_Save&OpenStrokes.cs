@@ -2,11 +2,13 @@
 using Microsoft.Win32;
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Markup;
-using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Threading.Tasks;
 
 namespace Ink_Canvas
 {
@@ -18,39 +20,44 @@ namespace Ink_Canvas
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
             GridNotifications.Visibility = Visibility.Collapsed;
-            SaveInkCanvasStrokes(true, true);
+            SaveInkCanvasFile(true, true);
         }
 
-        private void SaveInkCanvasStrokes(bool newNotice = true, bool saveByUser = false)
+        private void SaveInkCanvasFile(bool newNotice = true, bool saveByUser = false)
         {
             try
             {
                 string savePath = Settings.Automation.AutoSavedStrokesLocation
                     + (saveByUser ? @"\User Saved - " : @"\Auto Saved - ")
                     + (currentMode == 0 ? "Annotation Strokes" : "BlackBoard Strokes");
+
                 if (!Directory.Exists(savePath))
                 {
                     Directory.CreateDirectory(savePath);
                 }
+
                 string savePathWithName = savePath + @"\" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss-fff")
                     + (currentMode != 0 ? " Page-" + CurrentWhiteboardIndex + " StrokesCount-" + inkCanvas.Strokes.Count + ".icart" : ".icart");
 
                 using (FileStream fs = new FileStream(savePathWithName, FileMode.Create))
-                using (var archive = new System.IO.Compression.ZipArchive(fs, System.IO.Compression.ZipArchiveMode.Create))
+                using (var archive = new ZipArchive(fs, ZipArchiveMode.Create))
                 {
-                    // save strokes
+                    // Save strokes
                     var strokesEntry = archive.CreateEntry("strokes.icstk");
                     using (var strokesStream = strokesEntry.Open())
                     {
                         inkCanvas.Strokes.Save(strokesStream);
                     }
 
-                    // save UI elements
+                    // Save UI elements
                     var elementsEntry = archive.CreateEntry("elements.xaml");
                     using (var elementsStream = elementsEntry.Open())
                     {
                         XamlWriter.Save(inkCanvas, elementsStream);
                     }
+
+                    // Save related URL files
+                    SaveRelatedUrlFiles(archive);
 
                     if (newNotice)
                     {
@@ -65,7 +72,44 @@ namespace Ink_Canvas
             }
         }
 
-        private void SymbolIconOpenStrokes_Click(object sender, RoutedEventArgs e)
+        private void SaveRelatedUrlFiles(ZipArchive archive)
+        {
+            string dependencyFolder = "File Dependency";
+            var folderEntry = archive.CreateEntry(dependencyFolder + "/");
+            foreach (UIElement element in inkCanvas.Children)
+            {
+                if (element is Image image && image.Source is BitmapImage bitmapImage && bitmapImage.UriSource != null)
+                {
+                    AddFileToArchive(archive, bitmapImage.UriSource.LocalPath, dependencyFolder);
+                }
+                else if (element is MediaElement mediaElement && mediaElement.Source != null)
+                {
+                    AddFileToArchive(archive, mediaElement.Source.LocalPath, dependencyFolder);
+                }
+                else
+                {
+                    LogHelper.WriteLogToFile("该元素类型暂不支持保存", LogHelper.LogType.Error);
+                }
+            }
+        }
+
+        private void AddFileToArchive(ZipArchive archive, string filePath, string folderName)
+        {
+            if (File.Exists(filePath))
+            {
+                string fileName = Path.GetFileName(filePath);
+                var fileEntry = archive.CreateEntry(folderName + "/" + fileName);
+                using (var entryStream = fileEntry.Open())
+                using (var fileStream = File.OpenRead(filePath))
+                {
+                    fileStream.CopyTo(entryStream);
+                }
+            }
+        }
+
+
+
+        private void SymbolIconOpenInkCanvasFile_Click(object sender, RoutedEventArgs e)
         {
             AnimationsHelper.HideWithSlideAndFade(BorderTools);
             AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
@@ -88,9 +132,9 @@ namespace Ink_Canvas
                     {
                         if (extension == ".icart")
                         {
-                            using (var archive = new System.IO.Compression.ZipArchive(fs, System.IO.Compression.ZipArchiveMode.Read))
+                            using (var archive = new ZipArchive(fs, ZipArchiveMode.Read))
                             {
-                                // strokes
+                                // load strokes
                                 var strokesEntry = archive.GetEntry("strokes.icstk");
                                 if (strokesEntry != null)
                                 {
@@ -104,7 +148,11 @@ namespace Ink_Canvas
                                     }
                                 }
 
-                                // UI Elements
+                                // load URL files
+                                string saveDirectory = Settings.Automation.AutoSavedStrokesLocation;
+                                ExtractUrlFiles(archive, saveDirectory);
+
+                                // load UI Elements
                                 var elementsEntry = archive.GetEntry("elements.xaml");
                                 using (var elementsStream = elementsEntry.Open())
                                 {
@@ -116,15 +164,18 @@ namespace Ink_Canvas
                                             inkCanvas.Children.Clear();
                                             foreach (UIElement child in loadedCanvas.Children)
                                             {
-                                                UIElement clonedChild = CloneUIElement(child);
-                                                // 设置克隆子元素的 RenderTransform 和其他属性
-                                                if (child is FrameworkElement frameworkElement)
+                                                var xaml = XamlWriter.Save(child);
+                                                UIElement clonedChild = (UIElement)XamlReader.Parse(xaml);
+                                                if (clonedChild is MediaElement mediaElement)
                                                 {
-                                                    if (frameworkElement.RenderTransform != null)
+                                                    mediaElement.LoadedBehavior = MediaState.Manual;
+                                                    mediaElement.UnloadedBehavior = MediaState.Manual;
+                                                    mediaElement.Loaded += async (_, args) =>
                                                     {
-                                                        clonedChild.SetValue(UIElement.RenderTransformProperty, CloneTransform(frameworkElement.RenderTransform));
-                                                    }
-                                                    clonedChild.SetValue(UIElement.OpacityProperty, frameworkElement.Opacity);
+                                                        mediaElement.Play();
+                                                        await Task.Delay(100);
+                                                        mediaElement.Pause();
+                                                    };
                                                 }
                                                 inkCanvas.Children.Add(clonedChild);
                                             }
@@ -177,31 +228,28 @@ namespace Ink_Canvas
             }
         }
 
-        private static UIElement CloneUIElement(UIElement element)
+        private void ExtractUrlFiles(ZipArchive archive, string outputDirectory)
         {
-            // 使用 XAML 克隆元素
-            var xaml = XamlWriter.Save(element);
-            return (UIElement)XamlReader.Parse(xaml);
-        }
-
-        private static Transform CloneTransform(Transform transform)
-        {
-            // 克隆 Transform 对象
-            if (transform is MatrixTransform matrixTransform)
+            foreach (var entry in archive.Entries)
             {
-                return new MatrixTransform(matrixTransform.Matrix);
-            }
-            else if (transform is TransformGroup transformGroup)
-            {
-                var clonedGroup = new TransformGroup();
-                foreach (var t in transformGroup.Children)
+                if (entry.FullName.StartsWith("File Dependency/", StringComparison.OrdinalIgnoreCase))
                 {
-                    clonedGroup.Children.Add(CloneTransform(t));
+                    if (!string.IsNullOrEmpty(entry.Name))
+                    {
+                        string fileName = Path.Combine(outputDirectory, entry.FullName);
+
+                        string directoryPath = Path.GetDirectoryName(fileName);
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+                        if (!File.Exists(fileName))
+                        {
+                            entry.ExtractToFile(fileName, overwrite: false);
+                        }
+                    }
                 }
-                return clonedGroup;
             }
-            // 支持更多的 Transform 类型
-            return transform.Clone();
         }
     }
 }

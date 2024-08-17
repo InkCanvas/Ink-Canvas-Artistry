@@ -2561,7 +2561,7 @@
                                                         Height="45"
                                                         Padding="0"
                                                         BorderThickness="0"
-                                                        Click="SymbolIconOpenStrokes_Click">
+                                                        Click="SymbolIconOpenInkCanvasFile_Click">
                                                         <ikw:SimpleStackPanel
                                                             Width="40"
                                                             Height="40"
@@ -6766,7 +6766,7 @@
                                                     Height="45"
                                                     Padding="0"
                                                     BorderThickness="0"
-                                                    Click="SymbolIconOpenStrokes_Click">
+                                                    Click="SymbolIconOpenInkCanvasFile_Click">
                                                     <ikw:SimpleStackPanel
                                                         Width="40"
                                                         Height="40"
