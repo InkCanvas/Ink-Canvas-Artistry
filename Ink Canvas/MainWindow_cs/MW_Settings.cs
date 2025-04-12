@@ -174,20 +174,65 @@ namespace Ink_Canvas
             LoadSettings();
         }
 
-        private void ToggleSwitchEnableViewboxFloatingBarScaleTransform_Toggled(object sender, RoutedEventArgs e)
+        private void ApplyScaling()
         {
-            if (!isLoaded) return;
-            Settings.Appearance.EnableViewboxFloatingBarScaleTransform = ToggleSwitchEnableViewboxFloatingBarScaleTransform.IsOn;
-            SaveSettingsToFile();
-            LoadSettings();
+            // Apply Floating Bar Scale
+            // Divide by 100 to convert percentage to scale factor
+            double floatingBarScaleFactor = Settings.Appearance.FloatingBarScale / 100.0;
+            ViewboxFloatingBarScaleTransform.ScaleX = floatingBarScaleFactor;
+            ViewboxFloatingBarScaleTransform.ScaleY = floatingBarScaleFactor;
+
+            // Apply Blackboard Scale
+            // Divide by 100 to convert percentage to scale factor
+            double blackboardScaleFactor = Settings.Appearance.BlackboardScale / 100.0;
+            ViewboxBlackboardLeftSideScaleTransform.ScaleX = blackboardScaleFactor;
+            ViewboxBlackboardLeftSideScaleTransform.ScaleY = blackboardScaleFactor;
+            ViewboxBlackboardCenterSideScaleTransform.ScaleX = blackboardScaleFactor;
+            ViewboxBlackboardCenterSideScaleTransform.ScaleY = blackboardScaleFactor;
+            ViewboxBlackboardRightSideScaleTransform.ScaleX = blackboardScaleFactor;
+            ViewboxBlackboardRightSideScaleTransform.ScaleY = blackboardScaleFactor;
+
+            // auto align
+            if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
+            {
+                ViewboxFloatingBarMarginAnimation(60);
+            }
+            else
+            {
+                ViewboxFloatingBarMarginAnimation(100);
+            }
         }
 
-        private void ToggleSwitchEnableViewboxBlackBoardScaleTransform_Toggled(object sender, RoutedEventArgs e)
+        private void SliderFloatingBarScale_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!isLoaded) return;
-            Settings.Appearance.EnableViewboxBlackBoardScaleTransform = ToggleSwitchEnableViewboxBlackBoardScaleTransform.IsOn;
+            Settings.Appearance.FloatingBarScale = e.NewValue;
+            ApplyScaling(); // Apply the change visually
             SaveSettingsToFile();
-            LoadSettings();
+        }
+
+        private void SliderBlackboardScale_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!isLoaded) return;
+            Settings.Appearance.BlackboardScale = e.NewValue;
+            ApplyScaling(); // Apply the change visually
+            SaveSettingsToFile();
+        }
+
+        private void BtnSetFloatingBarScale_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag != null && double.TryParse(btn.Tag.ToString(), out double scalePercent))
+            {
+                SliderFloatingBarScale.Value = scalePercent; // This will trigger ValueChanged
+            }
+        }
+
+        private void BtnSetBlackboardScale_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag != null && double.TryParse(btn.Tag.ToString(), out double scalePercent))
+            {
+                SliderBlackboardScale.Value = scalePercent; // This will trigger ValueChanged
+            }
         }
 
         private void ToggleSwitchShowButtonPPTNavigationBottom_OnToggled(object sender, RoutedEventArgs e)
@@ -653,8 +698,8 @@ namespace Ink_Canvas
             Settings.Appearance.IsEnableDisPlayFloatBarText = false;
             Settings.Appearance.IsEnableDisPlayNibModeToggler = false;
             Settings.Appearance.IsColorfulViewboxFloatingBar = false;
-            Settings.Appearance.EnableViewboxFloatingBarScaleTransform = true;
-            Settings.Appearance.EnableViewboxBlackBoardScaleTransform = false;
+            Settings.Appearance.FloatingBarScale = 100.0;
+            Settings.Appearance.BlackboardScale = 100.0;
             Settings.Appearance.IsTransparentButtonBackground = true;
             Settings.Appearance.IsShowExitButton = true;
             Settings.Appearance.IsShowEraserButton = true;

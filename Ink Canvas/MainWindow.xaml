@@ -3538,37 +3538,116 @@
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="浮动工具栏背景色" />
                                 </ikw:SimpleStackPanel>
-                                <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <ikw:SimpleStackPanel Width="50">
-                                        <ui:ToggleSwitch
-                                            Name="ToggleSwitchEnableViewboxFloatingBarScaleTransform"
-                                            IsOn="True"
-                                            OffContent="关"
-                                            OnContent="开"
-                                            Toggled="ToggleSwitchEnableViewboxFloatingBarScaleTransform_Toggled" />
-                                    </ikw:SimpleStackPanel>
-                                    <TextBlock
-                                        Margin="0,0,14,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        Foreground="{DynamicResource SettingsPageForeground}"
-                                        Text="浮动工具栏 UI 90% 缩放" />
+                                <ikw:SimpleStackPanel Spacing="10">
+                                    <!--  Floating Bar Scale Slider  -->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Slider
+                                            x:Name="SliderFloatingBarScale"
+                                            Width="330"
+                                            ui:ControlHelper.Header="浮动工具栏 UI 缩放 (%)"
+                                            IsSnapToTickEnabled="True"
+                                            Maximum="150"
+                                            Minimum="50"
+                                            TickFrequency="1"
+                                            TickPlacement="BottomRight"
+                                            ValueChanged="SliderFloatingBarScale_ValueChanged"
+                                            Value="100" />
+                                        <TextBlock
+                                            Width="35"
+                                            Margin="10,0,0,8"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            FontSize="14"
+                                            Text="{Binding Value, ElementName=SliderFloatingBarScale, StringFormat={}{0:F0}}" />
+                                    </StackPanel>
+                                    <!--  Floating Bar Quick Buttons  -->
+                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetFloatingBarScale_Click"
+                                            Content="80%"
+                                            Tag="80" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetFloatingBarScale_Click"
+                                            Content="90%"
+                                            Tag="90" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetFloatingBarScale_Click"
+                                            Content="100%"
+                                            Tag="100" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetFloatingBarScale_Click"
+                                            Content="110%"
+                                            Tag="110" />
+                                        <Button
+                                            Padding="15,4"
+                                            Click="BtnSetFloatingBarScale_Click"
+                                            Content="125%"
+                                            Tag="125" />
+                                    </StackPanel>
                                 </ikw:SimpleStackPanel>
-                                <ikw:SimpleStackPanel Orientation="Horizontal">
-                                    <ikw:SimpleStackPanel Width="50">
-                                        <ui:ToggleSwitch
-                                            Name="ToggleSwitchEnableViewboxBlackBoardScaleTransform"
-                                            IsOn="False"
-                                            OffContent="关"
-                                            OnContent="开"
-                                            Toggled="ToggleSwitchEnableViewboxBlackBoardScaleTransform_Toggled" />
-                                    </ikw:SimpleStackPanel>
-                                    <TextBlock
-                                        Margin="0,0,14,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="14"
-                                        Foreground="{DynamicResource SettingsPageForeground}"
-                                        Text="画板 UI 80% 缩放" />
+
+                                <ikw:SimpleStackPanel Margin="0,15,0,0" Spacing="10">
+                                    <!--  Blackboard Scale Slider  -->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Slider
+                                            x:Name="SliderBlackboardScale"
+                                            Width="330"
+                                            ui:ControlHelper.Header="画板 UI 缩放 (%)"
+                                            IsSnapToTickEnabled="True"
+                                            Maximum="150"
+                                            Minimum="50"
+                                            TickFrequency="1"
+                                            TickPlacement="BottomRight"
+                                            ValueChanged="SliderBlackboardScale_ValueChanged"
+                                            Value="100" />
+                                        <TextBlock
+                                            Width="35"
+                                            Margin="10,0,0,8"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            FontSize="14"
+                                            Text="{Binding Value, ElementName=SliderBlackboardScale, StringFormat={}{0:F0}}" />
+                                    </StackPanel>
+                                    <!--  Blackboard Quick Buttons  -->
+                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetBlackboardScale_Click"
+                                            Content="80%"
+                                            Tag="80" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetBlackboardScale_Click"
+                                            Content="90%"
+                                            Tag="90" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetBlackboardScale_Click"
+                                            Content="100%"
+                                            Tag="100" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="15,4"
+                                            Click="BtnSetBlackboardScale_Click"
+                                            Content="110%"
+                                            Tag="110" />
+                                        <Button
+                                            Padding="15,4"
+                                            Click="BtnSetBlackboardScale_Click"
+                                            Content="125%"
+                                            Tag="125" />
+                                    </StackPanel>
                                 </ikw:SimpleStackPanel>
                             </ikw:SimpleStackPanel>
                         </GroupBox>
@@ -6403,7 +6482,8 @@
                                         TextAlignment="Center"
                                         Visibility="{Binding ElementName=FloatBarSelectIconTextBlock, Path=Visibility}" />
                                 </ikw:SimpleStackPanel>
-                            </Button><Button
+                            </Button>
+                            <Button
                                 Width="30"
                                 Height="32"
                                 Padding="0"

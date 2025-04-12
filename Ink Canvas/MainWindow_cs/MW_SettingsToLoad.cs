@@ -179,46 +179,18 @@ namespace Ink_Canvas
                 {
                     ToggleSwitchColorfulViewboxFloatingBar.IsOn = false;
                 }
-                if (Settings.Appearance.EnableViewboxFloatingBarScaleTransform) // 浮动工具栏 UI 缩放 90%
-                {
-                    ViewboxFloatingBarScaleTransform.ScaleX = 0.9;
-                    ViewboxFloatingBarScaleTransform.ScaleY = 0.9;
 
-                    ToggleSwitchEnableViewboxFloatingBarScaleTransform.IsOn = true;
-                }
-                else
-                {
-                    ViewboxFloatingBarScaleTransform.ScaleX = 1;
-                    ViewboxFloatingBarScaleTransform.ScaleY = 1;
-
-                    ToggleSwitchEnableViewboxFloatingBarScaleTransform.IsOn = false;
-                }
-                if (Settings.Appearance.EnableViewboxBlackBoardScaleTransform) // 画板 UI 缩放 80%
-                {
-                    ViewboxBlackboardLeftSideScaleTransform.ScaleX = 0.8;
-                    ViewboxBlackboardLeftSideScaleTransform.ScaleY = 0.8;
-                    ViewboxBlackboardCenterSideScaleTransform.ScaleX = 0.8;
-                    ViewboxBlackboardCenterSideScaleTransform.ScaleY = 0.8;
-                    ViewboxBlackboardRightSideScaleTransform.ScaleX = 0.8;
-                    ViewboxBlackboardRightSideScaleTransform.ScaleY = 0.8;
-
-                    ToggleSwitchEnableViewboxBlackBoardScaleTransform.IsOn = true;
-                }
-                else
-                {
-                    ViewboxBlackboardLeftSideScaleTransform.ScaleX = 1;
-                    ViewboxBlackboardLeftSideScaleTransform.ScaleY = 1;
-                    ViewboxBlackboardCenterSideScaleTransform.ScaleX = 1;
-                    ViewboxBlackboardCenterSideScaleTransform.ScaleY = 1;
-                    ViewboxBlackboardRightSideScaleTransform.ScaleX = 1;
-                    ViewboxBlackboardRightSideScaleTransform.ScaleY = 1;
-
-                    ToggleSwitchEnableViewboxBlackBoardScaleTransform.IsOn = false;
-                }
+                SliderFloatingBarScale.Value = Settings.Appearance.FloatingBarScale;
+                SliderBlackboardScale.Value = Settings.Appearance.BlackboardScale;
+                ApplyScaling();
             }
             else
             {
                 Settings.Appearance = new Appearance();
+
+                SliderFloatingBarScale.Value = Settings.Appearance.FloatingBarScale;
+                SliderBlackboardScale.Value = Settings.Appearance.BlackboardScale;
+                ApplyScaling();
             }
             // PowerPointSettings
             if (Settings.PowerPointSettings != null)

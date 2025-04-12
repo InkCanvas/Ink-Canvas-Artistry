@@ -117,24 +117,34 @@ namespace Ink_Canvas
     {
         [JsonProperty("isEnableDisPlayFloatBarText")]
         public bool IsEnableDisPlayFloatBarText { get; set; } = false;
+
         [JsonProperty("isEnableDisPlayNibModeToggler")]
         public bool IsEnableDisPlayNibModeToggler { get; set; } = true;
+
         [JsonProperty("isColorfulViewboxFloatingBar")]
         public bool IsColorfulViewboxFloatingBar { get; set; } = false;
+
         [JsonProperty("enableViewboxFloatingBarScaleTransform")]
-        public bool EnableViewboxFloatingBarScaleTransform { get; set; } = false;
+        public double FloatingBarScale { get; set; } = 100.0; // Default to 100%
+
         [JsonProperty("enableViewboxBlackBoardScaleTransform")]
-        public bool EnableViewboxBlackBoardScaleTransform { get; set; } = false;
+        public double BlackboardScale { get; set; } = 100.0; // Default to 100%
+
         [JsonProperty("isTransparentButtonBackground")]
         public bool IsTransparentButtonBackground { get; set; } = true;
+
         [JsonProperty("isShowExitButton")]
         public bool IsShowExitButton { get; set; } = true;
+
         [JsonProperty("isShowEraserButton")]
         public bool IsShowEraserButton { get; set; } = true;
+
         [JsonProperty("isShowHideControlButton")]
         public bool IsShowHideControlButton { get; set; } = false;
+
         [JsonProperty("isShowLRSwitchButton")]
         public bool IsShowLRSwitchButton { get; set; } = false;
+
         [JsonProperty("isShowModeFingerToggleSwitch")]
         public bool IsShowModeFingerToggleSwitch { get; set; } = true;
         [JsonProperty("theme")]

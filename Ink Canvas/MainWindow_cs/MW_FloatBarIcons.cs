@@ -571,12 +571,13 @@ namespace Ink_Canvas
 
         bool isViewboxFloatingBarMarginAnimationRunning = false;
 
-        private async void ViewboxFloatingBarMarginAnimation(int MarginFromEdge)
+        private async void ViewboxFloatingBarMarginAnimation(double MarginFromEdge)
         {
             if (MarginFromEdge == 60)
             {
                 MarginFromEdge = 55;
             }
+            MarginFromEdge = MarginFromEdge * (Settings.Appearance.FloatingBarScale / 100);
             await Dispatcher.InvokeAsync(() =>
             {
                 if (Topmost == false)
