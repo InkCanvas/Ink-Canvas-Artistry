@@ -91,24 +91,19 @@ namespace Ink_Canvas
     {
         [JsonProperty("isAutoUpdate")]
         public bool IsAutoUpdate { get; set; } = true;
-        [JsonProperty("isAutoUpdateWithProxy")]
-        public bool IsAutoUpdateWithProxy { get; set; } = false;
-        [JsonProperty("autoUpdateProxy")]
-        public string AutoUpdateProxy { get; set; } = "https://mirror.ghproxy.com/";
+
         [JsonProperty("isAutoUpdateWithSilence")]
         public bool IsAutoUpdateWithSilence { get; set; } = false;
+
         [JsonProperty("isAutoUpdateWithSilenceStartTime")]
         public string AutoUpdateWithSilenceStartTime { get; set; } = "00:00";
+
         [JsonProperty("isAutoUpdateWithSilenceEndTime")]
         public string AutoUpdateWithSilenceEndTime { get; set; } = "00:00";
 
         [JsonProperty("isEnableNibMode")]
         public bool IsEnableNibMode { get; set; } = false;
-        /*
-        [JsonProperty("isAutoHideCanvas")]
-        public bool IsAutoHideCanvas { get; set; } = true;
-        [JsonProperty("isAutoEnterModeFinger")]
-        public bool IsAutoEnterModeFinger { get; set; } = false;*/
+
         [JsonProperty("isFoldAtStartup")]
         public bool IsFoldAtStartup { get; set; } = false;
     }

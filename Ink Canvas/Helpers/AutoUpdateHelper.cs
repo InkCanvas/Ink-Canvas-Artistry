@@ -13,25 +13,30 @@ namespace Ink_Canvas.Helpers
 {
     internal class AutoUpdateHelper
     {
-        public static async Task<string> CheckForUpdates(string proxy = null)
+        private const string UpdateServerBaseUrl = "http://8.134.100.248:8080";
+
+        public static async Task<string> CheckForUpdates()
         {
             try
             {
                 string localVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                string remoteAddress = proxy;
-                remoteAddress += "https://raw.githubusercontent.com/InkCanvas/Ink-Canvas-Artistry/master/AutomaticUpdateVersionControl.txt";
+                string remoteAddress = $"{UpdateServerBaseUrl}/version";
                 string remoteVersion = await GetRemoteVersion(remoteAddress);
 
                 if (remoteVersion != null)
                 {
                     Version local = new Version(localVersion);
-                    Version remote = new Version(remoteVersion);
+                    Version remote = new Version(remoteVersion.Trim());
                     if (remote > local)
                     {
-                        LogHelper.WriteLogToFile("AutoUpdate | New version Availble: " + remoteVersion);
-                        return remoteVersion;
+                        LogHelper.WriteLogToFile("AutoUpdate | New version Available: " + remoteVersion);
+                        return remoteVersion.Trim();
                     }
-                    else return null;
+                    else
+                    {
+                        LogHelper.WriteLogToFile("AutoUpdate | Local version is up-to-date or newer.");
+                        return null;
+                    }
                 }
                 else
                 {
@@ -39,9 +44,14 @@ namespace Ink_Canvas.Helpers
                     return null;
                 }
             }
+            catch (FormatException ex)
+            {
+                LogHelper.WriteLogToFile($"AutoUpdate | Version format error: {ex.Message}", LogHelper.LogType.Error);
+                return null;
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"AutoUpdate | Error: {ex.Message}");
+                LogHelper.WriteLogToFile($"AutoUpdate | Error checking for updates: {ex.Message}", LogHelper.LogType.Error);
                 return null;
             }
         }
@@ -52,20 +62,25 @@ namespace Ink_Canvas.Helpers
             {
                 try
                 {
+                    client.Timeout = TimeSpan.FromSeconds(15);
                     HttpResponseMessage response = await client.GetAsync(fileUrl);
                     response.EnsureSuccessStatusCode();
 
-                    return await response.Content.ReadAsStringAsync();
+                    string versionString = await response.Content.ReadAsStringAsync();
+                    return versionString?.Trim();
                 }
                 catch (HttpRequestException ex)
                 {
-                    LogHelper.WriteLogToFile($"AutoUpdate | HTTP request error: {ex.Message}", LogHelper.LogType.Error);
+                    LogHelper.WriteLogToFile($"AutoUpdate | HTTP request error getting version from {fileUrl}: {ex.Message}", LogHelper.LogType.Error);
+                }
+                catch (TaskCanceledException ex)
+                {
+                    LogHelper.WriteLogToFile($"AutoUpdate | Timeout getting version from {fileUrl}: {ex.Message}", LogHelper.LogType.Error);
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteLogToFile($"AutoUpdate | Error: {ex.Message}", LogHelper.LogType.Error);
+                    LogHelper.WriteLogToFile($"AutoUpdate | Error getting remote version from {fileUrl}: {ex.Message}", LogHelper.LogType.Error);
                 }
-
                 return null;
             }
         }
@@ -73,7 +88,7 @@ namespace Ink_Canvas.Helpers
         private static string updatesFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ink Canvas Artistry", "AutoUpdate");
         private static string statusFilePath = null;
 
-        public static async Task<bool> DownloadSetupFileAndSaveStatus(string version, string proxy = "")
+        public static async Task<bool> DownloadSetupFileAndSaveStatus(string version)
         {
             try
             {
@@ -85,10 +100,14 @@ namespace Ink_Canvas.Helpers
                     return true;
                 }
 
-                string downloadUrl = $"{proxy}https://github.com/InkCanvas/Ink-Canvas-Artistry/releases/download/v{version}/Ink.Canvas.Artistry.V{version}.Setup.exe";
+                string setupFileName = $"Ink.Canvas.Artistry.V{version}.Setup.exe";
+                string downloadUrl = $"{UpdateServerBaseUrl}/download/{setupFileName}";
+                string destinationPath = Path.Combine(updatesFolderPath, setupFileName);
+
+                LogHelper.WriteLogToFile($"AutoUpdate | Attempting download from: {downloadUrl} to {destinationPath}");
 
                 SaveDownloadStatus(false);
-                await DownloadFile(downloadUrl, $"{updatesFolderPath}\\Ink.Canvas.Artistry.V{version}.Setup.exe");
+                await DownloadFile(downloadUrl, destinationPath);
                 SaveDownloadStatus(true);
 
                 LogHelper.WriteLogToFile("AutoUpdate | Setup file successfully downloaded.");
@@ -96,36 +115,66 @@ namespace Ink_Canvas.Helpers
             }
             catch (Exception ex)
             {
-                LogHelper.WriteLogToFile($"AutoUpdate | Error downloading and installing update: {ex.Message}", LogHelper.LogType.Error);
-
+                LogHelper.WriteLogToFile($"AutoUpdate | Error downloading setup file for version {version}: {ex.Message}", LogHelper.LogType.Error);
                 SaveDownloadStatus(false);
+                try
+                {
+                    string setupFileName = $"Ink.Canvas.Artistry.V{version}.Setup.exe";
+                    string destinationPath = Path.Combine(updatesFolderPath, setupFileName);
+                    if (File.Exists(destinationPath))
+                    {
+                        File.Delete(destinationPath);
+                    }
+                }
+                catch (Exception deleteEx)
+                {
+                    LogHelper.WriteLogToFile($"AutoUpdate | Error deleting incomplete download: {deleteEx.Message}", LogHelper.LogType.Error);
+                }
                 return false;
             }
         }
 
         private static async Task DownloadFile(string fileUrl, string destinationPath)
         {
+            string directory = Path.GetDirectoryName(destinationPath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+                LogHelper.WriteLogToFile($"AutoUpdate | Created directory: {directory}");
+            }
+
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
+                    client.Timeout = TimeSpan.FromMinutes(5);
                     HttpResponseMessage response = await client.GetAsync(fileUrl);
                     response.EnsureSuccessStatusCode();
 
                     using (FileStream fileStream = File.Create(destinationPath))
                     {
                         await response.Content.CopyToAsync(fileStream);
-                        fileStream.Close();
                     }
+                    LogHelper.WriteLogToFile($"AutoUpdate | File downloaded successfully to {destinationPath}");
                 }
                 catch (HttpRequestException ex)
                 {
-                    Console.WriteLine($"AutoUpdate | HTTP request error: {ex.Message}");
+                    LogHelper.WriteLogToFile($"AutoUpdate | HTTP request error downloading from {fileUrl}: {ex.Message}", LogHelper.LogType.Error);
+                    throw;
+                }
+                catch (TaskCanceledException ex)
+                {
+                    LogHelper.WriteLogToFile($"AutoUpdate | Timeout downloading from {fileUrl}: {ex.Message}", LogHelper.LogType.Error);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    LogHelper.WriteLogToFile($"AutoUpdate | IO error saving to {destinationPath}: {ex.Message}", LogHelper.LogType.Error);
                     throw;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"AutoUpdate | Error: {ex.Message}");
+                    LogHelper.WriteLogToFile($"AutoUpdate | Generic error downloading from {fileUrl}: {ex.Message}", LogHelper.LogType.Error);
                     throw;
                 }
             }
@@ -135,7 +184,11 @@ namespace Ink_Canvas.Helpers
         {
             try
             {
-                if (statusFilePath == null) return;
+                if (statusFilePath == null)
+                {
+                    LogHelper.WriteLogToFile("AutoUpdate | statusFilePath is null, cannot save download status.", LogHelper.LogType.Error);
+                    return;
+                }
 
                 string directory = Path.GetDirectoryName(statusFilePath);
                 if (!Directory.Exists(directory))
@@ -144,6 +197,7 @@ namespace Ink_Canvas.Helpers
                 }
 
                 File.WriteAllText(statusFilePath, isSuccess.ToString());
+                LogHelper.WriteLogToFile($"AutoUpdate | Saved download status ({isSuccess}) to {statusFilePath}");
             }
             catch (Exception ex)
             {
@@ -155,7 +209,8 @@ namespace Ink_Canvas.Helpers
         {
             try
             {
-                string setupFilePath = Path.Combine(updatesFolderPath, $"Ink.Canvas.Artistry.V{version}.Setup.exe");
+                string setupFileName = $"Ink.Canvas.Artistry.V{version}.Setup.exe";
+                string setupFilePath = Path.Combine(updatesFolderPath, setupFileName);
 
                 if (!File.Exists(setupFilePath))
                 {
@@ -165,18 +220,15 @@ namespace Ink_Canvas.Helpers
 
                 string InstallCommand = $"\"{setupFilePath}\" /SILENT";
                 if (isInSilence) InstallCommand += " /VERYSILENT";
+
+                LogHelper.WriteLogToFile($"AutoUpdate | Executing install command: {InstallCommand}");
                 ExecuteCommandLine(InstallCommand);
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    Application.Current.Shutdown();
-                });
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLogToFile($"AutoUpdate | Error installing update: {ex.Message}", LogHelper.LogType.Error);
             }
         }
-
 
         private static void ExecuteCommandLine(string command)
         {
@@ -195,12 +247,18 @@ namespace Ink_Canvas.Helpers
                 using (Process process = new Process { StartInfo = processStartInfo })
                 {
                     process.Start();
-                    Application.Current.Shutdown();
-                    /*process.WaitForExit();
-                    int exitCode = process.ExitCode;*/
+                    LogHelper.WriteLogToFile($"AutoUpdate | Started process for command: {command}");
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        LogHelper.WriteLogToFile($"AutoUpdate | Shutting down application for update.");
+                        Application.Current.Shutdown();
+                    });
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLogToFile($"AutoUpdate | Error executing command line '{command}': {ex.Message}", LogHelper.LogType.Error);
+            }
         }
 
         public static void DeleteUpdatesFolder()
@@ -210,6 +268,7 @@ namespace Ink_Canvas.Helpers
                 if (Directory.Exists(updatesFolderPath))
                 {
                     Directory.Delete(updatesFolderPath, true);
+                    LogHelper.WriteLogToFile($"AutoUpdate | Deleted updates folder: {updatesFolderPath}");
                 }
             }
             catch (Exception ex)
@@ -226,6 +285,8 @@ namespace Ink_Canvas.Helpers
 
         public static void InitializeAutoUpdateWithSilenceTimeComboBoxOptions(ComboBox startTimeComboBox, ComboBox endTimeComboBox)
         {
+            if (Hours.Any() || Minutes.Any()) return;
+
             for (int hour = 0; hour <= 23; ++hour)
             {
                 Hours.Add(hour.ToString("00"));
@@ -234,24 +295,37 @@ namespace Ink_Canvas.Helpers
             {
                 Minutes.Add(minute.ToString("00"));
             }
-            startTimeComboBox.ItemsSource = Hours.SelectMany(h => Minutes.Select(m => $"{h}:{m}"));
-            endTimeComboBox.ItemsSource = Hours.SelectMany(h => Minutes.Select(m => $"{h}:{m}"));
+            var timeOptions = Hours.SelectMany(h => Minutes.Select(m => $"{h}:{m}")).ToList();
+            startTimeComboBox.ItemsSource = timeOptions;
+            endTimeComboBox.ItemsSource = timeOptions;
         }
 
         public static bool CheckIsInSilencePeriod(string startTime, string endTime)
         {
+            if (string.IsNullOrEmpty(startTime) || string.IsNullOrEmpty(endTime)) return false;
             if (startTime == endTime) return true;
-            DateTime currentTime = DateTime.Now;
 
-            DateTime StartTime = DateTime.ParseExact(startTime, "HH:mm", null);
-            DateTime EndTime = DateTime.ParseExact(endTime, "HH:mm", null);
-            if (StartTime <= EndTime)
-            { // 单日时间段
-                return currentTime >= StartTime && currentTime <= EndTime;
+            DateTime currentTime = DateTime.Now;
+            DateTime StartTime, EndTime;
+
+            if (!DateTime.TryParseExact(startTime, "HH:mm", null, System.Globalization.DateTimeStyles.None, out StartTime) ||
+                !DateTime.TryParseExact(endTime, "HH:mm", null, System.Globalization.DateTimeStyles.None, out EndTime))
+            {
+                LogHelper.WriteLogToFile($"AutoUpdate | Invalid time format for silence period: Start='{startTime}', End='{endTime}'", LogHelper.LogType.Error);
+                return false;
+            }
+
+            TimeSpan currentTimeOfDay = currentTime.TimeOfDay;
+            TimeSpan startTimeOfDay = StartTime.TimeOfDay;
+            TimeSpan endTimeOfDay = EndTime.TimeOfDay;
+
+            if (startTimeOfDay <= endTimeOfDay)
+            {
+                return currentTimeOfDay >= startTimeOfDay && currentTimeOfDay < endTimeOfDay;
             }
             else
-            { // 跨越两天的时间段
-                return currentTime >= StartTime || currentTime <= EndTime;
+            {
+                return currentTimeOfDay >= startTimeOfDay || currentTimeOfDay < endTimeOfDay;
             }
         }
     }

@@ -3113,77 +3113,7 @@
                                         Foreground="{DynamicResource SettingsPageForeground}"
                                         Text="自动检查更新" />
                                 </ikw:SimpleStackPanel>
-                                <Border
-                                    Padding="12"
-                                    BorderBrush="{DynamicResource SettingsPageBorderBrush}"
-                                    BorderThickness="1"
-                                    CornerRadius="5">
-                                    <ikw:SimpleStackPanel Spacing="12">
-                                        <TextBlock
-                                            Foreground="{DynamicResource SettingsPageAnnotationForeground}"
-                                            Text="# 开启 自动检查更新 后，将在软件启动时检查版本号，若版本号落后则会尝试从 Github 下载最新版安装包，安装新版本后会自动删除安装包。更新代理设置文本框放空即为直接裸连 Github。"
-                                            TextWrapping="Wrap" />
-                                        <ikw:SimpleStackPanel Orientation="Horizontal">
-                                            <ikw:SimpleStackPanel Width="50">
-                                                <ui:ToggleSwitch
-                                                    Name="ToggleSwitchIsAutoUpdateWithProxy"
-                                                    OffContent="关"
-                                                    OnContent="开"
-                                                    Toggled="ToggleSwitchIsAutoUpdateWithProxy_Toggled" />
-                                            </ikw:SimpleStackPanel>
-                                            <TextBlock
-                                                Margin="0,0,14,0"
-                                                VerticalAlignment="Center"
-                                                FontSize="14"
-                                                Foreground="{DynamicResource SettingsPageForeground}"
-                                                Text="代理设置" />
-                                        </ikw:SimpleStackPanel>
-                                        <TextBlock
-                                            x:Name="AutoUpdateWithProxy_Title"
-                                            FontSize="15"
-                                            FontWeight="Bold"
-                                            Foreground="{DynamicResource SettingsPageForeground}"
-                                            Text="更新代理设置"
-                                            TextWrapping="Wrap" />
-                                        <TextBox
-                                            x:Name="AutoUpdateProxyTextBox"
-                                            Text="https://mirror.ghproxy.com/"
-                                            TextChanged="AutoUpdateProxyTextBox_TextChanged"
-                                            TextWrapping="Wrap"
-                                            Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}" />
-                                        <Grid Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                                <Button
-                                                    Padding="15,7.5"
-                                                    Click="BtnResetAutoUpdateProxyToGHProxy_Click"
-                                                    Content="设置代理为 GHProxy" />
-                                            </StackPanel>
-                                            <StackPanel
-                                                Grid.Column="1"
-                                                HorizontalAlignment="Right"
-                                                Orientation="Horizontal">
-                                                <Button
-                                                    Padding="15,7.5"
-                                                    Click="BtnCheckAutoUpdateProxyReturnedData_Click"
-                                                    Content="检查代理返回数据" />
-                                            </StackPanel>
-                                        </Grid>
-                                        <TextBlock
-                                            Foreground="{DynamicResource SettingsPageAnnotationForeground}"
-                                            Text="# 正确的代理返回数据应为三位版本号，例如 &quot;4.0.0&quot;。"
-                                            TextWrapping="Wrap"
-                                            Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}" />
-                                        <TextBlock
-                                            Foreground="{DynamicResource SettingsPageAnnotationForeground}"
-                                            Text="# 检查代理返回数据具有一定延迟，弹窗内容为空即无返回数据。"
-                                            TextWrapping="Wrap"
-                                            Visibility="{Binding ElementName=AutoUpdateWithProxy_Title, Path=Visibility}" />
-                                    </ikw:SimpleStackPanel>
-                                </Border>
+
                                 <ikw:SimpleStackPanel x:Name="IsAutoUpdateWithSilenceBlock" Orientation="Horizontal">
                                     <ikw:SimpleStackPanel Width="50">
                                         <ui:ToggleSwitch

@@ -31,32 +31,6 @@ namespace Ink_Canvas
             SaveSettingsToFile();
         }
 
-        private void ToggleSwitchIsAutoUpdateWithProxy_Toggled(object sender, RoutedEventArgs e)
-        {
-            if (!isLoaded) return;
-            Settings.Startup.IsAutoUpdateWithProxy = ToggleSwitchIsAutoUpdateWithProxy.IsOn;
-            AutoUpdateWithProxy_Title.Visibility = Settings.Startup.IsAutoUpdateWithProxy ? Visibility.Visible : Visibility.Collapsed;
-            SaveSettingsToFile();
-        }
-
-        private void AutoUpdateProxyTextBox_TextChanged(object sender, RoutedEventArgs e)
-        {
-            if (!isLoaded) return;
-            Settings.Startup.AutoUpdateProxy = AutoUpdateProxyTextBox.Text;
-            SaveSettingsToFile();
-        }
-
-        private void BtnResetAutoUpdateProxyToGHProxy_Click(object sender, RoutedEventArgs e)
-        {
-            AutoUpdateProxyTextBox.Text = "https://mirror.ghproxy.com/";
-        }
-
-        private async void BtnCheckAutoUpdateProxyReturnedData_Click(object sender, RoutedEventArgs e)
-        {
-            string ProxyReturnedData = await AutoUpdateHelper.GetRemoteVersion(Settings.Startup.AutoUpdateProxy + "https://raw.githubusercontent.com/InkCanvas/Ink-Canvas-Artistry/master/AutomaticUpdateVersionControl.txt");
-            ShowNotificationAsync(ProxyReturnedData);
-        }
-
         private void AutoUpdateWithSilenceStartTimeComboBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (!isLoaded) return;
@@ -767,8 +741,6 @@ namespace Ink_Canvas
             Settings.Startup.IsEnableNibMode = false;
             Settings.Startup.IsAutoUpdate = true;
             Settings.Startup.IsAutoUpdateWithSilence = true;
-            Settings.Startup.IsAutoUpdateWithProxy = true;
-            Settings.Startup.AutoUpdateProxy = "https://mirror.ghproxy.com/";
             Settings.Startup.AutoUpdateWithSilenceStartTime = "18:20";
             Settings.Startup.AutoUpdateWithSilenceEndTime = "07:40";
             Settings.Startup.IsFoldAtStartup = false;

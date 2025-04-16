@@ -86,9 +86,6 @@ namespace Ink_Canvas
                     ToggleSwitchIsAutoUpdate.IsOn = true;
                     AutoUpdate();
                 }
-                ToggleSwitchIsAutoUpdateWithProxy.IsOn = Settings.Startup.IsAutoUpdateWithProxy;
-                AutoUpdateWithProxy_Title.Visibility = Settings.Startup.IsAutoUpdateWithProxy ? Visibility.Visible : Visibility.Collapsed;
-                AutoUpdateProxyTextBox.Text = Settings.Startup.AutoUpdateProxy;
                 IsAutoUpdateWithSilenceBlock.Visibility = Settings.Startup.IsAutoUpdate ? Visibility.Visible : Visibility.Collapsed;
                 if (Settings.Startup.IsAutoUpdateWithSilence)
                 {
