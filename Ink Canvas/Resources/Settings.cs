@@ -120,10 +120,13 @@ namespace Ink_Canvas
         public bool IsColorfulViewboxFloatingBar { get; set; } = false;
 
         [JsonProperty("enableViewboxFloatingBarScaleTransform")]
-        public double FloatingBarScale { get; set; } = 100.0; // Default to 100%
+        public double FloatingBarScale { get; set; } = 100.0;
 
         [JsonProperty("enableViewboxBlackBoardScaleTransform")]
-        public double BlackboardScale { get; set; } = 100.0; // Default to 100%
+        public double BlackboardScale { get; set; } = 100.0;
+
+        [JsonProperty("floatingBarBottomMargin")]
+        public double FloatingBarBottomMargin { get; set; } = 100.0;
 
         [JsonProperty("isTransparentButtonBackground")]
         public bool IsTransparentButtonBackground { get; set; } = true;

@@ -167,14 +167,15 @@ namespace Ink_Canvas
             ViewboxBlackboardRightSideScaleTransform.ScaleY = blackboardScaleFactor;
 
             // auto align
-            if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
-            {
-                ViewboxFloatingBarMarginAnimation(60);
-            }
-            else
-            {
-                ViewboxFloatingBarMarginAnimation(100);
-            }
+            ViewboxFloatingBarMarginAnimation();
+        }
+
+        private void SliderFloatingBarBottomMargin_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!isLoaded) return;
+            Settings.Appearance.FloatingBarBottomMargin = e.NewValue;
+            ViewboxFloatingBarMarginAnimation();
+            SaveSettingsToFile();
         }
 
         private void SliderFloatingBarScale_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -197,7 +198,7 @@ namespace Ink_Canvas
         {
             if (sender is Button btn && btn.Tag != null && double.TryParse(btn.Tag.ToString(), out double scalePercent))
             {
-                SliderFloatingBarScale.Value = scalePercent; // This will trigger ValueChanged
+                SliderFloatingBarScale.Value = scalePercent;
             }
         }
 
@@ -205,7 +206,15 @@ namespace Ink_Canvas
         {
             if (sender is Button btn && btn.Tag != null && double.TryParse(btn.Tag.ToString(), out double scalePercent))
             {
-                SliderBlackboardScale.Value = scalePercent; // This will trigger ValueChanged
+                SliderBlackboardScale.Value = scalePercent;
+            }
+        }
+
+        private void BtnSetFloatingBarMargin_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag != null && double.TryParse(btn.Tag.ToString(), out double margin))
+            {
+                SliderFloatingBarBottomMargin.Value = margin;
             }
         }
 

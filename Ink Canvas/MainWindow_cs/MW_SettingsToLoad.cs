@@ -179,6 +179,7 @@ namespace Ink_Canvas
 
                 SliderFloatingBarScale.Value = Settings.Appearance.FloatingBarScale;
                 SliderBlackboardScale.Value = Settings.Appearance.BlackboardScale;
+                SliderFloatingBarBottomMargin.Value = Settings.Appearance.FloatingBarBottomMargin;
                 ApplyScaling();
             }
             else
@@ -187,6 +188,7 @@ namespace Ink_Canvas
 
                 SliderFloatingBarScale.Value = Settings.Appearance.FloatingBarScale;
                 SliderBlackboardScale.Value = Settings.Appearance.BlackboardScale;
+                SliderFloatingBarBottomMargin.Value = Settings.Appearance.FloatingBarBottomMargin;
                 ApplyScaling();
             }
             // PowerPointSettings
@@ -646,15 +648,7 @@ namespace Ink_Canvas
             {
                 Settings.Automation = new Automation();
             }
-            // auto align
-            if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
-            {
-                ViewboxFloatingBarMarginAnimation(60);
-            }
-            else
-            {
-                ViewboxFloatingBarMarginAnimation(100);
-            }
+            ViewboxFloatingBarMarginAnimation();
         }
     }
 }

@@ -408,7 +408,7 @@ namespace Ink_Canvas
                     Thread.Sleep(100);
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        ViewboxFloatingBarMarginAnimation(60);
+                        ViewboxFloatingBarMarginAnimation();
                     });
                 })).Start();
             });
@@ -525,7 +525,7 @@ namespace Ink_Canvas
             });
 
             await Task.Delay(150);
-            ViewboxFloatingBarMarginAnimation(100);
+            ViewboxFloatingBarMarginAnimation();
         }
 
         int previousSlideID = 0;
@@ -653,7 +653,7 @@ namespace Ink_Canvas
             if (!isFloatingBarFolded)
             {
                 await Task.Delay(100);
-                ViewboxFloatingBarMarginAnimation(60);
+                ViewboxFloatingBarMarginAnimation();
             }
         }
 
@@ -684,7 +684,7 @@ namespace Ink_Canvas
 
             HideSubPanels("cursor");
             await Task.Delay(150);
-            ViewboxFloatingBarMarginAnimation(100);
+            ViewboxFloatingBarMarginAnimation();
         }
 
         private void GridPPTControlPrevious_MouseUp(object sender, MouseButtonEventArgs e)

@@ -218,21 +218,8 @@ namespace Ink_Canvas
 
                 if (autoAlignCenter) // 控制居中
                 {
-                    if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
-                    {
-                        await Task.Delay(50);
-                        ViewboxFloatingBarMarginAnimation(60);
-                    }
-                    else if (Topmost == true) //非黑板
-                    {
-                        await Task.Delay(50);
-                        ViewboxFloatingBarMarginAnimation(100);
-                    }
-                    else //黑板
-                    {
-                        await Task.Delay(50);
-                        ViewboxFloatingBarMarginAnimation(60);
-                    }
+                    await Task.Delay(50);
+                    ViewboxFloatingBarMarginAnimation();
                 }
             }
             await Task.Delay(150);
@@ -266,7 +253,7 @@ namespace Ink_Canvas
                 if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
                 {
                     await Task.Delay(100);
-                    ViewboxFloatingBarMarginAnimation(60);
+                    ViewboxFloatingBarMarginAnimation();
                 }
             }
         }
@@ -339,7 +326,7 @@ namespace Ink_Canvas
                     Thread.Sleep(100);
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        ViewboxFloatingBarMarginAnimation(60);
+                        ViewboxFloatingBarMarginAnimation();
                     });
                 })).Start();
 
@@ -379,28 +366,8 @@ namespace Ink_Canvas
                     SaveScreenshot(true);
                 }
 
-                if (BtnPPTSlideShowEnd.Visibility == Visibility.Collapsed)
-                {
-                    new Thread(new ThreadStart(() =>
-                    {
-                        Thread.Sleep(100);
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            ViewboxFloatingBarMarginAnimation(100);
-                        });
-                    })).Start();
-                }
-                else
-                {
-                    new Thread(new ThreadStart(() =>
-                    {
-                        Thread.Sleep(100);
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            ViewboxFloatingBarMarginAnimation(60);
-                        });
-                    })).Start();
-                }
+                ViewboxFloatingBarMarginAnimation();
+
                 if (Pen_Icon.Background == null)
                 {
                     PenIcon_Click(null, null);
@@ -571,11 +538,12 @@ namespace Ink_Canvas
 
         bool isViewboxFloatingBarMarginAnimationRunning = false;
 
-        private async void ViewboxFloatingBarMarginAnimation(double MarginFromEdge)
+        private async void ViewboxFloatingBarMarginAnimation()
         {
-            if (MarginFromEdge == 60)
+            double MarginFromEdge = Settings.Appearance.FloatingBarBottomMargin;
+            if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
             {
-                MarginFromEdge = 55;
+                MarginFromEdge = 60;
             }
             MarginFromEdge = MarginFromEdge * (Settings.Appearance.FloatingBarScale / 100);
             await Dispatcher.InvokeAsync(() =>
@@ -715,15 +683,7 @@ namespace Ink_Canvas
             {
                 HideSubPanels("cursor", true);
                 await Task.Delay(50);
-
-                if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
-                {
-                    ViewboxFloatingBarMarginAnimation(60);
-                }
-                else
-                {
-                    ViewboxFloatingBarMarginAnimation(100);
-                }
+                ViewboxFloatingBarMarginAnimation();
             }
         }
 
