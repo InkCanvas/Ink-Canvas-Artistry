@@ -541,7 +541,11 @@ namespace Ink_Canvas
         private async void ViewboxFloatingBarMarginAnimation()
         {
             double MarginFromEdge = Settings.Appearance.FloatingBarBottomMargin;
-            if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
+            if (isFloatingBarFolded)
+            {
+                MarginFromEdge = -100;
+            }
+            else if (BtnPPTSlideShowEnd.Visibility == Visibility.Visible)
             {
                 MarginFromEdge = 60;
             }
@@ -691,6 +695,10 @@ namespace Ink_Canvas
         {
             if (Pen_Icon.Background == null || StackPanelCanvasControls.Visibility == Visibility.Collapsed)
             {
+                if (isFloatingBarFolded)
+                {
+                    UnFoldFloatingBar_MouseUp(LeftSidePanel, null);
+                }
                 inkCanvas.EditingMode = InkCanvasEditingMode.Ink;
 
                 Main_Grid.Background = new SolidColorBrush(StringToColor("#01FFFFFF"));

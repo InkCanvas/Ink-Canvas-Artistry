@@ -3491,12 +3491,17 @@
                                             Text="{Binding Value, ElementName=SliderFloatingBarBottomMargin, StringFormat={}{0:F0}}" />
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                        <Button Margin="0,0,5,0" Padding="20,4" Click="BtnSetFloatingBarMargin_Click" Content="重置为 100" Tag="100" />
+                                        <Button
+                                            Margin="0,0,5,0"
+                                            Padding="20,4"
+                                            Click="BtnSetFloatingBarMargin_Click"
+                                            Content="重置为 100"
+                                            Tag="100" />
                                     </StackPanel>
                                 </ikw:SimpleStackPanel>
                                 <ikw:SimpleStackPanel Spacing="10">
                                     <!--  Floating Bar Scale Slider  -->
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
                                         <Slider
                                             x:Name="SliderFloatingBarScale"
                                             Width="330"
